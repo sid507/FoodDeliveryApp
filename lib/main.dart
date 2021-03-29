@@ -8,8 +8,8 @@ void main() => runApp(
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
-          '/': (context) => HomePage(),
-          // '/': (context) => SignInPage(),
+          // '/': (context) => HomePage(),
+          '/': (context) => SignInPage(),
           '/user': (context) => StartPage(),
         },
         theme: ThemeData(
