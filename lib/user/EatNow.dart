@@ -69,7 +69,7 @@ class _EatNowState extends State<EatNow> {
                           chef_detail["rating"]..toDouble(),
                           dd["dishName"].toString(),
                           dd["price"].toDouble(),
-                          "panner_tikka.JPG",
+                          dd["imageUrl"].toString(),
                           "25 min");
                       dishes.add(dish);
                     }
@@ -242,10 +242,10 @@ class _SingleCardState extends State<SingleCard> {
                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
                     color: Colors.white,
                   ),
-                  child: Image(
+                  child: Image.network(
+                    widget.image,
                     height: 100.0,
                     width: 150.0,
-                    image: AssetImage("assets/images/${widget.image}"),
                   ),
                 ),
                 Positioned(

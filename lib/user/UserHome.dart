@@ -19,7 +19,7 @@ import 'package:food_delivery_app/widgets/TopMenus.dart';
 import 'package:food_delivery_app/widgets/AppBarWidget.dart';
 
 String _address = "Searching Location ...";
-int manual = 0;
+int choice = 0;
 List<Marker> myMarker = [];
 
 class MapHomePage extends StatefulWidget {
@@ -171,11 +171,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    if (_isEditingText = false) {
-      _editingController = TextEditingController(text: initialText);
-      getLoc();
-    }
-    setState(() {});
+    if (choice == 1) getLoc();
     super.initState();
   }
 

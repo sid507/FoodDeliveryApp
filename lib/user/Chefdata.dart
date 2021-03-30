@@ -13,6 +13,7 @@ class Chef {
 class Dishes extends Chef {
   String _dishname;
   double _price;
+  double _rating;
   String _image;
   String _time;
   Dishes(String name, double rating, String dishname, double price,
@@ -20,6 +21,7 @@ class Dishes extends Chef {
       : super(name, rating) {
     this._dishname = dishname;
     this._price = price;
+    this._rating = rating;
     this._image = image;
     this._time = time;
   }
@@ -29,6 +31,10 @@ class Dishes extends Chef {
 
   double getPrice() {
     return this._price;
+  }
+
+  double getRating() {
+    return this._rating;
   }
 
   String getimage() {

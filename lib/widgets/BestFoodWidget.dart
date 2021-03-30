@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../user/Chefdata.dart';
 
 class BestFoodWidget extends StatefulWidget {
   @override
@@ -53,19 +56,15 @@ class BestFoodTitle extends StatelessWidget {
 class BestFoodTiles extends StatelessWidget {
   String name;
   String imageUrl;
-  String rating;
-  String numberOfRating;
-  String price;
-  String slug;
+  double rating;
+  double price;
 
   BestFoodTiles(
       {Key key,
       @required this.name,
       @required this.imageUrl,
       @required this.rating,
-      @required this.numberOfRating,
-      @required this.price,
-      @required this.slug})
+      @required this.price})
       : super(key: key);
 
   @override
@@ -90,11 +89,9 @@ class BestFoodTiles extends StatelessWidget {
               ),*/
             ]),
             child: Card(
-              semanticContainer: true,
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              child: Image.asset(
-                'assets/images/bestfood/' + imageUrl + ".jpeg",
-              ),
+              // semanticContainer: true,
+              // clipBehavior: Clip.antiAliasWithSaveLayer,
+              child: Image.network(imageUrl, width: totalWidth * 0.95),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
               ),
@@ -108,89 +105,77 @@ class BestFoodTiles extends StatelessWidget {
   }
 }
 
-class BestFoodList extends StatelessWidget {
+class BestFoodList extends StatefulWidget {
+  CartData cartData;
+  @override
+  _BestFoodListState createState() => _BestFoodListState();
+}
+
+class _BestFoodListState extends State<BestFoodList> {
+  List<Dishes> l;
+  CartData cartdata;
+  Map ll;
+  final db = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: <Widget>[
-        BestFoodTiles(
-            name: "Fried Egg",
-            imageUrl: "ic_best_food_8",
-            rating: '4.9',
-            numberOfRating: '200',
-            price: '15.06',
-            slug: "fried_egg"),
-        BestFoodTiles(
-            name: "Mixed vegetable",
-            imageUrl: "ic_best_food_9",
-            rating: "4.9",
-            numberOfRating: "100",
-            price: "17.03",
-            slug: ""),
-        BestFoodTiles(
-            name: "Salad with chicken meat",
-            imageUrl: "ic_best_food_10",
-            rating: "4.0",
-            numberOfRating: "50",
-            price: "11.00",
-            slug: ""),
-        BestFoodTiles(
-            name: "New mixed salad",
-            imageUrl: "ic_best_food_5",
-            rating: "4.00",
-            numberOfRating: "100",
-            price: "11.10",
-            slug: ""),
-        BestFoodTiles(
-            name: "Red meat with salad",
-            imageUrl: "ic_best_food_1",
-            rating: "4.6",
-            numberOfRating: "150",
-            price: "12.00",
-            slug: ""),
-        BestFoodTiles(
-            name: "New mixed salad",
-            imageUrl: "ic_best_food_2",
-            rating: "4.00",
-            numberOfRating: "100",
-            price: "11.10",
-            slug: ""),
-        BestFoodTiles(
-            name: "Potato with meat fry",
-            imageUrl: "ic_best_food_3",
-            rating: "4.2",
-            numberOfRating: "70",
-            price: "23.0",
-            slug: ""),
-        BestFoodTiles(
-            name: "Fried Egg",
-            imageUrl: "ic_best_food_4",
-            rating: '4.9',
-            numberOfRating: '200',
-            price: '15.06',
-            slug: "fried_egg"),
-        BestFoodTiles(
-            name: "Red meat with salad",
-            imageUrl: "ic_best_food_5",
-            rating: "4.6",
-            numberOfRating: "150",
-            price: "12.00",
-            slug: ""),
-        BestFoodTiles(
-            name: "Red meat with salad",
-            imageUrl: "ic_best_food_6",
-            rating: "4.6",
-            numberOfRating: "150",
-            price: "12.00",
-            slug: ""),
-        BestFoodTiles(
-            name: "Red meat with salad",
-            imageUrl: "ic_best_food_7",
-            rating: "4.6",
-            numberOfRating: "150",
-            price: "12.00",
-            slug: ""),
-      ],
-    );
+    return ListView(children: [
+      StreamBuilder<QuerySnapshot>(
+        stream: db.collection('Food_items').snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return StreamBuilder<QuerySnapshot>(
+              stream: db.collection('Chefs').snapshots(),
+              builder: (context, snapshot2) {
+                if (snapshot2.hasData) {
+                  Map chefs = {};
+                  for (int i = 0; i < snapshot2.data.docs.length; i++) {
+                    print(snapshot2.data.docs[i].data());
+                    chefs[snapshot2.data.docs[i].id] =
+                        snapshot2.data.docs[i].data();
+                  }
+                  List<Dishes> dishes = [];
+                  for (int i = 0; i < snapshot.data.docs.length; i++) {
+                    var chef_detail = chefs[snapshot.data.docs[i]["chefId"]];
+                    var dd = snapshot.data.docs[i];
+                    Dishes dish = new Dishes(
+                        chef_detail["chefName"].toString(),
+                        dd["rating"],
+                        dd["dishName"].toString(),
+                        dd["price"].toDouble(),
+                        dd["imageUrl"].toString(),
+                        "25 min");
+                    dishes.add(dish);
+                  }
+                  print(dishes);
+
+                  return Column(
+                      children: dishes.map((data) {
+                    print(ll);
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: BestFoodTiles(
+                        name: data.getDishName(),
+                        price: data.getPrice(),
+                        imageUrl: data.getimage(),
+                        rating: data.getRating(),
+                      ),
+                    );
+                  }).toList());
+                } else {
+                  return Container();
+                }
+              },
+            );
+            // for (int i = 0; i <elem; i++) {
+            //   tp.add(snapshot.data.docs[i]);
+            // }
+            // print(tp);
+
+          } else {
+            return Container();
+          }
+        },
+      )
+    ]);
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../user/ScaleRoute.dart';
+import '../user/Chefdata.dart';
 import '../user/FoodDetailsPage.dart';
 
 class PopularFoodsWidget extends StatefulWidget {
@@ -28,22 +30,22 @@ class _PopularFoodsWidgetState extends State<PopularFoodsWidget> {
 }
 
 class PopularFoodTiles extends StatelessWidget {
-  String name;
+  String dishName;
   String imageUrl;
-  String rating;
-  String numberOfRating;
-  String price;
-  String slug;
+  double rating;
+  String time;
+  int numberOfRating;
+  double price;
 
-  PopularFoodTiles(
-      {Key key,
-      @required this.name,
-      @required this.imageUrl,
-      @required this.rating,
-      @required this.numberOfRating,
-      @required this.price,
-      @required this.slug})
-      : super(key: key);
+  PopularFoodTiles({
+    Key key,
+    @required this.dishName,
+    @required this.imageUrl,
+    @required this.rating,
+    @required this.numberOfRating,
+    @required this.price,
+    @required this.time,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +58,7 @@ class PopularFoodTiles extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
+            width: totalWidth * 2 / 3,
             padding: EdgeInsets.only(
                 left: totalWidth * 10 / 420,
                 right: totalWidth * 5 / 420,
@@ -106,9 +109,9 @@ class PopularFoodTiles extends StatelessWidget {
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Center(
-                                child: Image.asset(
-                              'assets/images/' + imageUrl,
-                              width: totalWidth * 110 / 420,
+                                child: Image.network(
+                              imageUrl,
+                              width: totalWidth * 2 / 3,
                               height: totalHeight * 100 / 700,
                             )),
                           )
@@ -122,7 +125,7 @@ class PopularFoodTiles extends StatelessWidget {
                             padding: EdgeInsets.only(
                                 left: totalWidth * 5 / 420,
                                 top: totalHeight * 5 / 700),
-                            child: Text(name,
+                            child: Text(dishName,
                                 style: TextStyle(
                                     color: Color(0xFF6e6e71),
                                     fontSize: totalHeight * 15 / 700,
@@ -165,7 +168,7 @@ class PopularFoodTiles extends StatelessWidget {
                                 padding: EdgeInsets.only(
                                     left: totalWidth * 5 / 420,
                                     top: totalHeight * 5 / 700),
-                                child: Text(rating,
+                                child: Text(rating.toString(),
                                     style: TextStyle(
                                         color: Color(0xFF6e6e71),
                                         fontSize: totalHeight * 10 / 700,
@@ -224,7 +227,7 @@ class PopularFoodTiles extends StatelessWidget {
                                 left: totalWidth * 5 / 420,
                                 top: totalHeight * 5 / 700,
                                 right: totalWidth * 5 / 420),
-                            child: Text('\Rs. ' + price,
+                            child: Text('\₹ ' + price.toString(),
                                 style: TextStyle(
                                     color: Color(0xFF6e6e71),
                                     fontSize: totalHeight * 12 / 700,
@@ -276,62 +279,135 @@ class PopularFoodTitle extends StatelessWidget {
   }
 }
 
-class PopularFoodItems extends StatelessWidget {
+class PopularFoodItems extends StatefulWidget {
+  CartData cartData;
+  @override
+  _PopularFoodItemsState createState() => _PopularFoodItemsState();
+}
+
+class _PopularFoodItemsState extends State<PopularFoodItems> {
+  List<Dishes> l;
+  CartData cartdata;
+  Map ll;
+  final db = FirebaseFirestore.instance;
+
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      scrollDirection: Axis.horizontal,
-      children: <Widget>[
-        PopularFoodTiles(
-            name: "Paneer Tikka",
-            imageUrl: "panner_tikka.JPG",
-            rating: '4.9',
-            numberOfRating: '200',
-            price: '250',
-            slug: ""),
-        PopularFoodTiles(
-            name: "Mixed Vegetable",
-            imageUrl: "popular_foods/ic_popular_food_3.png",
-            rating: "4.9",
-            numberOfRating: "100",
-            price: "150",
-            slug: ""),
-        PopularFoodTiles(
-            name: "Dosa",
-            imageUrl: "dosa.jpg",
-            rating: "4.0",
-            numberOfRating: "50",
-            price: "50",
-            slug: ""),
-        PopularFoodTiles(
-            name: "Mixed Salad",
-            imageUrl: "popular_foods/ic_popular_food_5.png",
-            rating: "4.00",
-            numberOfRating: "10",
-            price: "100",
-            slug: ""),
-        PopularFoodTiles(
-            name: "Gujarati Thali",
-            imageUrl: "topmenu/west_indian.png",
-            rating: "4.6",
-            numberOfRating: "50",
-            price: "300",
-            slug: ""),
-        PopularFoodTiles(
-            name: "Momos",
-            imageUrl: "topmenu/north_east_indian.jpg",
-            rating: "4.2",
-            numberOfRating: "70",
-            price: "80",
-            slug: ""),
-        PopularFoodTiles(
-            name: "Fried Egg",
-            imageUrl: "popular_foods/ic_popular_food_1.png",
-            rating: '4.9',
-            numberOfRating: '200',
-            price: '40',
-            slug: "fried_egg"),
-      ],
-    );
+    return ListView(scrollDirection: Axis.horizontal, children: [
+      StreamBuilder<QuerySnapshot>(
+        stream: db.collection('Food_items').snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return StreamBuilder<QuerySnapshot>(
+              stream: db.collection('Chefs').snapshots(),
+              builder: (context, snapshot2) {
+                if (snapshot2.hasData) {
+                  Map chefs = {};
+                  for (int i = 0; i < snapshot2.data.docs.length; i++) {
+                    print(snapshot2.data.docs[i].data());
+                    chefs[snapshot2.data.docs[i].id] =
+                        snapshot2.data.docs[i].data();
+                  }
+                  List<Dishes> dishes = [];
+                  for (int i = 0; i < snapshot.data.docs.length; i++) {
+                    var chef_detail = chefs[snapshot.data.docs[i]["chefId"]];
+                    var dd = snapshot.data.docs[i];
+                    Dishes dish = new Dishes(
+                        chef_detail["chefName"].toString(),
+                        dd["rating"],
+                        dd["dishName"].toString(),
+                        dd["price"].toDouble(),
+                        dd["imageUrl"].toString(),
+                        "25 min");
+                    dishes.add(dish);
+                  }
+                  print(dishes);
+
+                  return Row(
+                      children: dishes.map((data) {
+                    print(ll);
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: PopularFoodTiles(
+                        dishName: data.getDishName(),
+                        price: data.getPrice(),
+                        imageUrl: data.getimage(),
+                        rating: data.getRating(),
+                        time: data.gettime(),
+                        numberOfRating: 200,
+                      ),
+                    );
+                  }).toList());
+                } else {
+                  return Container();
+                }
+              },
+            );
+            // for (int i = 0; i <elem; i++) {
+            //   tp.add(snapshot.data.docs[i]);
+            // }
+            // print(tp);
+
+          } else {
+            return Container();
+          }
+        },
+      )
+    ]);
+
+    // return ListView(
+    //   scrollDirection: Axis.horizontal,
+    //   children: <Widget>[
+    //     PopularFoodTiles(
+    //         name: "Paneer Tikka",
+    //         imageUrl: "panner_tikka.JPG",
+    //         rating: '4.9',
+    //         numberOfRating: '200',
+    //         price: '250',
+    //         slug: ""),
+    //     PopularFoodTiles(
+    //         name: "Mixed Vegetable",
+    //         imageUrl: "popular_foods/ic_popular_food_3.png",
+    //         rating: "4.9",
+    //         numberOfRating: "100",
+    //         price: "150",
+    //         slug: ""),
+    //     PopularFoodTiles(
+    //         name: "Dosa",
+    //         imageUrl: "dosa.jpg",
+    //         rating: "4.0",
+    //         numberOfRating: "50",
+    //         price: "50",
+    //         slug: ""),
+    //     PopularFoodTiles(
+    //         name: "Mixed Salad",
+    //         imageUrl: "popular_foods/ic_popular_food_5.png",
+    //         rating: "4.00",
+    //         numberOfRating: "10",
+    //         price: "100",
+    //         slug: ""),
+    //     PopularFoodTiles(
+    //         name: "Gujarati Thali",
+    //         imageUrl: "topmenu/west_indian.png",
+    //         rating: "4.6",
+    //         numberOfRating: "50",
+    //         price: "300",
+    //         slug: ""),
+    //     PopularFoodTiles(
+    //         name: "Momos",
+    //         imageUrl: "topmenu/north_east_indian.jpg",
+    //         rating: "4.2",
+    //         numberOfRating: "70",
+    //         price: "80",
+    //         slug: ""),
+    //     PopularFoodTiles(
+    //         name: "Fried Egg",
+    //         imageUrl: "popular_foods/ic_popular_food_1.png",
+    //         rating: '4.9',
+    //         numberOfRating: '200',
+    //         price: '40',
+    //         slug: "fried_egg"),
+    //   ],
+    // );
   }
 }
