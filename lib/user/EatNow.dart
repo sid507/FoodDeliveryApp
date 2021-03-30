@@ -1,5 +1,6 @@
 // import 'dart:html';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/user/Utils.dart';
 import '../user/Chefdata.dart';
@@ -16,27 +17,96 @@ class _EatNowState extends State<EatNow> {
   EatNowData items = new EatNowData();
   List<Dishes> l;
   CartData cartdata;
+  Map ll;
+  final db = FirebaseFirestore.instance;
 
   @override
   void initState() {
     super.initState();
     this.l = items.getData();
+
     this.cartdata = widget.cartData;
+    // this.data();
   }
 
+// final db = FirebaseFirestore.instance;
+//           CollectionReference collectionReference = db.collection('Chefs');
+//           collectionReference.snapshots().listen((snapshot) {
+//             for (int i = 0; i < snapshot.docs.length; i++) {
+//               // chef[snapshot.docs[i].id] = snapshot.docs[i].data();
+//               // print(snapshot.docs[i].id);
+//               setState(() {
+//                 ll = snapshot.docs[i].data();
+//               });
+//             }
+//           });
+//
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(247, 247, 248, 1),
-      body: ListView(
-        children: l.map((data) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SingleCard(data.name, data.rating, data.getDishName(),
-                data.getimage(), data.gettime(), 1, this.cartdata),
-          );
-        }).toList(),
-      ),
+      body: ListView(children: [
+        StreamBuilder<QuerySnapshot>(
+          stream: db.collection('Food_items').snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return StreamBuilder<QuerySnapshot>(
+                stream: db.collection('Chefs').snapshots(),
+                builder: (context, snapshot2) {
+                  if (snapshot2.hasData) {
+                    Map chefs = {};
+                    for (int i = 0; i < snapshot2.data.docs.length; i++) {
+                      print(snapshot2.data.docs[i].data());
+                      chefs[snapshot2.data.docs[i].id] =
+                          snapshot2.data.docs[i].data();
+                    }
+                    List<Dishes> dishes = [];
+                    for (int i = 0; i < snapshot.data.docs.length; i++) {
+                      var chef_detail = chefs[snapshot.data.docs[i]["chefId"]];
+                      var dd = snapshot.data.docs[i];
+                      Dishes dish = new Dishes(
+                          chef_detail["chefName"].toString(),
+                          chef_detail["rating"]..toDouble(),
+                          dd["dishName"].toString(),
+                          dd["price"].toDouble(),
+                          "panner_tikka.JPG",
+                          "25 min");
+                      dishes.add(dish);
+                    }
+                    print(dishes);
+
+                    return Column(
+                        children: dishes.map((data) {
+                      print(ll);
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SingleCard(
+                            data.name,
+                            data.rating,
+                            data.getPrice(),
+                            data.getDishName(),
+                            data.getimage(),
+                            data.gettime(),
+                            1,
+                            this.cartdata),
+                      );
+                    }).toList());
+                  } else {
+                    return Container();
+                  }
+                },
+              );
+              // for (int i = 0; i <elem; i++) {
+              //   tp.add(snapshot.data.docs[i]);
+              // }
+              // print(tp);
+
+            } else {
+              return Container();
+            }
+          },
+        )
+      ]),
     );
   }
 }
@@ -45,9 +115,10 @@ class SingleCard extends StatefulWidget {
   String name, dishName, image, time;
   double rating;
   int quantity;
+  double price;
   CartData cartData;
-  SingleCard(this.name, this.rating, this.dishName, this.image, this.time,
-      this.quantity, this.cartData);
+  SingleCard(this.name, this.rating, this.price, this.dishName, this.image,
+      this.time, this.quantity, this.cartData);
   @override
   _SingleCardState createState() => _SingleCardState();
 }
@@ -104,7 +175,7 @@ class _SingleCardState extends State<SingleCard> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      "250₹ (per serve)",
+                      widget.price.toString() + "₹ (per serve)",
                       style: TextStyle(
                           color: help.normalText, fontWeight: FontWeight.w100),
                     ),
@@ -165,15 +236,15 @@ class _SingleCardState extends State<SingleCard> {
               ),
               Stack(children: [
                 Container(
-                  height: totalHeight * 100 / 700,
-                  width: totalWidth * 140 / 420,
+                  height: 100.0,
+                  width: 140.0,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
                     color: Colors.white,
                   ),
                   child: Image(
-                    height: totalHeight * 100 / 700,
-                    width: totalWidth * 150 / 420,
+                    height: 100.0,
+                    width: 150.0,
                     image: AssetImage("assets/images/${widget.image}"),
                   ),
                 ),

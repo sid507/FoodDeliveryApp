@@ -4,13 +4,22 @@ import 'package:food_delivery_app/user/EatDaily.dart';
 import 'package:food_delivery_app/user/EatLater.dart';
 import 'package:food_delivery_app/user/EatNow.dart';
 import 'package:food_delivery_app/user/MealDaily.dart';
+import 'package:food_delivery_app/user/MealDaily2.dart';
 import 'package:food_delivery_app/user/Menucard.dart';
 import 'package:food_delivery_app/user/Utils.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   CartData cartdata = new CartData();
+
+  String flag = "";
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -46,7 +55,13 @@ class MyApp extends StatelessWidget {
               EatNow(cartData: cartdata),
               EatLater(),
               EatDaily(),
-              MealDaily()
+              flag == ""
+                  ? MealDaily((value) => {
+                        setState(() {
+                          flag = value;
+                        })
+                      })
+                  : MealDaily2(flag)
             ],
           ),
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/user/Chefdata.dart';
+import 'package:food_delivery_app/user/Utils.dart';
 
 class EatDaily extends StatefulWidget {
   @override
@@ -32,6 +33,7 @@ class _EatDailyState extends State<EatDaily> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0),
       ),
+      color: Helper().card,
       clipBehavior: Clip.antiAlias,
       child: Column(
         children: [
@@ -51,7 +53,7 @@ class _EatDailyState extends State<EatDaily> {
                       backgroundColor: MaterialStateProperty.resolveWith<Color>(
                         (Set<MaterialState> states) {
                           if (!states.contains(MaterialState.pressed))
-                            return Colors.green.withOpacity(1);
+                            return Helper().button;
                           return null; // Use the component's default.
                         },
                       ),
@@ -67,7 +69,7 @@ class _EatDailyState extends State<EatDaily> {
                     icon: Icon(
                       Icons.dinner_dining,
                       size: 30,
-                      color: Colors.red,
+                      color: Colors.white,
                     ),
                   ))
             ]),
@@ -92,6 +94,15 @@ class _EatDailyState extends State<EatDaily> {
                 ],
               ),
               OutlinedButton.icon(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                    (Set<MaterialState> states) {
+                      if (!states.contains(MaterialState.pressed))
+                        return Helper().button.withOpacity(1);
+                      return null; // Use the component's default.
+                    },
+                  ),
+                ),
                 onPressed: () {
                   // Respond to button press
 
@@ -100,13 +111,10 @@ class _EatDailyState extends State<EatDaily> {
                 },
                 label: Text(
                   "Subscribe",
-                  style: TextStyle(color: Colors.red),
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
                 ),
-                icon: Icon(
-                  Icons.favorite,
-                  size: 18,
-                  color: Colors.red,
-                ),
+                icon: Icon(Icons.favorite, size: 18, color: Colors.white),
               )
             ],
           ),

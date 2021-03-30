@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/user/Cart.dart';
 import 'package:food_delivery_app/user/EatDaily.dart';
+import 'package:food_delivery_app/user/MealDaily2.dart';
 import 'Utils.dart';
 
 class MealDaily extends StatefulWidget {
+  Function changeState;
+  MealDaily(this.changeState);
   @override
   _MealDailyState createState() => _MealDailyState();
 }
@@ -21,15 +24,17 @@ class _MealDailyState extends State<MealDaily> {
           children: [
             Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: Outline_button(
-                    "06 : 00AM - 11:00AM", Icons.breakfast_dining)),
+                child: Outline_button("06 : 00AM - 11:00AM",
+                    Icons.breakfast_dining, "breakfast")),
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Outline_button("01 : 00PM - 03:00PM", Icons.wb_sunny),
+              child: Outline_button(
+                  "01 : 00PM - 03:00PM", Icons.wb_sunny, "lunch"),
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Outline_button("07 : 00PM - 09:00PM", Icons.dinner_dining),
+              child: Outline_button(
+                  "07 : 00PM - 09:00PM", Icons.dinner_dining, "dinner"),
             ),
           ],
         ),
@@ -37,7 +42,7 @@ class _MealDailyState extends State<MealDaily> {
     );
   }
 
-  Widget Outline_button(String time, IconData icon) {
+  Widget Outline_button(String time, IconData icon, String type) {
     return OutlinedButton.icon(
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.resolveWith<Color>(
@@ -50,12 +55,13 @@ class _MealDailyState extends State<MealDaily> {
       ),
       onPressed: () {
         // Respond to button press
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => FoodOrderPage(),
-          ),
-        );
+        widget.changeState(type);
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (context) => MealDaily2("Dinner"),
+        //   ),
+        // );
       },
       label: Text(
         time,

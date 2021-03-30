@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 class Chef {
   String name;
   double rating;
@@ -78,6 +81,7 @@ class CartData {
 
 class EatNowData {
   List<Dishes> data = [];
+  List<String> d = [];
   EatNowData() {
     Dishes d1 = new Dishes("Siddharth Mishra", 4.5, "Paneer Tikka", 250,
         "panner_tikka.JPG", "25 min");
@@ -86,6 +90,19 @@ class EatNowData {
     this.data.add(d1);
     this.data.add(d2);
     this.data.add(d2);
+
+    final db = FirebaseFirestore.instance;
+    var chef = new Map();
+    CollectionReference collectionReference = db.collection('Chefs');
+    collectionReference.snapshots().listen((snapshot) {
+      for (int i = 0; i < snapshot.docs.length; i++) {
+        chef[snapshot.docs[i].id] = snapshot.docs[i].data();
+        // print(snapshot.docs[i].id);
+        // this.d.add(snapshot.docs[i].id);
+      }
+    });
+    print(this.d);
+
     // print(this.data.toString() + 'sid');
   }
   List<Dishes> getData() {
