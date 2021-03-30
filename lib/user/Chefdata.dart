@@ -56,12 +56,7 @@ class SingleCartItem {
 }
 
 class CartData {
-  static List<SingleCartItem> dishes = [
-    SingleCartItem(
-        Dishes("Siddharth Mishra", 4.5, "Paneer Tikka", 250, "panner_tikka.JPG",
-            "25 min"),
-        2)
-  ];
+  static List<SingleCartItem> dishes = [];
 
   void addItem(Dishes dish, int quantity) {
     dishes.add(SingleCartItem(dish, quantity));

@@ -412,10 +412,11 @@ class _CartItemState extends State<CartItem> {
                   borderRadius: BorderRadius.all(Radius.circular(8.0)),
                   color: Colors.white,
                 ),
-                child: Image(
+                child: Image.network(
+                  widget.productImage,
                   height: totalHeight * 80 / 700,
                   width: totalWidth * 130 / 420,
-                  image: AssetImage("assets/images/${widget.productImage}"),
+                  // image: Image.network(),
                 ),
               ),
               Padding(

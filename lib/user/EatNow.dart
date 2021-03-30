@@ -266,7 +266,7 @@ class _SingleCardState extends State<SingleCard> {
                       onPressed: () {
                         widget.cartData.addItem(
                             Dishes(widget.name, widget.rating, widget.dishName,
-                                250, widget.image, widget.time),
+                                widget.price, widget.image, widget.time),
                             widget.quantity);
                       },
                       label: Text(
