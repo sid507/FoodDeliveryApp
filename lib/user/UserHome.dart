@@ -15,6 +15,7 @@ import 'Menucard.dart';
 import 'package:food_delivery_app/widgets/BestFoodWidget.dart';
 import 'package:food_delivery_app/widgets/PopularFoodsWidget.dart';
 import 'package:food_delivery_app/widgets/SearchWidget.dart';
+import 'package:food_delivery_app/widgets/FoodDetailsSlider.dart';
 import 'package:food_delivery_app/widgets/TopMenus.dart';
 import 'package:food_delivery_app/widgets/AppBarWidget.dart';
 

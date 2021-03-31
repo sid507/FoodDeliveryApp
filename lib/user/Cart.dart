@@ -406,18 +406,21 @@ class _CartItemState extends State<CartItem> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: NetworkImage(
+                        widget.productImage,
+                      ),
+                      fit: BoxFit.cover),
+                ),
                 height: totalHeight * 80 / 700,
                 width: totalWidth * 120 / 420,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                  color: Colors.white,
-                ),
-                child: Image.network(
-                  widget.productImage,
-                  height: totalHeight * 80 / 700,
-                  width: totalWidth * 130 / 420,
-                  // image: Image.network(),
-                ),
+                // child: Image.network(
+                //   widget.productImage,
+                //   height: totalHeight * 80 / 700,
+                //   width: totalWidth * 130 / 420,
+                //   // image: Image.network(),
+                // ),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),

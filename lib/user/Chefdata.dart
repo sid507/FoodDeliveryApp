@@ -34,7 +34,10 @@ class Dishes extends Chef {
   }
 
   double getRating() {
-    return this._rating;
+    if (this._rating != null)
+      return this._rating;
+    else
+      return 4.5;
   }
 
   String getimage() {

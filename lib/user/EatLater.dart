@@ -266,12 +266,11 @@ class _SingleCardState extends State<SingleCard> {
                   width: 140.0,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                    color: Colors.white,
-                  ),
-                  child: Image.network(
-                    widget.image,
-                    height: 100.0,
-                    width: 150.0,
+                    image: DecorationImage(
+                        image: NetworkImage(
+                          widget.image,
+                        ),
+                        fit: BoxFit.cover),
                   ),
                 ),
                 Positioned(

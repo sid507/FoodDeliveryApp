@@ -92,14 +92,19 @@ class TopMenuTiles extends StatelessWidget {
                   ),
                 ),
                 child: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/images/topmenu/' + imageUrl),
+                        fit: BoxFit.cover),
+                  ),
                   width: totalWidth * 120 / 420,
                   height: totalHeight * 1 / 7,
-                  child: Center(
-                      child: Image.asset(
-                    'assets/images/topmenu/' + imageUrl,
-                    width: totalWidth * 80 / 420,
-                    height: totalHeight * 80 / 700,
-                  )),
+                  // child: Center(
+                  //     child: Image.asset(
+                  //   'assets/images/topmenu/' + imageUrl,
+                  //   width: totalWidth * 80 / 420,
+                  //   height: totalHeight * 80 / 700,
+                  // )),
                 )),
           ),
           Text(name,

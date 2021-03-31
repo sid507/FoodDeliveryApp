@@ -58,6 +58,10 @@ class PopularFoodTiles extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: NetworkImage(imageUrl), fit: BoxFit.cover),
+            ),
             width: totalWidth * 2 / 3,
             padding: EdgeInsets.only(
                 left: totalWidth * 10 / 420,
@@ -65,7 +69,7 @@ class PopularFoodTiles extends StatelessWidget {
                 top: totalHeight * 1 / 700,
                 bottom: totalHeight * 1 / 700),
             child: Card(
-                color: Colors.white,
+                color: Colors.transparent,
                 elevation: 0,
                 shape: RoundedRectangleBorder(
                   borderRadius: const BorderRadius.all(
@@ -106,135 +110,146 @@ class PopularFoodTiles extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Center(
-                                child: Image.network(
-                              imageUrl,
+                          SizedBox(
                               width: totalWidth * 2 / 3,
-                              height: totalHeight * 100 / 700,
-                            )),
-                          )
+                              height: totalHeight * 110 / 700)
+                          // Align(
+                          //   alignment: Alignment.centerLeft,
+                          //   child: Center(
+                          //       child: Image.network(
+                          //     imageUrl,
+                          //     width: totalWidth * 2 / 3,
+                          //     height: totalHeight * 100 / 700,
+                          //   )),
+                          // )
                         ],
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Container(
-                            alignment: Alignment.bottomLeft,
-                            padding: EdgeInsets.only(
-                                left: totalWidth * 5 / 420,
-                                top: totalHeight * 5 / 700),
-                            child: Text(dishName,
-                                style: TextStyle(
-                                    color: Color(0xFF6e6e71),
-                                    fontSize: totalHeight * 15 / 700,
-                                    fontWeight: FontWeight.w500)),
-                          ),
-                          Container(
-                            alignment: Alignment.topRight,
-                            padding:
-                                EdgeInsets.only(right: totalWidth * 5 / 420),
-                            child: Container(
-                              height: totalHeight * 28 / 420,
-                              width: totalWidth * 28 / 420,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Color(0xFFdee8ff),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Color(0xFFdee8ff),
-                                      blurRadius: 25.0,
-                                      offset: Offset(0.0, 0.75),
-                                    ),
-                                  ]),
-                              child: Icon(
-                                Icons.near_me,
-                                color: Color(0xFFfb3132),
-                                size: totalHeight * 16 / 700,
-                              ),
+                      Card(
+                        color: Colors.white,
+                        elevation: 1,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Container(
+                              alignment: Alignment.bottomLeft,
+                              padding: EdgeInsets.only(
+                                  left: totalWidth * 5 / 420,
+                                  top: totalHeight * 5 / 700),
+                              child: Text(dishName,
+                                  style: TextStyle(
+                                      color: Color(0xFF6e6e71),
+                                      fontSize: totalHeight * 15 / 700,
+                                      fontWeight: FontWeight.w500)),
                             ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              Container(
-                                alignment: Alignment.topLeft,
-                                padding: EdgeInsets.only(
-                                    left: totalWidth * 5 / 420,
-                                    top: totalHeight * 5 / 700),
-                                child: Text(rating.toString(),
-                                    style: TextStyle(
-                                        color: Color(0xFF6e6e71),
-                                        fontSize: totalHeight * 10 / 700,
-                                        fontWeight: FontWeight.w400)),
-                              ),
-                              Container(
-                                padding: EdgeInsets.only(
-                                    top: totalHeight * 3 / 700,
-                                    left: totalWidth * 5 / 420),
-                                child: Row(
-                                  children: <Widget>[
-                                    Icon(
-                                      Icons.star,
-                                      size: totalHeight * 10 / 700,
-                                      color: Color(0xFFfb3132),
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      size: totalHeight * 10 / 700,
-                                      color: Color(0xFFfb3132),
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      size: totalHeight * 10 / 700,
-                                      color: Color(0xFFfb3132),
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      size: totalHeight * 10 / 700,
-                                      color: Color(0xFFfb3132),
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      size: totalHeight * 10 / 700,
-                                      color: Color(0xFF9b9b9c),
-                                    ),
-                                  ],
+                            Container(
+                              alignment: Alignment.topRight,
+                              padding:
+                                  EdgeInsets.only(right: totalWidth * 5 / 420),
+                              child: Container(
+                                height: totalHeight * 28 / 420,
+                                width: totalWidth * 28 / 420,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Color(0xFFdee8ff),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Color(0xFFdee8ff),
+                                        blurRadius: 25.0,
+                                        offset: Offset(0.0, 0.75),
+                                      ),
+                                    ]),
+                                child: Icon(
+                                  Icons.near_me,
+                                  color: Color(0xFFfb3132),
+                                  size: totalHeight * 16 / 700,
                                 ),
                               ),
-                              Container(
-                                alignment: Alignment.topLeft,
-                                padding: EdgeInsets.only(
-                                    left: totalWidth * 5 / 420,
-                                    top: totalHeight * 5 / 700),
-                                child: Text("($numberOfRating)",
-                                    style: TextStyle(
-                                        color: Color(0xFF6e6e71),
-                                        fontSize: totalHeight * 10 / 700,
-                                        fontWeight: FontWeight.w400)),
-                              ),
-                            ],
-                          ),
-                          Container(
-                            alignment: Alignment.bottomLeft,
-                            padding: EdgeInsets.only(
-                                left: totalWidth * 5 / 420,
-                                top: totalHeight * 5 / 700,
-                                right: totalWidth * 5 / 420),
-                            child: Text('\₹ ' + price.toString(),
-                                style: TextStyle(
-                                    color: Color(0xFF6e6e71),
-                                    fontSize: totalHeight * 12 / 700,
-                                    fontWeight: FontWeight.w600)),
-                          )
-                        ],
-                      )
+                            ),
+                          ],
+                        ),
+                      ),
+                      Card(
+                        color: Colors.white,
+                        elevation: 1,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                Container(
+                                  alignment: Alignment.topLeft,
+                                  padding: EdgeInsets.only(
+                                      left: totalWidth * 5 / 420,
+                                      top: totalHeight * 5 / 700),
+                                  child: Text(rating.toString(),
+                                      style: TextStyle(
+                                          color: Color(0xFF6e6e71),
+                                          fontSize: totalHeight * 10 / 700,
+                                          fontWeight: FontWeight.w400)),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(
+                                      top: totalHeight * 3 / 700,
+                                      left: totalWidth * 5 / 420),
+                                  child: Row(
+                                    children: <Widget>[
+                                      Icon(
+                                        Icons.star,
+                                        size: totalHeight * 10 / 700,
+                                        color: Color(0xFFfb3132),
+                                      ),
+                                      Icon(
+                                        Icons.star,
+                                        size: totalHeight * 10 / 700,
+                                        color: Color(0xFFfb3132),
+                                      ),
+                                      Icon(
+                                        Icons.star,
+                                        size: totalHeight * 10 / 700,
+                                        color: Color(0xFFfb3132),
+                                      ),
+                                      Icon(
+                                        Icons.star,
+                                        size: totalHeight * 10 / 700,
+                                        color: Color(0xFFfb3132),
+                                      ),
+                                      Icon(
+                                        Icons.star,
+                                        size: totalHeight * 10 / 700,
+                                        color: Color(0xFF9b9b9c),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  alignment: Alignment.topLeft,
+                                  padding: EdgeInsets.only(
+                                      left: totalWidth * 5 / 420,
+                                      top: totalHeight * 5 / 700),
+                                  child: Text("($numberOfRating)",
+                                      style: TextStyle(
+                                          color: Color(0xFF6e6e71),
+                                          fontSize: totalHeight * 10 / 700,
+                                          fontWeight: FontWeight.w400)),
+                                ),
+                              ],
+                            ),
+                            Container(
+                              alignment: Alignment.bottomLeft,
+                              padding: EdgeInsets.only(
+                                  left: totalWidth * 5 / 420,
+                                  top: totalHeight * 5 / 700,
+                                  right: totalWidth * 5 / 420),
+                              child: Text('\₹ ' + price.toString(),
+                                  style: TextStyle(
+                                      color: Color(0xFF6e6e71),
+                                      fontSize: totalHeight * 12 / 700,
+                                      fontWeight: FontWeight.w600)),
+                            )
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 )),
