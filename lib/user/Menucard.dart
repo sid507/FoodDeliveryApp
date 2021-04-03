@@ -1,15 +1,14 @@
-// import 'dart:ffi';
-import 'package:foldable_sidebar/foldable_sidebar.dart';
 import 'package:food_delivery_app/user/AllEatOption.dart';
 import 'package:food_delivery_app/user/Cart.dart';
 import 'package:food_delivery_app/user/Eating_opti.dart';
-import 'package:food_delivery_app/user/SignInPage.dart';
+import 'package:food_delivery_app/auth_screens/sign_in.dart';
 import 'package:food_delivery_app/user/Utils.dart';
 import 'UserHome.dart';
 
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/user/Chefdata.dart';
 import 'package:food_delivery_app/widgets/drawer.dart';
+import 'package:food_delivery_app/user/my_account.dart';
 
 class MenuOptionSide extends StatefulWidget {
   @override
@@ -22,7 +21,7 @@ class _MenuOptionSideState extends State<MenuOptionSide> {
 
   @override
   void initState() {
-    this._children = [HomePage(), MyApp(), FoodOrderPage(), SignInPage()];
+    this._children = [HomePage(), MyApp(), FoodOrderPage(), MyAccount()];
     print(this._children);
     super.initState();
   }

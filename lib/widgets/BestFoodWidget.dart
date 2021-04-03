@@ -54,50 +54,71 @@ class BestFoodTitle extends StatelessWidget {
 }
 
 class BestFoodTiles extends StatelessWidget {
-  String name;
+  String dishName;
   String imageUrl;
   double rating;
   double price;
 
-  BestFoodTiles(
-      {Key key,
-      @required this.name,
-      @required this.imageUrl,
-      @required this.rating,
-      @required this.price})
-      : super(key: key);
+  BestFoodTiles({
+    Key key,
+    @required this.dishName,
+    @required this.imageUrl,
+    @required this.rating,
+    @required this.price,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     double totalWidth = MediaQuery.of(context).size.width;
     double totalHeight = MediaQuery.of(context).size.height;
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        // Navigator.push(context, ScaleRoute(page: FoodDetailsPage()));
+      },
       child: Column(
         children: <Widget>[
           Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: NetworkImage(imageUrl), fit: BoxFit.cover),
+            ),
+            width: totalWidth * 2 / 3,
             padding: EdgeInsets.only(
                 left: totalWidth * 10 / 420,
                 right: totalWidth * 5 / 420,
-                top: totalHeight * 5 / 700,
-                bottom: totalHeight * 5 / 700),
-            decoration: BoxDecoration(boxShadow: [
-              /* BoxShadow(
-                color: Color(0xFFfae3e2),
-                blurRadius: 15.0,
-                offset: Offset(0, 0.75),
-              ),*/
-            ]),
+                top: totalHeight * 1 / 700,
+                bottom: totalHeight * 1 / 700),
             child: Card(
-              // semanticContainer: true,
-              // clipBehavior: Clip.antiAliasWithSaveLayer,
-              child: Image.network(imageUrl, width: totalWidth * 0.95),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              elevation: 1,
-              margin: EdgeInsets.all(5),
-            ),
+                color: Colors.transparent,
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(5.0),
+                  ),
+                ),
+                child: Container(
+                  width: totalWidth * 190 / 420,
+                  height: totalHeight * 200 / 700,
+                  child: Column(
+                    children: <Widget>[
+                      Stack(
+                        children: <Widget>[
+                          Align(
+                            alignment: Alignment.topRight,
+                            child: Container(
+                              alignment: Alignment.topRight,
+                              width: double.infinity,
+                              padding: EdgeInsets.only(right: 5, top: 5),
+                            ),
+                          ),
+                          SizedBox(
+                              width: totalWidth * 2 / 3,
+                              height: totalHeight * 110 / 700)
+                        ],
+                      ),
+                    ],
+                  ),
+                )),
           ),
         ],
       ),
@@ -118,7 +139,7 @@ class _BestFoodListState extends State<BestFoodList> {
   final db = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
-    return ListView(children: [
+    return ListView(scrollDirection: Axis.horizontal, children: [
       StreamBuilder<QuerySnapshot>(
         stream: db.collection('Food_items').snapshots(),
         builder: (context, snapshot) {
@@ -148,13 +169,13 @@ class _BestFoodListState extends State<BestFoodList> {
                   }
                   print(dishes);
 
-                  return Column(
+                  return Row(
                       children: dishes.map((data) {
                     print(ll);
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: BestFoodTiles(
-                        name: data.getDishName(),
+                        dishName: data.getDishName(),
                         price: data.getPrice(),
                         imageUrl: data.getimage(),
                         rating: data.getRating(),

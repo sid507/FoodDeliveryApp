@@ -9,10 +9,10 @@ import 'package:geocoder/geocoder.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'ScaleRoute.dart';
-import 'SignInPage.dart';
 import 'Cart.dart';
 import 'Menucard.dart';
 import 'package:food_delivery_app/widgets/BestFoodWidget.dart';
+import 'package:food_delivery_app/auth_screens/sign_in.dart';
 import 'package:food_delivery_app/widgets/PopularFoodsWidget.dart';
 import 'package:food_delivery_app/widgets/SearchWidget.dart';
 import 'package:food_delivery_app/widgets/FoodDetailsSlider.dart';
@@ -170,33 +170,49 @@ class _HomePageState extends State<HomePage> {
   GoogleMapController _controller;
   LatLng _initialcameraposition = LatLng(19.0473, 73.0699);
 
+  double cWidth = 0.0;
+  double itemHeight = 28.0;
+  double itemsCount = 20;
+  double screenWidth;
+  final controller = ScrollController();
+
+  onScroll() {
+    setState(() {
+      cWidth = controller.offset * screenWidth / (itemHeight * itemsCount);
+    });
+  }
+
   @override
   void initState() {
-    if (choice == 1) getLoc();
     super.initState();
+    controller.addListener(onScroll);
   }
 
   Widget build(BuildContext context) {
     MediaQueryData mediaQuery = MediaQuery.of(context);
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       drawer: Drawer(child: AppDrawer()),
       drawerEnableOpenDragGesture: false,
       appBar: AppBar(
-        toolbarHeight: mediaQuery.size.height * 100 / 700,
+        toolbarHeight: mediaQuery.size.height * 50 / 700,
         title: new RichText(
+          textAlign: TextAlign.start,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 3,
           text: TextSpan(
             children: <TextSpan>[
               TextSpan(
                 text: 'Deliver to:\n',
                 style: TextStyle(
-                    fontSize: mediaQuery.size.height * 16 / 700,
+                    fontSize: mediaQuery.size.height * 15 / 700,
                     fontWeight: FontWeight.bold),
               ),
               TextSpan(
                 text: _address,
                 style: TextStyle(
-                  fontSize: mediaQuery.size.height * 14 / 700,
+                  fontSize: mediaQuery.size.height * 13 / 700,
                   // maxLines: 3,
                   // overflow: TextOverflow.ellipsis,
                 ),
@@ -225,6 +241,9 @@ class _HomePageState extends State<HomePage> {
             TopMenus(),
             PopularFoodsWidget(),
             BestFoodWidget(),
+            SizedBox(
+              height: mediaQuery.size.height * 15 / 700,
+            )
           ],
         ),
       ),

@@ -1,0 +1,134 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:food_delivery_app/backend/database.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+class Auth {
+  Future<void> phoneNumberVerificationLogin(
+      String phoneNumber, BuildContext context) async {
+    final TextEditingController _codeController = TextEditingController();
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    _auth.verifyPhoneNumber(
+        phoneNumber: phoneNumber,
+        timeout: Duration(seconds: 60),
+        verificationCompleted: null,
+        verificationFailed: (FirebaseAuthException authException) {
+          print(authException);
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text('Verification Failed')));
+        },
+        codeSent: (String verificationId, [int forceResendingToken]) {
+          showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (context) {
+                return AlertDialog(
+                  title: Text("Enter Code"),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      TextField(
+                        controller: _codeController,
+                      ),
+                    ],
+                  ),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () async {
+                        final code = _codeController.text.trim();
+                        AuthCredential credential =
+                            PhoneAuthProvider.credential(
+                                verificationId: verificationId, smsCode: code);
+                        UserCredential userCredential =
+                            await _auth.signInWithCredential(credential);
+                        User user = userCredential.user;
+                        // we check if user belongs to Chef or Ninja
+                        QuerySnapshot qs = await FirebaseFirestore.instance
+                            .collection('User')
+                            .where('phoneNum',
+                                isEqualTo: FirebaseAuth
+                                    .instance.currentUser.phoneNumber)
+                            .get();
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, '/user', (route) => false);
+                      },
+                      child: Text(
+                        "Confirm",
+                        style: GoogleFonts.sourceSansPro(color: Colors.white),
+                      ),
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Color(0xFFFF785B)),
+                      ),
+                    )
+                  ],
+                );
+              });
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {});
+  }
+
+  Future<void> phoneNumberVerificationRegister(String phoneNumber, String fname,
+      String lname, String role, BuildContext context) async {
+    final TextEditingController _codeController = TextEditingController();
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    _auth.verifyPhoneNumber(
+        phoneNumber: phoneNumber,
+        timeout: Duration(seconds: 60),
+        verificationCompleted: null,
+        verificationFailed: (FirebaseAuthException authException) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text('Verification Failed')));
+        },
+        codeSent: (String verificationId, [int forceResendingToken]) {
+          showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (context) {
+                return AlertDialog(
+                  title: Text("Enter Code"),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      TextField(
+                        controller: _codeController,
+                      ),
+                    ],
+                  ),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () async {
+                        final code = _codeController.text.trim();
+                        AuthCredential credential =
+                            PhoneAuthProvider.credential(
+                                verificationId: verificationId, smsCode: code);
+                        UserCredential userCredential =
+                            await _auth.signInWithCredential(credential);
+                        User user = userCredential.user;
+                        // store details of new user
+                        await Database()
+                            .storeUserDetails(fname, lname, phoneNumber, role);
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, '/user', (route) => false);
+                      },
+                      child: Text(
+                        "Confirm",
+                        style: GoogleFonts.sourceSansPro(color: Colors.white),
+                      ),
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Color(0xFFFF785B)),
+                      ),
+                    )
+                  ],
+                );
+              });
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {});
+  }
+
+  Future<User> getCurrentUser() async {
+    return FirebaseAuth.instance.currentUser;
+  }
+}

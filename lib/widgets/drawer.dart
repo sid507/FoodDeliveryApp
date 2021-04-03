@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/user/Menucard.dart';
 
 class AppDrawer extends StatelessWidget {
   @override
@@ -8,18 +9,18 @@ class AppDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           _createHeader(),
-          _createDrawerItem(icon: Icons.login, text: 'Sign In'),
           Divider(),
-          _createDrawerItem(icon: Icons.home, text: 'Home'),
-          Divider(),
-          _createDrawerItem(icon: Icons.add_shopping_cart, text: 'My Orders'),
+          _createDrawerItem(Icons.home, 'Home', 'home', context),
           Divider(),
           _createDrawerItem(
-            icon: Icons.add_shopping_cart_sharp,
-            text: 'My Account',
-          ),
+              Icons.add_shopping_cart, 'My Orders', 'home', context),
           Divider(),
-          _createDrawerItem(icon: Icons.help, text: 'Help'),
+          _createDrawerItem(
+              Icons.add_shopping_cart_sharp, 'My Account', 'home', context),
+          Divider(),
+          _createDrawerItem(Icons.help, 'Help', 'home', context),
+          Divider(),
+          _createDrawerItem(Icons.login, 'Log Out', 'signin', context),
           ListTile(
             title: Text('Version 0.0.1'),
             onTap: () {},
@@ -55,7 +56,7 @@ class AppDrawer extends StatelessWidget {
   }
 
   Widget _createDrawerItem(
-      {IconData icon, String text, GestureTapCallback onTap}) {
+      IconData icon, String text, String link, BuildContext context) {
     return ListTile(
       title: Row(
         children: <Widget>[
@@ -66,7 +67,9 @@ class AppDrawer extends StatelessWidget {
           )
         ],
       ),
-      onTap: onTap,
+      onTap: () {
+        Navigator.pushNamed(context, '/$link');
+      },
     );
   }
 }
