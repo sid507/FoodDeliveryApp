@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery_app/user/Utils.dart';
 import '../user/Chefdata.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 class EatLater extends StatefulWidget {
   @override
@@ -13,6 +14,8 @@ class _EatLaterState extends State<EatLater> {
   List<Dishes> l;
   Map ll;
   final db = FirebaseFirestore.instance;
+
+  Map timetable = {7: "Breakfast", 12: "Lunch", 17: "Dinner"};
 
   @override
   void initState() {
@@ -42,16 +45,45 @@ class _EatLaterState extends State<EatLater> {
                     }
                     List<Dishes> dishes = [];
                     for (int i = 0; i < snapshot.data.docs.length; i++) {
-                      var chef_detail = chefs[snapshot.data.docs[i]["chefId"]];
-                      var dd = snapshot.data.docs[i];
-                      Dishes dish = new Dishes(
-                          chef_detail["chefName"].toString(),
-                          chef_detail["rating"]..toDouble(),
-                          dd["dishName"].toString(),
-                          dd["price"].toDouble(),
-                          dd["imageUrl"].toString(),
-                          "25 min");
-                      dishes.add(dish);
+                      final now = new DateTime.now();
+
+                      // var fmt = DateFormat("HH:mm");
+                      // print(fmt.format(now));
+
+                      // DateTime tempDate = new DateFormat("hh:mm")
+                      //     .parse(snapshot.data.docs[i]['fromTime']);
+
+                      // DateTime tempDate2 = new DateFormat("hh:mm")
+                      //     .parse(snapshot.data.docs[i]['toTime']);
+
+                      String sort_key = "";
+
+                      int flag = 0;
+                      timetable.forEach((key, value) {
+                        if (now.hour >= key && flag == 0) {
+                          sort_key = timetable[(key + 5) > 17 ? 17 : key + 5];
+                          flag = 1;
+                        }
+                      });
+                      print(sort_key);
+
+                      // now.hour >= tempDate.hour &&
+                      // now.hour <= tempDate2.hour &&
+
+                      if (snapshot.data.docs[i]['mealType'].toLowerCase() ==
+                          sort_key.toLowerCase()) {
+                        var chef_detail =
+                            chefs[snapshot.data.docs[i]["chefId"]];
+                        var dd = snapshot.data.docs[i];
+                        Dishes dish = new Dishes(
+                            chef_detail["chefName"].toString(),
+                            chef_detail["rating"]..toDouble(),
+                            dd["dishName"].toString(),
+                            dd["price"].toDouble(),
+                            dd["imageUrl"].toString(),
+                            "25 min");
+                        dishes.add(dish);
+                      }
                     }
                     print(dishes);
 
@@ -70,7 +102,11 @@ class _EatLaterState extends State<EatLater> {
                       );
                     }).toList());
                   } else {
-                    return Container();
+                    return Container(
+                      child: Center(
+                        child: Text('Sorry....No Items are availble'),
+                      ),
+                    );
                   }
                 },
               );
