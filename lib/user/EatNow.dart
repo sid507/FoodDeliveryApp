@@ -18,6 +18,16 @@ class _EatNowState extends State<EatNow> {
   final db = FirebaseFirestore.instance;
   Map timetable = {7: "Breakfast", 12: "Lunch", 17: "Dinner"};
 
+  String tellMeType(int p) {
+    if (p >= 7 && p <= 12) {
+      return "Breakfast";
+    } else if (p > 12 && p <= 17) {
+      return "Lunch";
+    } else {
+      return "Dinner";
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -47,19 +57,19 @@ class _EatNowState extends State<EatNow> {
                     List<Dishes> dishes = [];
                     for (int i = 0; i < snapshot.data.docs.length; i++) {
                       final now = new DateTime.now();
-                      String sort_key = "";
-                      int flag = 0;
-                      timetable.forEach((key, value) {
-                        if (now.hour >= key && flag == 0) {
-                          print(key + 7);
-                          print(timetable[17]);
-                          sort_key = value;
-                          flag = 1;
-                        }
-                      });
+                      // String sort_key = "";
+                      // int flag = 0;
+                      // timetable.forEach((key, value) {
+                      //   if (now.hour >= key && flag == 0) {
+                      //     print(key + 7);
+                      //     print(timetable[17]);
+                      //     sort_key = value;
+                      //     flag = 1;
+                      //   }
+                      // });
 
                       if (snapshot.data.docs[i]['mealType'].toLowerCase() ==
-                          sort_key.toLowerCase()) {
+                          this.tellMeType(now.hour).toLowerCase()) {
                         var chef_detail =
                             chefs[snapshot.data.docs[i]["chefId"]];
                         var dd = snapshot.data.docs[i];

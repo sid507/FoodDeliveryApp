@@ -24,6 +24,16 @@ class _EatLaterState extends State<EatLater> {
     l.map((e) => print(e.name));
   }
 
+  String tellMeType(int p) {
+    if (p >= 7 && p <= 12) {
+      return "Lunch";
+    } else if (p > 12 && p <= 17) {
+      return "Dinner";
+    } else {
+      return "BreakFast";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,22 +66,23 @@ class _EatLaterState extends State<EatLater> {
                       // DateTime tempDate2 = new DateFormat("hh:mm")
                       //     .parse(snapshot.data.docs[i]['toTime']);
 
-                      String sort_key = "";
+                      // String sort_key = "";
 
-                      int flag = 0;
-                      timetable.forEach((key, value) {
-                        if (now.hour >= key && flag == 0) {
-                          sort_key = timetable[(key + 5) > 17 ? 17 : key + 5];
-                          flag = 1;
-                        }
-                      });
-                      print(sort_key);
+                      // int flag = 0;
+                      // timetable.forEach((key, value) {
+                      //   if (now.hour >= key && flag == 0) {
+                      //     print(key);
+                      //     sort_key = timetable[(key + 5) > 17 ? 17 : key + 5];
+                      //     flag = 1;
+                      //   }
+                      // });
+                      // print(sort_key);
 
                       // now.hour >= tempDate.hour &&
                       // now.hour <= tempDate2.hour &&
 
                       if (snapshot.data.docs[i]['mealType'].toLowerCase() ==
-                          sort_key.toLowerCase()) {
+                          this.tellMeType(now.hour).toLowerCase()) {
                         var chef_detail =
                             chefs[snapshot.data.docs[i]["chefId"]];
                         var dd = snapshot.data.docs[i];
