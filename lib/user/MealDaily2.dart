@@ -8,8 +8,9 @@ import 'Utils.dart';
 
 class MealDaily2 extends StatefulWidget {
   CartData cartData;
+  Function type2;
   String type;
-  MealDaily2(this.type);
+  MealDaily2(this.type2, this.type);
   @override
   _MealDaily2State createState() => _MealDaily2State();
 }
@@ -71,21 +72,53 @@ class _MealDaily2State extends State<MealDaily2> {
                       print(dishes);
 
                       return Column(
-                          children: dishes.map((data) {
-                        print(ll);
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: SingleCard(
-                              data.name,
-                              data.rating,
-                              data.getPrice(),
-                              data.getDishName(),
-                              data.getimage(),
-                              data.gettime(),
-                              1,
-                              this.cartData),
-                        );
-                      }).toList());
+                        children: [
+                          Center(
+                            child: OutlinedButton.icon(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.resolveWith<Color>(
+                                  (Set<MaterialState> states) {
+                                    if (!states.contains(MaterialState.pressed))
+                                      return Helper().button.withOpacity(0.8);
+                                    return null; // Use the component's default.
+                                  },
+                                ),
+                              ),
+                              onPressed: () {
+                                widget.type2("");
+                              },
+                              label: Text(
+                                "BACK",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              icon: Icon(
+                                Icons.arrow_left,
+                                size: totalHeight * 30 / 700,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          Column(
+                              children: dishes.map((data) {
+                            print(ll);
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SingleCard(
+                                  data.name,
+                                  data.rating,
+                                  data.getPrice(),
+                                  data.getDishName(),
+                                  data.getimage(),
+                                  data.gettime(),
+                                  1,
+                                  this.cartData),
+                            );
+                          }).toList()),
+                        ],
+                      );
                     } else {
                       return Container();
                     }
@@ -292,16 +325,17 @@ class _SingleCardState extends State<SingleCard> {
                         ),
                       ),
                       onPressed: () {
-                        widget.cartData.addItem(
+                        CartData().addItem(
                             Dishes(
                                 widget.name,
                                 widget.rating,
                                 widget.dishName,
-                                250,
+                                widget.price,
                                 widget.image,
                                 widget.time,
                                 widget.dishName),
                             widget.quantity);
+                        print(widget.cartData);
                       },
                       label: Text(
                         "ADD",

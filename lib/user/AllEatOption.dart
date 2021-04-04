@@ -61,7 +61,13 @@ class _MyAppState extends State<MyApp> {
                           flag = value;
                         })
                       })
-                  : MealDaily2(flag)
+                  : MealDaily2(
+                      (value) => {
+                            setState(() {
+                              flag = value;
+                            })
+                          },
+                      flag)
             ],
           ),
         ),
