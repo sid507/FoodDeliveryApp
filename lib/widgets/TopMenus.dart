@@ -61,12 +61,12 @@ class TopMenuTiles extends StatelessWidget {
     double totalHeight = MediaQuery.of(context).size.height;
     return InkWell(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => MenuOptionSide(),
-          ),
-        );
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (context) => MenuOptionSide(automatic: false),
+        //   ),
+        // );
       },
       child: Column(
         children: <Widget>[

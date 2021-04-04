@@ -9,15 +9,7 @@ class Database {
         .where('phoneNum', isEqualTo: phoneNum)
         .get();
     if (user.docs.isEmpty) {
-      user = await FirebaseFirestore.instance
-          .collection('User')
-          .where('phoneNum', isEqualTo: phoneNum)
-          .get();
-      if (user.docs.isEmpty) {
-        return false;
-      } else {
-        return true;
-      }
+      return false;
     } else {
       return true;
     }

@@ -13,7 +13,7 @@ class _SignUpState extends State<SignUp> {
   TextEditingController _fnameController = TextEditingController();
   TextEditingController _lnameController = TextEditingController();
   TextEditingController _phoneController = TextEditingController();
-  String _role = 'Chef';
+  String _role = 'User';
   bool fnameError = false;
   bool lnameError = false;
   bool phoneError = false;

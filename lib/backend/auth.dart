@@ -42,14 +42,6 @@ class Auth {
                                 verificationId: verificationId, smsCode: code);
                         UserCredential userCredential =
                             await _auth.signInWithCredential(credential);
-                        User user = userCredential.user;
-                        // we check if user belongs to Chef or Ninja
-                        QuerySnapshot qs = await FirebaseFirestore.instance
-                            .collection('User')
-                            .where('phoneNum',
-                                isEqualTo: FirebaseAuth
-                                    .instance.currentUser.phoneNumber)
-                            .get();
                         Navigator.pushNamedAndRemoveUntil(
                             context, '/user', (route) => false);
                       },
