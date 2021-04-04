@@ -15,12 +15,10 @@ import 'package:food_delivery_app/widgets/BestFoodWidget.dart';
 import 'package:food_delivery_app/auth_screens/sign_in.dart';
 import 'package:food_delivery_app/widgets/PopularFoodsWidget.dart';
 import 'package:food_delivery_app/widgets/SearchWidget.dart';
-import 'package:food_delivery_app/widgets/FoodDetailsSlider.dart';
 import 'package:food_delivery_app/widgets/TopMenus.dart';
 import 'package:food_delivery_app/widgets/AppBarWidget.dart';
 
 String _address = "Searching Location ...";
-int choice = 0;
 List<Marker> myMarker = [];
 
 class MapHomePage extends StatefulWidget {
@@ -67,7 +65,7 @@ class _MapHomePageState extends State<MapHomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => MenuOptionSide(),
+                      builder: (context) => MenuOptionSide(automatic: false),
                     ),
                   );
                 },
@@ -153,6 +151,8 @@ class _MapHomePageState extends State<MapHomePage> {
 }
 
 class HomePage extends StatefulWidget {
+  bool automatic;
+  HomePage({Key key, @required this.automatic}) : super(key: key);
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -170,22 +170,12 @@ class _HomePageState extends State<HomePage> {
   GoogleMapController _controller;
   LatLng _initialcameraposition = LatLng(19.0473, 73.0699);
 
-  double cWidth = 0.0;
-  double itemHeight = 28.0;
-  double itemsCount = 20;
-  double screenWidth;
-  final controller = ScrollController();
-
-  onScroll() {
-    setState(() {
-      cWidth = controller.offset * screenWidth / (itemHeight * itemsCount);
-    });
-  }
-
   @override
   void initState() {
     super.initState();
-    controller.addListener(onScroll);
+    if (widget.automatic) {
+      getLoc();
+    }
   }
 
   Widget build(BuildContext context) {
@@ -273,20 +263,30 @@ class _HomePageState extends State<HomePage> {
     _currentPosition = await location.getLocation();
     _initialcameraposition =
         LatLng(_currentPosition.latitude, _currentPosition.longitude);
-    location.onLocationChanged.listen((LocationData currentLocation) {
-      print("${currentLocation.longitude} : ${currentLocation.longitude}");
-      setState(() {
-        _currentPosition = currentLocation;
-        _initialcameraposition =
-            LatLng(_currentPosition.latitude, _currentPosition.longitude);
-        _getAddress(_currentPosition.latitude, _currentPosition.longitude)
-            .then((value) {
-          setState(() {
+    // location.onLocationChanged.listen((LocationData currentLocation) {
+    //   print("${currentLocation.longitude} : ${currentLocation.longitude}");
+    //   setState(() {
+    //     _currentPosition = currentLocation;
+    //     _initialcameraposition =
+    //         LatLng(_currentPosition.latitude, _currentPosition.longitude);
+    //     _getAddress(_currentPosition.latitude, _currentPosition.longitude)
+    //         .then((value) {
+    //       setState(() {
+    //         _address = "${value.first.addressLine}";
+    //       });
+    //     });
+    //   });
+    // });
+    _getAddress(_currentPosition.latitude, _currentPosition.longitude).then(
+      (value) {
+        setState(
+          () {
             _address = "${value.first.addressLine}";
-          });
-        });
-      });
-    });
+            print("Address = " + _address);
+          },
+        );
+      },
+    );
   }
 
   Future<List<Address>> _getAddress(double lat, double lang) async {

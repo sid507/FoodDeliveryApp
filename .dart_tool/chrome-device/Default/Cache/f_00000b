@@ -1,27 +1,55 @@
-define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/cupertino/route.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/animation/listener_helpers.dart'], (function load__packages__flutter__src__material__page_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__cupertino__route$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__animation__listener_helpers$46dart) {
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/painting/box_decoration.dart', 'packages/flutter/src/painting/decoration_image.dart', 'packages/flutter/src/painting/image_resolution.dart', 'packages/flutter/src/painting/box_fit.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/flutter/src/material/elevated_button.dart', 'packages/flutter/src/material/page.dart', 'packages/food_delivery_app/user/MenuCard.dart', 'packages/flutter/src/painting/rounded_rectangle_border.dart', 'packages/flutter/src/painting/border_radius.dart', 'packages/flutter/src/painting/placeholder_span.dart', 'packages/flutter/src/widgets/icon.dart', 'packages/flutter/src/material/icons.dart'], (function load__packages__food_delivery_app__user__Start_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__painting__box_decoration$46dart, packages__flutter__src__painting__decoration_image$46dart, packages__flutter__src__painting__image_resolution$46dart, packages__flutter__src__painting__box_fit$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__rendering__flex$46dart, packages__flutter__src__painting__strut_style$46dart, packages__flutter__src__material__elevated_button$46dart, packages__flutter__src__material__page$46dart, packages__food_delivery_app__user__MenuCard$46dart, packages__flutter__src__painting__rounded_rectangle_border$46dart, packages__flutter__src__painting__border_radius$46dart, packages__flutter__src__painting__placeholder_span$46dart, packages__flutter__src__widgets__icon$46dart, packages__flutter__src__material__icons$46dart) {
   'use strict';
   const core = dart_sdk.core;
   const ui = dart_sdk.ui;
+  const _interceptors = dart_sdk._interceptors;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const pages = packages__flutter__src__widgets__widget_span$46dart.src__widgets__pages;
+  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
   const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
   const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
-  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
   const navigator = packages__flutter__src__widgets__widget_span$46dart.src__widgets__navigator;
-  const route = packages__flutter__src__cupertino__route$46dart.src__cupertino__route;
-  const assertions = packages__flutter__src__foundation__debug$46dart.src__foundation__assertions;
-  const theme$ = packages__flutter__src__material__icon_button$46dart.src__material__theme;
-  const animation = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animation;
-  var page = Object.create(dart.library);
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const widget_span = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_span;
+  const scaffold = packages__flutter__src__material__icon_button$46dart.src__material__scaffold;
+  const box_decoration = packages__flutter__src__painting__box_decoration$46dart.src__painting__box_decoration;
+  const decoration_image = packages__flutter__src__painting__decoration_image$46dart.src__painting__decoration_image;
+  const image_resolution = packages__flutter__src__painting__image_resolution$46dart.src__painting__image_resolution;
+  const box_fit = packages__flutter__src__painting__box_fit$46dart.src__painting__box_fit;
+  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
+  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
+  const elevated_button = packages__flutter__src__material__elevated_button$46dart.src__material__elevated_button;
+  const page = packages__flutter__src__material__page$46dart.src__material__page;
+  const Menucard = packages__food_delivery_app__user__MenuCard$46dart.user__Menucard;
+  const UserHome = packages__food_delivery_app__user__MenuCard$46dart.user__UserHome;
+  const rounded_rectangle_border = packages__flutter__src__painting__rounded_rectangle_border$46dart.src__painting__rounded_rectangle_border;
+  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
+  const text_span = packages__flutter__src__painting__placeholder_span$46dart.src__painting__text_span;
+  const inline_span = packages__flutter__src__painting__placeholder_span$46dart.src__painting__inline_span;
+  const icon = packages__flutter__src__widgets__icon$46dart.src__widgets__icon;
+  const icons = packages__flutter__src__material__icons$46dart.src__material__icons;
+  var Start = Object.create(dart.library);
   dart._checkModuleNullSafetyMode(false);
-  var T$ = {
-    VoidTobool: () => (T$.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
-    _LocationL: () => (T$._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))()
+  var T = {
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    MenuOptionSideL: () => (T.MenuOptionSideL = dart.constFn(dart.legacy(Menucard.MenuOptionSide)))(),
+    BuildContextL: () => (T.BuildContextL = dart.constFn(dart.legacy(framework.BuildContext)))(),
+    BuildContextLToMenuOptionSideL: () => (T.BuildContextLToMenuOptionSideL = dart.constFn(dart.fnType(T.MenuOptionSideL(), [T.BuildContextL()])))(),
+    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    InlineSpanL: () => (T.InlineSpanL = dart.constFn(dart.legacy(inline_span.InlineSpan)))(),
+    JSArrayOfInlineSpanL: () => (T.JSArrayOfInlineSpanL = dart.constFn(_interceptors.JSArray$(T.InlineSpanL())))(),
+    MapHomePageL: () => (T.MapHomePageL = dart.constFn(dart.legacy(UserHome.MapHomePage)))(),
+    BuildContextLToMapHomePageL: () => (T.BuildContextLToMapHomePageL = dart.constFn(dart.fnType(T.MapHomePageL(), [T.BuildContextL()])))(),
+    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
+    JSArrayOfWidgetL: () => (T.JSArrayOfWidgetL = dart.constFn(_interceptors.JSArray$(T.WidgetL())))()
   };
   var T$Eval = Object.assign({
     _: () => T$Eval
-  }, T$);
+  }, T);
   var S = {
     _: () => S
   };
@@ -32,317 +60,619 @@ define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/f
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 19,
+        [_Location_line]: 31,
+        [_Location_file]: null
+      });
+    },
+    get C1() {
+      return C[1] = dart.constList([C[2] || CT.C2], T._LocationL());
+    },
     get C0() {
       return C[0] = dart.const({
-        __proto__: core.Duration.prototype,
-        [Duration__duration]: 300000
-      });
-    },
-    get C3() {
-      return C[3] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "scopesRoute",
-        [_Location_column]: 7,
-        [_Location_line]: 118,
-        [_Location_file]: null
-      });
-    },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "explicitChildNodes",
-        [_Location_column]: 7,
-        [_Location_line]: 119,
-        [_Location_file]: null
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 30,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
       });
     },
     get C5() {
       return C[5] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 120,
+        [_Location_name]: "data",
+        [_Location_column]: 19,
+        [_Location_line]: 34,
         [_Location_file]: null
       });
     },
-    get C2() {
-      return C[2] = dart.constList([C[3] || CT.C3, C[4] || CT.C4, C[5] || CT.C5], T$._LocationL());
-    },
-    get C1() {
-      return C[1] = dart.const({
+    get C6() {
+      return C[6] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[2] || CT.C2,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 19,
+        [_Location_line]: 35,
+        [_Location_file]: null
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "textAlign",
+        [_Location_column]: 19,
+        [_Location_line]: 39,
+        [_Location_file]: null
+      });
+    },
+    get C4() {
+      return C[4] = dart.constList([C[5] || CT.C5, C[6] || CT.C6, C[7] || CT.C7], T._LocationL());
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[4] || CT.C4,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 33,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 19,
+        [_Location_line]: 42,
+        [_Location_file]: null
+      });
+    },
+    get C9() {
+      return C[9] = dart.constList([C[10] || CT.C10], T._LocationL());
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[9] || CT.C9,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 41,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 19,
+        [_Location_line]: 45,
+        [_Location_file]: null
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "maxLines",
+        [_Location_column]: 19,
+        [_Location_line]: 46,
+        [_Location_file]: null
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 19,
+        [_Location_line]: 47,
+        [_Location_file]: null
+      });
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "textAlign",
+        [_Location_column]: 19,
+        [_Location_line]: 51,
+        [_Location_file]: null
+      });
+    },
+    get C12() {
+      return C[12] = dart.constList([C[13] || CT.C13, C[14] || CT.C14, C[15] || CT.C15, C[16] || CT.C16], T._LocationL());
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[12] || CT.C12,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 44,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 19,
+        [_Location_line]: 62,
+        [_Location_file]: null
+      });
+    },
+    get C18() {
+      return C[18] = dart.constList([C[19] || CT.C19], T._LocationL());
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[18] || CT.C18,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 61,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C21() {
+      return C[21] = dart.constList([], T._LocationL());
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[21] || CT.C21,
+        [_Location_name]: null,
+        [_Location_column]: 47,
+        [_Location_line]: 69,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 45,
+        [_Location_line]: 83,
+        [_Location_file]: null
+      });
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "size",
+        [_Location_column]: 31,
+        [_Location_line]: 84,
+        [_Location_file]: null
+      });
+    },
+    get C23() {
+      return C[23] = dart.constList([C[24] || CT.C24, C[25] || CT.C25], T._LocationL());
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[23] || CT.C23,
+        [_Location_name]: null,
+        [_Location_column]: 34,
+        [_Location_line]: 83,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "text",
+        [_Location_column]: 21,
+        [_Location_line]: 80,
+        [_Location_file]: null
+      });
+    },
+    get C27() {
+      return C[27] = dart.constList([C[28] || CT.C28], T._LocationL());
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[27] || CT.C27,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 79,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPressed",
+        [_Location_column]: 19,
+        [_Location_line]: 65,
+        [_Location_file]: null
+      });
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 19,
+        [_Location_line]: 73,
+        [_Location_file]: null
+      });
+    },
+    get C33() {
+      return C[33] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 79,
+        [_Location_file]: null
+      });
+    },
+    get C30() {
+      return C[30] = dart.constList([C[31] || CT.C31, C[32] || CT.C32, C[33] || CT.C33], T._LocationL());
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[30] || CT.C30,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 64,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 19,
+        [_Location_line]: 97,
+        [_Location_file]: null
+      });
+    },
+    get C35() {
+      return C[35] = dart.constList([C[36] || CT.C36], T._LocationL());
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[35] || CT.C35,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 96,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[21] || CT.C21,
+        [_Location_name]: null,
+        [_Location_column]: 47,
+        [_Location_line]: 104,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C40() {
+      return C[40] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 21,
+        [_Location_line]: 115,
+        [_Location_file]: null
+      });
+    },
+    get C41() {
+      return C[41] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 21,
+        [_Location_line]: 116,
+        [_Location_file]: null
+      });
+    },
+    get C39() {
+      return C[39] = dart.constList([C[40] || CT.C40, C[41] || CT.C41], T._LocationL());
+    },
+    get C38() {
+      return C[38] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[39] || CT.C39,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 114,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C44() {
+      return C[44] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPressed",
+        [_Location_column]: 19,
+        [_Location_line]: 100,
+        [_Location_file]: null
+      });
+    },
+    get C45() {
+      return C[45] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 19,
+        [_Location_line]: 108,
+        [_Location_file]: null
+      });
+    },
+    get C46() {
+      return C[46] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 114,
+        [_Location_file]: null
+      });
+    },
+    get C43() {
+      return C[43] = dart.constList([C[44] || CT.C44, C[45] || CT.C45, C[46] || CT.C46], T._LocationL());
+    },
+    get C42() {
+      return C[42] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[43] || CT.C43,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 99,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C49() {
+      return C[49] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 19,
+        [_Location_line]: 123,
+        [_Location_file]: null
+      });
+    },
+    get C48() {
+      return C[48] = dart.constList([C[49] || CT.C49], T._LocationL());
+    },
+    get C47() {
+      return C[47] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[48] || CT.C48,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 122,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C52() {
+      return C[52] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 15,
+        [_Location_line]: 26,
+        [_Location_file]: null
+      });
+    },
+    get C53() {
+      return C[53] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "crossAxisAlignment",
+        [_Location_column]: 15,
+        [_Location_line]: 27,
+        [_Location_file]: null
+      });
+    },
+    get C54() {
+      return C[54] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 15,
+        [_Location_line]: 28,
+        [_Location_file]: null
+      });
+    },
+    get C51() {
+      return C[51] = dart.constList([C[52] || CT.C52, C[53] || CT.C53, C[54] || CT.C54], T._LocationL());
+    },
+    get C50() {
+      return C[50] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[51] || CT.C51,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 25,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C57() {
+      return C[57] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 13,
+        [_Location_line]: 24,
+        [_Location_file]: null
+      });
+    },
+    get C58() {
+      return C[58] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 25,
+        [_Location_file]: null
+      });
+    },
+    get C56() {
+      return C[56] = dart.constList([C[57] || CT.C57, C[58] || CT.C58], T._LocationL());
+    },
+    get C55() {
+      return C[55] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[56] || CT.C56,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 23,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C61() {
+      return C[61] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "backgroundColor",
+        [_Location_column]: 11,
+        [_Location_line]: 22,
+        [_Location_file]: null
+      });
+    },
+    get C62() {
+      return C[62] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "body",
+        [_Location_column]: 11,
+        [_Location_line]: 23,
+        [_Location_file]: null
+      });
+    },
+    get C60() {
+      return C[60] = dart.constList([C[61] || CT.C61, C[62] || CT.C62], T._LocationL());
+    },
+    get C59() {
+      return C[59] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[60] || CT.C60,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 21,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C65() {
+      return C[65] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 9,
+        [_Location_line]: 15,
+        [_Location_file]: null
+      });
+    },
+    get C66() {
+      return C[66] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 21,
+        [_Location_file]: null
+      });
+    },
+    get C64() {
+      return C[64] = dart.constList([C[65] || CT.C65, C[66] || CT.C66], T._LocationL());
+    },
+    get C63() {
+      return C[63] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[64] || CT.C64,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 14,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C69() {
+      return C[69] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "body",
+        [_Location_column]: 7,
+        [_Location_line]: 14,
+        [_Location_file]: null
+      });
+    },
+    get C68() {
+      return C[68] = dart.constList([C[69] || CT.C69], T._LocationL());
+    },
+    get C67() {
+      return C[67] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[68] || CT.C68,
         [_Location_name]: null,
         [_Location_column]: 12,
-        [_Location_line]: 117,
-        [_Location_file]: "file:///C:/flutter/flutter/packages/flutter/lib/src/material/page.dart"
+        [_Location_line]: 13,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
       });
     }
   }, false);
-  var C = Array(6).fill(void 0);
-  var I = [
-    "file:///C:/flutter/flutter/packages/flutter/lib/src/material/page.dart",
-    "package:flutter/src/material/page.dart"
-  ];
-  var builder$ = dart.privateName(page, "MaterialPageRoute.builder");
-  var maintainState$ = dart.privateName(page, "MaterialPageRoute.maintainState");
-  var Duration__duration = dart.privateName(core, "Duration._duration");
+  var C = Array(70).fill(void 0);
+  var I = ["package:food_delivery_app/user/Start.dart"];
   var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
   var _Location_name = dart.privateName(widget_inspector, "_Location.name");
   var _Location_column = dart.privateName(widget_inspector, "_Location.column");
   var _Location_line = dart.privateName(widget_inspector, "_Location.line");
   var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  const _is_MaterialRouteTransitionMixin_default = Symbol('_is_MaterialRouteTransitionMixin_default');
-  page.MaterialRouteTransitionMixin$ = dart.generic(T => {
-    class MaterialRouteTransitionMixin extends pages.PageRoute$(T) {}
-    MaterialRouteTransitionMixin[dart.mixinOn] = PageRoute => class MaterialRouteTransitionMixin extends PageRoute {
-      get transitionDuration() {
-        return C[0] || CT.C0;
-      }
-      get barrierColor() {
-        return null;
-      }
-      get barrierLabel() {
-        return null;
-      }
-      canTransitionTo(nextRoute) {
-        if (nextRoute == null) dart.nullFailed(I[0], 95, 49, "nextRoute");
-        return page.MaterialRouteTransitionMixin.is(nextRoute) && !dart.test(nextRoute.fullscreenDialog) || route.CupertinoRouteTransitionMixin.is(nextRoute) && !dart.test(nextRoute.fullscreenDialog);
-      }
-      buildPage(context, animation, secondaryAnimation) {
-        if (context == null) dart.nullFailed(I[0], 103, 18, "context");
-        if (animation == null) dart.nullFailed(I[0], 104, 23, "animation");
-        if (secondaryAnimation == null) dart.nullFailed(I[0], 105, 23, "secondaryAnimation");
-        let result = this.buildContent(context);
-        if (!dart.test(dart.fn(() => {
-          if (result == null) {
-            dart.throw(assertions.FlutterError.new("The builder for route \"" + dart.str(this.settings.name) + "\" returned null.\n" + "Route builders must never return null."));
-          }
-          return true;
-        }, T$.VoidTobool())())) dart.assertFailed(null, I[0], 108, 12, "() {\r\n      if (result == null) {\r\n        throw FlutterError(\r\n          'The builder for route \"${settings.name}\" returned null.\\n'\r\n          'Route builders must never return null.'\r\n        );\r\n      }\r\n      return true;\r\n    }()");
-        return new basic.Semantics.new({scopesRoute: true, explicitChildNodes: true, child: result, $creationLocationd_0dea112b090073317d4: C[1] || CT.C1});
-      }
-      buildTransitions(context, animation, secondaryAnimation, child) {
-        if (context == null) dart.nullFailed(I[0], 125, 40, "context");
-        if (animation == null) dart.nullFailed(I[0], 125, 67, "animation");
-        if (secondaryAnimation == null) dart.nullFailed(I[0], 125, 96, "secondaryAnimation");
-        if (child == null) dart.nullFailed(I[0], 125, 123, "child");
-        let theme = theme$.Theme.of(context).pageTransitionsTheme;
-        return theme.buildTransitions(T, this, context, animation, secondaryAnimation, child);
-      }
-    };
-    dart.addTypeTests(MaterialRouteTransitionMixin);
-    MaterialRouteTransitionMixin.prototype[_is_MaterialRouteTransitionMixin_default] = true;
-    dart.addTypeCaches(MaterialRouteTransitionMixin);
-    MaterialRouteTransitionMixin[dart.implements] = () => [pages.PageRoute$(T)];
-    dart.setMethodSignature(MaterialRouteTransitionMixin, () => ({
-      __proto__: dart.getMethods(MaterialRouteTransitionMixin.__proto__),
-      buildPage: dart.fnType(framework.Widget, [framework.BuildContext, animation.Animation$(core.double), animation.Animation$(core.double)])
-    }));
-    dart.setGetterSignature(MaterialRouteTransitionMixin, () => ({
-      __proto__: dart.getGetters(MaterialRouteTransitionMixin.__proto__),
-      transitionDuration: core.Duration,
-      barrierColor: dart.nullable(ui.Color),
-      barrierLabel: dart.nullable(core.String)
-    }));
-    dart.setLibraryUri(MaterialRouteTransitionMixin, I[1]);
-    return MaterialRouteTransitionMixin;
-  });
-  page.MaterialRouteTransitionMixin = page.MaterialRouteTransitionMixin$();
-  dart.addTypeTests(page.MaterialRouteTransitionMixin, _is_MaterialRouteTransitionMixin_default);
-  const _is_MaterialPageRoute_default = Symbol('_is_MaterialPageRoute_default');
-  page.MaterialPageRoute$ = dart.generic(T => {
-    const PageRoute_MaterialRouteTransitionMixin$36 = class PageRoute_MaterialRouteTransitionMixin extends pages.PageRoute$(T) {};
-    (PageRoute_MaterialRouteTransitionMixin$36.new = function(opts) {
-      PageRoute_MaterialRouteTransitionMixin$36.__proto__.new.call(this, opts);
-    }).prototype = PageRoute_MaterialRouteTransitionMixin$36.prototype;
-    dart.applyMixin(PageRoute_MaterialRouteTransitionMixin$36, page.MaterialRouteTransitionMixin$(T));
-    class MaterialPageRoute extends PageRoute_MaterialRouteTransitionMixin$36 {
-      get builder() {
-        return this[builder$];
-      }
-      set builder(value) {
-        super.builder = value;
-      }
-      get maintainState() {
-        return this[maintainState$];
-      }
-      set maintainState(value) {
-        super.maintainState = value;
-      }
-      buildContent(context) {
-        let t0;
-        if (context == null) dart.nullFailed(I[0], 54, 36, "context");
-        t0 = context;
-        return this.builder(t0);
-      }
-      get debugLabel() {
-        return dart.str(super.debugLabel) + "(" + dart.str(this.settings.name) + ")";
-      }
+  Start.StartPage = class StartPage extends framework.StatelessWidget {
+    build(context) {
+      let totalWidth = media_query.MediaQuery.of(context).size.width;
+      let totalHeight = media_query.MediaQuery.of(context).size.height;
+      return new scaffold.Scaffold.new({body: new container.Container.new({decoration: new box_decoration.BoxDecoration.new({image: new decoration_image.DecorationImage.new({image: new image_resolution.AssetImage.new("assets/images/start_page.jpeg"), fit: box_fit.BoxFit.cover})}), child: new scaffold.Scaffold.new({backgroundColor: colors.Colors.transparent, body: new container.Container.new({padding: new edge_insets.EdgeInsets.all(dart.notNull(totalWidth) * 10 / 600), child: new basic.Column.new({mainAxisAlignment: flex.MainAxisAlignment.end, crossAxisAlignment: flex.CrossAxisAlignment.center, children: T.JSArrayOfWidgetL().of([new basic.SizedBox.new({height: dart.notNull(totalHeight) * 120 / 700, $creationLocationd_0dea112b090073317d4: C[0] || CT.C0}), new text.Text.new("Hi, nice to meet you!", {style: new text_style.TextStyle.new({fontFamily: "Robonto", fontWeight: ui.FontWeight.bold, fontSize: dart.notNull(totalHeight) * 30 / 700}), textAlign: ui.TextAlign.center, $creationLocationd_0dea112b090073317d4: C[3] || CT.C3}), new basic.SizedBox.new({height: dart.notNull(totalHeight) * 10 / 700, $creationLocationd_0dea112b090073317d4: C[8] || CT.C8}), new text.Text.new("Set your location to start exploring restaurants around you", {maxLines: 2, style: new text_style.TextStyle.new({fontFamily: "Robonto", fontWeight: ui.FontWeight.normal, fontSize: dart.notNull(totalHeight) * 25 / 700}), textAlign: ui.TextAlign.center, $creationLocationd_0dea112b090073317d4: C[11] || CT.C11}), new basic.SizedBox.new({height: dart.notNull(totalHeight) * 50 / 700, $creationLocationd_0dea112b090073317d4: C[17] || CT.C17}), new elevated_button.ElevatedButton.new({onPressed: dart.fn(() => {
+                      navigator.Navigator.push(dart.dynamic, context, new page.MaterialPageRoute.new({builder: dart.fn(context => new Menucard.MenuOptionSide.new({$creationLocationd_0dea112b090073317d4: C[20] || CT.C20}), T.BuildContextLToMenuOptionSideL())}));
+                    }, T.VoidToNull()), style: elevated_button.ElevatedButton.styleFrom({primary: colors.Colors.red, shape: new rounded_rectangle_border.RoundedRectangleBorder.new({borderRadius: new border_radius.BorderRadius.circular(dart.notNull(totalHeight) * 10 / 700)})}), child: new basic.RichText.new({text: new text_span.TextSpan.new({children: T.JSArrayOfInlineSpanL().of([new widget_span.WidgetSpan.new({child: new icon.Icon.new(icons.Icons.add_location_sharp, {size: dart.notNull(totalHeight) * 20 / 700, $creationLocationd_0dea112b090073317d4: C[22] || CT.C22})}), new text_span.TextSpan.new({text: " Use Current Location", style: new text_style.TextStyle.new({fontSize: dart.notNull(totalHeight) * 20 / 700, fontWeight: ui.FontWeight.normal})})])}), $creationLocationd_0dea112b090073317d4: C[26] || CT.C26}), $creationLocationd_0dea112b090073317d4: C[29] || CT.C29}), new basic.SizedBox.new({height: dart.notNull(totalHeight) * 20 / 700, $creationLocationd_0dea112b090073317d4: C[34] || CT.C34}), new elevated_button.ElevatedButton.new({onPressed: dart.fn(() => {
+                      navigator.Navigator.push(dart.dynamic, context, new page.MaterialPageRoute.new({builder: dart.fn(context => new UserHome.MapHomePage.new({$creationLocationd_0dea112b090073317d4: C[37] || CT.C37}), T.BuildContextLToMapHomePageL())}));
+                    }, T.VoidToNull()), style: elevated_button.ElevatedButton.styleFrom({primary: colors.Colors.white, shape: new rounded_rectangle_border.RoundedRectangleBorder.new({borderRadius: new border_radius.BorderRadius.circular(dart.notNull(totalHeight) * 10 / 700)})}), child: new text.Text.new("Set Your Location Manually", {style: new text_style.TextStyle.new({color: colors.Colors.red, fontSize: dart.notNull(totalHeight) * 20 / 700, fontWeight: ui.FontWeight.normal}), $creationLocationd_0dea112b090073317d4: C[38] || CT.C38}), $creationLocationd_0dea112b090073317d4: C[42] || CT.C42}), new basic.SizedBox.new({height: dart.notNull(totalHeight) * 50 / 700, $creationLocationd_0dea112b090073317d4: C[47] || CT.C47})]), $creationLocationd_0dea112b090073317d4: C[50] || CT.C50}), $creationLocationd_0dea112b090073317d4: C[55] || CT.C55}), $creationLocationd_0dea112b090073317d4: C[59] || CT.C59}), $creationLocationd_0dea112b090073317d4: C[63] || CT.C63}), $creationLocationd_0dea112b090073317d4: C[67] || CT.C67});
     }
-    (MaterialPageRoute.new = function(opts) {
-      let builder = opts && 'builder' in opts ? opts.builder : null;
-      if (builder == null) dart.nullFailed(I[0], 39, 19, "builder");
-      let settings = opts && 'settings' in opts ? opts.settings : null;
-      let maintainState = opts && 'maintainState' in opts ? opts.maintainState : true;
-      if (maintainState == null) dart.nullFailed(I[0], 41, 10, "maintainState");
-      let fullscreenDialog = opts && 'fullscreenDialog' in opts ? opts.fullscreenDialog : false;
-      if (fullscreenDialog == null) dart.nullFailed(I[0], 42, 10, "fullscreenDialog");
-      this[builder$] = builder;
-      this[maintainState$] = maintainState;
-      if (!(builder != null)) dart.assertFailed(null, I[0], 43, 15, "builder != null");
-      if (!(maintainState != null)) dart.assertFailed(null, I[0], 44, 15, "maintainState != null");
-      if (!(fullscreenDialog != null)) dart.assertFailed(null, I[0], 45, 15, "fullscreenDialog != null");
-      MaterialPageRoute.__proto__.new.call(this, {settings: settings, fullscreenDialog: fullscreenDialog});
-      if (!dart.test(this.opaque)) dart.assertFailed(null, I[0], 47, 12, "opaque");
-    }).prototype = MaterialPageRoute.prototype;
-    dart.addTypeTests(MaterialPageRoute);
-    MaterialPageRoute.prototype[_is_MaterialPageRoute_default] = true;
-    dart.addTypeCaches(MaterialPageRoute);
-    dart.setMethodSignature(MaterialPageRoute, () => ({
-      __proto__: dart.getMethods(MaterialPageRoute.__proto__),
-      buildContent: dart.fnType(framework.Widget, [framework.BuildContext])
-    }));
-    dart.setLibraryUri(MaterialPageRoute, I[1]);
-    dart.setFieldSignature(MaterialPageRoute, () => ({
-      __proto__: dart.getFields(MaterialPageRoute.__proto__),
-      builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext])),
-      maintainState: dart.finalFieldType(core.bool)
-    }));
-    return MaterialPageRoute;
-  });
-  page.MaterialPageRoute = page.MaterialPageRoute$();
-  dart.addTypeTests(page.MaterialPageRoute, _is_MaterialPageRoute_default);
-  var child$ = dart.privateName(page, "MaterialPage.child");
-  var maintainState$0 = dart.privateName(page, "MaterialPage.maintainState");
-  var fullscreenDialog$ = dart.privateName(page, "MaterialPage.fullscreenDialog");
-  const _is_MaterialPage_default = Symbol('_is_MaterialPage_default');
-  page.MaterialPage$ = dart.generic(T => {
-    var _PageBasedMaterialPageRouteOfT = () => (_PageBasedMaterialPageRouteOfT = dart.constFn(page._PageBasedMaterialPageRoute$(T)))();
-    class MaterialPage extends navigator.Page$(T) {
-      get child() {
-        return this[child$];
-      }
-      set child(value) {
-        super.child = value;
-      }
-      get maintainState() {
-        return this[maintainState$0];
-      }
-      set maintainState(value) {
-        super.maintainState = value;
-      }
-      get fullscreenDialog() {
-        return this[fullscreenDialog$];
-      }
-      set fullscreenDialog(value) {
-        super.fullscreenDialog = value;
-      }
-      createRoute(context) {
-        if (context == null) dart.nullFailed(I[0], 175, 37, "context");
-        return new (_PageBasedMaterialPageRouteOfT()).new({page: this});
-      }
-    }
-    (MaterialPage.new = function(opts) {
-      let child = opts && 'child' in opts ? opts.child : null;
-      if (child == null) dart.nullFailed(I[0], 154, 19, "child");
-      let maintainState = opts && 'maintainState' in opts ? opts.maintainState : true;
-      if (maintainState == null) dart.nullFailed(I[0], 155, 10, "maintainState");
-      let fullscreenDialog = opts && 'fullscreenDialog' in opts ? opts.fullscreenDialog : false;
-      if (fullscreenDialog == null) dart.nullFailed(I[0], 156, 10, "fullscreenDialog");
-      let key = opts && 'key' in opts ? opts.key : null;
-      let name = opts && 'name' in opts ? opts.name : null;
-      let $arguments = opts && 'arguments' in opts ? opts.arguments : null;
-      this[child$] = child;
-      this[maintainState$0] = maintainState;
-      this[fullscreenDialog$] = fullscreenDialog;
-      if (!(child != null)) dart.assertFailed(null, I[0], 160, 15, "child != null");
-      if (!(maintainState != null)) dart.assertFailed(null, I[0], 161, 15, "maintainState != null");
-      if (!(fullscreenDialog != null)) dart.assertFailed(null, I[0], 162, 15, "fullscreenDialog != null");
-      MaterialPage.__proto__.new.call(this, {key: key, name: name, arguments: $arguments});
-      ;
-    }).prototype = MaterialPage.prototype;
-    dart.addTypeTests(MaterialPage);
-    MaterialPage.prototype[_is_MaterialPage_default] = true;
-    dart.addTypeCaches(MaterialPage);
-    dart.setMethodSignature(MaterialPage, () => ({
-      __proto__: dart.getMethods(MaterialPage.__proto__),
-      createRoute: dart.fnType(navigator.Route$(T), [framework.BuildContext])
-    }));
-    dart.setLibraryUri(MaterialPage, I[1]);
-    dart.setFieldSignature(MaterialPage, () => ({
-      __proto__: dart.getFields(MaterialPage.__proto__),
-      child: dart.finalFieldType(framework.Widget),
-      maintainState: dart.finalFieldType(core.bool),
-      fullscreenDialog: dart.finalFieldType(core.bool)
-    }));
-    return MaterialPage;
-  });
-  page.MaterialPage = page.MaterialPage$();
-  dart.addTypeTests(page.MaterialPage, _is_MaterialPage_default);
-  var _page = dart.privateName(page, "_page");
-  const _is__PageBasedMaterialPageRoute_default = Symbol('_is__PageBasedMaterialPageRoute_default');
-  page._PageBasedMaterialPageRoute$ = dart.generic(T => {
-    var MaterialPageOfT = () => (MaterialPageOfT = dart.constFn(page.MaterialPage$(T)))();
-    const PageRoute_MaterialRouteTransitionMixin$36 = class PageRoute_MaterialRouteTransitionMixin extends pages.PageRoute$(T) {};
-    (PageRoute_MaterialRouteTransitionMixin$36.new = function(opts) {
-      PageRoute_MaterialRouteTransitionMixin$36.__proto__.new.call(this, opts);
-    }).prototype = PageRoute_MaterialRouteTransitionMixin$36.prototype;
-    dart.applyMixin(PageRoute_MaterialRouteTransitionMixin$36, page.MaterialRouteTransitionMixin$(T));
-    class _PageBasedMaterialPageRoute extends PageRoute_MaterialRouteTransitionMixin$36 {
-      get [_page]() {
-        return MaterialPageOfT().as(this.settings);
-      }
-      buildContent(context) {
-        if (context == null) dart.nullFailed(I[0], 195, 36, "context");
-        return this[_page].child;
-      }
-      get maintainState() {
-        return this[_page].maintainState;
-      }
-      get fullscreenDialog() {
-        return this[_page].fullscreenDialog;
-      }
-      get debugLabel() {
-        return dart.str(super.debugLabel) + "(" + dart.str(this[_page].name) + ")";
-      }
-    }
-    (_PageBasedMaterialPageRoute.new = function(opts) {
-      let page = opts && 'page' in opts ? opts.page : null;
-      if (page == null) dart.nullFailed(I[0], 186, 30, "page");
-      if (!(page != null)) dart.assertFailed(null, I[0], 187, 15, "page != null");
-      _PageBasedMaterialPageRoute.__proto__.new.call(this, {settings: page});
-      if (!dart.test(this.opaque)) dart.assertFailed(null, I[0], 189, 12, "opaque");
-    }).prototype = _PageBasedMaterialPageRoute.prototype;
-    dart.addTypeTests(_PageBasedMaterialPageRoute);
-    _PageBasedMaterialPageRoute.prototype[_is__PageBasedMaterialPageRoute_default] = true;
-    dart.addTypeCaches(_PageBasedMaterialPageRoute);
-    dart.setMethodSignature(_PageBasedMaterialPageRoute, () => ({
-      __proto__: dart.getMethods(_PageBasedMaterialPageRoute.__proto__),
-      buildContent: dart.fnType(framework.Widget, [framework.BuildContext])
-    }));
-    dart.setGetterSignature(_PageBasedMaterialPageRoute, () => ({
-      __proto__: dart.getGetters(_PageBasedMaterialPageRoute.__proto__),
-      [_page]: page.MaterialPage$(T),
-      maintainState: core.bool,
-      fullscreenDialog: core.bool
-    }));
-    dart.setLibraryUri(_PageBasedMaterialPageRoute, I[1]);
-    return _PageBasedMaterialPageRoute;
-  });
-  page._PageBasedMaterialPageRoute = page._PageBasedMaterialPageRoute$();
-  dart.addTypeTests(page._PageBasedMaterialPageRoute, _is__PageBasedMaterialPageRoute_default);
-  dart.trackLibraries("packages/flutter/src/material/page.dart", {
-    "package:flutter/src/material/page.dart": page
+  };
+  (Start.StartPage.new = function(opts) {
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    Start.StartPage.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = Start.StartPage.prototype;
+  dart.addTypeTests(Start.StartPage);
+  dart.addTypeCaches(Start.StartPage);
+  dart.setMethodSignature(Start.StartPage, () => ({
+    __proto__: dart.getMethods(Start.StartPage.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
+  }));
+  dart.setLibraryUri(Start.StartPage, I[0]);
+  dart.trackLibraries("packages/food_delivery_app/user/Start.dart", {
+    "package:food_delivery_app/user/Start.dart": Start
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["page.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAqFqC;MAAiC;;AAGzC;MAAI;;AAGH;MAAI;;YAGc;AAE5C,cAAkB,AAChB,sCADM,SAAS,gBAAqC,AAAU,SAAD,sBAC/C,uCAAV,SAAS,gBAAsC,AAAU,SAAD;MAChE;gBAIe,SACK,WACA;YAFL;YACK;YACA;AAEL,qBAAS,kBAAa,OAAO;AAC1C,uBAAO,AAQN;AAPC,cAAI,AAAO,MAAD;AAIP,YAHD,WAAM,4BAAY,AAChB,sCAA0B,AAAS,sBAAK,wBACxC;;AAGJ,gBAAO;;AAET,cAAO,uCACQ,0BACO,aACb,MAAM;MAEjB;uBAGqC,SAA2B,WAA6B,oBAA2B;YAAnF;YAA2B;YAA6B;YAA2B;AAC3F,oBAAc,AAAY,gBAAT,OAAO;AACnD,cAAO,AAAM,MAAD,qBAAqB,MAAM,OAAO,EAAE,SAAS,EAAE,kBAAkB,EAAE,KAAK;MACtF;;;;;;;;;;;;;;;;;;;;;;;;;;;;;MA7EoB;;;;;;MAMT;;;;;;mBAHsB;;;AAAY,aAAQ,OAAO;cAAf,AAAO;MAAS;;AAMpC,cAAuC,UAA9B,oBAAW,eAAG,AAAS,sBAAK;MAAE;;;UArBhD;;UACC;UACV;;UACA;;MAHS;MAET;YAEK,AAAQ,OAAD;YACP,AAAc,aAAD;YACb,AAAiB,gBAAD;AACvB,4DAAgB,QAAQ,oBAAoB,gBAAgB;AAC/D,qBAAO;IACT;;;;;;;;;;;;;;;;;;;;;;;;;MAsHa;;;;;;MAGF;;;;;;MAGA;;;;;;;YAGuB;AAChC,cAAO,mDAAqC;MAC9C;;;UAvBgB;;UACT;;UACA;;UACK;UACF;UACA;MALM;MACT;MACA;YAIK,AAAM,KAAD;YACL,AAAc,aAAD;YACb,AAAiB,gBAAD;AACvB,kDAAW,GAAG,QAAQ,IAAI,aAAa;;IAAU;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AA6BzB,cAAS,sBAAT;MAA2B;;YAGvB;AAC/B,cAAO,AAAM;MACf;;AAG0B,cAAA,AAAM;MAAa;;AAGhB,cAAA,AAAM;MAAgB;;AAG1B,cAAoC,UAA3B,oBAAW,eAAG,AAAM,oBAAK;MAAE;;;UApBlC;;YACf,AAAK,IAAD;AACX,sEAAgB,IAAI;AACvB,qBAAO;IACT","file":"../../../../../../../packages/flutter/src/material/page.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["Start.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;UAS4B;AACjB,uBAAwB,AAAY,AAAK,0BAAd,OAAO;AAClC,wBAAyB,AAAY,AAAK,0BAAd,OAAO;AAC1C,YAAO,kCACC,yCACQ,6CACH,iDACE,oCAAW,uCACN,iCAGT,4CACmB,iCAClB,sCACgB,+BAAe,AAAK,aAAhB,UAAU,IAAG,KAAK,aACnC,yCACgC,gDACE,0CACrB,yBAEhB,gCACsB,AAAM,aAAlB,WAAW,IAAG,MAAM,8DAE9B,kBACE,iCACO,0CACS,uBACW,8BACD,AAAK,aAAjB,WAAW,IAAG,KAAK,kBACZ,8EAEvB,gCACsB,AAAK,aAAjB,WAAW,IAAG,KAAK,8DAE7B,kBACE,0EACU,UACH,0CACS,uBACW,gCACD,AAAK,aAAjB,WAAW,IAAG,KAAK,kBACZ,gFAUvB,gCACsB,AAAK,aAAjB,WAAW,IAAG,KAAK,gEAE7B,mDACa;AAMR,sBALS,uCACR,OAAO,EACP,yCACW,QAAC,WAAY;+CAIN,mDACJ,0BACT,uEAEc,wCAAqB,AAAK,aAAjB,WAAW,IAAG,KAAK,iBAE5C,8BACC,sCACM,6BACR,uCACS,kBAAW,uCACI,AAAK,aAAjB,WAAW,IAAG,KAAK,kEAE/B,kCACQ,gCACC,wCACmB,AAAK,aAAjB,WAAW,IAAG,KAAK,iBACN,oJAMrC,gCACsB,AAAK,aAAjB,WAAW,IAAG,KAAK,gEAE7B,mDACa;AAMR,sBALS,uCACR,OAAO,EACP,yCACW,QAAC,WAAY;+CAIN,mDACJ,4BACT,uEAEc,wCAAqB,AAAK,aAAjB,WAAW,IAAG,KAAK,iBAE5C,kBACL,sCACO,qCACW,6BACQ,AAAK,aAAjB,WAAW,IAAG,KAAK,iBACN,8IAG/B,gCACsB,AAAK,aAAjB,WAAW,IAAG,KAAK;IAQ3C;;;;;;EACF","file":"../../../../../../../packages/food_delivery_app/user/Start.dart.lib.js"}');
   // Exports:
   return {
-    src__material__page: page
+    user__Start: Start
   };
 }));
 
-//# sourceMappingURL=page.dart.lib.js.map
+//# sourceMappingURL=Start.dart.lib.js.map

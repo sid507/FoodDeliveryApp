@@ -11,6 +11,8 @@ import 'package:food_delivery_app/widgets/drawer.dart';
 import 'package:food_delivery_app/user/my_account.dart';
 
 class MenuOptionSide extends StatefulWidget {
+  bool automatic;
+  MenuOptionSide({Key key, @required this.automatic}) : super(key: key);
   @override
   _MenuOptionSideState createState() => _MenuOptionSideState();
 }
@@ -21,7 +23,12 @@ class _MenuOptionSideState extends State<MenuOptionSide> {
 
   @override
   void initState() {
-    this._children = [HomePage(), MyApp(), FoodOrderPage(), MyAccount()];
+    this._children = [
+      HomePage(automatic: widget.automatic),
+      MyApp(),
+      FoodOrderPage(),
+      MyAccount()
+    ];
     print(this._children);
     super.initState();
   }

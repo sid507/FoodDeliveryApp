@@ -16,17 +16,23 @@ class Dishes extends Chef {
   double _rating;
   String _image;
   String _time;
+  String _mealType;
   Dishes(String name, double rating, String dishname, double price,
-      String image, String time)
+      String image, String time, String mealType)
       : super(name, rating) {
     this._dishname = dishname;
     this._price = price;
     this._rating = rating;
     this._image = image;
     this._time = time;
+    this._mealType = mealType;
   }
   String getDishName() {
     return this._dishname;
+  }
+
+  String getMealType() {
+    return this._mealType;
   }
 
   double getPrice() {
@@ -88,9 +94,9 @@ class EatNowData {
   List<String> d = [];
   EatNowData() {
     Dishes d1 = new Dishes("Siddharth Mishra", 4.5, "Paneer Tikka", 250,
-        "panner_tikka.JPG", "25 min");
-    Dishes d2 =
-        new Dishes("Nishant Pal", 4.7, "Dosa", 250, "dosa.jpg", "30 mins");
+        "panner_tikka.JPG", "25 min", "Lunch");
+    Dishes d2 = new Dishes(
+        "Nishant Pal", 4.7, "Dosa", 250, "dosa.jpg", "30 mins", "Breakfast");
     this.data.add(d1);
     this.data.add(d2);
     this.data.add(d2);

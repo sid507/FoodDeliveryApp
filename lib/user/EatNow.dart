@@ -1,5 +1,3 @@
-// import 'dart:html';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/user/Utils.dart';
@@ -13,7 +11,6 @@ class EatNow extends StatefulWidget {
 }
 
 class _EatNowState extends State<EatNow> {
-  // Data2 f = new Data2();
   EatNowData items = new EatNowData();
   List<Dishes> l;
   CartData cartdata;
@@ -25,23 +22,9 @@ class _EatNowState extends State<EatNow> {
   void initState() {
     super.initState();
     this.l = items.getData();
-
     this.cartdata = widget.cartData;
-    // this.data();
   }
 
-// final db = FirebaseFirestore.instance;
-//           CollectionReference collectionReference = db.collection('Chefs');
-//           collectionReference.snapshots().listen((snapshot) {
-//             for (int i = 0; i < snapshot.docs.length; i++) {
-//               // chef[snapshot.docs[i].id] = snapshot.docs[i].data();
-//               // print(snapshot.docs[i].id);
-//               setState(() {
-//                 ll = snapshot.docs[i].data();
-//               });
-//             }
-//           });
-//
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,7 +69,8 @@ class _EatNowState extends State<EatNow> {
                             dd["dishName"].toString(),
                             dd["price"].toDouble(),
                             dd["imageUrl"].toString(),
-                            "25 min");
+                            "25 min",
+                            dd["mealType"]);
                         dishes.add(dish);
                       }
                     }
@@ -109,7 +93,11 @@ class _EatNowState extends State<EatNow> {
                       );
                     }).toList());
                   } else {
-                    return Container();
+                    return Container(
+                      child: Center(
+                        child: Text('Sorry....No Items are availble'),
+                      ),
+                    );
                   }
                 },
               );
@@ -281,8 +269,14 @@ class _SingleCardState extends State<SingleCard> {
                       ),
                       onPressed: () {
                         widget.cartData.addItem(
-                            Dishes(widget.name, widget.rating, widget.dishName,
-                                widget.price, widget.image, widget.time),
+                            Dishes(
+                                widget.name,
+                                widget.rating,
+                                widget.dishName,
+                                widget.price,
+                                widget.image,
+                                widget.time,
+                                widget.dishName),
                             widget.quantity);
                       },
                       label: Text(

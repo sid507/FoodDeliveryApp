@@ -18,11 +18,9 @@ class FoodMain extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        // '/': (context) => HomePage(),
         '/': (context) => SignIn(),
         '/user': (context) => StartPage(),
-        '/home': (context) => MenuOptionSide(),
-        '/signin': (context) => SignIn(),
+        '/home': (context) => MenuOptionSide(automatic: false),
       },
       theme: ThemeData(
           primarySwatch: Colors.indigo,

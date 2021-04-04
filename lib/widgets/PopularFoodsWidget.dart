@@ -36,6 +36,9 @@ class PopularFoodTiles extends StatelessWidget {
   String time;
   int numberOfRating;
   double price;
+  String chefName;
+  String mealType;
+  CartData cartData;
 
   PopularFoodTiles({
     Key key,
@@ -45,6 +48,9 @@ class PopularFoodTiles extends StatelessWidget {
     @required this.numberOfRating,
     @required this.price,
     @required this.time,
+    @required this.chefName,
+    @required this.mealType,
+    @required this.cartData,
   }) : super(key: key);
 
   @override
@@ -53,7 +59,20 @@ class PopularFoodTiles extends StatelessWidget {
     double totalHeight = MediaQuery.of(context).size.height;
     return InkWell(
       onTap: () {
-        Navigator.push(context, ScaleRoute(page: FoodDetailsPage()));
+        Navigator.push(
+          context,
+          ScaleRoute(
+            page: FoodDetailsPage(
+              dishName: this.dishName,
+              imageUrl: this.imageUrl,
+              rating: this.rating,
+              price: this.price,
+              time: this.time,
+              chefName: this.chefName,
+              mealType: this.mealType,
+            ),
+          ),
+        );
       },
       child: Column(
         children: <Widget>[
@@ -333,7 +352,8 @@ class _PopularFoodItemsState extends State<PopularFoodItems> {
                         dd["dishName"].toString(),
                         dd["price"].toDouble(),
                         dd["imageUrl"].toString(),
-                        "25 min");
+                        "25 min",
+                        dd["mealType"]);
                     dishes.add(dish);
                   }
                   print(dishes);
@@ -350,6 +370,9 @@ class _PopularFoodItemsState extends State<PopularFoodItems> {
                         rating: data.getRating(),
                         time: data.gettime(),
                         numberOfRating: 200,
+                        chefName: data.name,
+                        mealType: data.getMealType(),
+                        cartData: cartdata,
                       ),
                     );
                   }).toList());
@@ -358,71 +381,11 @@ class _PopularFoodItemsState extends State<PopularFoodItems> {
                 }
               },
             );
-            // for (int i = 0; i <elem; i++) {
-            //   tp.add(snapshot.data.docs[i]);
-            // }
-            // print(tp);
-
           } else {
             return Container();
           }
         },
       )
     ]);
-
-    // return ListView(
-    //   scrollDirection: Axis.horizontal,
-    //   children: <Widget>[
-    //     PopularFoodTiles(
-    //         name: "Paneer Tikka",
-    //         imageUrl: "panner_tikka.JPG",
-    //         rating: '4.9',
-    //         numberOfRating: '200',
-    //         price: '250',
-    //         slug: ""),
-    //     PopularFoodTiles(
-    //         name: "Mixed Vegetable",
-    //         imageUrl: "popular_foods/ic_popular_food_3.png",
-    //         rating: "4.9",
-    //         numberOfRating: "100",
-    //         price: "150",
-    //         slug: ""),
-    //     PopularFoodTiles(
-    //         name: "Dosa",
-    //         imageUrl: "dosa.jpg",
-    //         rating: "4.0",
-    //         numberOfRating: "50",
-    //         price: "50",
-    //         slug: ""),
-    //     PopularFoodTiles(
-    //         name: "Mixed Salad",
-    //         imageUrl: "popular_foods/ic_popular_food_5.png",
-    //         rating: "4.00",
-    //         numberOfRating: "10",
-    //         price: "100",
-    //         slug: ""),
-    //     PopularFoodTiles(
-    //         name: "Gujarati Thali",
-    //         imageUrl: "topmenu/west_indian.png",
-    //         rating: "4.6",
-    //         numberOfRating: "50",
-    //         price: "300",
-    //         slug: ""),
-    //     PopularFoodTiles(
-    //         name: "Momos",
-    //         imageUrl: "topmenu/north_east_indian.jpg",
-    //         rating: "4.2",
-    //         numberOfRating: "70",
-    //         price: "80",
-    //         slug: ""),
-    //     PopularFoodTiles(
-    //         name: "Fried Egg",
-    //         imageUrl: "popular_foods/ic_popular_food_1.png",
-    //         rating: '4.9',
-    //         numberOfRating: '200',
-    //         price: '40',
-    //         slug: "fried_egg"),
-    //   ],
-    // );
   }
 }

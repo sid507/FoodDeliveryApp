@@ -1,21 +1,31 @@
-define(['dart_sdk', 'packages/flutter/src/painting/borders.dart', 'packages/flutter/src/painting/border_radius.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/painting/circle_border.dart', 'packages/flutter/src/foundation/object.dart'], (function load__packages__flutter__src__painting__rounded_rectangle_border_dart(dart_sdk, packages__flutter__src__painting__borders$46dart, packages__flutter__src__painting__border_radius$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__painting__circle_border$46dart, packages__flutter__src__foundation__object$46dart) {
+define(['dart_sdk', 'packages/plugin_platform_interface/plugin_platform_interface.dart', 'packages/flutter/src/services/system_channels.dart'], (function load__packages__location_platform_interface__location_platform_interface_dart(dart_sdk, packages__plugin_platform_interface__plugin_platform_interface$46dart, packages__flutter__src__services__system_channels$46dart) {
   'use strict';
   const core = dart_sdk.core;
+  const async = dart_sdk.async;
   const ui = dart_sdk.ui;
-  const _internal = dart_sdk._internal;
+  const _js_helper = dart_sdk._js_helper;
+  const collection = dart_sdk.collection;
+  const io = dart_sdk.io;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
-  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
-  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
-  const circle_border = packages__flutter__src__painting__circle_border$46dart.src__painting__circle_border;
-  const object = packages__flutter__src__foundation__object$46dart.src__foundation__object;
-  var rounded_rectangle_border = Object.create(dart.library);
+  const plugin_platform_interface = packages__plugin_platform_interface__plugin_platform_interface$46dart.plugin_platform_interface;
+  const platform_channel = packages__flutter__src__services__system_channels$46dart.src__services__platform_channel;
+  const message_codecs = packages__flutter__src__services__system_channels$46dart.src__services__message_codecs;
+  const message_codec = packages__flutter__src__services__system_channels$46dart.src__services__message_codec;
+  var location_platform_interface = Object.create(dart.library);
+  var $_set = dartx._set;
+  var $toRadixString = dartx.toRadixString;
+  var $_get = dartx._get;
   var $runtimeType = dartx.runtimeType;
-  var $toStringAsFixed = dartx.toStringAsFixed;
+  var $hashCode = dartx.hashCode;
   dart._checkModuleNullSafetyMode(false);
   var T = {
-    _: () => T
+    IdentityMapOfString$dynamic: () => (T.IdentityMapOfString$dynamic = dart.constFn(_js_helper.IdentityMap$(core.String, dart.dynamic)))(),
+    LinkedHashMapOfString$double: () => (T.LinkedHashMapOfString$double = dart.constFn(collection.LinkedHashMap$(core.String, core.double)))(),
+    dynamicToLocationData: () => (T.dynamicToLocationData = dart.constFn(dart.fnType(location_platform_interface.LocationData, [dart.dynamic])))(),
+    AndroidNotificationDataN: () => (T.AndroidNotificationDataN = dart.constFn(dart.nullable(location_platform_interface.AndroidNotificationData)))(),
+    LocationAccuracyL: () => (T.LocationAccuracyL = dart.constFn(dart.legacy(location_platform_interface.LocationAccuracy)))(),
+    PermissionStatusL: () => (T.PermissionStatusL = dart.constFn(dart.legacy(location_platform_interface.PermissionStatus)))()
   };
   var T$Eval = Object.assign({
     _: () => T$Eval
@@ -30,392 +40,561 @@ define(['dart_sdk', 'packages/flutter/src/painting/borders.dart', 'packages/flut
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
-    get C1() {
-      return C[1] = dart.const({
-        __proto__: borders.BorderStyle.prototype,
-        [_name]: "BorderStyle.none",
-        index: 0
-      });
-    },
     get C2() {
       return C[2] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4278190080.0
+        __proto__: message_codecs.StandardMessageCodec.prototype
+      });
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: message_codecs.StandardMethodCodec.prototype,
+        [StandardMethodCodec_messageCodec]: C[2] || CT.C2
       });
     },
     get C0() {
       return C[0] = dart.const({
-        __proto__: borders.BorderSide.prototype,
-        [BorderSide_style]: C[1] || CT.C1,
-        [BorderSide_width]: 0,
-        [BorderSide_color]: C[2] || CT.C2
-      });
-    },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: ui.Radius.prototype,
-        [Radius_y]: 0,
-        [Radius_x]: 0
+        __proto__: platform_channel.MethodChannel.prototype,
+        [MethodChannel__binaryMessenger]: null,
+        [MethodChannel_codec]: C[1] || CT.C1,
+        [MethodChannel_name]: "lyokone/location"
       });
     },
     get C3() {
       return C[3] = dart.const({
-        __proto__: border_radius.BorderRadius.prototype,
-        [BorderRadius_bottomRight]: C[4] || CT.C4,
-        [BorderRadius_bottomLeft]: C[4] || CT.C4,
-        [BorderRadius_topRight]: C[4] || CT.C4,
-        [BorderRadius_topLeft]: C[4] || CT.C4
+        __proto__: platform_channel.EventChannel.prototype,
+        [EventChannel__binaryMessenger]: null,
+        [EventChannel_codec]: C[1] || CT.C1,
+        [EventChannel_name]: "lyokone/locationstream"
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: location_platform_interface.LocationAccuracy.prototype,
+        [_name$]: "LocationAccuracy.high",
+        index: 3
       });
     },
     get C5() {
       return C[5] = dart.const({
-        __proto__: borders.BorderStyle.prototype,
-        [_name]: "BorderStyle.solid",
+        __proto__: location_platform_interface.LocationAccuracy.prototype,
+        [_name$]: "LocationAccuracy.powerSave",
+        index: 0
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: location_platform_interface.LocationAccuracy.prototype,
+        [_name$]: "LocationAccuracy.low",
         index: 1
       });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: location_platform_interface.LocationAccuracy.prototype,
+        [_name$]: "LocationAccuracy.balanced",
+        index: 2
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: location_platform_interface.LocationAccuracy.prototype,
+        [_name$]: "LocationAccuracy.navigation",
+        index: 4
+      });
+    },
+    get C9() {
+      return C[9] = dart.constList([C[5] || CT.C5, C[6] || CT.C6, C[7] || CT.C7, C[4] || CT.C4, C[8] || CT.C8], T.LocationAccuracyL());
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: location_platform_interface.PermissionStatus.prototype,
+        [_name$]: "PermissionStatus.granted",
+        index: 0
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: location_platform_interface.PermissionStatus.prototype,
+        [_name$]: "PermissionStatus.grantedLimited",
+        index: 1
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: location_platform_interface.PermissionStatus.prototype,
+        [_name$]: "PermissionStatus.denied",
+        index: 2
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: location_platform_interface.PermissionStatus.prototype,
+        [_name$]: "PermissionStatus.deniedForever",
+        index: 3
+      });
+    },
+    get C14() {
+      return C[14] = dart.constList([C[10] || CT.C10, C[11] || CT.C11, C[12] || CT.C12, C[13] || CT.C13], T.PermissionStatusL());
     }
   }, false);
-  var C = Array(6).fill(void 0);
+  var C = Array(15).fill(void 0);
   var I = [
-    "file:///C:/flutter/flutter/packages/flutter/lib/src/painting/rounded_rectangle_border.dart",
-    "package:flutter/src/painting/rounded_rectangle_border.dart"
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/location_platform_interface-2.1.0/lib/location_platform_interface.dart",
+    "package:location_platform_interface/location_platform_interface.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/location_platform_interface-2.1.0/lib/src/types.dart"
   ];
-  var borderRadius$ = dart.privateName(rounded_rectangle_border, "RoundedRectangleBorder.borderRadius");
-  var _name = dart.privateName(borders, "_name");
-  var BorderSide_style = dart.privateName(borders, "BorderSide.style");
-  var BorderSide_width = dart.privateName(borders, "BorderSide.width");
-  var Color_value = dart.privateName(ui, "Color.value");
-  var BorderSide_color = dart.privateName(borders, "BorderSide.color");
-  var Radius_y = dart.privateName(ui, "Radius.y");
-  var Radius_x = dart.privateName(ui, "Radius.x");
-  var BorderRadius_bottomRight = dart.privateName(border_radius, "BorderRadius.bottomRight");
-  var BorderRadius_bottomLeft = dart.privateName(border_radius, "BorderRadius.bottomLeft");
-  var BorderRadius_topRight = dart.privateName(border_radius, "BorderRadius.topRight");
-  var BorderRadius_topLeft = dart.privateName(border_radius, "BorderRadius.topLeft");
-  rounded_rectangle_border.RoundedRectangleBorder = class RoundedRectangleBorder extends borders.OutlinedBorder {
-    get borderRadius() {
-      return this[borderRadius$];
+  location_platform_interface.LocationPlatform = class LocationPlatform extends plugin_platform_interface.PlatformInterface {
+    static get instance() {
+      return location_platform_interface.LocationPlatform._instance;
     }
-    set borderRadius(value) {
-      super.borderRadius = value;
+    static set instance(instance) {
+      if (instance == null) dart.nullFailed(I[0], 32, 40, "instance");
+      plugin_platform_interface.PlatformInterface.verifyToken(instance, location_platform_interface.LocationPlatform._token);
+      location_platform_interface.LocationPlatform._instance = instance;
     }
-    get dimensions() {
-      return new edge_insets.EdgeInsets.all(this.side.width);
+    changeSettings(opts) {
+      let accuracy = opts && 'accuracy' in opts ? opts.accuracy : null;
+      let interval = opts && 'interval' in opts ? opts.interval : null;
+      let distanceFilter = opts && 'distanceFilter' in opts ? opts.distanceFilter : null;
+      dart.throw(new core.UnimplementedError.new());
     }
-    scale(t) {
-      if (t == null) dart.nullFailed(I[0], 48, 28, "t");
-      return new rounded_rectangle_border.RoundedRectangleBorder.new({side: this.side.scale(t), borderRadius: this.borderRadius['*'](t)});
+    isBackgroundModeEnabled() {
+      dart.throw(new core.UnimplementedError.new());
     }
-    lerpFrom(a, t) {
-      if (t == null) dart.nullFailed(I[0], 56, 48, "t");
-      if (!(t != null)) dart.assertFailed(null, I[0], 57, 12, "t != null");
-      if (rounded_rectangle_border.RoundedRectangleBorder.is(a)) {
-        return new rounded_rectangle_border.RoundedRectangleBorder.new({side: borders.BorderSide.lerp(a.side, this.side, t), borderRadius: dart.nullCheck(border_radius.BorderRadiusGeometry.lerp(a.borderRadius, this.borderRadius, t))});
+    enableBackgroundMode(opts) {
+      let enable = opts && 'enable' in opts ? opts.enable : null;
+      dart.throw(new core.UnimplementedError.new());
+    }
+    getLocation() {
+      dart.throw(new core.UnimplementedError.new());
+    }
+    hasPermission() {
+      dart.throw(new core.UnimplementedError.new());
+    }
+    requestPermission() {
+      dart.throw(new core.UnimplementedError.new());
+    }
+    serviceEnabled() {
+      dart.throw(new core.UnimplementedError.new());
+    }
+    requestService() {
+      dart.throw(new core.UnimplementedError.new());
+    }
+    get onLocationChanged() {
+      dart.throw(new core.UnimplementedError.new());
+    }
+    changeNotificationOptions(opts) {
+      let channelName = opts && 'channelName' in opts ? opts.channelName : null;
+      let title = opts && 'title' in opts ? opts.title : null;
+      let iconName = opts && 'iconName' in opts ? opts.iconName : null;
+      let subtitle = opts && 'subtitle' in opts ? opts.subtitle : null;
+      let description = opts && 'description' in opts ? opts.description : null;
+      let color = opts && 'color' in opts ? opts.color : null;
+      let onTapBringToFront = opts && 'onTapBringToFront' in opts ? opts.onTapBringToFront : null;
+      dart.throw(new core.UnimplementedError.new());
+    }
+  };
+  (location_platform_interface.LocationPlatform.new = function() {
+    location_platform_interface.LocationPlatform.__proto__.new.call(this, {token: location_platform_interface.LocationPlatform._token});
+    ;
+  }).prototype = location_platform_interface.LocationPlatform.prototype;
+  dart.addTypeTests(location_platform_interface.LocationPlatform);
+  dart.addTypeCaches(location_platform_interface.LocationPlatform);
+  dart.setMethodSignature(location_platform_interface.LocationPlatform, () => ({
+    __proto__: dart.getMethods(location_platform_interface.LocationPlatform.__proto__),
+    changeSettings: dart.fnType(async.Future$(core.bool), [], {accuracy: dart.nullable(location_platform_interface.LocationAccuracy), distanceFilter: dart.nullable(core.double), interval: dart.nullable(core.int)}, {}),
+    isBackgroundModeEnabled: dart.fnType(async.Future$(core.bool), []),
+    enableBackgroundMode: dart.fnType(async.Future$(core.bool), [], {enable: dart.nullable(core.bool)}, {}),
+    getLocation: dart.fnType(async.Future$(location_platform_interface.LocationData), []),
+    hasPermission: dart.fnType(async.Future$(location_platform_interface.PermissionStatus), []),
+    requestPermission: dart.fnType(async.Future$(location_platform_interface.PermissionStatus), []),
+    serviceEnabled: dart.fnType(async.Future$(core.bool), []),
+    requestService: dart.fnType(async.Future$(core.bool), []),
+    changeNotificationOptions: dart.fnType(async.Future$(dart.nullable(location_platform_interface.AndroidNotificationData)), [], {channelName: dart.nullable(core.String), color: dart.nullable(ui.Color), description: dart.nullable(core.String), iconName: dart.nullable(core.String), onTapBringToFront: dart.nullable(core.bool), subtitle: dart.nullable(core.String), title: dart.nullable(core.String)}, {})
+  }));
+  dart.setGetterSignature(location_platform_interface.LocationPlatform, () => ({
+    __proto__: dart.getGetters(location_platform_interface.LocationPlatform.__proto__),
+    onLocationChanged: async.Stream$(location_platform_interface.LocationData)
+  }));
+  dart.setLibraryUri(location_platform_interface.LocationPlatform, I[1]);
+  dart.defineLazy(location_platform_interface.LocationPlatform, {
+    /*location_platform_interface.LocationPlatform._token*/get _token() {
+      return new core.Object.new();
+    },
+    /*location_platform_interface.LocationPlatform._instance*/get _instance() {
+      return location_platform_interface.MethodChannelLocation.new();
+    },
+    set _instance(_) {}
+  }, false);
+  var _onLocationChanged = dart.privateName(location_platform_interface, "_onLocationChanged");
+  var _methodChannel$ = dart.privateName(location_platform_interface, "_methodChannel");
+  var _eventChannel$ = dart.privateName(location_platform_interface, "_eventChannel");
+  var MethodChannel__binaryMessenger = dart.privateName(platform_channel, "MethodChannel._binaryMessenger");
+  var StandardMethodCodec_messageCodec = dart.privateName(message_codecs, "StandardMethodCodec.messageCodec");
+  var MethodChannel_codec = dart.privateName(platform_channel, "MethodChannel.codec");
+  var MethodChannel_name = dart.privateName(platform_channel, "MethodChannel.name");
+  var EventChannel__binaryMessenger = dart.privateName(platform_channel, "EventChannel._binaryMessenger");
+  var EventChannel_codec = dart.privateName(platform_channel, "EventChannel.codec");
+  var EventChannel_name = dart.privateName(platform_channel, "EventChannel.name");
+  var _name$ = dart.privateName(location_platform_interface, "_name");
+  var _parsePermissionStatus = dart.privateName(location_platform_interface, "_parsePermissionStatus");
+  location_platform_interface.MethodChannelLocation = class MethodChannelLocation extends location_platform_interface.LocationPlatform {
+    static new() {
+      if (location_platform_interface.MethodChannelLocation._instance == null) {
+        let methodChannel = C[0] || CT.C0;
+        let eventChannel = C[3] || CT.C3;
+        location_platform_interface.MethodChannelLocation._instance = new location_platform_interface.MethodChannelLocation.private(methodChannel, eventChannel);
       }
-      if (circle_border.CircleBorder.is(a)) {
-        return new rounded_rectangle_border._RoundedRectangleToCircleBorder.new({side: borders.BorderSide.lerp(a.side, this.side, t), borderRadius: this.borderRadius, circleness: 1.0 - dart.notNull(t)});
-      }
-      return super.lerpFrom(a, t);
+      return dart.nullCheck(location_platform_interface.MethodChannelLocation._instance);
     }
-    lerpTo(b, t) {
-      if (t == null) dart.nullFailed(I[0], 75, 46, "t");
-      if (!(t != null)) dart.assertFailed(null, I[0], 76, 12, "t != null");
-      if (rounded_rectangle_border.RoundedRectangleBorder.is(b)) {
-        return new rounded_rectangle_border.RoundedRectangleBorder.new({side: borders.BorderSide.lerp(this.side, b.side, t), borderRadius: dart.nullCheck(border_radius.BorderRadiusGeometry.lerp(this.borderRadius, b.borderRadius, t))});
-      }
-      if (circle_border.CircleBorder.is(b)) {
-        return new rounded_rectangle_border._RoundedRectangleToCircleBorder.new({side: borders.BorderSide.lerp(this.side, b.side, t), borderRadius: this.borderRadius, circleness: t});
-      }
-      return super.lerpTo(b, t);
+    changeSettings(opts) {
+      let accuracy = opts && 'accuracy' in opts ? opts.accuracy : C[4] || CT.C4;
+      let interval = opts && 'interval' in opts ? opts.interval : 1000;
+      let distanceFilter = opts && 'distanceFilter' in opts ? opts.distanceFilter : 0;
+      return async.async(core.bool, (function* changeSettings() {
+        let result = (yield dart.nullCheck(this[_methodChannel$]).invokeMethod(core.int, "changeSettings", new (T.IdentityMapOfString$dynamic()).from(["accuracy", dart.nullCheck(accuracy).index, "interval", interval, "distanceFilter", distanceFilter])));
+        return result === 1;
+      }).bind(this));
     }
-    copyWith(opts) {
-      let t0, t0$;
-      let side = opts && 'side' in opts ? opts.side : null;
-      let borderRadius = opts && 'borderRadius' in opts ? opts.borderRadius : null;
-      return new rounded_rectangle_border.RoundedRectangleBorder.new({side: (t0 = side, t0 == null ? this.side : t0), borderRadius: (t0$ = borderRadius, t0$ == null ? this.borderRadius : t0$)});
+    isBackgroundModeEnabled() {
+      return async.async(core.bool, (function* isBackgroundModeEnabled() {
+        let result = (yield dart.nullCheck(this[_methodChannel$]).invokeMethod(core.int, "isBackgroundModeEnabled"));
+        return result === 1;
+      }).bind(this));
     }
-    getInnerPath(rect, opts) {
-      let t0;
-      if (rect == null) dart.nullFailed(I[0], 104, 26, "rect");
-      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
-      t0 = ui.Path.new();
-      return (() => {
-        t0.addRRect(this.borderRadius.resolve(textDirection).toRRect(rect).deflate(this.side.width));
-        return t0;
-      })();
+    enableBackgroundMode(opts) {
+      let enable = opts && 'enable' in opts ? opts.enable : null;
+      return async.async(core.bool, (function* enableBackgroundMode() {
+        let result = (yield dart.nullCheck(this[_methodChannel$]).invokeMethod(core.int, "enableBackgroundMode", new (T.IdentityMapOfString$dynamic()).from(["enable", enable])));
+        return result === 1;
+      }).bind(this));
     }
-    getOuterPath(rect, opts) {
-      let t0;
-      if (rect == null) dart.nullFailed(I[0], 110, 26, "rect");
-      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
-      t0 = ui.Path.new();
-      return (() => {
-        t0.addRRect(this.borderRadius.resolve(textDirection).toRRect(rect));
-        return t0;
-      })();
-    }
-    paint(canvas, rect, opts) {
-      let t0;
-      if (canvas == null) dart.nullFailed(I[0], 116, 21, "canvas");
-      if (rect == null) dart.nullFailed(I[0], 116, 34, "rect");
-      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
-      switch (this.side.style) {
-        case C[1] || CT.C1:
-        {
-          break;
+    getLocation() {
+      return async.async(location_platform_interface.LocationData, (function* getLocation() {
+        let resultMap = (yield dart.nullCheck(this[_methodChannel$]).invokeMapMethod(core.String, core.double, "getLocation"));
+        if (resultMap == null) {
+          dart.throw(new message_codec.PlatformException.new({code: "NULL_RESULT", message: "The results from getLocation is null"}));
         }
-        case C[5] || CT.C5:
+        return location_platform_interface.LocationData.fromMap(resultMap);
+      }).bind(this));
+    }
+    hasPermission() {
+      return async.async(location_platform_interface.PermissionStatus, (function* hasPermission() {
+        let result = (yield dart.nullCheck(this[_methodChannel$]).invokeMethod(core.int, "hasPermission"));
+        return this[_parsePermissionStatus](result);
+      }).bind(this));
+    }
+    requestPermission() {
+      return async.async(location_platform_interface.PermissionStatus, (function* requestPermission() {
+        let result = (yield dart.nullCheck(this[_methodChannel$]).invokeMethod(core.int, "requestPermission"));
+        return this[_parsePermissionStatus](result);
+      }).bind(this));
+    }
+    [_parsePermissionStatus](result) {
+      switch (result) {
+        case 0:
         {
-          let width = this.side.width;
-          if (width === 0.0) {
-            canvas.drawRRect(this.borderRadius.resolve(textDirection).toRRect(rect), this.side.toPaint());
-          } else {
-            let outer = this.borderRadius.resolve(textDirection).toRRect(rect);
-            let inner = outer.deflate(width);
-            let paint = (t0 = ui.Paint.new(), (() => {
-              t0.color = this.side.color;
-              return t0;
-            })());
-            canvas.drawDRRect(outer, inner, paint);
-          }
-          break;
+          return location_platform_interface.PermissionStatus.denied;
+        }
+        case 1:
+        {
+          return location_platform_interface.PermissionStatus.granted;
+        }
+        case 2:
+        {
+          return location_platform_interface.PermissionStatus.deniedForever;
+        }
+        case 3:
+        {
+          return location_platform_interface.PermissionStatus.grantedLimited;
         }
         default:
         {
-          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+          dart.throw(new message_codec.PlatformException.new({code: "UNKNOWN_NATIVE_MESSAGE", message: "Could not decode parsePermissionStatus with " + dart.str(result)}));
         }
       }
+    }
+    serviceEnabled() {
+      return async.async(core.bool, (function* serviceEnabled() {
+        let result = (yield dart.nullCheck(this[_methodChannel$]).invokeMethod(core.int, "serviceEnabled"));
+        return result === 1;
+      }).bind(this));
+    }
+    requestService() {
+      return async.async(core.bool, (function* requestService() {
+        let result = (yield dart.nullCheck(this[_methodChannel$]).invokeMethod(core.int, "requestService"));
+        return result === 1;
+      }).bind(this));
+    }
+    get onLocationChanged() {
+      let t0;
+      t0 = this[_onLocationChanged];
+      return t0 == null ? this[_onLocationChanged] = dart.nullCheck(this[_eventChannel$]).receiveBroadcastStream().map(location_platform_interface.LocationData, dart.fn(element => location_platform_interface.LocationData.fromMap(T.LinkedHashMapOfString$double().from(core.Map.as(element))), T.dynamicToLocationData())) : t0;
+    }
+    changeNotificationOptions(opts) {
+      let channelName = opts && 'channelName' in opts ? opts.channelName : null;
+      let title = opts && 'title' in opts ? opts.title : null;
+      let iconName = opts && 'iconName' in opts ? opts.iconName : null;
+      let subtitle = opts && 'subtitle' in opts ? opts.subtitle : null;
+      let description = opts && 'description' in opts ? opts.description : null;
+      let color = opts && 'color' in opts ? opts.color : null;
+      let onTapBringToFront = opts && 'onTapBringToFront' in opts ? opts.onTapBringToFront : null;
+      return async.async(T.AndroidNotificationDataN(), (function* changeNotificationOptions() {
+        if (!dart.test(io.Platform.isAndroid)) {
+          return null;
+        }
+        let data = new (T.IdentityMapOfString$dynamic()).from(["channelName", channelName, "title", title, "iconName", iconName]);
+        if (subtitle != null) {
+          data[$_set]("subtitle", subtitle);
+        }
+        if (description != null) {
+          data[$_set]("description", description);
+        }
+        if (color != null) {
+          data[$_set]("color", "#" + color.value[$toRadixString](16));
+        }
+        if (onTapBringToFront != null) {
+          data[$_set]("onTapBringToFront", onTapBringToFront);
+        }
+        let result = (yield dart.nullCheck(this[_methodChannel$]).invokeMethod(core.Map, "changeNotificationOptions", data));
+        return result != null ? location_platform_interface.AndroidNotificationData.fromMap(result) : null;
+      }).bind(this));
+    }
+  };
+  (location_platform_interface.MethodChannelLocation.private = function(_methodChannel, _eventChannel) {
+    this[_onLocationChanged] = null;
+    this[_methodChannel$] = _methodChannel;
+    this[_eventChannel$] = _eventChannel;
+    location_platform_interface.MethodChannelLocation.__proto__.new.call(this);
+    ;
+  }).prototype = location_platform_interface.MethodChannelLocation.prototype;
+  dart.addTypeTests(location_platform_interface.MethodChannelLocation);
+  dart.addTypeCaches(location_platform_interface.MethodChannelLocation);
+  dart.setMethodSignature(location_platform_interface.MethodChannelLocation, () => ({
+    __proto__: dart.getMethods(location_platform_interface.MethodChannelLocation.__proto__),
+    [_parsePermissionStatus]: dart.fnType(location_platform_interface.PermissionStatus, [dart.nullable(core.int)])
+  }));
+  dart.setLibraryUri(location_platform_interface.MethodChannelLocation, I[1]);
+  dart.setFieldSignature(location_platform_interface.MethodChannelLocation, () => ({
+    __proto__: dart.getFields(location_platform_interface.MethodChannelLocation.__proto__),
+    [_methodChannel$]: dart.finalFieldType(dart.nullable(platform_channel.MethodChannel)),
+    [_eventChannel$]: dart.finalFieldType(dart.nullable(platform_channel.EventChannel)),
+    [_onLocationChanged]: dart.fieldType(dart.nullable(async.Stream$(location_platform_interface.LocationData)))
+  }));
+  dart.defineLazy(location_platform_interface.MethodChannelLocation, {
+    /*location_platform_interface.MethodChannelLocation._instance*/get _instance() {
+      return null;
+    },
+    set _instance(_) {}
+  }, false);
+  var latitude$ = dart.privateName(location_platform_interface, "LocationData.latitude");
+  var longitude$ = dart.privateName(location_platform_interface, "LocationData.longitude");
+  var accuracy$ = dart.privateName(location_platform_interface, "LocationData.accuracy");
+  var altitude$ = dart.privateName(location_platform_interface, "LocationData.altitude");
+  var speed$ = dart.privateName(location_platform_interface, "LocationData.speed");
+  var speedAccuracy$ = dart.privateName(location_platform_interface, "LocationData.speedAccuracy");
+  var heading$ = dart.privateName(location_platform_interface, "LocationData.heading");
+  var time$ = dart.privateName(location_platform_interface, "LocationData.time");
+  location_platform_interface.LocationData = class LocationData extends core.Object {
+    get latitude() {
+      return this[latitude$];
+    }
+    set latitude(value) {
+      super.latitude = value;
+    }
+    get longitude() {
+      return this[longitude$];
+    }
+    set longitude(value) {
+      super.longitude = value;
+    }
+    get accuracy() {
+      return this[accuracy$];
+    }
+    set accuracy(value) {
+      super.accuracy = value;
+    }
+    get altitude() {
+      return this[altitude$];
+    }
+    set altitude(value) {
+      super.altitude = value;
+    }
+    get speed() {
+      return this[speed$];
+    }
+    set speed(value) {
+      super.speed = value;
+    }
+    get speedAccuracy() {
+      return this[speedAccuracy$];
+    }
+    set speedAccuracy(value) {
+      super.speedAccuracy = value;
+    }
+    get heading() {
+      return this[heading$];
+    }
+    set heading(value) {
+      super.heading = value;
+    }
+    get time() {
+      return this[time$];
+    }
+    set time(value) {
+      super.time = value;
+    }
+    static fromMap(dataMap) {
+      if (dataMap == null) dart.nullFailed(I[2], 14, 52, "dataMap");
+      return new location_platform_interface.LocationData.__(dataMap[$_get]("latitude"), dataMap[$_get]("longitude"), dataMap[$_get]("accuracy"), dataMap[$_get]("altitude"), dataMap[$_get]("speed"), dataMap[$_get]("speed_accuracy"), dataMap[$_get]("heading"), dataMap[$_get]("time"));
+    }
+    toString() {
+      return "LocationData<lat: " + dart.str(this.latitude) + ", long: " + dart.str(this.longitude) + ">";
     }
     _equals(other) {
       if (other == null) return false;
-      if (!dart.equals(dart.runtimeType(other), this[$runtimeType])) return false;
-      return rounded_rectangle_border.RoundedRectangleBorder.is(other) && dart.equals(other.side, this.side) && dart.equals(other.borderRadius, this.borderRadius);
+      return this === other || location_platform_interface.LocationData.is(other) && dart.equals(this[$runtimeType], dart.runtimeType(other)) && this.latitude == other.latitude && this.longitude == other.longitude && this.accuracy == other.accuracy && this.altitude == other.altitude && this.speed == other.speed && this.speedAccuracy == other.speedAccuracy && this.heading == other.heading && this.time == other.time;
     }
     get hashCode() {
-      return ui.hashValues(this.side, this.borderRadius);
-    }
-    toString() {
-      return dart.str(object.objectRuntimeType(this, "RoundedRectangleBorder")) + "(" + dart.str(this.side) + ", " + dart.str(this.borderRadius) + ")";
+      return (dart.notNull(dart.hashCode(this.latitude)) ^ dart.notNull(dart.hashCode(this.longitude)) ^ dart.notNull(dart.hashCode(this.accuracy)) ^ dart.notNull(dart.hashCode(this.altitude)) ^ dart.notNull(dart.hashCode(this.speed)) ^ dart.notNull(dart.hashCode(this.speedAccuracy)) ^ dart.notNull(dart.hashCode(this.heading)) ^ dart.notNull(dart.hashCode(this.time))) >>> 0;
     }
   };
-  (rounded_rectangle_border.RoundedRectangleBorder.new = function(opts) {
-    let side = opts && 'side' in opts ? opts.side : C[0] || CT.C0;
-    if (side == null) dart.nullFailed(I[0], 33, 16, "side");
-    let borderRadius = opts && 'borderRadius' in opts ? opts.borderRadius : C[3] || CT.C3;
-    if (borderRadius == null) dart.nullFailed(I[0], 34, 10, "borderRadius");
-    this[borderRadius$] = borderRadius;
-    if (!(side != null)) dart.assertFailed(null, I[0], 35, 15, "side != null");
-    if (!(borderRadius != null)) dart.assertFailed(null, I[0], 36, 15, "borderRadius != null");
-    rounded_rectangle_border.RoundedRectangleBorder.__proto__.new.call(this, {side: side});
+  (location_platform_interface.LocationData.__ = function(latitude, longitude, accuracy, altitude, speed, speedAccuracy, heading, time) {
+    this[latitude$] = latitude;
+    this[longitude$] = longitude;
+    this[accuracy$] = accuracy;
+    this[altitude$] = altitude;
+    this[speed$] = speed;
+    this[speedAccuracy$] = speedAccuracy;
+    this[heading$] = heading;
+    this[time$] = time;
     ;
-  }).prototype = rounded_rectangle_border.RoundedRectangleBorder.prototype;
-  dart.addTypeTests(rounded_rectangle_border.RoundedRectangleBorder);
-  dart.addTypeCaches(rounded_rectangle_border.RoundedRectangleBorder);
-  dart.setMethodSignature(rounded_rectangle_border.RoundedRectangleBorder, () => ({
-    __proto__: dart.getMethods(rounded_rectangle_border.RoundedRectangleBorder.__proto__),
-    scale: dart.fnType(borders.ShapeBorder, [core.double]),
-    copyWith: dart.fnType(rounded_rectangle_border.RoundedRectangleBorder, [], {borderRadius: dart.nullable(border_radius.BorderRadius), side: dart.nullable(borders.BorderSide)}, {}),
-    getInnerPath: dart.fnType(ui.Path, [ui.Rect], {textDirection: dart.nullable(ui.TextDirection)}, {}),
-    getOuterPath: dart.fnType(ui.Path, [ui.Rect], {textDirection: dart.nullable(ui.TextDirection)}, {}),
-    paint: dart.fnType(dart.void, [ui.Canvas, ui.Rect], {textDirection: dart.nullable(ui.TextDirection)}, {})
+  }).prototype = location_platform_interface.LocationData.prototype;
+  dart.addTypeTests(location_platform_interface.LocationData);
+  dart.addTypeCaches(location_platform_interface.LocationData);
+  dart.setLibraryUri(location_platform_interface.LocationData, I[1]);
+  dart.setFieldSignature(location_platform_interface.LocationData, () => ({
+    __proto__: dart.getFields(location_platform_interface.LocationData.__proto__),
+    latitude: dart.finalFieldType(dart.nullable(core.double)),
+    longitude: dart.finalFieldType(dart.nullable(core.double)),
+    accuracy: dart.finalFieldType(dart.nullable(core.double)),
+    altitude: dart.finalFieldType(dart.nullable(core.double)),
+    speed: dart.finalFieldType(dart.nullable(core.double)),
+    speedAccuracy: dart.finalFieldType(dart.nullable(core.double)),
+    heading: dart.finalFieldType(dart.nullable(core.double)),
+    time: dart.finalFieldType(dart.nullable(core.double))
   }));
-  dart.setGetterSignature(rounded_rectangle_border.RoundedRectangleBorder, () => ({
-    __proto__: dart.getGetters(rounded_rectangle_border.RoundedRectangleBorder.__proto__),
-    dimensions: edge_insets.EdgeInsetsGeometry
+  dart.defineExtensionMethods(location_platform_interface.LocationData, ['toString', '_equals']);
+  dart.defineExtensionAccessors(location_platform_interface.LocationData, ['hashCode']);
+  location_platform_interface.LocationAccuracy = class LocationAccuracy extends core.Object {
+    toString() {
+      return this[_name$];
+    }
+  };
+  (location_platform_interface.LocationAccuracy.new = function(index, _name) {
+    if (index == null) dart.nullFailed(I[2], 95, 6, "index");
+    if (_name == null) dart.nullFailed(I[2], 95, 6, "_name");
+    this.index = index;
+    this[_name$] = _name;
+    ;
+  }).prototype = location_platform_interface.LocationAccuracy.prototype;
+  dart.addTypeTests(location_platform_interface.LocationAccuracy);
+  dart.addTypeCaches(location_platform_interface.LocationAccuracy);
+  dart.setLibraryUri(location_platform_interface.LocationAccuracy, I[1]);
+  dart.setFieldSignature(location_platform_interface.LocationAccuracy, () => ({
+    __proto__: dart.getFields(location_platform_interface.LocationAccuracy.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
   }));
-  dart.setLibraryUri(rounded_rectangle_border.RoundedRectangleBorder, I[1]);
-  dart.setFieldSignature(rounded_rectangle_border.RoundedRectangleBorder, () => ({
-    __proto__: dart.getFields(rounded_rectangle_border.RoundedRectangleBorder.__proto__),
-    borderRadius: dart.finalFieldType(border_radius.BorderRadiusGeometry)
+  dart.defineExtensionMethods(location_platform_interface.LocationAccuracy, ['toString']);
+  location_platform_interface.LocationAccuracy.powerSave = C[5] || CT.C5;
+  location_platform_interface.LocationAccuracy.low = C[6] || CT.C6;
+  location_platform_interface.LocationAccuracy.balanced = C[7] || CT.C7;
+  location_platform_interface.LocationAccuracy.high = C[4] || CT.C4;
+  location_platform_interface.LocationAccuracy.navigation = C[8] || CT.C8;
+  location_platform_interface.LocationAccuracy.values = C[9] || CT.C9;
+  location_platform_interface.PermissionStatus = class PermissionStatus extends core.Object {
+    toString() {
+      return this[_name$];
+    }
+  };
+  (location_platform_interface.PermissionStatus.new = function(index, _name) {
+    if (index == null) dart.nullFailed(I[2], 113, 6, "index");
+    if (_name == null) dart.nullFailed(I[2], 113, 6, "_name");
+    this.index = index;
+    this[_name$] = _name;
+    ;
+  }).prototype = location_platform_interface.PermissionStatus.prototype;
+  dart.addTypeTests(location_platform_interface.PermissionStatus);
+  dart.addTypeCaches(location_platform_interface.PermissionStatus);
+  dart.setLibraryUri(location_platform_interface.PermissionStatus, I[1]);
+  dart.setFieldSignature(location_platform_interface.PermissionStatus, () => ({
+    __proto__: dart.getFields(location_platform_interface.PermissionStatus.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
   }));
-  dart.defineExtensionMethods(rounded_rectangle_border.RoundedRectangleBorder, ['_equals', 'toString']);
-  dart.defineExtensionAccessors(rounded_rectangle_border.RoundedRectangleBorder, ['hashCode']);
-  var borderRadius$0 = dart.privateName(rounded_rectangle_border, "_RoundedRectangleToCircleBorder.borderRadius");
-  var circleness$ = dart.privateName(rounded_rectangle_border, "_RoundedRectangleToCircleBorder.circleness");
-  var _adjustRect = dart.privateName(rounded_rectangle_border, "_adjustRect");
-  var _adjustBorderRadius = dart.privateName(rounded_rectangle_border, "_adjustBorderRadius");
-  rounded_rectangle_border._RoundedRectangleToCircleBorder = class _RoundedRectangleToCircleBorder extends borders.OutlinedBorder {
-    get borderRadius() {
-      return this[borderRadius$0];
+  dart.defineExtensionMethods(location_platform_interface.PermissionStatus, ['toString']);
+  location_platform_interface.PermissionStatus.granted = C[10] || CT.C10;
+  location_platform_interface.PermissionStatus.grantedLimited = C[11] || CT.C11;
+  location_platform_interface.PermissionStatus.denied = C[12] || CT.C12;
+  location_platform_interface.PermissionStatus.deniedForever = C[13] || CT.C13;
+  location_platform_interface.PermissionStatus.values = C[14] || CT.C14;
+  var channelId$ = dart.privateName(location_platform_interface, "AndroidNotificationData.channelId");
+  var notificationId$ = dart.privateName(location_platform_interface, "AndroidNotificationData.notificationId");
+  location_platform_interface.AndroidNotificationData = class AndroidNotificationData extends core.Object {
+    get channelId() {
+      return this[channelId$];
     }
-    set borderRadius(value) {
-      super.borderRadius = value;
+    set channelId(value) {
+      super.channelId = value;
     }
-    get circleness() {
-      return this[circleness$];
+    get notificationId() {
+      return this[notificationId$];
     }
-    set circleness(value) {
-      super.circleness = value;
+    set notificationId(value) {
+      super.notificationId = value;
     }
-    get dimensions() {
-      return new edge_insets.EdgeInsets.all(this.side.width);
+    static fromMap(data) {
+      if (data == null) dart.nullFailed(I[2], 136, 65, "data");
+      return new location_platform_interface.AndroidNotificationData.__(core.String.as(data[$_get]("channelId")), core.int.as(data[$_get]("notificationId")));
     }
-    scale(t) {
-      if (t == null) dart.nullFailed(I[0], 172, 28, "t");
-      return new rounded_rectangle_border._RoundedRectangleToCircleBorder.new({side: this.side.scale(t), borderRadius: this.borderRadius['*'](t), circleness: t});
-    }
-    lerpFrom(a, t) {
-      if (t == null) dart.nullFailed(I[0], 181, 48, "t");
-      if (!(t != null)) dart.assertFailed(null, I[0], 182, 12, "t != null");
-      if (rounded_rectangle_border.RoundedRectangleBorder.is(a)) {
-        return new rounded_rectangle_border._RoundedRectangleToCircleBorder.new({side: borders.BorderSide.lerp(a.side, this.side, t), borderRadius: dart.nullCheck(border_radius.BorderRadiusGeometry.lerp(a.borderRadius, this.borderRadius, t)), circleness: dart.notNull(this.circleness) * dart.notNull(t)});
-      }
-      if (circle_border.CircleBorder.is(a)) {
-        return new rounded_rectangle_border._RoundedRectangleToCircleBorder.new({side: borders.BorderSide.lerp(a.side, this.side, t), borderRadius: this.borderRadius, circleness: dart.notNull(this.circleness) + (1.0 - dart.notNull(this.circleness)) * (1.0 - dart.notNull(t))});
-      }
-      if (rounded_rectangle_border._RoundedRectangleToCircleBorder.is(a)) {
-        return new rounded_rectangle_border._RoundedRectangleToCircleBorder.new({side: borders.BorderSide.lerp(a.side, this.side, t), borderRadius: dart.nullCheck(border_radius.BorderRadiusGeometry.lerp(a.borderRadius, this.borderRadius, t)), circleness: dart.nullCheck(ui.lerpDouble(a.circleness, this.circleness, t))});
-      }
-      return super.lerpFrom(a, t);
-    }
-    lerpTo(b, t) {
-      if (t == null) dart.nullFailed(I[0], 208, 46, "t");
-      if (rounded_rectangle_border.RoundedRectangleBorder.is(b)) {
-        return new rounded_rectangle_border._RoundedRectangleToCircleBorder.new({side: borders.BorderSide.lerp(this.side, b.side, t), borderRadius: dart.nullCheck(border_radius.BorderRadiusGeometry.lerp(this.borderRadius, b.borderRadius, t)), circleness: dart.notNull(this.circleness) * (1.0 - dart.notNull(t))});
-      }
-      if (circle_border.CircleBorder.is(b)) {
-        return new rounded_rectangle_border._RoundedRectangleToCircleBorder.new({side: borders.BorderSide.lerp(this.side, b.side, t), borderRadius: this.borderRadius, circleness: dart.notNull(this.circleness) + (1.0 - dart.notNull(this.circleness)) * dart.notNull(t)});
-      }
-      if (rounded_rectangle_border._RoundedRectangleToCircleBorder.is(b)) {
-        return new rounded_rectangle_border._RoundedRectangleToCircleBorder.new({side: borders.BorderSide.lerp(this.side, b.side, t), borderRadius: dart.nullCheck(border_radius.BorderRadiusGeometry.lerp(this.borderRadius, b.borderRadius, t)), circleness: dart.nullCheck(ui.lerpDouble(this.circleness, b.circleness, t))});
-      }
-      return super.lerpTo(b, t);
-    }
-    [_adjustRect](rect) {
-      if (rect == null) dart.nullFailed(I[0], 233, 25, "rect");
-      if (this.circleness === 0.0 || rect.width == rect.height) return rect;
-      if (dart.notNull(rect.width) < dart.notNull(rect.height)) {
-        let delta = dart.notNull(this.circleness) * (dart.notNull(rect.height) - dart.notNull(rect.width)) / 2.0;
-        return new ui.Rect.fromLTRB(rect.left, dart.notNull(rect.top) + delta, rect.right, dart.notNull(rect.bottom) - delta);
-      } else {
-        let delta = dart.notNull(this.circleness) * (dart.notNull(rect.width) - dart.notNull(rect.height)) / 2.0;
-        return new ui.Rect.fromLTRB(dart.notNull(rect.left) + delta, rect.top, dart.notNull(rect.right) - delta, rect.bottom);
-      }
-    }
-    [_adjustBorderRadius](rect, textDirection) {
-      if (rect == null) dart.nullFailed(I[0], 255, 42, "rect");
-      let resolvedRadius = this.borderRadius.resolve(textDirection);
-      if (this.circleness === 0.0) return resolvedRadius;
-      return border_radius.BorderRadius.lerp(resolvedRadius, new border_radius.BorderRadius.circular(dart.notNull(rect.shortestSide) / 2.0), this.circleness);
-    }
-    getInnerPath(rect, opts) {
-      let t0;
-      if (rect == null) dart.nullFailed(I[0], 263, 26, "rect");
-      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
-      t0 = ui.Path.new();
-      return (() => {
-        t0.addRRect(dart.nullCheck(this[_adjustBorderRadius](rect, textDirection)).toRRect(this[_adjustRect](rect)).deflate(this.side.width));
-        return t0;
-      })();
-    }
-    getOuterPath(rect, opts) {
-      let t0;
-      if (rect == null) dart.nullFailed(I[0], 269, 26, "rect");
-      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
-      t0 = ui.Path.new();
-      return (() => {
-        t0.addRRect(dart.nullCheck(this[_adjustBorderRadius](rect, textDirection)).toRRect(this[_adjustRect](rect)));
-        return t0;
-      })();
-    }
-    copyWith(opts) {
-      let t0, t0$, t0$0;
-      let side = opts && 'side' in opts ? opts.side : null;
-      let borderRadius = opts && 'borderRadius' in opts ? opts.borderRadius : null;
-      let circleness = opts && 'circleness' in opts ? opts.circleness : null;
-      return new rounded_rectangle_border._RoundedRectangleToCircleBorder.new({side: (t0 = side, t0 == null ? this.side : t0), borderRadius: (t0$ = borderRadius, t0$ == null ? this.borderRadius : t0$), circleness: (t0$0 = circleness, t0$0 == null ? this.circleness : t0$0)});
-    }
-    paint(canvas, rect, opts) {
-      let t0;
-      if (canvas == null) dart.nullFailed(I[0], 284, 21, "canvas");
-      if (rect == null) dart.nullFailed(I[0], 284, 34, "rect");
-      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
-      switch (this.side.style) {
-        case C[1] || CT.C1:
-        {
-          break;
-        }
-        case C[5] || CT.C5:
-        {
-          let width = this.side.width;
-          if (width === 0.0) {
-            canvas.drawRRect(dart.nullCheck(this[_adjustBorderRadius](rect, textDirection)).toRRect(this[_adjustRect](rect)), this.side.toPaint());
-          } else {
-            let outer = dart.nullCheck(this[_adjustBorderRadius](rect, textDirection)).toRRect(this[_adjustRect](rect));
-            let inner = outer.deflate(width);
-            let paint = (t0 = ui.Paint.new(), (() => {
-              t0.color = this.side.color;
-              return t0;
-            })());
-            canvas.drawDRRect(outer, inner, paint);
-          }
-          break;
-        }
-        default:
-        {
-          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
-        }
-      }
+    toString() {
+      return "AndroidNotificationData<channelId: " + dart.str(this.channelId) + ", notificationId: " + dart.str(this.notificationId) + ">";
     }
     _equals(other) {
       if (other == null) return false;
-      if (!dart.equals(dart.runtimeType(other), this[$runtimeType])) return false;
-      return rounded_rectangle_border._RoundedRectangleToCircleBorder.is(other) && dart.equals(other.side, this.side) && dart.equals(other.borderRadius, this.borderRadius) && other.circleness == this.circleness;
+      return this === other || location_platform_interface.AndroidNotificationData.is(other) && dart.equals(this[$runtimeType], dart.runtimeType(other)) && this.channelId == other.channelId && this.notificationId == other.notificationId;
     }
     get hashCode() {
-      return ui.hashValues(this.side, this.borderRadius, this.circleness);
-    }
-    toString() {
-      return "RoundedRectangleBorder(" + dart.str(this.side) + ", " + dart.str(this.borderRadius) + ", " + (dart.notNull(this.circleness) * 100)[$toStringAsFixed](1) + "% of the way to being a CircleBorder)";
+      return (dart.hashCode(this.channelId) ^ dart.hashCode(this.notificationId)) >>> 0;
     }
   };
-  (rounded_rectangle_border._RoundedRectangleToCircleBorder.new = function(opts) {
-    let side = opts && 'side' in opts ? opts.side : C[0] || CT.C0;
-    if (side == null) dart.nullFailed(I[0], 154, 16, "side");
-    let borderRadius = opts && 'borderRadius' in opts ? opts.borderRadius : C[3] || CT.C3;
-    if (borderRadius == null) dart.nullFailed(I[0], 155, 10, "borderRadius");
-    let circleness = opts && 'circleness' in opts ? opts.circleness : null;
-    if (circleness == null) dart.nullFailed(I[0], 156, 19, "circleness");
-    this[borderRadius$0] = borderRadius;
-    this[circleness$] = circleness;
-    if (!(side != null)) dart.assertFailed(null, I[0], 157, 15, "side != null");
-    if (!(borderRadius != null)) dart.assertFailed(null, I[0], 158, 15, "borderRadius != null");
-    if (!(circleness != null)) dart.assertFailed(null, I[0], 159, 15, "circleness != null");
-    rounded_rectangle_border._RoundedRectangleToCircleBorder.__proto__.new.call(this, {side: side});
+  (location_platform_interface.AndroidNotificationData.__ = function(channelId, notificationId) {
+    if (channelId == null) dart.nullFailed(I[2], 134, 40, "channelId");
+    if (notificationId == null) dart.nullFailed(I[2], 134, 56, "notificationId");
+    this[channelId$] = channelId;
+    this[notificationId$] = notificationId;
     ;
-  }).prototype = rounded_rectangle_border._RoundedRectangleToCircleBorder.prototype;
-  dart.addTypeTests(rounded_rectangle_border._RoundedRectangleToCircleBorder);
-  dart.addTypeCaches(rounded_rectangle_border._RoundedRectangleToCircleBorder);
-  dart.setMethodSignature(rounded_rectangle_border._RoundedRectangleToCircleBorder, () => ({
-    __proto__: dart.getMethods(rounded_rectangle_border._RoundedRectangleToCircleBorder.__proto__),
-    scale: dart.fnType(borders.ShapeBorder, [core.double]),
-    [_adjustRect]: dart.fnType(ui.Rect, [ui.Rect]),
-    [_adjustBorderRadius]: dart.fnType(dart.nullable(border_radius.BorderRadius), [ui.Rect, dart.nullable(ui.TextDirection)]),
-    getInnerPath: dart.fnType(ui.Path, [ui.Rect], {textDirection: dart.nullable(ui.TextDirection)}, {}),
-    getOuterPath: dart.fnType(ui.Path, [ui.Rect], {textDirection: dart.nullable(ui.TextDirection)}, {}),
-    copyWith: dart.fnType(rounded_rectangle_border._RoundedRectangleToCircleBorder, [], {borderRadius: dart.nullable(border_radius.BorderRadius), circleness: dart.nullable(core.double), side: dart.nullable(borders.BorderSide)}, {}),
-    paint: dart.fnType(dart.void, [ui.Canvas, ui.Rect], {textDirection: dart.nullable(ui.TextDirection)}, {})
+  }).prototype = location_platform_interface.AndroidNotificationData.prototype;
+  dart.addTypeTests(location_platform_interface.AndroidNotificationData);
+  dart.addTypeCaches(location_platform_interface.AndroidNotificationData);
+  dart.setLibraryUri(location_platform_interface.AndroidNotificationData, I[1]);
+  dart.setFieldSignature(location_platform_interface.AndroidNotificationData, () => ({
+    __proto__: dart.getFields(location_platform_interface.AndroidNotificationData.__proto__),
+    channelId: dart.finalFieldType(core.String),
+    notificationId: dart.finalFieldType(core.int)
   }));
-  dart.setGetterSignature(rounded_rectangle_border._RoundedRectangleToCircleBorder, () => ({
-    __proto__: dart.getGetters(rounded_rectangle_border._RoundedRectangleToCircleBorder.__proto__),
-    dimensions: edge_insets.EdgeInsetsGeometry
-  }));
-  dart.setLibraryUri(rounded_rectangle_border._RoundedRectangleToCircleBorder, I[1]);
-  dart.setFieldSignature(rounded_rectangle_border._RoundedRectangleToCircleBorder, () => ({
-    __proto__: dart.getFields(rounded_rectangle_border._RoundedRectangleToCircleBorder.__proto__),
-    borderRadius: dart.finalFieldType(border_radius.BorderRadiusGeometry),
-    circleness: dart.finalFieldType(core.double)
-  }));
-  dart.defineExtensionMethods(rounded_rectangle_border._RoundedRectangleToCircleBorder, ['_equals', 'toString']);
-  dart.defineExtensionAccessors(rounded_rectangle_border._RoundedRectangleToCircleBorder, ['hashCode']);
-  dart.trackLibraries("packages/flutter/src/painting/rounded_rectangle_border.dart", {
-    "package:flutter/src/painting/rounded_rectangle_border.dart": rounded_rectangle_border
+  dart.defineExtensionMethods(location_platform_interface.AndroidNotificationData, ['toString', '_equals']);
+  dart.defineExtensionAccessors(location_platform_interface.AndroidNotificationData, ['hashCode']);
+  dart.trackLibraries("packages/location_platform_interface/location_platform_interface.dart", {
+    "package:location_platform_interface/location_platform_interface.dart": location_platform_interface
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["rounded_rectangle_border.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/painting/rounded_rectangle_border.dart.lib.js"}');
+    "package:location_platform_interface/location_platform_interface.dart": ["src/method_channel_location.dart", "src/types.dart"]
+  }, '{"version":3,"sourceRoot":"","sources":["location_platform_interface.dart","src/method_channel_location.dart","src/types.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAyB0C;IAAS;;UAMZ;AACY,MAA7B,wDAAY,QAAQ,EAAE;AACpB,MAApB,yDAAY,QAAQ;IACtB;;UAQoB;UACb;UACG;AAEkB,MAA1B,WAAM;IACR;;AAI4B,MAA1B,WAAM;IACR;;UAGyC;AACb,MAA1B,WAAM;IACR;;AAO4B,MAA1B,WAAM;IACR;;AAQ4B,MAA1B,WAAM;IACR;;AAQ4B,MAA1B,WAAM;IACR;;AAI4B,MAA1B,WAAM;IACR;;AAI4B,MAA1B,WAAM;IACR;;AAQ4B,MAA1B,WAAM;IACR;;UA0BU;UACA;UACA;UACA;UACA;UACD;UACD;AAEoB,MAA1B,WAAM;IACR;;;AA1HqB,kFAAa;;EAAO;;;;;;;;;;;;;;;;;;;;;MAErB,mDAAM;YAAG;;MAUL,sDAAS;YAAG;;;;;;;;;;;;;;;;;;ACVlC,UAAI,AAAU;AACQ;AACD;AACmD,QAAtE,8DAAkC,8DAAQ,aAAa,EAAE,YAAY;;AAEvE,YAAgB,gBAAT;IACT;;UAqBoB;UACb;UACG;AAHiB;AAKd,sBAAS,MAAoB,AAAE,eAAhB,8CACxB,kBACiB,4CACf,YAAoB,AAAE,eAAV,QAAQ,SACpB,YAAY,QAAQ,EACpB,kBAAkB,cAAc;AAIpC,cAAO,AAAO,OAAD,KAAI;MACnB;;;AAIoC;AACvB,sBACP,MAAoB,AAAE,eAAhB,8CAA6B;AACvC,cAAO,AAAO,OAAD,KAAI;MACnB;;;UAIyC;AAAR;AACpB,sBAAS,MAAoB,AAAE,eAAhB,8CACxB,wBACiB,4CAAC,UAAU,MAAM;AAGpC,cAAO,AAAO,OAAD,KAAI;MACnB;;;AAOgC;AACH,yBACvB,MAAoB,AAAE,eAAhB,iEAAgD;AAC1D,YAAI,AAAU,SAAD;AAIV,UAHD,WAAM,+CACE,wBACG;;AAGb,cAAoB,kDAAQ,SAAS;MACvC;;;AAGsC;AACzB,sBAAS,MAAoB,AAAE,eAAhB,8CAA6B;AACvD,cAAO,8BAAuB,MAAM;MACtC;;;AAG0C;AAC7B,sBAAS,MAAoB,AAAE,eAAhB,8CAA6B;AACvD,cAAO,8BAAuB,MAAM;MACtC;;6BAE6C;AAC3C,cAAQ,MAAM;;;AAEV,gBAAwB;;;;AAExB,gBAAwB;;;;AAExB,gBAAwB;;;;AAExB,gBAAwB;;;;AAKvB,UAHD,WAAM,+CACE,mCACG,AAAqD,0DAAP,MAAM;;;IAGrE;;AAI2B;AACd,sBAAS,MAAoB,AAAE,eAAhB,8CAA6B;AACvD,cAAO,AAAO,OAAD,KAAI;MACnB;;;AAI2B;AACd,sBAAS,MAAoB,AAAE,eAAhB,8CAA6B;AACvD,cAAO,AAAO,OAAD,KAAI;MACnB;;;;AAQE,WAAO;YAAmB,cAAnB,2BAAoC,AACtC,AACA,eAFyB,6FAEP,QAAS,WACX,iDAAQ,kDAAyB,OAAO;IAC/D;;UA2BU;UACA;UACA;UACA;UACA;UACD;UACD;AAPkD;AASxD,uBAAc;AAGZ,gBAAO;;AAGkB,mBAAwB,4CACjD,eAAe,WAAW,EAC1B,SAAS,KAAK,EACd,YAAY,QAAQ;AAGtB,YAAI,AAAS,QAAD;AACiB,UAA3B,AAAI,IAAA,QAAC,YAAc,QAAQ;;AAG7B,YAAI,AAAY,WAAD;AACoB,UAAjC,AAAI,IAAA,QAAC,eAAiB,WAAW;;AAGnC,YAAI,AAAM,KAAD;AAC4C,UAAnD,AAAI,IAAA,QAAC,SAAW,AAAmC,MAA/B,AAAM,AAAM,KAAP,uBAAqB;;AAGhD,YAAI,AAAkB,iBAAD;AAC0B,UAA7C,AAAI,IAAA,QAAC,qBAAuB,iBAAiB;;AAGlB,sBACzB,MAAoB,AAAE,eAAhB,8CAA6B,6BAA6B,IAAI;AAExE,cAAO,AAAO,OAAD,WAAmC,4DAAQ,MAAM,IAAI;MACpE;;;wEA7LmC,gBAAqB;IAOlC;IAPa;IAAqB;AAAxD;;EAAsE;;;;;;;;;;;;;;;MAExC,2DAAS;;;;;;;;;;;;;;ICHzB;;;;;;IAGA;;;;;;IAKA;;;;;;IAKA;;;;;;IAKA;;;;;;IAKA;;;;;;IAKA;;;;;;IAGA;;;;;;;UA7CmC;AAC/C,YAAoB,iDAClB,AAAO,OAAA,QAAC,aACR,AAAO,OAAA,QAAC,cACR,AAAO,OAAA,QAAC,aACR,AAAO,OAAA,QAAC,aACR,AAAO,OAAA,QAAC,UACR,AAAO,OAAA,QAAC,mBACR,AAAO,OAAA,QAAC,YACR,AAAO,OAAA,QAAC;IAEZ;;AAqCqB,YAAA,AAAgD,iCAA5B,iBAAQ,sBAAS,kBAAS;IAAE;;UAG7C;AACpB,YAAA,AAAU,AAAa,UAAP,KAAK,IACf,4CAAN,KAAK,KACW,YAAZ,oBAAqB,iBAAN,KAAK,MACpB,AAAS,iBAAG,AAAM,KAAD,aACjB,AAAU,kBAAG,AAAM,KAAD,cAClB,AAAS,iBAAG,AAAM,KAAD,aACjB,AAAS,iBAAG,AAAM,KAAD,aACjB,AAAM,cAAG,AAAM,KAAD,UACd,AAAc,sBAAG,AAAM,KAAD,kBACtB,AAAQ,gBAAG,AAAM,KAAD,YAChB,AAAK,aAAG,AAAM,KAAD;IAAK;;AAItB,YAMiB,EANC,AACC,AACD,AACA,AACH,AACQ,aALd,cAAT,+BACU,cAAV,gCACS,cAAT,+BACS,cAAT,+BACM,cAAN,4BACc,cAAd,oCACQ,cAAR,8BACK,cAAL;IAAa;;0DA5EG,UAAe,WAAgB,UAAe,UACzD,OAAY,eAAoB,SAAc;IADnC;IAAe;IAAgB;IAAe;IACzD;IAAY;IAAoB;IAAc;;EAAK;;;;;;;;;;;;;;;;;;;;IAkG9D;;;QAfK;;;;;EAeL;;;;;;;;;;;;;;;;;;;IAiBA;;;QAdK;;;;;EAcL;;;;;;;;;;;;;;;;;;IAiBe;;;;;;IAGH;;;;;;;UAXoD;AAC5D,YAA+B,2EAC7B,AAAI,IAAA,QAAC,2BACL,AAAI,IAAA,QAAC;IAET;;AAUI,YAAA,AAAiF,kDAA5C,kBAAS,gCAAmB,uBAAc;IAAE;;UAG7D;AACpB,YAAA,AAAU,AAAa,UAAP,KAAK,IACf,uDAAN,KAAK,KACW,YAAZ,oBAAqB,iBAAN,KAAK,MACpB,AAAU,kBAAG,AAAM,KAAD,cAClB,AAAe,uBAAG,AAAM,KAAD;IAAe;;AAG1B,YAAmB,EAAT,cAAV,kBAAoC,cAAf;IAAuB;;qEA5B3B,WAAgB;QAAhB;QAAgB;IAAhB;IAAgB;;EAAe","file":"../../../../../../packages/location_platform_interface/location_platform_interface.dart.lib.js"}');
   // Exports:
   return {
-    src__painting__rounded_rectangle_border: rounded_rectangle_border
+    location_platform_interface: location_platform_interface
   };
 }));
 
-//# sourceMappingURL=rounded_rectangle_border.dart.lib.js.map
+//# sourceMappingURL=location_platform_interface.dart.lib.js.map

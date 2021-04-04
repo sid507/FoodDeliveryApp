@@ -1,21 +1,81 @@
-define(['dart_sdk', 'packages/flutter/src/rendering/layer.dart', 'packages/flutter/src/rendering/sliver.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/rendering/proxy_box.dart'], (function load__packages__flutter__src__rendering__proxy_sliver_dart(dart_sdk, packages__flutter__src__rendering__layer$46dart, packages__flutter__src__rendering__sliver$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__rendering__proxy_box$46dart) {
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/food_delivery_app/user/Chefdata.dart', 'packages/cloud_firestore/cloud_firestore.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/widgets/scroll_view.dart', 'packages/flutter/src/widgets/async.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/food_delivery_app/user/Utils.dart', 'packages/flutter/src/material/card.dart', 'packages/flutter/src/painting/rounded_rectangle_border.dart', 'packages/flutter/src/painting/border_radius.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/flutter/src/widgets/icon.dart', 'packages/flutter/src/material/icons.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/painting/box_decoration.dart', 'packages/flutter/src/widgets/icon_data.dart', 'packages/flutter/src/painting/decoration_image.dart', 'packages/flutter/src/painting/_network_image_web.dart', 'packages/flutter/src/painting/box_fit.dart', 'packages/flutter/src/material/outlined_button.dart', 'packages/flutter/src/material/material_state.dart'], (function load__packages__food_delivery_app__user__EatNow_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__food_delivery_app__user__Chefdata$46dart, packages__cloud_firestore__cloud_firestore$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__widgets__scroll_view$46dart, packages__flutter__src__widgets__async$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__food_delivery_app__user__Utils$46dart, packages__flutter__src__material__card$46dart, packages__flutter__src__painting__rounded_rectangle_border$46dart, packages__flutter__src__painting__border_radius$46dart, packages__flutter__src__rendering__flex$46dart, packages__flutter__src__widgets__icon$46dart, packages__flutter__src__material__icons$46dart, packages__flutter__src__painting__strut_style$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__painting__box_decoration$46dart, packages__flutter__src__widgets__icon_data$46dart, packages__flutter__src__painting__decoration_image$46dart, packages__flutter__src__painting___network_image_web$46dart, packages__flutter__src__painting__box_fit$46dart, packages__flutter__src__material__outlined_button$46dart, packages__flutter__src__material__material_state$46dart) {
   'use strict';
   const core = dart_sdk.core;
+  const _js_helper = dart_sdk._js_helper;
   const ui = dart_sdk.ui;
   const _interceptors = dart_sdk._interceptors;
+  const collection = dart_sdk.collection;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const object = packages__flutter__src__rendering__layer$46dart.src__rendering__object;
-  const layer = packages__flutter__src__rendering__layer$46dart.src__rendering__layer;
-  const sliver = packages__flutter__src__rendering__sliver$46dart.src__rendering__sliver;
-  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
-  const proxy_box = packages__flutter__src__rendering__proxy_box$46dart.src__rendering__proxy_box;
-  var proxy_sliver = Object.create(dart.library);
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
+  const text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
+  const Chefdata = packages__food_delivery_app__user__Chefdata$46dart.user__Chefdata;
+  const cloud_firestore = packages__cloud_firestore__cloud_firestore$46dart.cloud_firestore;
+  const scaffold = packages__flutter__src__material__icon_button$46dart.src__material__scaffold;
+  const icon_button = packages__flutter__src__material__icon_button$46dart.src__material__icon_button;
+  const button_style = packages__flutter__src__material__icon_button$46dart.src__material__button_style;
+  const scroll_view = packages__flutter__src__widgets__scroll_view$46dart.src__widgets__scroll_view;
+  const async = packages__flutter__src__widgets__async$46dart.src__widgets__async;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  const Utils = packages__food_delivery_app__user__Utils$46dart.user__Utils;
+  const card = packages__flutter__src__material__card$46dart.src__material__card;
+  const rounded_rectangle_border = packages__flutter__src__painting__rounded_rectangle_border$46dart.src__painting__rounded_rectangle_border;
+  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
+  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
+  const icon = packages__flutter__src__widgets__icon$46dart.src__widgets__icon;
+  const icons = packages__flutter__src__material__icons$46dart.src__material__icons;
+  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
+  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
+  const box_decoration = packages__flutter__src__painting__box_decoration$46dart.src__painting__box_decoration;
+  const icon_data = packages__flutter__src__widgets__icon_data$46dart.src__widgets__icon_data;
+  const decoration_image = packages__flutter__src__painting__decoration_image$46dart.src__painting__decoration_image;
+  const _network_image_web = packages__flutter__src__painting___network_image_web$46dart.src__painting___network_image_web;
+  const box_fit = packages__flutter__src__painting__box_fit$46dart.src__painting__box_fit;
+  const outlined_button = packages__flutter__src__material__outlined_button$46dart.src__material__outlined_button;
+  const material_state = packages__flutter__src__material__material_state$46dart.src__material__material_state;
+  var EatNow = Object.create(dart.library);
+  var $length = dartx.length;
+  var $_get = dartx._get;
+  var $_set = dartx._set;
+  var $forEach = dartx.forEach;
+  var $toLowerCase = dartx.toLowerCase;
+  var $toString = dartx.toString;
+  var $add = dartx.add;
+  var $map = dartx.map;
+  var $toList = dartx.toList;
   dart._checkModuleNullSafetyMode(false);
   var T = {
-    OpacityLayerN: () => (T.OpacityLayerN = dart.constFn(dart.nullable(layer.OpacityLayer)))(),
-    DiagnosticsPropertyOfbool: () => (T.DiagnosticsPropertyOfbool = dart.constFn(diagnostics.DiagnosticsProperty$(core.bool)))(),
-    JSArrayOfDiagnosticsNode: () => (T.JSArrayOfDiagnosticsNode = dart.constFn(_interceptors.JSArray$(diagnostics.DiagnosticsNode)))()
+    QuerySnapshotL: () => (T.QuerySnapshotL = dart.constFn(dart.legacy(cloud_firestore.QuerySnapshot)))(),
+    StreamBuilderOfQuerySnapshotL: () => (T.StreamBuilderOfQuerySnapshotL = dart.constFn(async.StreamBuilder$(T.QuerySnapshotL())))(),
+    DishesL: () => (T.DishesL = dart.constFn(dart.legacy(Chefdata.Dishes)))(),
+    JSArrayOfDishesL: () => (T.JSArrayOfDishesL = dart.constFn(_interceptors.JSArray$(T.DishesL())))(),
+    numL: () => (T.numL = dart.constFn(dart.legacy(core.num)))(),
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    dynamicAnddynamicToNull: () => (T.dynamicAnddynamicToNull = dart.constFn(dart.fnType(core.Null, [dart.dynamic, dart.dynamic])))(),
+    doubleL: () => (T.doubleL = dart.constFn(dart.legacy(core.double)))(),
+    PaddingL: () => (T.PaddingL = dart.constFn(dart.legacy(basic.Padding)))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    DishesLToPaddingL: () => (T.DishesLToPaddingL = dart.constFn(dart.fnType(T.PaddingL(), [T.DishesL()])))(),
+    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
+    BuildContextL: () => (T.BuildContextL = dart.constFn(dart.legacy(framework.BuildContext)))(),
+    AsyncSnapshotOfQuerySnapshotL: () => (T.AsyncSnapshotOfQuerySnapshotL = dart.constFn(async.AsyncSnapshot$(T.QuerySnapshotL())))(),
+    AsyncSnapshotLOfQuerySnapshotL: () => (T.AsyncSnapshotLOfQuerySnapshotL = dart.constFn(dart.legacy(T.AsyncSnapshotOfQuerySnapshotL())))(),
+    BuildContextLAndAsyncSnapshotLOfQuerySnapshotLToWidgetL: () => (T.BuildContextLAndAsyncSnapshotLOfQuerySnapshotLToWidgetL = dart.constFn(dart.fnType(T.WidgetL(), [T.BuildContextL(), T.AsyncSnapshotLOfQuerySnapshotL()])))(),
+    JSArrayOfWidgetL: () => (T.JSArrayOfWidgetL = dart.constFn(_interceptors.JSArray$(T.WidgetL())))(),
+    LinkedHashSetOfvoid: () => (T.LinkedHashSetOfvoid = dart.constFn(collection.LinkedHashSet$(dart.void)))(),
+    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    SetOfvoid: () => (T.SetOfvoid = dart.constFn(core.Set$(dart.void)))(),
+    SetLOfvoid: () => (T.SetLOfvoid = dart.constFn(dart.legacy(T.SetOfvoid())))(),
+    VoidToSetLOfvoid: () => (T.VoidToSetLOfvoid = dart.constFn(dart.fnType(T.SetLOfvoid(), [])))(),
+    ColorL: () => (T.ColorL = dart.constFn(dart.legacy(ui.Color)))(),
+    MaterialStateL: () => (T.MaterialStateL = dart.constFn(dart.legacy(material_state.MaterialState)))(),
+    SetOfMaterialStateL: () => (T.SetOfMaterialStateL = dart.constFn(core.Set$(T.MaterialStateL())))(),
+    SetLOfMaterialStateL: () => (T.SetLOfMaterialStateL = dart.constFn(dart.legacy(T.SetOfMaterialStateL())))(),
+    SetLOfMaterialStateLToColorL: () => (T.SetLOfMaterialStateLToColorL = dart.constFn(dart.fnType(T.ColorL(), [T.SetLOfMaterialStateL()])))()
   };
   var T$Eval = Object.assign({
     _: () => T$Eval
@@ -29,350 +89,1593 @@ define(['dart_sdk', 'packages/flutter/src/rendering/layer.dart', 'packages/flutt
   const CT = Object.create({
     _: () => (C, CT)
   });
-  var C = [];
-  var I = [
-    "file:///C:/flutter/flutter/packages/flutter/lib/src/rendering/proxy_sliver.dart",
-    "package:flutter/src/rendering/proxy_sliver.dart"
-  ];
-  const RenderSliver_RenderObjectWithChildMixin$36 = class RenderSliver_RenderObjectWithChildMixin extends sliver.RenderSliver {};
-  (RenderSliver_RenderObjectWithChildMixin$36.new = function() {
-    object.RenderObjectWithChildMixin$(sliver.RenderSliver)[dart.mixinNew].call(this);
-    RenderSliver_RenderObjectWithChildMixin$36.__proto__.new.call(this);
-  }).prototype = RenderSliver_RenderObjectWithChildMixin$36.prototype;
-  dart.applyMixin(RenderSliver_RenderObjectWithChildMixin$36, object.RenderObjectWithChildMixin$(sliver.RenderSliver));
-  proxy_sliver.RenderProxySliver = class RenderProxySliver extends RenderSliver_RenderObjectWithChildMixin$36 {
-    setupParentData(child) {
-      object.RenderObject.as(child);
-      if (child == null) dart.nullFailed(I[0], 44, 37, "child");
-      if (!sliver.SliverPhysicalParentData.is(child.parentData)) child.parentData = new sliver.SliverPhysicalParentData.new();
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 8,
+        [EdgeInsets_right]: 8,
+        [EdgeInsets_top]: 8,
+        [EdgeInsets_left]: 8
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "name",
+        [_Location_column]: 34,
+        [_Location_line]: 101,
+        [_Location_file]: null
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "rating",
+        [_Location_column]: 34,
+        [_Location_line]: 102,
+        [_Location_file]: null
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "price",
+        [_Location_column]: 34,
+        [_Location_line]: 103,
+        [_Location_file]: null
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "dishName",
+        [_Location_column]: 34,
+        [_Location_line]: 104,
+        [_Location_file]: null
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "image",
+        [_Location_column]: 34,
+        [_Location_line]: 105,
+        [_Location_file]: null
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "time",
+        [_Location_column]: 34,
+        [_Location_line]: 106,
+        [_Location_file]: null
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "quantity",
+        [_Location_column]: 29,
+        [_Location_line]: 107,
+        [_Location_file]: null
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "cartData",
+        [_Location_column]: 34,
+        [_Location_line]: 108,
+        [_Location_file]: null
+      });
+    },
+    get C2() {
+      return C[2] = dart.constList([C[3] || CT.C3, C[4] || CT.C4, C[5] || CT.C5, C[6] || CT.C6, C[7] || CT.C7, C[8] || CT.C8, C[9] || CT.C9, C[10] || CT.C10], T._LocationL());
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[2] || CT.C2,
+        [_Location_name]: null,
+        [_Location_column]: 32,
+        [_Location_line]: 100,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 25,
+        [_Location_line]: 99,
+        [_Location_file]: null
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 25,
+        [_Location_line]: 100,
+        [_Location_file]: null
+      });
+    },
+    get C12() {
+      return C[12] = dart.constList([C[13] || CT.C13, C[14] || CT.C14], T._LocationL());
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[12] || CT.C12,
+        [_Location_name]: null,
+        [_Location_column]: 30,
+        [_Location_line]: 98,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 25,
+        [_Location_line]: 96,
+        [_Location_file]: null
+      });
+    },
+    get C16() {
+      return C[16] = dart.constList([C[17] || CT.C17], T._LocationL());
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[16] || CT.C16,
+        [_Location_name]: null,
+        [_Location_column]: 28,
+        [_Location_line]: 95,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C19() {
+      return C[19] = dart.constList([], T._LocationL());
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[19] || CT.C19,
+        [_Location_name]: null,
+        [_Location_column]: 28,
+        [_Location_line]: 112,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "stream",
+        [_Location_column]: 17,
+        [_Location_line]: 55,
+        [_Location_file]: null
+      });
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 17,
+        [_Location_line]: 56,
+        [_Location_file]: null
+      });
+    },
+    get C21() {
+      return C[21] = dart.constList([C[22] || CT.C22, C[23] || CT.C23], T._LocationL());
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[21] || CT.C21,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 54,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[19] || CT.C19,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 122,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C27() {
+      return C[27] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "stream",
+        [_Location_column]: 11,
+        [_Location_line]: 51,
+        [_Location_file]: null
+      });
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 11,
+        [_Location_line]: 52,
+        [_Location_file]: null
+      });
+    },
+    get C26() {
+      return C[26] = dart.constList([C[27] || CT.C27, C[28] || CT.C28], T._LocationL());
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[26] || CT.C26,
+        [_Location_name]: null,
+        [_Location_column]: 9,
+        [_Location_line]: 50,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 22,
+        [_Location_line]: 49,
+        [_Location_file]: null
+      });
+    },
+    get C30() {
+      return C[30] = dart.constList([C[31] || CT.C31], T._LocationL());
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[30] || CT.C30,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 49,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "backgroundColor",
+        [_Location_column]: 7,
+        [_Location_line]: 48,
+        [_Location_file]: null
+      });
+    },
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "body",
+        [_Location_column]: 7,
+        [_Location_line]: 49,
+        [_Location_file]: null
+      });
+    },
+    get C33() {
+      return C[33] = dart.constList([C[34] || CT.C34, C[35] || CT.C35], T._LocationL());
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[33] || CT.C33,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 47,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 4,
+        [EdgeInsets_right]: 4,
+        [EdgeInsets_top]: 4,
+        [EdgeInsets_left]: 4
+      });
+    },
+    get C39() {
+      return C[39] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 43,
+        [_Location_line]: 169,
+        [_Location_file]: null
+      });
+    },
+    get C38() {
+      return C[38] = dart.constList([C[39] || CT.C39], T._LocationL());
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[38] || CT.C38,
+        [_Location_name]: null,
+        [_Location_column]: 32,
+        [_Location_line]: 169,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C42() {
+      return C[42] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 25,
+        [_Location_line]: 168,
+        [_Location_file]: null
+      });
+    },
+    get C43() {
+      return C[43] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 25,
+        [_Location_line]: 169,
+        [_Location_file]: null
+      });
+    },
+    get C41() {
+      return C[41] = dart.constList([C[42] || CT.C42, C[43] || CT.C43], T._LocationL());
+    },
+    get C40() {
+      return C[40] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[41] || CT.C41,
+        [_Location_name]: null,
+        [_Location_column]: 23,
+        [_Location_line]: 167,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C46() {
+      return C[46] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 41,
+        [_Location_line]: 174,
+        [_Location_file]: null
+      });
+    },
+    get C47() {
+      return C[47] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 33,
+        [_Location_line]: 175,
+        [_Location_file]: null
+      });
+    },
+    get C45() {
+      return C[45] = dart.constList([C[46] || CT.C46, C[47] || CT.C47], T._LocationL());
+    },
+    get C44() {
+      return C[44] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[45] || CT.C45,
+        [_Location_name]: null,
+        [_Location_column]: 29,
+        [_Location_line]: 174,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C50() {
+      return C[50] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 71,
+        [_Location_line]: 177,
+        [_Location_file]: null
+      });
+    },
+    get C51() {
+      return C[51] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 33,
+        [_Location_line]: 178,
+        [_Location_file]: null
+      });
+    },
+    get C49() {
+      return C[49] = dart.constList([C[50] || CT.C50, C[51] || CT.C51], T._LocationL());
+    },
+    get C48() {
+      return C[48] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[49] || CT.C49,
+        [_Location_name]: null,
+        [_Location_column]: 29,
+        [_Location_line]: 177,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C54() {
+      return C[54] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "crossAxisAlignment",
+        [_Location_column]: 27,
+        [_Location_line]: 172,
+        [_Location_file]: null
+      });
+    },
+    get C55() {
+      return C[55] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 27,
+        [_Location_line]: 173,
+        [_Location_file]: null
+      });
+    },
+    get C53() {
+      return C[53] = dart.constList([C[54] || CT.C54, C[55] || CT.C55], T._LocationL());
+    },
+    get C52() {
+      return C[52] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[53] || CT.C53,
+        [_Location_name]: null,
+        [_Location_column]: 23,
+        [_Location_line]: 171,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C58() {
+      return C[58] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 21,
+        [_Location_line]: 166,
+        [_Location_file]: null
+      });
+    },
+    get C57() {
+      return C[57] = dart.constList([C[58] || CT.C58], T._LocationL());
+    },
+    get C56() {
+      return C[56] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[57] || CT.C57,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 165,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C61() {
+      return C[61] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 30,
+        [_Location_line]: 187,
+        [_Location_file]: null
+      });
+    },
+    get C62() {
+      return C[62] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 23,
+        [_Location_line]: 188,
+        [_Location_file]: null
+      });
+    },
+    get C60() {
+      return C[60] = dart.constList([C[61] || CT.C61, C[62] || CT.C62], T._LocationL());
+    },
+    get C59() {
+      return C[59] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[60] || CT.C60,
+        [_Location_name]: null,
+        [_Location_column]: 28,
+        [_Location_line]: 186,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C65() {
+      return C[65] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 21,
+        [_Location_line]: 185,
+        [_Location_file]: null
+      });
+    },
+    get C66() {
+      return C[66] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 21,
+        [_Location_line]: 186,
+        [_Location_file]: null
+      });
+    },
+    get C64() {
+      return C[64] = dart.constList([C[65] || CT.C65, C[66] || CT.C66], T._LocationL());
+    },
+    get C63() {
+      return C[63] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[64] || CT.C64,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 184,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C69() {
+      return C[69] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 47,
+        [_Location_line]: 195,
+        [_Location_file]: null
+      });
+    },
+    get C70() {
+      return C[70] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 23,
+        [_Location_line]: 196,
+        [_Location_file]: null
+      });
+    },
+    get C68() {
+      return C[68] = dart.constList([C[69] || CT.C69, C[70] || CT.C70], T._LocationL());
+    },
+    get C67() {
+      return C[67] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[68] || CT.C68,
+        [_Location_name]: null,
+        [_Location_column]: 28,
+        [_Location_line]: 194,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C73() {
+      return C[73] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 21,
+        [_Location_line]: 193,
+        [_Location_file]: null
+      });
+    },
+    get C74() {
+      return C[74] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 21,
+        [_Location_line]: 194,
+        [_Location_file]: null
+      });
+    },
+    get C72() {
+      return C[72] = dart.constList([C[73] || CT.C73, C[74] || CT.C74], T._LocationL());
+    },
+    get C71() {
+      return C[71] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[72] || CT.C72,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 192,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C77() {
+      return C[77] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 57,
+        [_Location_line]: 209,
+        [_Location_file]: null
+      });
+    },
+    get C78() {
+      return C[78] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 33,
+        [_Location_line]: 210,
+        [_Location_file]: null
+      });
+    },
+    get C76() {
+      return C[76] = dart.constList([C[77] || CT.C77, C[78] || CT.C78], T._LocationL());
+    },
+    get C75() {
+      return C[75] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[76] || CT.C76,
+        [_Location_name]: null,
+        [_Location_column]: 36,
+        [_Location_line]: 209,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C81() {
+      return C[81] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 29,
+        [_Location_line]: 209,
+        [_Location_file]: null
+      });
+    },
+    get C82() {
+      return C[82] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 29,
+        [_Location_line]: 213,
+        [_Location_file]: null
+      });
+    },
+    get C83() {
+      return C[83] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 29,
+        [_Location_line]: 217,
+        [_Location_file]: null
+      });
+    },
+    get C80() {
+      return C[80] = dart.constList([C[81] || CT.C81, C[82] || CT.C82, C[83] || CT.C83], T._LocationL());
+    },
+    get C79() {
+      return C[79] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[80] || CT.C80,
+        [_Location_name]: null,
+        [_Location_column]: 27,
+        [_Location_line]: 208,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C86() {
+      return C[86] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 37,
+        [_Location_line]: 222,
+        [_Location_file]: null
+      });
+    },
+    get C87() {
+      return C[87] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 31,
+        [_Location_line]: 223,
+        [_Location_file]: null
+      });
+    },
+    get C85() {
+      return C[85] = dart.constList([C[86] || CT.C86, C[87] || CT.C87], T._LocationL());
+    },
+    get C84() {
+      return C[84] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[85] || CT.C85,
+        [_Location_name]: null,
+        [_Location_column]: 35,
+        [_Location_line]: 221,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C90() {
+      return C[90] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 29,
+        [_Location_line]: 221,
+        [_Location_file]: null
+      });
+    },
+    get C91() {
+      return C[91] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "tooltip",
+        [_Location_column]: 29,
+        [_Location_line]: 225,
+        [_Location_file]: null
+      });
+    },
+    get C92() {
+      return C[92] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPressed",
+        [_Location_column]: 29,
+        [_Location_line]: 226,
+        [_Location_file]: null
+      });
+    },
+    get C89() {
+      return C[89] = dart.constList([C[90] || CT.C90, C[91] || CT.C91, C[92] || CT.C92], T._LocationL());
+    },
+    get C88() {
+      return C[88] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[89] || CT.C89,
+        [_Location_name]: null,
+        [_Location_column]: 27,
+        [_Location_line]: 220,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C96() {
+      return C[96] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 37,
+        [_Location_line]: 236,
+        [_Location_file]: null
+      });
+    },
+    get C97() {
+      return C[97] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 31,
+        [_Location_line]: 237,
+        [_Location_file]: null
+      });
+    },
+    get C95() {
+      return C[95] = dart.constList([C[96] || CT.C96, C[97] || CT.C97], T._LocationL());
+    },
+    get C94() {
+      return C[94] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[95] || CT.C95,
+        [_Location_name]: null,
+        [_Location_column]: 41,
+        [_Location_line]: 235,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C98() {
+      return C[98] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293430320.0
+      });
+    },
+    get C99() {
+      return C[99] = dart.const({
+        __proto__: icon_data.IconData.prototype,
+        [IconData_matchTextDirection]: false,
+        [IconData_fontPackage]: null,
+        [IconData_fontFamily]: "MaterialIcons",
+        [IconData_codePoint]: 59758
+      });
+    },
+    get C93() {
+      return C[93] = dart.const({
+        __proto__: icon.Icon.prototype,
+        [Widget__location]: C[94] || CT.C94,
+        [Widget_key]: null,
+        [Icon_textDirection]: null,
+        [Icon_semanticLabel]: null,
+        [Icon_color]: C[98] || CT.C98,
+        [Icon_size]: null,
+        [Icon_icon]: C[99] || CT.C99
+      });
+    },
+    get C102() {
+      return C[102] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 29,
+        [_Location_line]: 235,
+        [_Location_file]: null
+      });
+    },
+    get C103() {
+      return C[103] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "tooltip",
+        [_Location_column]: 29,
+        [_Location_line]: 239,
+        [_Location_file]: null
+      });
+    },
+    get C104() {
+      return C[104] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPressed",
+        [_Location_column]: 29,
+        [_Location_line]: 240,
+        [_Location_file]: null
+      });
+    },
+    get C101() {
+      return C[101] = dart.constList([C[102] || CT.C102, C[103] || CT.C103, C[104] || CT.C104], T._LocationL());
+    },
+    get C100() {
+      return C[100] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[101] || CT.C101,
+        [_Location_name]: null,
+        [_Location_column]: 27,
+        [_Location_line]: 234,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C107() {
+      return C[107] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 25,
+        [_Location_line]: 207,
+        [_Location_file]: null
+      });
+    },
+    get C106() {
+      return C[106] = dart.constList([C[107] || CT.C107], T._LocationL());
+    },
+    get C105() {
+      return C[105] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[106] || CT.C106,
+        [_Location_name]: null,
+        [_Location_column]: 23,
+        [_Location_line]: 204,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C110() {
+      return C[110] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 21,
+        [_Location_line]: 203,
+        [_Location_file]: null
+      });
+    },
+    get C109() {
+      return C[109] = dart.constList([C[110] || CT.C110], T._LocationL());
+    },
+    get C108() {
+      return C[108] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[109] || CT.C109,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 200,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C113() {
+      return C[113] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 17,
+        [_Location_line]: 162,
+        [_Location_file]: null
+      });
+    },
+    get C114() {
+      return C[114] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "crossAxisAlignment",
+        [_Location_column]: 17,
+        [_Location_line]: 163,
+        [_Location_file]: null
+      });
+    },
+    get C115() {
+      return C[115] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 17,
+        [_Location_line]: 164,
+        [_Location_file]: null
+      });
+    },
+    get C112() {
+      return C[112] = dart.constList([C[113] || CT.C113, C[114] || CT.C114, C[115] || CT.C115], T._LocationL());
+    },
+    get C111() {
+      return C[111] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[112] || CT.C112,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 161,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C118() {
+      return C[118] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 19,
+        [_Location_line]: 256,
+        [_Location_file]: null
+      });
+    },
+    get C119() {
+      return C[119] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 19,
+        [_Location_line]: 257,
+        [_Location_file]: null
+      });
+    },
+    get C120() {
+      return C[120] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 19,
+        [_Location_line]: 258,
+        [_Location_file]: null
+      });
+    },
+    get C117() {
+      return C[117] = dart.constList([C[118] || CT.C118, C[119] || CT.C119, C[120] || CT.C120], T._LocationL());
+    },
+    get C116() {
+      return C[116] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[117] || CT.C117,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 255,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C123() {
+      return C[123] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 25,
+        [_Location_line]: 289,
+        [_Location_file]: null
+      });
+    },
+    get C124() {
+      return C[124] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 25,
+        [_Location_line]: 290,
+        [_Location_file]: null
+      });
+    },
+    get C122() {
+      return C[122] = dart.constList([C[123] || CT.C123, C[124] || CT.C124], T._LocationL());
+    },
+    get C121() {
+      return C[121] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[122] || CT.C122,
+        [_Location_name]: null,
+        [_Location_column]: 30,
+        [_Location_line]: 288,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C127() {
+      return C[127] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 31,
+        [_Location_line]: 294,
+        [_Location_file]: null
+      });
+    },
+    get C128() {
+      return C[128] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "size",
+        [_Location_column]: 25,
+        [_Location_line]: 295,
+        [_Location_file]: null
+      });
+    },
+    get C129() {
+      return C[129] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 25,
+        [_Location_line]: 296,
+        [_Location_file]: null
+      });
+    },
+    get C126() {
+      return C[126] = dart.constList([C[127] || CT.C127, C[128] || CT.C128, C[129] || CT.C129], T._LocationL());
+    },
+    get C125() {
+      return C[125] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[126] || CT.C126,
+        [_Location_name]: null,
+        [_Location_column]: 29,
+        [_Location_line]: 293,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C132() {
+      return C[132] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 23,
+        [_Location_line]: 272,
+        [_Location_file]: null
+      });
+    },
+    get C133() {
+      return C[133] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPressed",
+        [_Location_column]: 23,
+        [_Location_line]: 282,
+        [_Location_file]: null
+      });
+    },
+    get C134() {
+      return C[134] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "label",
+        [_Location_column]: 23,
+        [_Location_line]: 288,
+        [_Location_file]: null
+      });
+    },
+    get C135() {
+      return C[135] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 23,
+        [_Location_line]: 293,
+        [_Location_file]: null
+      });
+    },
+    get C131() {
+      return C[131] = dart.constList([C[132] || CT.C132, C[133] || CT.C133, C[134] || CT.C134, C[135] || CT.C135], T._LocationL());
+    },
+    get C130() {
+      return C[130] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[131] || CT.C131,
+        [_Location_name]: null,
+        [_Location_column]: 43,
+        [_Location_line]: 271,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C138() {
+      return C[138] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "right",
+        [_Location_column]: 21,
+        [_Location_line]: 268,
+        [_Location_file]: null
+      });
+    },
+    get C139() {
+      return C[139] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "bottom",
+        [_Location_column]: 21,
+        [_Location_line]: 269,
+        [_Location_file]: null
+      });
+    },
+    get C140() {
+      return C[140] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "left",
+        [_Location_column]: 21,
+        [_Location_line]: 270,
+        [_Location_file]: null
+      });
+    },
+    get C141() {
+      return C[141] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 21,
+        [_Location_line]: 271,
+        [_Location_file]: null
+      });
+    },
+    get C137() {
+      return C[137] = dart.constList([C[138] || CT.C138, C[139] || CT.C139, C[140] || CT.C140, C[141] || CT.C141], T._LocationL());
+    },
+    get C136() {
+      return C[136] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[137] || CT.C137,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 267,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C144() {
+      return C[144] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 30,
+        [_Location_line]: 308,
+        [_Location_file]: null
+      });
+    },
+    get C145() {
+      return C[145] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 23,
+        [_Location_line]: 309,
+        [_Location_file]: null
+      });
+    },
+    get C143() {
+      return C[143] = dart.constList([C[144] || CT.C144, C[145] || CT.C145], T._LocationL());
+    },
+    get C142() {
+      return C[142] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[143] || CT.C143,
+        [_Location_name]: null,
+        [_Location_column]: 28,
+        [_Location_line]: 307,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C148() {
+      return C[148] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 21,
+        [_Location_line]: 303,
+        [_Location_file]: null
+      });
+    },
+    get C149() {
+      return C[149] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 21,
+        [_Location_line]: 307,
+        [_Location_file]: null
+      });
+    },
+    get C150() {
+      return C[150] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 21,
+        [_Location_line]: 314,
+        [_Location_file]: null
+      });
+    },
+    get C147() {
+      return C[147] = dart.constList([C[148] || CT.C148, C[149] || CT.C149, C[150] || CT.C150], T._LocationL());
+    },
+    get C146() {
+      return C[146] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[147] || CT.C147,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 302,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C153() {
+      return C[153] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "right",
+        [_Location_column]: 19,
+        [_Location_line]: 300,
+        [_Location_file]: null
+      });
+    },
+    get C154() {
+      return C[154] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "top",
+        [_Location_column]: 19,
+        [_Location_line]: 301,
+        [_Location_file]: null
+      });
+    },
+    get C155() {
+      return C[155] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 302,
+        [_Location_file]: null
+      });
+    },
+    get C152() {
+      return C[152] = dart.constList([C[153] || CT.C153, C[154] || CT.C154, C[155] || CT.C155], T._LocationL());
+    },
+    get C151() {
+      return C[151] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[152] || CT.C152,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 299,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C158() {
+      return C[158] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 21,
+        [_Location_line]: 254,
+        [_Location_file]: null
+      });
+    },
+    get C157() {
+      return C[157] = dart.constList([C[158] || CT.C158], T._LocationL());
+    },
+    get C156() {
+      return C[156] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[157] || CT.C157,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 254,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C161() {
+      return C[161] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "crossAxisAlignment",
+        [_Location_column]: 13,
+        [_Location_line]: 158,
+        [_Location_file]: null
+      });
+    },
+    get C162() {
+      return C[162] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 13,
+        [_Location_line]: 159,
+        [_Location_file]: null
+      });
+    },
+    get C163() {
+      return C[163] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 13,
+        [_Location_line]: 160,
+        [_Location_file]: null
+      });
+    },
+    get C160() {
+      return C[160] = dart.constList([C[161] || CT.C161, C[162] || CT.C162, C[163] || CT.C163], T._LocationL());
+    },
+    get C159() {
+      return C[159] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[160] || CT.C160,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 157,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C166() {
+      return C[166] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 9,
+        [_Location_line]: 156,
+        [_Location_file]: null
+      });
+    },
+    get C167() {
+      return C[167] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 157,
+        [_Location_file]: null
+      });
+    },
+    get C165() {
+      return C[165] = dart.constList([C[166] || CT.C166, C[167] || CT.C167], T._LocationL());
+    },
+    get C164() {
+      return C[164] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[165] || CT.C165,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 155,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C170() {
+      return C[170] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 7,
+        [_Location_line]: 150,
+        [_Location_file]: null
+      });
+    },
+    get C171() {
+      return C[171] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "shape",
+        [_Location_column]: 7,
+        [_Location_line]: 151,
+        [_Location_file]: null
+      });
+    },
+    get C172() {
+      return C[172] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "clipBehavior",
+        [_Location_column]: 7,
+        [_Location_line]: 154,
+        [_Location_file]: null
+      });
+    },
+    get C173() {
+      return C[173] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 155,
+        [_Location_file]: null
+      });
+    },
+    get C169() {
+      return C[169] = dart.constList([C[170] || CT.C170, C[171] || CT.C171, C[172] || CT.C172, C[173] || CT.C173], T._LocationL());
+    },
+    get C168() {
+      return C[168] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[169] || CT.C169,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 149,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
     }
-    performLayout() {
-      if (!(this.child != null)) dart.assertFailed(null, I[0], 51, 12, "child != null");
-      dart.nullCheck(this.child).layout(this.constraints, {parentUsesSize: true});
-      this.geometry = dart.nullCheck(this.child).geometry;
+  }, false);
+  var C = Array(174).fill(void 0);
+  var I = ["package:food_delivery_app/user/EatNow.dart"];
+  var cartData$ = dart.privateName(EatNow, "EatNow.cartData");
+  EatNow.EatNow = class EatNow$ extends framework.StatefulWidget {
+    get cartData() {
+      return this[cartData$];
     }
-    paint(context, offset) {
-      if (context == null) dart.nullFailed(I[0], 57, 30, "context");
-      if (offset == null) dart.nullFailed(I[0], 57, 46, "offset");
-      if (this.child != null) context.paintChild(dart.nullCheck(this.child), offset);
+    set cartData(value) {
+      this[cartData$] = value;
     }
-    hitTestChildren(result, opts) {
-      if (result == null) dart.nullFailed(I[0], 63, 44, "result");
-      let mainAxisPosition = opts && 'mainAxisPosition' in opts ? opts.mainAxisPosition : null;
-      if (mainAxisPosition == null) dart.nullFailed(I[0], 63, 69, "mainAxisPosition");
-      let crossAxisPosition = opts && 'crossAxisPosition' in opts ? opts.crossAxisPosition : null;
-      if (crossAxisPosition == null) dart.nullFailed(I[0], 63, 103, "crossAxisPosition");
-      return this.child != null && dart.notNull(dart.nullCheck(dart.nullCheck(this.child).geometry).hitTestExtent) > 0 && dart.test(dart.nullCheck(this.child).hitTest(result, {mainAxisPosition: mainAxisPosition, crossAxisPosition: crossAxisPosition}));
-    }
-    childMainAxisPosition(child) {
-      sliver.RenderSliver.as(child);
-      if (child == null) dart.nullFailed(I[0], 74, 45, "child");
-      if (!(child != null)) dart.assertFailed(null, I[0], 75, 12, "child != null");
-      if (!dart.equals(child, this.child)) dart.assertFailed(null, I[0], 76, 12, "child == this.child");
-      return 0.0;
-    }
-    applyPaintTransform(child, transform) {
-      object.RenderObject.as(child);
-      if (child == null) dart.nullFailed(I[0], 81, 41, "child");
-      if (transform == null) dart.nullFailed(I[0], 81, 56, "transform");
-      if (!(child != null)) dart.assertFailed(null, I[0], 82, 12, "child != null");
-      let childParentData = sliver.SliverPhysicalParentData.as(dart.nullCheck(child.parentData));
-      childParentData.applyPaintTransform(transform);
+    createState() {
+      return new EatNow._EatNowState.new();
     }
   };
-  (proxy_sliver.RenderProxySliver.new = function(child = null) {
-    proxy_sliver.RenderProxySliver.__proto__.new.call(this);
-    this.child = child;
-  }).prototype = proxy_sliver.RenderProxySliver.prototype;
-  dart.addTypeTests(proxy_sliver.RenderProxySliver);
-  dart.addTypeCaches(proxy_sliver.RenderProxySliver);
-  dart.setMethodSignature(proxy_sliver.RenderProxySliver, () => ({
-    __proto__: dart.getMethods(proxy_sliver.RenderProxySliver.__proto__),
-    performLayout: dart.fnType(dart.void, [])
+  (EatNow.EatNow.new = function(opts) {
+    let cartData = opts && 'cartData' in opts ? opts.cartData : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[cartData$] = cartData;
+    EatNow.EatNow.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = EatNow.EatNow.prototype;
+  dart.addTypeTests(EatNow.EatNow);
+  dart.addTypeCaches(EatNow.EatNow);
+  dart.setMethodSignature(EatNow.EatNow, () => ({
+    __proto__: dart.getMethods(EatNow.EatNow.__proto__),
+    createState: dart.fnType(dart.legacy(EatNow._EatNowState), [])
   }));
-  dart.setLibraryUri(proxy_sliver.RenderProxySliver, I[1]);
-  var _opacity = dart.privateName(proxy_sliver, "_opacity");
-  var _alwaysIncludeSemantics = dart.privateName(proxy_sliver, "_alwaysIncludeSemantics");
-  var _alpha = dart.privateName(proxy_sliver, "_alpha");
-  proxy_sliver.RenderSliverOpacity = class RenderSliverOpacity extends proxy_sliver.RenderProxySliver {
-    get alwaysNeedsCompositing() {
-      return this.child != null && this[_alpha] !== 0 && this[_alpha] !== 255;
+  dart.setLibraryUri(EatNow.EatNow, I[0]);
+  dart.setFieldSignature(EatNow.EatNow, () => ({
+    __proto__: dart.getFields(EatNow.EatNow.__proto__),
+    cartData: dart.fieldType(dart.legacy(Chefdata.CartData))
+  }));
+  var EdgeInsets_bottom = dart.privateName(edge_insets, "EdgeInsets.bottom");
+  var EdgeInsets_right = dart.privateName(edge_insets, "EdgeInsets.right");
+  var EdgeInsets_top = dart.privateName(edge_insets, "EdgeInsets.top");
+  var EdgeInsets_left = dart.privateName(edge_insets, "EdgeInsets.left");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  EatNow._EatNowState = class _EatNowState extends framework.State$(dart.legacy(EatNow.EatNow)) {
+    initState() {
+      super.initState();
+      this.l = this.items.getData();
+      this.cartdata = this.widget.cartData;
     }
-    get opacity() {
-      return this[_opacity];
-    }
-    set opacity(value) {
-      if (value == null) dart.nullFailed(I[0], 131, 22, "value");
-      if (!(value != null)) dart.assertFailed(null, I[0], 132, 12, "value != null");
-      if (!(dart.notNull(value) >= 0.0 && dart.notNull(value) <= 1.0)) dart.assertFailed(null, I[0], 133, 12, "value >= 0.0 && value <= 1.0");
-      if (this[_opacity] == value) return;
-      let didNeedCompositing = this.alwaysNeedsCompositing;
-      let wasVisible = this[_alpha] !== 0;
-      this[_opacity] = value;
-      this[_alpha] = ui.Color.getAlphaFromOpacity(this[_opacity]);
-      if (didNeedCompositing != this.alwaysNeedsCompositing) this.markNeedsCompositingBitsUpdate();
-      this.markNeedsPaint();
-      if (wasVisible !== (this[_alpha] !== 0) && !dart.test(this.alwaysIncludeSemantics)) this.markNeedsSemanticsUpdate();
-    }
-    get alwaysIncludeSemantics() {
-      return this[_alwaysIncludeSemantics];
-    }
-    set alwaysIncludeSemantics(value) {
-      if (value == null) dart.nullFailed(I[0], 154, 35, "value");
-      if (value == this[_alwaysIncludeSemantics]) return;
-      this[_alwaysIncludeSemantics] = value;
-      this.markNeedsSemanticsUpdate();
-    }
-    paint(context, offset) {
-      if (context == null) dart.nullFailed(I[0], 162, 30, "context");
-      if (offset == null) dart.nullFailed(I[0], 162, 46, "offset");
-      if (this.child != null && dart.test(dart.nullCheck(dart.nullCheck(this.child).geometry).visible)) {
-        if (this[_alpha] === 0) {
-          this.layer = null;
-          return;
-        }
-        if (this[_alpha] === 255) {
-          this.layer = null;
-          context.paintChild(dart.nullCheck(this.child), offset);
-          return;
-        }
-        if (!dart.test(this.needsCompositing)) dart.assertFailed(null, I[0], 175, 14, "needsCompositing");
-        this.layer = context.pushOpacity(offset, this[_alpha], dart.bind(this, 'paint', super.paint), {oldLayer: T.OpacityLayerN().as(this.layer)});
-      }
-    }
-    visitChildrenForSemantics(visitor) {
-      if (visitor == null) dart.nullFailed(I[0], 186, 54, "visitor");
-      if (this.child != null && (this[_alpha] !== 0 || dart.test(this.alwaysIncludeSemantics))) visitor(dart.nullCheck(this.child));
-    }
-    debugFillProperties(properties) {
-      if (properties == null) dart.nullFailed(I[0], 192, 56, "properties");
-      super.debugFillProperties(properties);
-      properties.add(new diagnostics.DoubleProperty.new("opacity", this.opacity));
-      properties.add(new diagnostics.FlagProperty.new("alwaysIncludeSemantics", {value: this.alwaysIncludeSemantics, ifTrue: "alwaysIncludeSemantics"}));
+    build(context) {
+      return new scaffold.Scaffold.new({backgroundColor: new ui.Color.fromRGBO(247, 247, 248, 1.0), body: new scroll_view.ListView.new({children: T.JSArrayOfWidgetL().of([new (T.StreamBuilderOfQuerySnapshotL()).new({stream: this.db.collection("Food_items").snapshots(), builder: dart.fn((context, snapshot) => {
+                if (dart.test(snapshot.hasData)) {
+                  return new (T.StreamBuilderOfQuerySnapshotL()).new({stream: this.db.collection("Chefs").snapshots(), builder: dart.fn((context, snapshot2) => {
+                      let t0;
+                      if (dart.test(snapshot2.hasData)) {
+                        let chefs = new _js_helper.LinkedMap.new();
+                        for (let i = 0; i < dart.notNull(snapshot2.data.docs[$length]); i = i + 1) {
+                          core.print(snapshot2.data.docs[$_get](i).data());
+                          chefs[$_set](snapshot2.data.docs[$_get](i).id, snapshot2.data.docs[$_get](i).data());
+                        }
+                        let dishes = T.JSArrayOfDishesL().of([]);
+                        for (let i = 0; i < dart.notNull(snapshot.data.docs[$length]); i = i + 1) {
+                          let now = new core.DateTime.now();
+                          let sort_key = "";
+                          let flag = 0;
+                          this.timetable[$forEach](dart.fn((key, value) => {
+                            if (dart.notNull(now.hour) >= dart.notNull(T.numL().as(key)) && flag === 0) {
+                              core.print(dart.dsend(key, '+', [7]));
+                              core.print(this.timetable[$_get](17));
+                              sort_key = T.StringL().as(value);
+                              flag = 1;
+                            }
+                          }, T.dynamicAnddynamicToNull()));
+                          if (dart.equals(dart.dsend(snapshot.data.docs[$_get](i)._get("mealType"), 'toLowerCase', []), sort_key[$toLowerCase]())) {
+                            let chef_detail = chefs[$_get](snapshot.data.docs[$_get](i)._get("chefId"));
+                            let dd = snapshot.data.docs[$_get](i);
+                            let dish = new Chefdata.Dishes.new(dart.toString(dart.dsend(chef_detail, '_get', ["chefName"])), T.doubleL().as((t0 = dart.dsend(chef_detail, '_get', ["rating"]), (() => {
+                              dart.dsend(t0, 'toDouble', []);
+                              return t0;
+                            })())), dart.toString(dd._get("dishName")), T.doubleL().as(dart.dsend(dd._get("price"), 'toDouble', [])), dart.toString(dd._get("imageUrl")), "25 min");
+                            dishes[$add](dish);
+                          }
+                        }
+                        core.print(dishes);
+                        return new basic.Column.new({children: dishes[$map](T.PaddingL(), dart.fn(data => {
+                            core.print(this.ll);
+                            return new basic.Padding.new({padding: C[0] || CT.C0, child: new EatNow.SingleCard.new(data.name, data.rating, data.getPrice(), data.getDishName(), data.getimage(), data.gettime(), 1, this.cartdata, {$creationLocationd_0dea112b090073317d4: C[1] || CT.C1}), $creationLocationd_0dea112b090073317d4: C[11] || CT.C11});
+                          }, T.DishesLToPaddingL()))[$toList](), $creationLocationd_0dea112b090073317d4: C[15] || CT.C15});
+                      } else {
+                        return new container.Container.new({$creationLocationd_0dea112b090073317d4: C[18] || CT.C18});
+                      }
+                    }, T.BuildContextLAndAsyncSnapshotLOfQuerySnapshotLToWidgetL()), $creationLocationd_0dea112b090073317d4: C[20] || CT.C20});
+                } else {
+                  return new container.Container.new({$creationLocationd_0dea112b090073317d4: C[24] || CT.C24});
+                }
+              }, T.BuildContextLAndAsyncSnapshotLOfQuerySnapshotLToWidgetL()), $creationLocationd_0dea112b090073317d4: C[25] || CT.C25})]), $creationLocationd_0dea112b090073317d4: C[29] || CT.C29}), $creationLocationd_0dea112b090073317d4: C[32] || CT.C32});
     }
   };
-  (proxy_sliver.RenderSliverOpacity.new = function(opts) {
-    let opacity = opts && 'opacity' in opts ? opts.opacity : 1;
-    if (opacity == null) dart.nullFailed(I[0], 103, 12, "opacity");
-    let alwaysIncludeSemantics = opts && 'alwaysIncludeSemantics' in opts ? opts.alwaysIncludeSemantics : false;
-    if (alwaysIncludeSemantics == null) dart.nullFailed(I[0], 104, 10, "alwaysIncludeSemantics");
-    let sliver = opts && 'sliver' in opts ? opts.sliver : null;
-    if (!(opacity != null && dart.notNull(opacity) >= 0.0 && dart.notNull(opacity) <= 1.0)) dart.assertFailed(null, I[0], 106, 15, "opacity != null && opacity >= 0.0 && opacity <= 1.0");
-    if (!(alwaysIncludeSemantics != null)) dart.assertFailed(null, I[0], 107, 15, "alwaysIncludeSemantics != null");
-    this[_opacity] = opacity;
-    this[_alwaysIncludeSemantics] = alwaysIncludeSemantics;
-    this[_alpha] = ui.Color.getAlphaFromOpacity(opacity);
-    proxy_sliver.RenderSliverOpacity.__proto__.new.call(this);
-    this.child = sliver;
-  }).prototype = proxy_sliver.RenderSliverOpacity.prototype;
-  dart.addTypeTests(proxy_sliver.RenderSliverOpacity);
-  dart.addTypeCaches(proxy_sliver.RenderSliverOpacity);
-  dart.setGetterSignature(proxy_sliver.RenderSliverOpacity, () => ({
-    __proto__: dart.getGetters(proxy_sliver.RenderSliverOpacity.__proto__),
-    opacity: core.double,
-    alwaysIncludeSemantics: core.bool
+  (EatNow._EatNowState.new = function() {
+    this.items = new Chefdata.EatNowData.new();
+    this.l = null;
+    this.cartdata = null;
+    this.ll = null;
+    this.db = cloud_firestore.FirebaseFirestore.instance;
+    this.timetable = new _js_helper.LinkedMap.from([7, "Breakfast", 12, "Lunch", 17, "Dinner"]);
+    EatNow._EatNowState.__proto__.new.call(this);
+    ;
+  }).prototype = EatNow._EatNowState.prototype;
+  dart.addTypeTests(EatNow._EatNowState);
+  dart.addTypeCaches(EatNow._EatNowState);
+  dart.setMethodSignature(EatNow._EatNowState, () => ({
+    __proto__: dart.getMethods(EatNow._EatNowState.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
   }));
-  dart.setSetterSignature(proxy_sliver.RenderSliverOpacity, () => ({
-    __proto__: dart.getSetters(proxy_sliver.RenderSliverOpacity.__proto__),
-    opacity: core.double,
-    alwaysIncludeSemantics: core.bool
+  dart.setLibraryUri(EatNow._EatNowState, I[0]);
+  dart.setFieldSignature(EatNow._EatNowState, () => ({
+    __proto__: dart.getFields(EatNow._EatNowState.__proto__),
+    items: dart.fieldType(dart.legacy(Chefdata.EatNowData)),
+    l: dart.fieldType(dart.legacy(core.List$(dart.legacy(Chefdata.Dishes)))),
+    cartdata: dart.fieldType(dart.legacy(Chefdata.CartData)),
+    ll: dart.fieldType(dart.legacy(core.Map)),
+    db: dart.finalFieldType(dart.legacy(cloud_firestore.FirebaseFirestore)),
+    timetable: dart.fieldType(dart.legacy(core.Map))
   }));
-  dart.setLibraryUri(proxy_sliver.RenderSliverOpacity, I[1]);
-  dart.setFieldSignature(proxy_sliver.RenderSliverOpacity, () => ({
-    __proto__: dart.getFields(proxy_sliver.RenderSliverOpacity.__proto__),
-    [_alpha]: dart.fieldType(core.int),
-    [_opacity]: dart.fieldType(core.double),
-    [_alwaysIncludeSemantics]: dart.fieldType(core.bool)
-  }));
-  var _ignoring = dart.privateName(proxy_sliver, "_ignoring");
-  var _ignoringSemantics = dart.privateName(proxy_sliver, "_ignoringSemantics");
-  var _effectiveIgnoringSemantics = dart.privateName(proxy_sliver, "_effectiveIgnoringSemantics");
-  proxy_sliver.RenderSliverIgnorePointer = class RenderSliverIgnorePointer extends proxy_sliver.RenderProxySliver {
-    get ignoring() {
-      return this[_ignoring];
-    }
-    set ignoring(value) {
-      if (value == null) dart.nullFailed(I[0], 230, 21, "value");
-      if (!(value != null)) dart.assertFailed(null, I[0], 231, 12, "value != null");
-      if (value == this[_ignoring]) return;
-      this[_ignoring] = value;
-      if (this[_ignoringSemantics] == null || !dart.nullCheck(this[_ignoringSemantics])) this.markNeedsSemanticsUpdate();
-    }
-    get ignoringSemantics() {
-      return this[_ignoringSemantics];
-    }
-    set ignoringSemantics(value) {
-      if (value == this[_ignoringSemantics]) return;
-      let oldEffectiveValue = this[_effectiveIgnoringSemantics];
-      this[_ignoringSemantics] = value;
-      if (oldEffectiveValue != this[_effectiveIgnoringSemantics]) this.markNeedsSemanticsUpdate();
-    }
-    get [_effectiveIgnoringSemantics]() {
-      let t0;
-      t0 = this.ignoringSemantics;
-      return t0 == null ? this.ignoring : t0;
-    }
-    hitTest(result, opts) {
-      if (result == null) dart.nullFailed(I[0], 259, 36, "result");
-      let mainAxisPosition = opts && 'mainAxisPosition' in opts ? opts.mainAxisPosition : null;
-      if (mainAxisPosition == null) dart.nullFailed(I[0], 259, 61, "mainAxisPosition");
-      let crossAxisPosition = opts && 'crossAxisPosition' in opts ? opts.crossAxisPosition : null;
-      if (crossAxisPosition == null) dart.nullFailed(I[0], 259, 95, "crossAxisPosition");
-      return !dart.test(this.ignoring) && dart.test(super.hitTest(result, {mainAxisPosition: mainAxisPosition, crossAxisPosition: crossAxisPosition}));
-    }
-    visitChildrenForSemantics(visitor) {
-      if (visitor == null) dart.nullFailed(I[0], 269, 54, "visitor");
-      if (this.child != null && !dart.test(this[_effectiveIgnoringSemantics])) visitor(dart.nullCheck(this.child));
-    }
-    debugFillProperties(properties) {
-      if (properties == null) dart.nullFailed(I[0], 275, 56, "properties");
-      super.debugFillProperties(properties);
-      properties.add(new (T.DiagnosticsPropertyOfbool()).new("ignoring", this.ignoring));
-      properties.add(new (T.DiagnosticsPropertyOfbool()).new("ignoringSemantics", this[_effectiveIgnoringSemantics], {description: this.ignoringSemantics == null ? "implicitly " + dart.str(this[_effectiveIgnoringSemantics]) : null}));
-    }
-  };
-  (proxy_sliver.RenderSliverIgnorePointer.new = function(opts) {
-    let sliver = opts && 'sliver' in opts ? opts.sliver : null;
-    let ignoring = opts && 'ignoring' in opts ? opts.ignoring : true;
-    if (ignoring == null) dart.nullFailed(I[0], 216, 10, "ignoring");
-    let ignoringSemantics = opts && 'ignoringSemantics' in opts ? opts.ignoringSemantics : null;
-    if (!(ignoring != null)) dart.assertFailed(null, I[0], 218, 15, "ignoring != null");
-    this[_ignoring] = ignoring;
-    this[_ignoringSemantics] = ignoringSemantics;
-    proxy_sliver.RenderSliverIgnorePointer.__proto__.new.call(this);
-    this.child = sliver;
-  }).prototype = proxy_sliver.RenderSliverIgnorePointer.prototype;
-  dart.addTypeTests(proxy_sliver.RenderSliverIgnorePointer);
-  dart.addTypeCaches(proxy_sliver.RenderSliverIgnorePointer);
-  dart.setGetterSignature(proxy_sliver.RenderSliverIgnorePointer, () => ({
-    __proto__: dart.getGetters(proxy_sliver.RenderSliverIgnorePointer.__proto__),
-    ignoring: core.bool,
-    ignoringSemantics: dart.nullable(core.bool),
-    [_effectiveIgnoringSemantics]: core.bool
-  }));
-  dart.setSetterSignature(proxy_sliver.RenderSliverIgnorePointer, () => ({
-    __proto__: dart.getSetters(proxy_sliver.RenderSliverIgnorePointer.__proto__),
-    ignoring: core.bool,
-    ignoringSemantics: dart.nullable(core.bool)
-  }));
-  dart.setLibraryUri(proxy_sliver.RenderSliverIgnorePointer, I[1]);
-  dart.setFieldSignature(proxy_sliver.RenderSliverIgnorePointer, () => ({
-    __proto__: dart.getFields(proxy_sliver.RenderSliverIgnorePointer.__proto__),
-    [_ignoring]: dart.fieldType(core.bool),
-    [_ignoringSemantics]: dart.fieldType(dart.nullable(core.bool))
-  }));
-  var _offstage = dart.privateName(proxy_sliver, "_offstage");
-  proxy_sliver.RenderSliverOffstage = class RenderSliverOffstage extends proxy_sliver.RenderProxySliver {
-    get offstage() {
-      return this[_offstage];
-    }
-    set offstage(value) {
-      if (value == null) dart.nullFailed(I[0], 305, 21, "value");
-      if (!(value != null)) dart.assertFailed(null, I[0], 306, 12, "value != null");
-      if (value == this[_offstage]) return;
-      this[_offstage] = value;
-      this.markNeedsLayoutForSizedByParentChange();
-    }
-    performLayout() {
-      if (!(this.child != null)) dart.assertFailed(null, I[0], 315, 12, "child != null");
-      dart.nullCheck(this.child).layout(this.constraints, {parentUsesSize: true});
-      if (!dart.test(this.offstage))
-        this.geometry = dart.nullCheck(this.child).geometry;
-      else
-        this.geometry = sliver.SliverGeometry.zero;
-    }
-    hitTest(result, opts) {
-      if (result == null) dart.nullFailed(I[0], 324, 36, "result");
-      let mainAxisPosition = opts && 'mainAxisPosition' in opts ? opts.mainAxisPosition : null;
-      if (mainAxisPosition == null) dart.nullFailed(I[0], 324, 61, "mainAxisPosition");
-      let crossAxisPosition = opts && 'crossAxisPosition' in opts ? opts.crossAxisPosition : null;
-      if (crossAxisPosition == null) dart.nullFailed(I[0], 324, 95, "crossAxisPosition");
-      return !dart.test(this.offstage) && dart.test(super.hitTest(result, {mainAxisPosition: mainAxisPosition, crossAxisPosition: crossAxisPosition}));
-    }
-    hitTestChildren(result, opts) {
-      if (result == null) dart.nullFailed(I[0], 333, 44, "result");
-      let mainAxisPosition = opts && 'mainAxisPosition' in opts ? opts.mainAxisPosition : null;
-      if (mainAxisPosition == null) dart.nullFailed(I[0], 333, 69, "mainAxisPosition");
-      let crossAxisPosition = opts && 'crossAxisPosition' in opts ? opts.crossAxisPosition : null;
-      if (crossAxisPosition == null) dart.nullFailed(I[0], 333, 103, "crossAxisPosition");
-      return !dart.test(this.offstage) && this.child != null && dart.notNull(dart.nullCheck(dart.nullCheck(this.child).geometry).hitTestExtent) > 0 && dart.test(dart.nullCheck(this.child).hitTest(result, {mainAxisPosition: mainAxisPosition, crossAxisPosition: crossAxisPosition}));
-    }
-    paint(context, offset) {
-      if (context == null) dart.nullFailed(I[0], 345, 30, "context");
-      if (offset == null) dart.nullFailed(I[0], 345, 46, "offset");
-      if (dart.test(this.offstage)) return;
-      context.paintChild(dart.nullCheck(this.child), offset);
-    }
-    visitChildrenForSemantics(visitor) {
-      if (visitor == null) dart.nullFailed(I[0], 352, 54, "visitor");
-      if (dart.test(this.offstage)) return;
-      super.visitChildrenForSemantics(visitor);
-    }
-    debugFillProperties(properties) {
-      if (properties == null) dart.nullFailed(I[0], 359, 56, "properties");
-      super.debugFillProperties(properties);
-      properties.add(new (T.DiagnosticsPropertyOfbool()).new("offstage", this.offstage));
-    }
-    debugDescribeChildren() {
-      if (this.child == null) return T.JSArrayOfDiagnosticsNode().of([]);
-      return T.JSArrayOfDiagnosticsNode().of([dart.nullCheck(this.child).toDiagnosticsNode({name: "child", style: dart.test(this.offstage) ? diagnostics.DiagnosticsTreeStyle.offstage : diagnostics.DiagnosticsTreeStyle.sparse})]);
-    }
-  };
-  (proxy_sliver.RenderSliverOffstage.new = function(opts) {
-    let offstage = opts && 'offstage' in opts ? opts.offstage : true;
-    if (offstage == null) dart.nullFailed(I[0], 288, 10, "offstage");
-    let sliver = opts && 'sliver' in opts ? opts.sliver : null;
-    if (!(offstage != null)) dart.assertFailed(null, I[0], 290, 15, "offstage != null");
-    this[_offstage] = offstage;
-    proxy_sliver.RenderSliverOffstage.__proto__.new.call(this);
-    this.child = sliver;
-  }).prototype = proxy_sliver.RenderSliverOffstage.prototype;
-  dart.addTypeTests(proxy_sliver.RenderSliverOffstage);
-  dart.addTypeCaches(proxy_sliver.RenderSliverOffstage);
-  dart.setGetterSignature(proxy_sliver.RenderSliverOffstage, () => ({
-    __proto__: dart.getGetters(proxy_sliver.RenderSliverOffstage.__proto__),
-    offstage: core.bool
-  }));
-  dart.setSetterSignature(proxy_sliver.RenderSliverOffstage, () => ({
-    __proto__: dart.getSetters(proxy_sliver.RenderSliverOffstage.__proto__),
-    offstage: core.bool
-  }));
-  dart.setLibraryUri(proxy_sliver.RenderSliverOffstage, I[1]);
-  dart.setFieldSignature(proxy_sliver.RenderSliverOffstage, () => ({
-    __proto__: dart.getFields(proxy_sliver.RenderSliverOffstage.__proto__),
-    [_offstage]: dart.fieldType(core.bool)
-  }));
-  const RenderProxySliver_RenderAnimatedOpacityMixin$36 = class RenderProxySliver_RenderAnimatedOpacityMixin extends proxy_sliver.RenderProxySliver {};
-  (RenderProxySliver_RenderAnimatedOpacityMixin$36.new = function(child) {
-    proxy_box.RenderAnimatedOpacityMixin$(sliver.RenderSliver)[dart.mixinNew].call(this);
-    RenderProxySliver_RenderAnimatedOpacityMixin$36.__proto__.new.call(this, child);
-  }).prototype = RenderProxySliver_RenderAnimatedOpacityMixin$36.prototype;
-  dart.applyMixin(RenderProxySliver_RenderAnimatedOpacityMixin$36, proxy_box.RenderAnimatedOpacityMixin$(sliver.RenderSliver));
-  proxy_sliver.RenderSliverAnimatedOpacity = class RenderSliverAnimatedOpacity extends RenderProxySliver_RenderAnimatedOpacityMixin$36 {};
-  (proxy_sliver.RenderSliverAnimatedOpacity.new = function(opts) {
-    let opacity = opts && 'opacity' in opts ? opts.opacity : null;
-    if (opacity == null) dart.nullFailed(I[0], 386, 32, "opacity");
-    let alwaysIncludeSemantics = opts && 'alwaysIncludeSemantics' in opts ? opts.alwaysIncludeSemantics : false;
-    if (alwaysIncludeSemantics == null) dart.nullFailed(I[0], 387, 10, "alwaysIncludeSemantics");
-    let sliver = opts && 'sliver' in opts ? opts.sliver : null;
-    if (!(opacity != null)) dart.assertFailed(null, I[0], 389, 15, "opacity != null");
-    if (!(alwaysIncludeSemantics != null)) dart.assertFailed(null, I[0], 390, 15, "alwaysIncludeSemantics != null");
-    proxy_sliver.RenderSliverAnimatedOpacity.__proto__.new.call(this);
-    this.opacity = opacity;
-    this.alwaysIncludeSemantics = alwaysIncludeSemantics;
-    this.child = sliver;
-  }).prototype = proxy_sliver.RenderSliverAnimatedOpacity.prototype;
-  dart.addTypeTests(proxy_sliver.RenderSliverAnimatedOpacity);
-  dart.addTypeCaches(proxy_sliver.RenderSliverAnimatedOpacity);
-  dart.setLibraryUri(proxy_sliver.RenderSliverAnimatedOpacity, I[1]);
-  dart.trackLibraries("packages/flutter/src/rendering/proxy_sliver.dart", {
-    "package:flutter/src/rendering/proxy_sliver.dart": proxy_sliver
-  }, {
-  }, '{"version":3,"sourceRoot":"","sources":["proxy_sliver.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;6BA2CoC;;AAChC,WAAqB,mCAAjB,AAAM,KAAD,cACP,AAAM,AAAuC,KAAxC,cAAc;IACvB;;AAIE,YAAO,AAAM;AACmC,MAA3C,AAAE,eAAP,mBAAc,mCAA6B;AACjB,MAA1B,gBAAgB,AAAE,eAAP;IACb;UAG2B,SAAgB;UAAhB;UAAgB;AACzC,UAAI,AAAM,oBACR,AAAQ,AAA0B,OAA3B,YAAiB,eAAL,aAAQ,MAAM;IACrC;;UAGyC;UAAyB;;UAAkC;;AAClG,YAAO,AAAM,AAEX,uBADkC,aAAhB,AAAE,eAAZ,AAAE,eAAP,uCAAiC,eAC5B,AAAE,eAAP,oBACD,MAAM,qBACY,gBAAgB,qBACf,iBAAiB;IAE1C;;6BAG0C;;AACxC,YAAO,AAAM,KAAD;AACZ,WAAa,YAAN,KAAK,EAAS;AACrB,YAAO;IACT;wBAGsC,OAAe;6BAAf;;UAAe;AACnD,YAAO,AAAM,KAAD;AACmB,4BAAoC,mCAAF,eAAhB,AAAM,KAAD;AACR,MAA9C,AAAgB,eAAD,qBAAqB,SAAS;IAC/C;;iDA9CiC;AAAjC;AACoB,IAAb,aAAQ,KAAK;EACpB;;;;;;;;;;;;;AA0EmC,YAAA,AAAM,AAAQ,uBAAI,AAAO,iBAAG,KAAK,AAAO,iBAAG;IAAI;;AAc5D;IAAQ;;UAEX;AACjB,YAAO,AAAM,KAAD;AACZ,YAAa,AAAO,aAAb,KAAK,KAAI,OAAa,aAAN,KAAK,KAAI;AAChC,UAAI,AAAS,kBAAG,KAAK,EACnB;AACS,+BAAqB;AACrB,uBAAa,AAAO,iBAAG;AAClB,MAAhB,iBAAW,KAAK;AAC+B,MAA/C,eAAkB,6BAAoB;AACtC,UAAI,AAAmB,kBAAD,IAAI,6BACxB,AAAgC;AAClB,MAAhB;AACA,UAAI,AAAW,UAAD,MAAK,AAAO,iBAAG,iBAAO,8BAClC,AAA0B;IAC9B;;AAOmC;IAAuB;;UAE1B;AAC9B,UAAI,AAAM,KAAD,IAAI,+BACX;AAC6B,MAA/B,gCAA0B,KAAK;AACL,MAA1B;IACF;UAG2B,SAAgB;UAAhB;UAAgB;AACzC,UAAI,AAAM,gCAA0B,AAAE,eAAZ,AAAE,eAAP;AACnB,YAAI,AAAO,iBAAG;AAEA,UAAZ,aAAQ;AACR;;AAEF,YAAI,AAAO,iBAAG;AAEA,UAAZ,aAAQ;AAC0B,UAAlC,AAAQ,OAAD,YAAiB,eAAL,aAAQ,MAAM;AACjC;;AAEF,uBAAO;AAMN,QALD,aAAQ,AAAQ,OAAD,aACb,MAAM,EACN,cACM,kDACU,qBAAN;;IAGhB;;UAGmD;AACjD,UAAI,AAAM,uBAAY,AAAO,iBAAG,eAAK,+BACnC,AAAO,AAAQ,OAAR,CAAM,eAAL;IACZ;;UAGqD;AACd,MAA/B,0BAAoB,UAAU;AACc,MAAlD,AAAW,UAAD,KAAK,mCAAe,WAAW;AAC8E,MAAvH,AAAW,UAAD,KAAK,iCAAa,kCAAiC,qCAAgC;IAC/F;;;QA7FS;;QACF;;QACS;UACJ,AAAQ,AAA0B,OAA3B,YAAoB,aAAR,OAAO,KAAI,OAAe,aAAR,OAAO,KAAI;UAChD,AAAuB,sBAAD;IACpB,iBAAE,OAAO;IACM,gCAAE,sBAAsB;IACzC,eAAW,6BAAoB,OAAO;AARlD;AASgB,IAAd,aAAQ,MAAM;EAChB;;;;;;;;;;;;;;;;;;;;;;;;;AAoHqB;IAAS;;UAEZ;AAChB,YAAO,AAAM,KAAD;AACZ,UAAI,AAAM,KAAD,IAAI,iBACX;AACe,MAAjB,kBAAY,KAAK;AACjB,UAAI,AAAmB,qCAA8B,eAAlB,2BACjC,AAA0B;IAC9B;;AAQ+B;IAAkB;0BAErB;AAC1B,UAAI,AAAM,KAAD,IAAI,0BACX;AACS,8BAAoB;AACL,MAA1B,2BAAqB,KAAK;AAC1B,UAAI,AAAkB,iBAAD,IAAI,mCACvB,AAA0B;IAC9B;;;AAEwC;0BAAqB;IAAQ;;UAGpC;UAAyB;;UAAkC;;AAC1F,YACE,YADM,4BACG,cACP,MAAM,qBACY,gBAAgB,qBACf,iBAAiB;IAE1C;;UAGmD;AACjD,UAAI,AAAM,iCAAY,oCACpB,AAAO,AAAQ,OAAR,CAAM,eAAL;IACZ;;UAGqD;AACd,MAA/B,0BAAoB,UAAU;AAC2B,MAA/D,AAAW,UAAD,KAAK,wCAA0B,YAAY;AACiI,MAAtL,AAAW,UAAD,KAAK,wCAA0B,qBAAqB,iDAA0C,AAAkB,iCAAU,AAA0C,yBAA7B,qCAA+B;IAClL;;;QAhEgB;QACT;;QACC;UACI,AAAS,QAAD;IACL,kBAAE,QAAQ;IACD,2BAAE,iBAAiB;AAN3C;AAOgB,IAAd,aAAQ,MAAM;EAChB;;;;;;;;;;;;;;;;;;;;;;;AAgFqB;IAAS;;UAGZ;AAChB,YAAO,AAAM,KAAD;AACZ,UAAI,AAAM,KAAD,IAAI,iBACX;AACe,MAAjB,kBAAY,KAAK;AACsB,MAAvC;IACF;;AAIE,YAAO,AAAM;AACmC,MAA3C,AAAE,eAAP,mBAAc,mCAA6B;AAC3C,qBAAK;AACuB,QAA1B,gBAAgB,AAAE,eAAP;;AAEmB,QAA9B,gBAA0B;IAC9B;;UAGiC;UAAyB;;UAAkC;;AAC1F,YAAiB,YAAT,4BAAkB,cACxB,MAAM,qBACY,gBAAgB,qBACf,iBAAiB;IAExC;;UAGyC;UAAyB;;UAAkC;;AAClG,YAGE,YAHM,kBACH,AAAM,sBACyB,aAAhB,AAAE,eAAZ,AAAE,eAAP,uCAAiC,eAC5B,AAAE,eAAP,oBACD,MAAM,qBACY,gBAAgB,qBACf,iBAAiB;IAE1C;UAG2B,SAAgB;UAAhB;UAAgB;AACzC,oBAAI,gBACF;AACgC,MAAlC,AAAQ,OAAD,YAAiB,eAAL,aAAQ,MAAM;IACnC;;UAGmD;AACjD,oBAAI,gBACF;AACsC,MAAlC,gCAA0B,OAAO;IACzC;;UAGqD;AACd,MAA/B,0BAAoB,UAAU;AAC2B,MAA/D,AAAW,UAAD,KAAK,wCAA0B,YAAY;IACvD;;AAIE,UAAI,AAAM,oBACR,MAAwB;AAC1B,YAAwB,kCACjB,AAAE,eAAP,qCACQ,0BACC,iBAAgC,4CAAgC;IAG7E;;;QAtFO;;QACS;UACJ,AAAS,QAAD;IACL,kBAAE,QAAQ;AAJzB;AAKgB,IAAd,aAAQ,MAAM;EAChB;;;;;;;;;;;;;;;;;kEA9PiC;;;;;;;QA2VJ;;QACtB;;QACS;UACJ,AAAQ,OAAD;UACP,AAAuB,sBAAD;AALlC;AAMwB,IAAjB,eAAU,OAAO;AAC8B,IAA/C,8BAAyB,sBAAsB;AACtC,IAAd,aAAQ,MAAM;EAChB","file":"../../../../../../../packages/flutter/src/rendering/proxy_sliver.dart.lib.js"}');
-  // Exports:
-  return {
-    src__rendering__proxy_sliver: proxy_sliver
-  };
-}));
-
-//# sourceMappingURL=proxy_sliver.dart.lib.js.map
+  var name$ = dart.privateName(EatNow, "SingleCard.name");
+  var dishName$ = dart.privateName(EatNow, "SingleCard.dishName");
+  var image$ = dart.privateName(EatNow, "SingleCard.image");
+  var tim

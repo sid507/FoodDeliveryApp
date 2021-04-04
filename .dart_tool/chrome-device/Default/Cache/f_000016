@@ -1,36 +1,32 @@
-define(['dart_sdk', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/material/material_state.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/painting/borders.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/rounded_rectangle_border.dart', 'packages/flutter/src/painting/border_radius.dart', 'packages/flutter/src/rendering/layer.dart', 'packages/flutter/src/material/constants.dart', 'packages/flutter/src/painting/alignment.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/rendering/flex.dart'], (function load__packages__flutter__src__material__elevated_button_dart(dart_sdk, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__material__material_state$46dart, packages__flutter__src__painting__strut_style$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__painting__borders$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__rounded_rectangle_border$46dart, packages__flutter__src__painting__border_radius$46dart, packages__flutter__src__rendering__layer$46dart, packages__flutter__src__material__constants$46dart, packages__flutter__src__painting__alignment$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__rendering__flex$46dart) {
+define(['dart_sdk', 'packages/plugin_platform_interface/plugin_platform_interface.dart', 'packages/flutter/src/services/system_channels.dart', 'packages/flutter/src/foundation/_platform_web.dart'], (function load__packages__firebase_core_platform_interface__firebase_core_platform_interface_dart(dart_sdk, packages__plugin_platform_interface__plugin_platform_interface$46dart, packages__flutter__src__services__system_channels$46dart, packages__flutter__src__foundation___platform_web$46dart) {
   'use strict';
   const core = dart_sdk.core;
   const ui = dart_sdk.ui;
-  const math = dart_sdk.math;
-  const _interceptors = dart_sdk._interceptors;
+  const _js_helper = dart_sdk._js_helper;
+  const async = dart_sdk.async;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const button_style = packages__flutter__src__material__icon_button$46dart.src__material__button_style;
-  const button_style_button = packages__flutter__src__material__icon_button$46dart.src__material__button_style_button;
-  const theme$ = packages__flutter__src__material__icon_button$46dart.src__material__theme;
-  const elevated_button_theme = packages__flutter__src__material__icon_button$46dart.src__material__elevated_button_theme;
-  const material_state = packages__flutter__src__material__material_state$46dart.src__material__material_state;
-  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
-  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
-  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
-  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
-  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
-  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
-  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
-  const rounded_rectangle_border = packages__flutter__src__painting__rounded_rectangle_border$46dart.src__painting__rounded_rectangle_border;
-  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
-  const mouse_cursor = packages__flutter__src__rendering__layer$46dart.src__rendering__mouse_cursor;
-  const constants = packages__flutter__src__material__constants$46dart.src__material__constants;
-  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
-  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
-  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
-  var elevated_button = Object.create(dart.library);
+  const plugin_platform_interface = packages__plugin_platform_interface__plugin_platform_interface$46dart.plugin_platform_interface;
+  const platform_channel = packages__flutter__src__services__system_channels$46dart.src__services__platform_channel;
+  const message_codecs = packages__flutter__src__services__system_channels$46dart.src__services__message_codecs;
+  const platform = packages__flutter__src__foundation___platform_web$46dart.src__foundation__platform;
+  var firebase_core_platform_interface = Object.create(dart.library);
+  var $toString = dartx.toString;
+  var $_equals = dartx._equals;
+  var $_get = dartx._get;
+  var $entries = dartx.entries;
+  var $remove = dartx.remove;
+  var $forEach = dartx.forEach;
+  var $_set = dartx._set;
+  var $values = dartx.values;
+  var $toList = dartx.toList;
+  var $containsKey = dartx.containsKey;
   dart._checkModuleNullSafetyMode(false);
   var T = {
-    TextStyleN: () => (T.TextStyleN = dart.constFn(dart.nullable(text_style.TextStyle)))(),
-    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
-    JSArrayOfWidget: () => (T.JSArrayOfWidget = dart.constFn(_interceptors.JSArray$(framework.Widget)))()
+    StringN: () => (T.StringN = dart.constFn(dart.nullable(core.String)))(),
+    IdentityMapOfString$StringN: () => (T.IdentityMapOfString$StringN = dart.constFn(_js_helper.IdentityMap$(core.String, T.StringN())))(),
+    IdentityMapOfString$dynamic: () => (T.IdentityMapOfString$dynamic = dart.constFn(_js_helper.IdentityMap$(core.String, dart.dynamic)))(),
+    IdentityMapOfString$MethodChannelFirebaseApp: () => (T.IdentityMapOfString$MethodChannelFirebaseApp = dart.constFn(_js_helper.IdentityMap$(core.String, firebase_core_platform_interface.MethodChannelFirebaseApp)))()
   };
   var T$Eval = Object.assign({
     _: () => T$Eval
@@ -45,530 +41,674 @@ define(['dart_sdk', 'packages/flutter/src/material/icon_button.dart', 'packages/
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
-    get C0() {
-      return C[0] = dart.const({
-        __proto__: ui.Clip.prototype,
-        [_name]: "Clip.none",
-        index: 0
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: message_codecs.StandardMessageCodec.prototype
       });
     },
     get C1() {
       return C[1] = dart.const({
-        __proto__: edge_insets.EdgeInsets.prototype,
-        [EdgeInsets_bottom]: 0,
-        [EdgeInsets_right]: 16,
-        [EdgeInsets_top]: 0,
-        [EdgeInsets_left]: 16
+        __proto__: message_codecs.StandardMethodCodec.prototype,
+        [StandardMethodCodec_messageCodec]: C[2] || CT.C2
       });
     },
-    get C2() {
-      return C[2] = dart.const({
-        __proto__: edge_insets.EdgeInsets.prototype,
-        [EdgeInsets_bottom]: 0,
-        [EdgeInsets_right]: 8,
-        [EdgeInsets_top]: 0,
-        [EdgeInsets_left]: 8
-      });
-    },
-    get C3() {
-      return C[3] = dart.const({
-        __proto__: edge_insets.EdgeInsets.prototype,
-        [EdgeInsets_bottom]: 0,
-        [EdgeInsets_right]: 4,
-        [EdgeInsets_top]: 0,
-        [EdgeInsets_left]: 4
-      });
-    },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: ui.Size.prototype,
-        [OffsetBase__dy]: 36,
-        [OffsetBase__dx]: 64
-      });
-    },
-    get C7() {
-      return C[7] = dart.const({
-        __proto__: borders.BorderStyle.prototype,
-        [_name$]: "BorderStyle.none",
-        index: 0
-      });
-    },
-    get C8() {
-      return C[8] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4278190080.0
-      });
-    },
-    get C6() {
-      return C[6] = dart.const({
-        __proto__: borders.BorderSide.prototype,
-        [BorderSide_style]: C[7] || CT.C7,
-        [BorderSide_width]: 0,
-        [BorderSide_color]: C[8] || CT.C8
-      });
-    },
-    get C10() {
-      return C[10] = dart.const({
-        __proto__: ui.Radius.prototype,
-        [Radius_y]: 4,
-        [Radius_x]: 4
-      });
-    },
-    get C9() {
-      return C[9] = dart.const({
-        __proto__: border_radius.BorderRadius.prototype,
-        [BorderRadius_bottomRight]: C[10] || CT.C10,
-        [BorderRadius_bottomLeft]: C[10] || CT.C10,
-        [BorderRadius_topRight]: C[10] || CT.C10,
-        [BorderRadius_topLeft]: C[10] || CT.C10
-      });
-    },
-    get C5() {
-      return C[5] = dart.const({
-        __proto__: rounded_rectangle_border.RoundedRectangleBorder.prototype,
-        [OutlinedBorder_side]: C[6] || CT.C6,
-        [RoundedRectangleBorder_borderRadius]: C[9] || CT.C9
-      });
-    },
-    get C13() {
-      return C[13] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "icon",
-        [_Location_column]: 46,
-        [_Location_line]: 400,
-        [_Location_file]: null
-      });
-    },
-    get C14() {
-      return C[14] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "label",
-        [_Location_column]: 58,
-        [_Location_line]: 400,
-        [_Location_file]: null
-      });
-    },
-    get C12() {
-      return C[12] = dart.constList([C[13] || CT.C13, C[14] || CT.C14], T._LocationL());
-    },
-    get C11() {
-      return C[11] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[12] || CT.C12,
-        [_Location_name]: null,
-        [_Location_column]: 17,
-        [_Location_line]: 400,
-        [_Location_file]: "file:///C:/flutter/flutter/packages/flutter/lib/src/material/elevated_button.dart"
-      });
-    },
-    get C15() {
-      return C[15] = dart.const({
-        __proto__: edge_insets.EdgeInsetsDirectional.prototype,
-        [EdgeInsetsDirectional_bottom]: 0,
-        [EdgeInsetsDirectional_end]: 16,
-        [EdgeInsetsDirectional_top]: 0,
-        [EdgeInsetsDirectional_start]: 12
-      });
-    },
-    get C16() {
-      return C[16] = dart.const({
-        __proto__: edge_insets.EdgeInsetsDirectional.prototype,
-        [EdgeInsetsDirectional_bottom]: 0,
-        [EdgeInsetsDirectional_end]: 4,
-        [EdgeInsetsDirectional_top]: 0,
-        [EdgeInsetsDirectional_start]: 8
-      });
-    },
-    get C19() {
-      return C[19] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "width",
-        [_Location_column]: 41,
-        [_Location_line]: 429,
-        [_Location_file]: null
-      });
-    },
-    get C18() {
-      return C[18] = dart.constList([C[19] || CT.C19], T._LocationL());
-    },
-    get C17() {
-      return C[17] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[18] || CT.C18,
-        [_Location_name]: null,
-        [_Location_column]: 32,
-        [_Location_line]: 429,
-        [_Location_file]: "file:///C:/flutter/flutter/packages/flutter/lib/src/material/elevated_button.dart"
-      });
-    },
-    get C22() {
-      return C[22] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "mainAxisSize",
-        [_Location_column]: 7,
-        [_Location_line]: 428,
-        [_Location_file]: null
-      });
-    },
-    get C23() {
-      return C[23] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 7,
-        [_Location_line]: 429,
-        [_Location_file]: null
-      });
-    },
-    get C21() {
-      return C[21] = dart.constList([C[22] || CT.C22, C[23] || CT.C23], T._LocationL());
-    },
-    get C20() {
-      return C[20] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[21] || CT.C21,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 427,
-        [_Location_file]: "file:///C:/flutter/flutter/packages/flutter/lib/src/material/elevated_button.dart"
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: platform_channel.MethodChannel.prototype,
+        [MethodChannel__binaryMessenger]: null,
+        [MethodChannel_codec]: C[1] || CT.C1,
+        [MethodChannel_name]: "plugins.flutter.io/firebase_core"
       });
     }
   }, false);
-  var C = Array(24).fill(void 0);
+  var C = Array(3).fill(void 0);
   var I = [
-    "file:///C:/flutter/flutter/packages/flutter/lib/src/material/elevated_button.dart",
-    "package:flutter/src/material/elevated_button.dart"
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_platform_interface-4.0.0/lib/src/firebase_exception.dart",
+    "package:firebase_core_platform_interface/firebase_core_platform_interface.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_platform_interface-4.0.0/lib/src/firebase_options.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_platform_interface-4.0.0/lib/src/method_channel/method_channel_firebase_app.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_platform_interface-4.0.0/lib/src/platform_interface/platform_interface_firebase_app.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_platform_interface-4.0.0/lib/src/method_channel/method_channel_firebase.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_platform_interface-4.0.0/lib/src/platform_interface/platform_interface_firebase.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_platform_interface-4.0.0/lib/src/platform_interface/platform_interface_firebase_plugin.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_platform_interface-4.0.0/lib/src/firebase_core_exceptions.dart"
   ];
-  var _name = dart.privateName(ui, "_name");
-  var EdgeInsets_bottom = dart.privateName(edge_insets, "EdgeInsets.bottom");
-  var EdgeInsets_right = dart.privateName(edge_insets, "EdgeInsets.right");
-  var EdgeInsets_top = dart.privateName(edge_insets, "EdgeInsets.top");
-  var EdgeInsets_left = dart.privateName(edge_insets, "EdgeInsets.left");
-  var OffsetBase__dy = dart.privateName(ui, "OffsetBase._dy");
-  var OffsetBase__dx = dart.privateName(ui, "OffsetBase._dx");
-  var _name$ = dart.privateName(borders, "_name");
-  var BorderSide_style = dart.privateName(borders, "BorderSide.style");
-  var BorderSide_width = dart.privateName(borders, "BorderSide.width");
-  var Color_value = dart.privateName(ui, "Color.value");
-  var BorderSide_color = dart.privateName(borders, "BorderSide.color");
-  var OutlinedBorder_side = dart.privateName(borders, "OutlinedBorder.side");
-  var Radius_y = dart.privateName(ui, "Radius.y");
-  var Radius_x = dart.privateName(ui, "Radius.x");
-  var BorderRadius_bottomRight = dart.privateName(border_radius, "BorderRadius.bottomRight");
-  var BorderRadius_bottomLeft = dart.privateName(border_radius, "BorderRadius.bottomLeft");
-  var BorderRadius_topRight = dart.privateName(border_radius, "BorderRadius.topRight");
-  var BorderRadius_topLeft = dart.privateName(border_radius, "BorderRadius.topLeft");
-  var RoundedRectangleBorder_borderRadius = dart.privateName(rounded_rectangle_border, "RoundedRectangleBorder.borderRadius");
-  elevated_button.ElevatedButton = class ElevatedButton extends button_style_button.ButtonStyleButton {
-    static styleFrom(opts) {
-      let primary = opts && 'primary' in opts ? opts.primary : null;
-      let onPrimary = opts && 'onPrimary' in opts ? opts.onPrimary : null;
-      let onSurface = opts && 'onSurface' in opts ? opts.onSurface : null;
-      let shadowColor = opts && 'shadowColor' in opts ? opts.shadowColor : null;
-      let elevation = opts && 'elevation' in opts ? opts.elevation : null;
-      let textStyle = opts && 'textStyle' in opts ? opts.textStyle : null;
-      let padding = opts && 'padding' in opts ? opts.padding : null;
-      let minimumSize = opts && 'minimumSize' in opts ? opts.minimumSize : null;
-      let side = opts && 'side' in opts ? opts.side : null;
-      let shape = opts && 'shape' in opts ? opts.shape : null;
-      let enabledMouseCursor = opts && 'enabledMouseCursor' in opts ? opts.enabledMouseCursor : null;
-      let disabledMouseCursor = opts && 'disabledMouseCursor' in opts ? opts.disabledMouseCursor : null;
-      let visualDensity = opts && 'visualDensity' in opts ? opts.visualDensity : null;
-      let tapTargetSize = opts && 'tapTargetSize' in opts ? opts.tapTargetSize : null;
-      let animationDuration = opts && 'animationDuration' in opts ? opts.animationDuration : null;
-      let enableFeedback = opts && 'enableFeedback' in opts ? opts.enableFeedback : null;
-      let alignment = opts && 'alignment' in opts ? opts.alignment : null;
-      let backgroundColor = onSurface == null && primary == null ? null : new elevated_button._ElevatedButtonDefaultBackground.new(primary, onSurface);
-      let foregroundColor = onSurface == null && onPrimary == null ? null : new elevated_button._ElevatedButtonDefaultForeground.new(onPrimary, onSurface);
-      let overlayColor = onPrimary == null ? null : new elevated_button._ElevatedButtonDefaultOverlay.new(onPrimary);
-      let elevationValue = elevation == null ? null : new elevated_button._ElevatedButtonDefaultElevation.new(elevation);
-      let mouseCursor = enabledMouseCursor == null && disabledMouseCursor == null ? null : new elevated_button._ElevatedButtonDefaultMouseCursor.new(enabledMouseCursor, disabledMouseCursor);
-      return new button_style.ButtonStyle.new({textStyle: material_state.MaterialStateProperty.all(T.TextStyleN(), textStyle), backgroundColor: backgroundColor, foregroundColor: foregroundColor, overlayColor: overlayColor, shadowColor: button_style_button.ButtonStyleButton.allOrNull(ui.Color, shadowColor), elevation: elevationValue, padding: button_style_button.ButtonStyleButton.allOrNull(edge_insets.EdgeInsetsGeometry, padding), minimumSize: button_style_button.ButtonStyleButton.allOrNull(ui.Size, minimumSize), side: button_style_button.ButtonStyleButton.allOrNull(borders.BorderSide, side), shape: button_style_button.ButtonStyleButton.allOrNull(borders.OutlinedBorder, shape), mouseCursor: mouseCursor, visualDensity: visualDensity, tapTargetSize: tapTargetSize, animationDuration: animationDuration, enableFeedback: enableFeedback, alignment: alignment});
+  var plugin$ = dart.privateName(firebase_core_platform_interface, "FirebaseException.plugin");
+  var message$ = dart.privateName(firebase_core_platform_interface, "FirebaseException.message");
+  var code$ = dart.privateName(firebase_core_platform_interface, "FirebaseException.code");
+  var stackTrace$ = dart.privateName(firebase_core_platform_interface, "FirebaseException.stackTrace");
+  firebase_core_platform_interface.FirebaseException = class FirebaseException extends core.Object {
+    get plugin() {
+      return this[plugin$];
     }
-    defaultStyleOf(context) {
-      let t0, t0$;
-      if (context == null) dart.nullFailed(I[0], 258, 43, "context");
-      let theme = theme$.Theme.of(context);
-      let colorScheme = theme.colorScheme;
-      let scaledPadding = button_style_button.ButtonStyleButton.scaledPadding(C[1] || CT.C1, C[2] || CT.C2, C[3] || CT.C3, (t0$ = (t0 = media_query.MediaQuery.maybeOf(context), t0 == null ? null : t0.textScaleFactor), t0$ == null ? 1.0 : t0$));
-      return elevated_button.ElevatedButton.styleFrom({primary: colorScheme.primary, onPrimary: colorScheme.onPrimary, onSurface: colorScheme.onSurface, shadowColor: theme.shadowColor, elevation: 2.0, textStyle: theme.textTheme.button, padding: scaledPadding, minimumSize: C[4] || CT.C4, side: null, shape: C[5] || CT.C5, enabledMouseCursor: mouse_cursor.SystemMouseCursors.click, disabledMouseCursor: mouse_cursor.SystemMouseCursors.forbidden, visualDensity: theme.visualDensity, tapTargetSize: theme.materialTapTargetSize, animationDuration: constants.kThemeChangeDuration, enableFeedback: true, alignment: alignment.Alignment.center});
+    set plugin(value) {
+      super.plugin = value;
     }
-    themeStyleOf(context) {
-      if (context == null) dart.nullFailed(I[0], 293, 42, "context");
-      return elevated_button_theme.ElevatedButtonTheme.of(context).style;
+    get message() {
+      return this[message$];
     }
-  };
-  (elevated_button.ElevatedButton.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let onPressed = opts && 'onPressed' in opts ? opts.onPressed : null;
-    let onLongPress = opts && 'onLongPress' in opts ? opts.onLongPress : null;
-    let style = opts && 'style' in opts ? opts.style : null;
-    let focusNode = opts && 'focusNode' in opts ? opts.focusNode : null;
-    let autofocus = opts && 'autofocus' in opts ? opts.autofocus : false;
-    if (autofocus == null) dart.nullFailed(I[0], 63, 10, "autofocus");
-    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : C[0] || CT.C0;
-    if (clipBehavior == null) dart.nullFailed(I[0], 64, 10, "clipBehavior");
-    let child = opts && 'child' in opts ? opts.child : null;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    elevated_button.ElevatedButton.__proto__.new.call(this, {key: key, onPressed: onPressed, onLongPress: onLongPress, style: style, focusNode: focusNode, autofocus: autofocus, clipBehavior: clipBehavior, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = elevated_button.ElevatedButton.prototype;
-  dart.addTypeTests(elevated_button.ElevatedButton);
-  dart.addTypeCaches(elevated_button.ElevatedButton);
-  dart.setMethodSignature(elevated_button.ElevatedButton, () => ({
-    __proto__: dart.getMethods(elevated_button.ElevatedButton.__proto__),
-    defaultStyleOf: dart.fnType(button_style.ButtonStyle, [framework.BuildContext]),
-    themeStyleOf: dart.fnType(dart.nullable(button_style.ButtonStyle), [framework.BuildContext])
-  }));
-  dart.setLibraryUri(elevated_button.ElevatedButton, I[1]);
-  const MaterialStateProperty_Diagnosticable$36 = class MaterialStateProperty_Diagnosticable extends material_state.MaterialStateProperty$(dart.nullable(ui.Color)) {};
-  (MaterialStateProperty_Diagnosticable$36.new = function() {
-  }).prototype = MaterialStateProperty_Diagnosticable$36.prototype;
-  dart.applyMixin(MaterialStateProperty_Diagnosticable$36, diagnostics.Diagnosticable);
-  elevated_button._ElevatedButtonDefaultBackground = class _ElevatedButtonDefaultBackground extends MaterialStateProperty_Diagnosticable$36 {
-    resolve(states) {
-      let t0;
-      if (states == null) dart.nullFailed(I[0], 306, 37, "states");
-      if (dart.test(states.contains(material_state.MaterialState.disabled))) {
-        t0 = this.onSurface;
-        return t0 == null ? null : t0.withOpacity(0.12);
+    set message(value) {
+      super.message = value;
+    }
+    get code() {
+      return this[code$];
+    }
+    set code(value) {
+      super.code = value;
+    }
+    get stackTrace() {
+      return this[stackTrace$];
+    }
+    set stackTrace(value) {
+      super.stackTrace = value;
+    }
+    _equals(other) {
+      if (other == null) return false;
+      if (this === other) return true;
+      if (!firebase_core_platform_interface.FirebaseException.is(other)) return false;
+      return dart.hashCode(other) == this.hashCode;
+    }
+    get hashCode() {
+      return ui.hashValues(this.plugin, this.code, this.message);
+    }
+    toString() {
+      let output = "[" + dart.str(this.plugin) + "/" + dart.str(this.code) + "] " + dart.str(this.message);
+      if (this.stackTrace != null) {
+        output = output + ("\n\n" + dart.str(dart.toString(this.stackTrace)));
       }
-      return this.primary;
+      return output;
     }
   };
-  (elevated_button._ElevatedButtonDefaultBackground.new = function(primary, onSurface) {
-    this.primary = primary;
-    this.onSurface = onSurface;
+  (firebase_core_platform_interface.FirebaseException.new = function(opts) {
+    let plugin = opts && 'plugin' in opts ? opts.plugin : null;
+    if (plugin == null) dart.nullFailed(I[0], 30, 19, "plugin");
+    let message = opts && 'message' in opts ? opts.message : null;
+    let code = opts && 'code' in opts ? opts.code : "unknown";
+    if (code == null) dart.nullFailed(I[0], 32, 10, "code");
+    let stackTrace = opts && 'stackTrace' in opts ? opts.stackTrace : null;
+    this[plugin$] = plugin;
+    this[message$] = message;
+    this[code$] = code;
+    this[stackTrace$] = stackTrace;
     ;
-  }).prototype = elevated_button._ElevatedButtonDefaultBackground.prototype;
-  dart.addTypeTests(elevated_button._ElevatedButtonDefaultBackground);
-  dart.addTypeCaches(elevated_button._ElevatedButtonDefaultBackground);
-  dart.setMethodSignature(elevated_button._ElevatedButtonDefaultBackground, () => ({
-    __proto__: dart.getMethods(elevated_button._ElevatedButtonDefaultBackground.__proto__),
-    resolve: dart.fnType(dart.nullable(ui.Color), [core.Set$(material_state.MaterialState)])
+  }).prototype = firebase_core_platform_interface.FirebaseException.prototype;
+  dart.addTypeTests(firebase_core_platform_interface.FirebaseException);
+  dart.addTypeCaches(firebase_core_platform_interface.FirebaseException);
+  firebase_core_platform_interface.FirebaseException[dart.implements] = () => [core.Exception];
+  dart.setMethodSignature(firebase_core_platform_interface.FirebaseException, () => ({
+    __proto__: dart.getMethods(firebase_core_platform_interface.FirebaseException.__proto__),
+    _equals: dart.fnType(core.bool, [dart.dynamic]),
+    [$_equals]: dart.fnType(core.bool, [dart.dynamic])
   }));
-  dart.setLibraryUri(elevated_button._ElevatedButtonDefaultBackground, I[1]);
-  dart.setFieldSignature(elevated_button._ElevatedButtonDefaultBackground, () => ({
-    __proto__: dart.getFields(elevated_button._ElevatedButtonDefaultBackground.__proto__),
-    primary: dart.finalFieldType(dart.nullable(ui.Color)),
-    onSurface: dart.finalFieldType(dart.nullable(ui.Color))
+  dart.setLibraryUri(firebase_core_platform_interface.FirebaseException, I[1]);
+  dart.setFieldSignature(firebase_core_platform_interface.FirebaseException, () => ({
+    __proto__: dart.getFields(firebase_core_platform_interface.FirebaseException.__proto__),
+    plugin: dart.finalFieldType(core.String),
+    message: dart.finalFieldType(dart.nullable(core.String)),
+    code: dart.finalFieldType(core.String),
+    stackTrace: dart.finalFieldType(dart.nullable(core.StackTrace))
   }));
-  const MaterialStateProperty_Diagnosticable$36$ = class MaterialStateProperty_Diagnosticable extends material_state.MaterialStateProperty$(dart.nullable(ui.Color)) {};
-  (MaterialStateProperty_Diagnosticable$36$.new = function() {
-  }).prototype = MaterialStateProperty_Diagnosticable$36$.prototype;
-  dart.applyMixin(MaterialStateProperty_Diagnosticable$36$, diagnostics.Diagnosticable);
-  elevated_button._ElevatedButtonDefaultForeground = class _ElevatedButtonDefaultForeground extends MaterialStateProperty_Diagnosticable$36$ {
-    resolve(states) {
-      let t0;
-      if (states == null) dart.nullFailed(I[0], 321, 37, "states");
-      if (dart.test(states.contains(material_state.MaterialState.disabled))) {
-        t0 = this.onSurface;
-        return t0 == null ? null : t0.withOpacity(0.38);
+  dart.defineExtensionMethods(firebase_core_platform_interface.FirebaseException, ['_equals', 'toString']);
+  dart.defineExtensionAccessors(firebase_core_platform_interface.FirebaseException, ['hashCode']);
+  var apiKey$ = dart.privateName(firebase_core_platform_interface, "FirebaseOptions.apiKey");
+  var appId$ = dart.privateName(firebase_core_platform_interface, "FirebaseOptions.appId");
+  var messagingSenderId$ = dart.privateName(firebase_core_platform_interface, "FirebaseOptions.messagingSenderId");
+  var projectId$ = dart.privateName(firebase_core_platform_interface, "FirebaseOptions.projectId");
+  var authDomain$ = dart.privateName(firebase_core_platform_interface, "FirebaseOptions.authDomain");
+  var databaseURL$ = dart.privateName(firebase_core_platform_interface, "FirebaseOptions.databaseURL");
+  var storageBucket$ = dart.privateName(firebase_core_platform_interface, "FirebaseOptions.storageBucket");
+  var measurementId$ = dart.privateName(firebase_core_platform_interface, "FirebaseOptions.measurementId");
+  var trackingId$ = dart.privateName(firebase_core_platform_interface, "FirebaseOptions.trackingId");
+  var deepLinkURLScheme$ = dart.privateName(firebase_core_platform_interface, "FirebaseOptions.deepLinkURLScheme");
+  var androidClientId$ = dart.privateName(firebase_core_platform_interface, "FirebaseOptions.androidClientId");
+  var iosClientId$ = dart.privateName(firebase_core_platform_interface, "FirebaseOptions.iosClientId");
+  var iosBundleId$ = dart.privateName(firebase_core_platform_interface, "FirebaseOptions.iosBundleId");
+  var appGroupId$ = dart.privateName(firebase_core_platform_interface, "FirebaseOptions.appGroupId");
+  firebase_core_platform_interface.FirebaseOptions = class FirebaseOptions extends core.Object {
+    get apiKey() {
+      return this[apiKey$];
+    }
+    set apiKey(value) {
+      super.apiKey = value;
+    }
+    get appId() {
+      return this[appId$];
+    }
+    set appId(value) {
+      super.appId = value;
+    }
+    get messagingSenderId() {
+      return this[messagingSenderId$];
+    }
+    set messagingSenderId(value) {
+      super.messagingSenderId = value;
+    }
+    get projectId() {
+      return this[projectId$];
+    }
+    set projectId(value) {
+      super.projectId = value;
+    }
+    get authDomain() {
+      return this[authDomain$];
+    }
+    set authDomain(value) {
+      super.authDomain = value;
+    }
+    get databaseURL() {
+      return this[databaseURL$];
+    }
+    set databaseURL(value) {
+      super.databaseURL = value;
+    }
+    get storageBucket() {
+      return this[storageBucket$];
+    }
+    set storageBucket(value) {
+      super.storageBucket = value;
+    }
+    get measurementId() {
+      return this[measurementId$];
+    }
+    set measurementId(value) {
+      super.measurementId = value;
+    }
+    get trackingId() {
+      return this[trackingId$];
+    }
+    set trackingId(value) {
+      super.trackingId = value;
+    }
+    get deepLinkURLScheme() {
+      return this[deepLinkURLScheme$];
+    }
+    set deepLinkURLScheme(value) {
+      super.deepLinkURLScheme = value;
+    }
+    get androidClientId() {
+      return this[androidClientId$];
+    }
+    set androidClientId(value) {
+      super.androidClientId = value;
+    }
+    get iosClientId() {
+      return this[iosClientId$];
+    }
+    set iosClientId(value) {
+      super.iosClientId = value;
+    }
+    get iosBundleId() {
+      return this[iosBundleId$];
+    }
+    set iosBundleId(value) {
+      super.iosBundleId = value;
+    }
+    get appGroupId() {
+      return this[appGroupId$];
+    }
+    set appGroupId(value) {
+      super.appGroupId = value;
+    }
+    get asMap() {
+      return new (T.IdentityMapOfString$StringN()).from(["apiKey", this.apiKey, "appId", this.appId, "messagingSenderId", this.messagingSenderId, "projectId", this.projectId, "authDomain", this.authDomain, "databaseURL", this.databaseURL, "storageBucket", this.storageBucket, "measurementId", this.measurementId, "trackingId", this.trackingId, "deepLinkURLScheme", this.deepLinkURLScheme, "androidClientId", this.androidClientId, "iosClientId", this.iosClientId, "iosBundleId", this.iosBundleId, "appGroupId", this.appGroupId]);
+    }
+    _equals(other) {
+      if (other == null) return false;
+      if (this === other) return true;
+      if (!firebase_core_platform_interface.FirebaseOptions.is(other)) return false;
+      return dart.toString(other.asMap) == dart.toString(this.asMap);
+    }
+    get hashCode() {
+      return ui.hashList(this.asMap[$entries]);
+    }
+    toString() {
+      return dart.toString(this.asMap);
+    }
+  };
+  (firebase_core_platform_interface.FirebaseOptions.new = function(opts) {
+    let apiKey = opts && 'apiKey' in opts ? opts.apiKey : null;
+    if (apiKey == null) dart.nullFailed(I[2], 37, 19, "apiKey");
+    let appId = opts && 'appId' in opts ? opts.appId : null;
+    if (appId == null) dart.nullFailed(I[2], 38, 19, "appId");
+    let messagingSenderId = opts && 'messagingSenderId' in opts ? opts.messagingSenderId : null;
+    if (messagingSenderId == null) dart.nullFailed(I[2], 39, 19, "messagingSenderId");
+    let projectId = opts && 'projectId' in opts ? opts.projectId : null;
+    if (projectId == null) dart.nullFailed(I[2], 40, 19, "projectId");
+    let authDomain = opts && 'authDomain' in opts ? opts.authDomain : null;
+    let databaseURL = opts && 'databaseURL' in opts ? opts.databaseURL : null;
+    let storageBucket = opts && 'storageBucket' in opts ? opts.storageBucket : null;
+    let measurementId = opts && 'measurementId' in opts ? opts.measurementId : null;
+    let trackingId = opts && 'trackingId' in opts ? opts.trackingId : null;
+    let deepLinkURLScheme = opts && 'deepLinkURLScheme' in opts ? opts.deepLinkURLScheme : null;
+    let androidClientId = opts && 'androidClientId' in opts ? opts.androidClientId : null;
+    let iosClientId = opts && 'iosClientId' in opts ? opts.iosClientId : null;
+    let iosBundleId = opts && 'iosBundleId' in opts ? opts.iosBundleId : null;
+    let appGroupId = opts && 'appGroupId' in opts ? opts.appGroupId : null;
+    this[apiKey$] = apiKey;
+    this[appId$] = appId;
+    this[messagingSenderId$] = messagingSenderId;
+    this[projectId$] = projectId;
+    this[authDomain$] = authDomain;
+    this[databaseURL$] = databaseURL;
+    this[storageBucket$] = storageBucket;
+    this[measurementId$] = measurementId;
+    this[trackingId$] = trackingId;
+    this[deepLinkURLScheme$] = deepLinkURLScheme;
+    this[androidClientId$] = androidClientId;
+    this[iosClientId$] = iosClientId;
+    this[iosBundleId$] = iosBundleId;
+    this[appGroupId$] = appGroupId;
+    ;
+  }).prototype = firebase_core_platform_interface.FirebaseOptions.prototype;
+  (firebase_core_platform_interface.FirebaseOptions.fromMap = function(map) {
+    if (map == null) dart.nullFailed(I[2], 59, 49, "map");
+    if (!(map[$_get]("apiKey") != null)) dart.assertFailed("'apiKey' cannot be null.", I[2], 60, 16, "map['apiKey'] != null");
+    if (!(map[$_get]("appId") != null)) dart.assertFailed("'appId' cannot be null.", I[2], 61, 16, "map['appId'] != null");
+    if (!(map[$_get]("messagingSenderId") != null)) dart.assertFailed("'messagingSenderId' cannot be null.", I[2], 62, 16, "map['messagingSenderId'] != null");
+    if (!(map[$_get]("projectId") != null)) dart.assertFailed("'projectId' cannot be null.", I[2], 64, 16, "map['projectId'] != null");
+    this[apiKey$] = core.String.as(map[$_get]("apiKey"));
+    this[appId$] = core.String.as(map[$_get]("appId"));
+    this[messagingSenderId$] = core.String.as(map[$_get]("messagingSenderId"));
+    this[projectId$] = core.String.as(map[$_get]("projectId"));
+    this[authDomain$] = T.StringN().as(map[$_get]("authDomain"));
+    this[databaseURL$] = T.StringN().as(map[$_get]("databaseURL"));
+    this[storageBucket$] = T.StringN().as(map[$_get]("storageBucket"));
+    this[measurementId$] = T.StringN().as(map[$_get]("measurementId"));
+    this[trackingId$] = T.StringN().as(map[$_get]("trackingId"));
+    this[deepLinkURLScheme$] = T.StringN().as(map[$_get]("deepLinkURLScheme"));
+    this[androidClientId$] = T.StringN().as(map[$_get]("androidClientId"));
+    this[iosClientId$] = T.StringN().as(map[$_get]("iosClientId"));
+    this[iosBundleId$] = T.StringN().as(map[$_get]("iosBundleId"));
+    this[appGroupId$] = T.StringN().as(map[$_get]("appGroupId"));
+    ;
+  }).prototype = firebase_core_platform_interface.FirebaseOptions.prototype;
+  dart.addTypeTests(firebase_core_platform_interface.FirebaseOptions);
+  dart.addTypeCaches(firebase_core_platform_interface.FirebaseOptions);
+  dart.setMethodSignature(firebase_core_platform_interface.FirebaseOptions, () => ({
+    __proto__: dart.getMethods(firebase_core_platform_interface.FirebaseOptions.__proto__),
+    _equals: dart.fnType(core.bool, [dart.dynamic]),
+    [$_equals]: dart.fnType(core.bool, [dart.dynamic])
+  }));
+  dart.setGetterSignature(firebase_core_platform_interface.FirebaseOptions, () => ({
+    __proto__: dart.getGetters(firebase_core_platform_interface.FirebaseOptions.__proto__),
+    asMap: core.Map$(core.String, dart.nullable(core.String))
+  }));
+  dart.setLibraryUri(firebase_core_platform_interface.FirebaseOptions, I[1]);
+  dart.setFieldSignature(firebase_core_platform_interface.FirebaseOptions, () => ({
+    __proto__: dart.getFields(firebase_core_platform_interface.FirebaseOptions.__proto__),
+    apiKey: dart.finalFieldType(core.String),
+    appId: dart.finalFieldType(core.String),
+    messagingSenderId: dart.finalFieldType(core.String),
+    projectId: dart.finalFieldType(core.String),
+    authDomain: dart.finalFieldType(dart.nullable(core.String)),
+    databaseURL: dart.finalFieldType(dart.nullable(core.String)),
+    storageBucket: dart.finalFieldType(dart.nullable(core.String)),
+    measurementId: dart.finalFieldType(dart.nullable(core.String)),
+    trackingId: dart.finalFieldType(dart.nullable(core.String)),
+    deepLinkURLScheme: dart.finalFieldType(dart.nullable(core.String)),
+    androidClientId: dart.finalFieldType(dart.nullable(core.String)),
+    iosClientId: dart.finalFieldType(dart.nullable(core.String)),
+    iosBundleId: dart.finalFieldType(dart.nullable(core.String)),
+    appGroupId: dart.finalFieldType(dart.nullable(core.String))
+  }));
+  dart.defineExtensionMethods(firebase_core_platform_interface.FirebaseOptions, ['_equals', 'toString']);
+  dart.defineExtensionAccessors(firebase_core_platform_interface.FirebaseOptions, ['hashCode']);
+  var _isDeleted = dart.privateName(firebase_core_platform_interface, "_isDeleted");
+  var _isAutomaticDataCollectionEnabled = dart.privateName(firebase_core_platform_interface, "_isAutomaticDataCollectionEnabled");
+  var _isDefault = dart.privateName(firebase_core_platform_interface, "_isDefault");
+  var name$ = dart.privateName(firebase_core_platform_interface, "FirebaseAppPlatform.name");
+  var options$ = dart.privateName(firebase_core_platform_interface, "FirebaseAppPlatform.options");
+  firebase_core_platform_interface.FirebaseAppPlatform = class FirebaseAppPlatform extends plugin_platform_interface.PlatformInterface {
+    get name() {
+      return this[name$];
+    }
+    set name(value) {
+      super.name = value;
+    }
+    get options() {
+      return this[options$];
+    }
+    set options(value) {
+      super.options = value;
+    }
+    static verifyExtends(instance) {
+      if (instance == null) dart.nullFailed(I[4], 17, 49, "instance");
+      plugin_platform_interface.PlatformInterface.verifyToken(instance, firebase_core_platform_interface.FirebaseAppPlatform._token);
+    }
+    get [_isDefault]() {
+      return this.name === "[DEFAULT]";
+    }
+    get isAutomaticDataCollectionEnabled() {
+      dart.throw(new core.UnimplementedError.new("isAutomaticDataCollectionEnabled has not been implemented."));
+    }
+    delete() {
+      return async.async(dart.void, function* $delete() {
+        dart.throw(new core.UnimplementedError.new("delete() has not been implemented."));
+      });
+    }
+    setAutomaticDataCollectionEnabled(enabled) {
+      if (enabled == null) dart.nullFailed(I[4], 48, 55, "enabled");
+      return async.async(dart.void, function* setAutomaticDataCollectionEnabled() {
+        dart.throw(new core.UnimplementedError.new("setAutomaticDataCollectionEnabled() has not been implemented."));
+      });
+    }
+    setAutomaticResourceManagementEnabled(enabled) {
+      if (enabled == null) dart.nullFailed(I[4], 55, 59, "enabled");
+      return async.async(dart.void, function* setAutomaticResourceManagementEnabled() {
+        dart.throw(new core.UnimplementedError.new("setAutomaticResourceManagementEnabled() has not been implemented."));
+      });
+    }
+    _equals(other) {
+      if (other == null) return false;
+      if (this === other) return true;
+      if (!firebase_core_platform_interface.FirebaseAppPlatform.is(other)) return false;
+      return other.name == this.name && dart.equals(other.options, this.options);
+    }
+    get hashCode() {
+      return ui.hashValues(this.name, this.options);
+    }
+    toString() {
+      return dart.str(dart.wrapType(firebase_core_platform_interface.FirebaseAppPlatform)) + "(" + dart.str(this.name) + ")";
+    }
+  };
+  (firebase_core_platform_interface.FirebaseAppPlatform.new = function(name, options) {
+    if (name == null) dart.nullFailed(I[4], 12, 28, "name");
+    if (options == null) dart.nullFailed(I[4], 12, 39, "options");
+    this[name$] = name;
+    this[options$] = options;
+    firebase_core_platform_interface.FirebaseAppPlatform.__proto__.new.call(this, {token: firebase_core_platform_interface.FirebaseAppPlatform._token});
+    ;
+  }).prototype = firebase_core_platform_interface.FirebaseAppPlatform.prototype;
+  dart.addTypeTests(firebase_core_platform_interface.FirebaseAppPlatform);
+  dart.addTypeCaches(firebase_core_platform_interface.FirebaseAppPlatform);
+  dart.setMethodSignature(firebase_core_platform_interface.FirebaseAppPlatform, () => ({
+    __proto__: dart.getMethods(firebase_core_platform_interface.FirebaseAppPlatform.__proto__),
+    delete: dart.fnType(async.Future$(dart.void), []),
+    setAutomaticDataCollectionEnabled: dart.fnType(async.Future$(dart.void), [core.bool]),
+    setAutomaticResourceManagementEnabled: dart.fnType(async.Future$(dart.void), [core.bool]),
+    _equals: dart.fnType(core.bool, [dart.nullable(core.Object)]),
+    [$_equals]: dart.fnType(core.bool, [dart.nullable(core.Object)])
+  }));
+  dart.setGetterSignature(firebase_core_platform_interface.FirebaseAppPlatform, () => ({
+    __proto__: dart.getGetters(firebase_core_platform_interface.FirebaseAppPlatform.__proto__),
+    [_isDefault]: core.bool,
+    isAutomaticDataCollectionEnabled: core.bool
+  }));
+  dart.setLibraryUri(firebase_core_platform_interface.FirebaseAppPlatform, I[1]);
+  dart.setFieldSignature(firebase_core_platform_interface.FirebaseAppPlatform, () => ({
+    __proto__: dart.getFields(firebase_core_platform_interface.FirebaseAppPlatform.__proto__),
+    name: dart.finalFieldType(core.String),
+    options: dart.finalFieldType(firebase_core_platform_interface.FirebaseOptions)
+  }));
+  dart.defineExtensionMethods(firebase_core_platform_interface.FirebaseAppPlatform, ['_equals', 'toString']);
+  dart.defineExtensionAccessors(firebase_core_platform_interface.FirebaseAppPlatform, ['hashCode']);
+  dart.defineLazy(firebase_core_platform_interface.FirebaseAppPlatform, {
+    /*firebase_core_platform_interface.FirebaseAppPlatform._token*/get _token() {
+      return new core.Object.new();
+    }
+  }, false);
+  firebase_core_platform_interface.MethodChannelFirebaseApp = class MethodChannelFirebaseApp extends firebase_core_platform_interface.FirebaseAppPlatform {
+    get isAutomaticDataCollectionEnabled() {
+      return this[_isAutomaticDataCollectionEnabled];
+    }
+    delete() {
+      return async.async(dart.void, (function* $delete() {
+        if (dart.test(this[_isDefault])) {
+          dart.throw(firebase_core_platform_interface.noDefaultAppDelete());
+        }
+        if (dart.test(this[_isDeleted])) {
+          return;
+        }
+        yield firebase_core_platform_interface.MethodChannelFirebase.channel.invokeMethod(dart.void, "FirebaseApp#delete", new (T.IdentityMapOfString$dynamic()).from(["appName", this.name, "options", this.options.asMap]));
+        firebase_core_platform_interface.MethodChannelFirebase.appInstances[$remove](this.name);
+        firebase_core_platform_interface.FirebasePluginPlatform._constantsForPluginApps[$remove](this.name);
+        this[_isDeleted] = true;
+      }).bind(this));
+    }
+    setAutomaticDataCollectionEnabled(enabled) {
+      if (enabled == null) dart.nullFailed(I[3], 61, 55, "enabled");
+      return async.async(dart.void, (function* setAutomaticDataCollectionEnabled() {
+        yield firebase_core_platform_interface.MethodChannelFirebase.channel.invokeMethod(dart.void, "FirebaseApp#setAutomaticDataCollectionEnabled", new (T.IdentityMapOfString$dynamic()).from(["appName", this.name, "enabled", enabled]));
+        this[_isAutomaticDataCollectionEnabled] = enabled;
+      }).bind(this));
+    }
+    setAutomaticResourceManagementEnabled(enabled) {
+      if (enabled == null) dart.nullFailed(I[3], 72, 59, "enabled");
+      return async.async(dart.void, (function* setAutomaticResourceManagementEnabled() {
+        yield firebase_core_platform_interface.MethodChannelFirebase.channel.invokeMethod(dart.void, "FirebaseApp#setAutomaticResourceManagementEnabled", new (T.IdentityMapOfString$dynamic()).from(["appName", this.name, "enabled", enabled]));
+      }).bind(this));
+    }
+  };
+  (firebase_core_platform_interface.MethodChannelFirebaseApp.new = function(name, options, opts) {
+    let t0;
+    if (name == null) dart.nullFailed(I[3], 18, 12, "name");
+    if (options == null) dart.nullFailed(I[3], 19, 21, "options");
+    let isAutomaticDataCollectionEnabled = opts && 'isAutomaticDataCollectionEnabled' in opts ? opts.isAutomaticDataCollectionEnabled : null;
+    this[_isDeleted] = false;
+    this[_isAutomaticDataCollectionEnabled] = core.bool.as((t0 = isAutomaticDataCollectionEnabled, t0 == null ? false : t0));
+    firebase_core_platform_interface.MethodChannelFirebaseApp.__proto__.new.call(this, name, options);
+    ;
+  }).prototype = firebase_core_platform_interface.MethodChannelFirebaseApp.prototype;
+  dart.addTypeTests(firebase_core_platform_interface.MethodChannelFirebaseApp);
+  dart.addTypeCaches(firebase_core_platform_interface.MethodChannelFirebaseApp);
+  dart.setLibraryUri(firebase_core_platform_interface.MethodChannelFirebaseApp, I[1]);
+  dart.setFieldSignature(firebase_core_platform_interface.MethodChannelFirebaseApp, () => ({
+    __proto__: dart.getFields(firebase_core_platform_interface.MethodChannelFirebaseApp.__proto__),
+    [_isDeleted]: dart.fieldType(core.bool),
+    [_isAutomaticDataCollectionEnabled]: dart.fieldType(core.bool)
+  }));
+  var _initializeFirebaseAppFromMap = dart.privateName(firebase_core_platform_interface, "_initializeFirebaseAppFromMap");
+  var _initializeCore = dart.privateName(firebase_core_platform_interface, "_initializeCore");
+  firebase_core_platform_interface.FirebasePlatform = class FirebasePlatform extends plugin_platform_interface.PlatformInterface {
+    static get instance() {
+      return firebase_core_platform_interface.FirebasePlatform._instance;
+    }
+    static set instance(instance) {
+      if (instance == null) dart.nullFailed(I[6], 31, 40, "instance");
+      plugin_platform_interface.PlatformInterface.verifyToken(instance, firebase_core_platform_interface.FirebasePlatform._token);
+      firebase_core_platform_interface.FirebasePlatform._instance = instance;
+    }
+    get apps() {
+      dart.throw(new core.UnimplementedError.new("apps has not been implemented."));
+    }
+    initializeApp(opts) {
+      let name = opts && 'name' in opts ? opts.name : null;
+      let options = opts && 'options' in opts ? opts.options : null;
+      dart.throw(new core.UnimplementedError.new("initializeApp() has not been implemented."));
+    }
+    app(name = "[DEFAULT]") {
+      if (name == null) dart.nullFailed(I[6], 52, 35, "name");
+      dart.throw(new core.UnimplementedError.new("app() has not been implemented."));
+    }
+  };
+  (firebase_core_platform_interface.FirebasePlatform.new = function() {
+    firebase_core_platform_interface.FirebasePlatform.__proto__.new.call(this, {token: firebase_core_platform_interface.FirebasePlatform._token});
+    ;
+  }).prototype = firebase_core_platform_interface.FirebasePlatform.prototype;
+  dart.addTypeTests(firebase_core_platform_interface.FirebasePlatform);
+  dart.addTypeCaches(firebase_core_platform_interface.FirebasePlatform);
+  dart.setMethodSignature(firebase_core_platform_interface.FirebasePlatform, () => ({
+    __proto__: dart.getMethods(firebase_core_platform_interface.FirebasePlatform.__proto__),
+    initializeApp: dart.fnType(async.Future$(firebase_core_platform_interface.FirebaseAppPlatform), [], {name: dart.nullable(core.String), options: dart.nullable(firebase_core_platform_interface.FirebaseOptions)}, {}),
+    app: dart.fnType(firebase_core_platform_interface.FirebaseAppPlatform, [], [core.String])
+  }));
+  dart.setGetterSignature(firebase_core_platform_interface.FirebasePlatform, () => ({
+    __proto__: dart.getGetters(firebase_core_platform_interface.FirebasePlatform.__proto__),
+    apps: core.List$(firebase_core_platform_interface.FirebaseAppPlatform)
+  }));
+  dart.setLibraryUri(firebase_core_platform_interface.FirebasePlatform, I[1]);
+  dart.defineLazy(firebase_core_platform_interface.FirebasePlatform, {
+    /*firebase_core_platform_interface.FirebasePlatform._token*/get _token() {
+      return new core.Object.new();
+    },
+    /*firebase_core_platform_interface.FirebasePlatform._instance*/get _instance() {
+      return new firebase_core_platform_interface.MethodChannelFirebase.new();
+    },
+    set _instance(_) {}
+  }, false);
+  var MethodChannel__binaryMessenger = dart.privateName(platform_channel, "MethodChannel._binaryMessenger");
+  var StandardMethodCodec_messageCodec = dart.privateName(message_codecs, "StandardMethodCodec.messageCodec");
+  var MethodChannel_codec = dart.privateName(platform_channel, "MethodChannel.codec");
+  var MethodChannel_name = dart.privateName(platform_channel, "MethodChannel.name");
+  firebase_core_platform_interface.MethodChannelFirebase = class MethodChannelFirebase extends firebase_core_platform_interface.FirebasePlatform {
+    [_initializeCore]() {
+      return async.async(dart.void, (function* _initializeCore() {
+        let apps = dart.nullCheck(yield firebase_core_platform_interface.MethodChannelFirebase.channel.invokeListMethod(core.Map, "Firebase#initializeCore"));
+        apps[$forEach](dart.bind(this, _initializeFirebaseAppFromMap));
+        firebase_core_platform_interface.MethodChannelFirebase.isCoreInitialized = true;
+      }).bind(this));
+    }
+    [_initializeFirebaseAppFromMap](map) {
+      if (map == null) dart.nullFailed(I[5], 40, 60, "map");
+      let methodChannelFirebaseApp = new firebase_core_platform_interface.MethodChannelFirebaseApp.new(core.String.as(map[$_get]("name")), new firebase_core_platform_interface.FirebaseOptions.fromMap(core.Map.as(map[$_get]("options"))), {isAutomaticDataCollectionEnabled: map[$_get]("isAutomaticDataCollectionEnabled")});
+      firebase_core_platform_interface.MethodChannelFirebase.appInstances[$_set](methodChannelFirebaseApp.name, methodChannelFirebaseApp);
+      firebase_core_platform_interface.FirebasePluginPlatform._constantsForPluginApps[$_set](methodChannelFirebaseApp.name, map[$_get]("pluginConstants"));
+    }
+    get apps() {
+      return firebase_core_platform_interface.MethodChannelFirebase.appInstances[$values][$toList]({growable: false});
+    }
+    initializeApp(opts) {
+      let name = opts && 'name' in opts ? opts.name : null;
+      let options = opts && 'options' in opts ? opts.options : null;
+      return async.async(firebase_core_platform_interface.FirebaseAppPlatform, (function* initializeApp() {
+        if (name === "[DEFAULT]") {
+          dart.throw(firebase_core_platform_interface.noDefaultAppInitialization());
+        }
+        if (!dart.test(firebase_core_platform_interface.MethodChannelFirebase.isCoreInitialized)) {
+          yield this[_initializeCore]();
+        }
+        if (name == null) {
+          let defaultApp = firebase_core_platform_interface.MethodChannelFirebase.appInstances[$_get]("[DEFAULT]");
+          if (defaultApp == null) {
+            dart.throw(firebase_core_platform_interface.coreNotInitialized());
+          }
+          return dart.nullCheck(firebase_core_platform_interface.MethodChannelFirebase.appInstances[$_get]("[DEFAULT]"));
+        }
+        if (!(options != null)) dart.assertFailed("FirebaseOptions cannot be null when creating a secondary Firebase app.", I[5], 95, 7, "options != null");
+        if (dart.test(firebase_core_platform_interface.MethodChannelFirebase.appInstances[$containsKey](name))) {
+          dart.throw(firebase_core_platform_interface.duplicateApp(name));
+        }
+        this[_initializeFirebaseAppFromMap](dart.nullCheck(yield firebase_core_platform_interface.MethodChannelFirebase.channel.invokeMapMethod(dart.dynamic, dart.dynamic, "Firebase#initializeApp", new (T.IdentityMapOfString$dynamic()).from(["appName", name, "options", dart.nullCheck(options).asMap]))));
+        return dart.nullCheck(firebase_core_platform_interface.MethodChannelFirebase.appInstances[$_get](name));
+      }).bind(this));
+    }
+    app(name = "[DEFAULT]") {
+      if (name == null) dart.nullFailed(I[5], 117, 35, "name");
+      if (dart.test(firebase_core_platform_interface.MethodChannelFirebase.appInstances[$containsKey](name))) {
+        return dart.nullCheck(firebase_core_platform_interface.MethodChannelFirebase.appInstances[$_get](name));
       }
-      return this.onPrimary;
+      dart.throw(firebase_core_platform_interface.noAppExists(name));
     }
   };
-  (elevated_button._ElevatedButtonDefaultForeground.new = function(onPrimary, onSurface) {
-    this.onPrimary = onPrimary;
-    this.onSurface = onSurface;
+  (firebase_core_platform_interface.MethodChannelFirebase.new = function() {
+    firebase_core_platform_interface.MethodChannelFirebase.__proto__.new.call(this);
     ;
-  }).prototype = elevated_button._ElevatedButtonDefaultForeground.prototype;
-  dart.addTypeTests(elevated_button._ElevatedButtonDefaultForeground);
-  dart.addTypeCaches(elevated_button._ElevatedButtonDefaultForeground);
-  dart.setMethodSignature(elevated_button._ElevatedButtonDefaultForeground, () => ({
-    __proto__: dart.getMethods(elevated_button._ElevatedButtonDefaultForeground.__proto__),
-    resolve: dart.fnType(dart.nullable(ui.Color), [core.Set$(material_state.MaterialState)])
+  }).prototype = firebase_core_platform_interface.MethodChannelFirebase.prototype;
+  dart.addTypeTests(firebase_core_platform_interface.MethodChannelFirebase);
+  dart.addTypeCaches(firebase_core_platform_interface.MethodChannelFirebase);
+  dart.setMethodSignature(firebase_core_platform_interface.MethodChannelFirebase, () => ({
+    __proto__: dart.getMethods(firebase_core_platform_interface.MethodChannelFirebase.__proto__),
+    [_initializeCore]: dart.fnType(async.Future$(dart.void), []),
+    [_initializeFirebaseAppFromMap]: dart.fnType(dart.void, [core.Map])
   }));
-  dart.setLibraryUri(elevated_button._ElevatedButtonDefaultForeground, I[1]);
-  dart.setFieldSignature(elevated_button._ElevatedButtonDefaultForeground, () => ({
-    __proto__: dart.getFields(elevated_button._ElevatedButtonDefaultForeground.__proto__),
-    onPrimary: dart.finalFieldType(dart.nullable(ui.Color)),
-    onSurface: dart.finalFieldType(dart.nullable(ui.Color))
-  }));
-  const MaterialStateProperty_Diagnosticable$36$0 = class MaterialStateProperty_Diagnosticable extends material_state.MaterialStateProperty$(dart.nullable(ui.Color)) {};
-  (MaterialStateProperty_Diagnosticable$36$0.new = function() {
-  }).prototype = MaterialStateProperty_Diagnosticable$36$0.prototype;
-  dart.applyMixin(MaterialStateProperty_Diagnosticable$36$0, diagnostics.Diagnosticable);
-  elevated_button._ElevatedButtonDefaultOverlay = class _ElevatedButtonDefaultOverlay extends MaterialStateProperty_Diagnosticable$36$0 {
-    resolve(states) {
-      if (states == null) dart.nullFailed(I[0], 335, 37, "states");
-      if (dart.test(states.contains(material_state.MaterialState.hovered))) return this.onPrimary.withOpacity(0.08);
-      if (dart.test(states.contains(material_state.MaterialState.focused)) || dart.test(states.contains(material_state.MaterialState.pressed))) return this.onPrimary.withOpacity(0.24);
-      return null;
+  dart.setLibraryUri(firebase_core_platform_interface.MethodChannelFirebase, I[1]);
+  dart.defineLazy(firebase_core_platform_interface.MethodChannelFirebase, {
+    /*firebase_core_platform_interface.MethodChannelFirebase.appInstances*/get appInstances() {
+      return new (T.IdentityMapOfString$MethodChannelFirebaseApp()).new();
+    },
+    set appInstances(_) {},
+    /*firebase_core_platform_interface.MethodChannelFirebase.isCoreInitialized*/get isCoreInitialized() {
+      return false;
+    },
+    set isCoreInitialized(_) {},
+    /*firebase_core_platform_interface.MethodChannelFirebase.channel*/get channel() {
+      return C[0] || CT.C0;
+    }
+  }, false);
+  var _appName$ = dart.privateName(firebase_core_platform_interface, "_appName");
+  var _methodChannelName$ = dart.privateName(firebase_core_platform_interface, "_methodChannelName");
+  firebase_core_platform_interface.FirebasePluginPlatform = class FirebasePluginPlatform extends plugin_platform_interface.PlatformInterface {
+    static verifyExtends(instance) {
+      if (instance == null) dart.nullFailed(I[7], 31, 52, "instance");
+      plugin_platform_interface.PlatformInterface.verifyToken(instance, firebase_core_platform_interface.FirebasePluginPlatform._token);
+    }
+    get pluginConstants() {
+      if (firebase_core_platform_interface.FirebasePluginPlatform._constantsForPluginApps[$_get](this[_appName$]) != null && dart.dsend(firebase_core_platform_interface.FirebasePluginPlatform._constantsForPluginApps[$_get](this[_appName$]), '_get', [this[_methodChannelName$]]) != null) {
+        return core.Map.as(dart.dsend(firebase_core_platform_interface.FirebasePluginPlatform._constantsForPluginApps[$_get](this[_appName$]), '_get', [this[_methodChannelName$]]));
+      }
+      return new _js_helper.LinkedMap.new();
     }
   };
-  (elevated_button._ElevatedButtonDefaultOverlay.new = function(onPrimary) {
-    if (onPrimary == null) dart.nullFailed(I[0], 330, 38, "onPrimary");
-    this.onPrimary = onPrimary;
+  (firebase_core_platform_interface.FirebasePluginPlatform.new = function(_appName, _methodChannelName) {
+    if (_appName == null) dart.nullFailed(I[7], 13, 31, "_appName");
+    if (_methodChannelName == null) dart.nullFailed(I[7], 13, 46, "_methodChannelName");
+    this[_appName$] = _appName;
+    this[_methodChannelName$] = _methodChannelName;
+    firebase_core_platform_interface.FirebasePluginPlatform.__proto__.new.call(this, {token: firebase_core_platform_interface.FirebasePluginPlatform._token});
     ;
-  }).prototype = elevated_button._ElevatedButtonDefaultOverlay.prototype;
-  dart.addTypeTests(elevated_button._ElevatedButtonDefaultOverlay);
-  dart.addTypeCaches(elevated_button._ElevatedButtonDefaultOverlay);
-  dart.setMethodSignature(elevated_button._ElevatedButtonDefaultOverlay, () => ({
-    __proto__: dart.getMethods(elevated_button._ElevatedButtonDefaultOverlay.__proto__),
-    resolve: dart.fnType(dart.nullable(ui.Color), [core.Set$(material_state.MaterialState)])
+  }).prototype = firebase_core_platform_interface.FirebasePluginPlatform.prototype;
+  dart.addTypeTests(firebase_core_platform_interface.FirebasePluginPlatform);
+  dart.addTypeCaches(firebase_core_platform_interface.FirebasePluginPlatform);
+  dart.setGetterSignature(firebase_core_platform_interface.FirebasePluginPlatform, () => ({
+    __proto__: dart.getGetters(firebase_core_platform_interface.FirebasePluginPlatform.__proto__),
+    pluginConstants: core.Map
   }));
-  dart.setLibraryUri(elevated_button._ElevatedButtonDefaultOverlay, I[1]);
-  dart.setFieldSignature(elevated_button._ElevatedButtonDefaultOverlay, () => ({
-    __proto__: dart.getFields(elevated_button._ElevatedButtonDefaultOverlay.__proto__),
-    onPrimary: dart.finalFieldType(ui.Color)
+  dart.setLibraryUri(firebase_core_platform_interface.FirebasePluginPlatform, I[1]);
+  dart.setFieldSignature(firebase_core_platform_interface.FirebasePluginPlatform, () => ({
+    __proto__: dart.getFields(firebase_core_platform_interface.FirebasePluginPlatform.__proto__),
+    [_appName$]: dart.finalFieldType(core.String),
+    [_methodChannelName$]: dart.finalFieldType(core.String)
   }));
-  const MaterialStateProperty_Diagnosticable$36$1 = class MaterialStateProperty_Diagnosticable extends material_state.MaterialStateProperty$(core.double) {};
-  (MaterialStateProperty_Diagnosticable$36$1.new = function() {
-  }).prototype = MaterialStateProperty_Diagnosticable$36$1.prototype;
-  dart.applyMixin(MaterialStateProperty_Diagnosticable$36$1, diagnostics.Diagnosticable);
-  elevated_button._ElevatedButtonDefaultElevation = class _ElevatedButtonDefaultElevation extends MaterialStateProperty_Diagnosticable$36$1 {
-    resolve(states) {
-      if (states == null) dart.nullFailed(I[0], 351, 37, "states");
-      if (dart.test(states.contains(material_state.MaterialState.disabled))) return 0.0;
-      if (dart.test(states.contains(material_state.MaterialState.hovered))) return dart.notNull(this.elevation) + 2;
-      if (dart.test(states.contains(material_state.MaterialState.focused))) return dart.notNull(this.elevation) + 2;
-      if (dart.test(states.contains(material_state.MaterialState.pressed))) return dart.notNull(this.elevation) + 6;
-      return this.elevation;
+  dart.defineLazy(firebase_core_platform_interface.FirebasePluginPlatform, {
+    /*firebase_core_platform_interface.FirebasePluginPlatform._constantsForPluginApps*/get _constantsForPluginApps() {
+      return new _js_helper.LinkedMap.new();
+    },
+    set _constantsForPluginApps(_) {},
+    /*firebase_core_platform_interface.FirebasePluginPlatform._token*/get _token() {
+      return new core.Object.new();
     }
+  }, false);
+  firebase_core_platform_interface.noAppExists = function noAppExists(appName) {
+    if (appName == null) dart.nullFailed(I[8], 9, 38, "appName");
+    return new firebase_core_platform_interface.FirebaseException.new({plugin: "core", code: "no-app", message: "No Firebase App '" + dart.str(appName) + "' has been created - call Firebase.initializeApp()"});
   };
-  (elevated_button._ElevatedButtonDefaultElevation.new = function(elevation) {
-    if (elevation == null) dart.nullFailed(I[0], 346, 40, "elevation");
-    this.elevation = elevation;
-    ;
-  }).prototype = elevated_button._ElevatedButtonDefaultElevation.prototype;
-  dart.addTypeTests(elevated_button._ElevatedButtonDefaultElevation);
-  dart.addTypeCaches(elevated_button._ElevatedButtonDefaultElevation);
-  dart.setMethodSignature(elevated_button._ElevatedButtonDefaultElevation, () => ({
-    __proto__: dart.getMethods(elevated_button._ElevatedButtonDefaultElevation.__proto__),
-    resolve: dart.fnType(core.double, [core.Set$(material_state.MaterialState)])
-  }));
-  dart.setLibraryUri(elevated_button._ElevatedButtonDefaultElevation, I[1]);
-  dart.setFieldSignature(elevated_button._ElevatedButtonDefaultElevation, () => ({
-    __proto__: dart.getFields(elevated_button._ElevatedButtonDefaultElevation.__proto__),
-    elevation: dart.finalFieldType(core.double)
-  }));
-  const MaterialStateProperty_Diagnosticable$36$2 = class MaterialStateProperty_Diagnosticable extends material_state.MaterialStateProperty$(dart.nullable(mouse_cursor.MouseCursor)) {};
-  (MaterialStateProperty_Diagnosticable$36$2.new = function() {
-  }).prototype = MaterialStateProperty_Diagnosticable$36$2.prototype;
-  dart.applyMixin(MaterialStateProperty_Diagnosticable$36$2, diagnostics.Diagnosticable);
-  elevated_button._ElevatedButtonDefaultMouseCursor = class _ElevatedButtonDefaultMouseCursor extends MaterialStateProperty_Diagnosticable$36$2 {
-    resolve(states) {
-      if (states == null) dart.nullFailed(I[0], 372, 43, "states");
-      if (dart.test(states.contains(material_state.MaterialState.disabled))) return this.disabledCursor;
-      return this.enabledCursor;
-    }
+  firebase_core_platform_interface.duplicateApp = function duplicateApp(appName) {
+    if (appName == null) dart.nullFailed(I[8], 19, 39, "appName");
+    return new firebase_core_platform_interface.FirebaseException.new({plugin: "core", code: "duplicate-app", message: "A Firebase App named \"" + dart.str(appName) + "\" already exists"});
   };
-  (elevated_button._ElevatedButtonDefaultMouseCursor.new = function(enabledCursor, disabledCursor) {
-    this.enabledCursor = enabledCursor;
-    this.disabledCursor = disabledCursor;
-    ;
-  }).prototype = elevated_button._ElevatedButtonDefaultMouseCursor.prototype;
-  dart.addTypeTests(elevated_button._ElevatedButtonDefaultMouseCursor);
-  dart.addTypeCaches(elevated_button._ElevatedButtonDefaultMouseCursor);
-  dart.setMethodSignature(elevated_button._ElevatedButtonDefaultMouseCursor, () => ({
-    __proto__: dart.getMethods(elevated_button._ElevatedButtonDefaultMouseCursor.__proto__),
-    resolve: dart.fnType(dart.nullable(mouse_cursor.MouseCursor), [core.Set$(material_state.MaterialState)])
-  }));
-  dart.setLibraryUri(elevated_button._ElevatedButtonDefaultMouseCursor, I[1]);
-  dart.setFieldSignature(elevated_button._ElevatedButtonDefaultMouseCursor, () => ({
-    __proto__: dart.getFields(elevated_button._ElevatedButtonDefaultMouseCursor.__proto__),
-    enabledCursor: dart.finalFieldType(dart.nullable(mouse_cursor.MouseCursor)),
-    disabledCursor: dart.finalFieldType(dart.nullable(mouse_cursor.MouseCursor))
-  }));
-  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
-  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
-  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
-  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
-  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  var EdgeInsetsDirectional_bottom = dart.privateName(edge_insets, "EdgeInsetsDirectional.bottom");
-  var EdgeInsetsDirectional_end = dart.privateName(edge_insets, "EdgeInsetsDirectional.end");
-  var EdgeInsetsDirectional_top = dart.privateName(edge_insets, "EdgeInsetsDirectional.top");
-  var EdgeInsetsDirectional_start = dart.privateName(edge_insets, "EdgeInsetsDirectional.start");
-  elevated_button._ElevatedButtonWithIcon = class _ElevatedButtonWithIcon extends elevated_button.ElevatedButton {
-    defaultStyleOf(context) {
-      let t0, t0$;
-      if (context == null) dart.nullFailed(I[0], 404, 43, "context");
-      let scaledPadding = button_style_button.ButtonStyleButton.scaledPadding(C[15] || CT.C15, C[2] || CT.C2, C[16] || CT.C16, (t0$ = (t0 = media_query.MediaQuery.maybeOf(context), t0 == null ? null : t0.textScaleFactor), t0$ == null ? 1.0 : t0$));
-      return super.defaultStyleOf(context).copyWith({padding: material_state.MaterialStateProperty.all(edge_insets.EdgeInsetsGeometry, scaledPadding)});
-    }
+  firebase_core_platform_interface.noDefaultAppInitialization = function noDefaultAppInitialization() {
+    return new firebase_core_platform_interface.FirebaseException.new({plugin: "core", message: "The " + "[DEFAULT]" + " app cannot be initialized here. " + "To initialize the default app, follow the installation instructions " + "for the specific platform you are developing with."});
   };
-  (elevated_button._ElevatedButtonWithIcon.new = function(opts) {
-    let t0, t0$;
-    let key = opts && 'key' in opts ? opts.key : null;
-    let onPressed = opts && 'onPressed' in opts ? opts.onPressed : null;
-    let onLongPress = opts && 'onLongPress' in opts ? opts.onLongPress : null;
-    let style = opts && 'style' in opts ? opts.style : null;
-    let focusNode = opts && 'focusNode' in opts ? opts.focusNode : null;
-    let autofocus = opts && 'autofocus' in opts ? opts.autofocus : null;
-    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : null;
-    let icon = opts && 'icon' in opts ? opts.icon : null;
-    if (icon == null) dart.nullFailed(I[0], 388, 21, "icon");
-    let label = opts && 'label' in opts ? opts.label : null;
-    if (label == null) dart.nullFailed(I[0], 389, 21, "label");
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    if (!(icon != null)) dart.assertFailed(null, I[0], 390, 15, "icon != null");
-    if (!(label != null)) dart.assertFailed(null, I[0], 391, 15, "label != null");
-    elevated_button._ElevatedButtonWithIcon.__proto__.new.call(this, {key: key, onPressed: onPressed, onLongPress: onLongPress, style: style, focusNode: focusNode, autofocus: (t0 = autofocus, t0 == null ? false : t0), clipBehavior: (t0$ = clipBehavior, t0$ == null ? ui.Clip.none : t0$), child: new elevated_button._ElevatedButtonWithIconChild.new({icon: icon, label: label, $creationLocationd_0dea112b090073317d4: C[11] || CT.C11}), $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = elevated_button._ElevatedButtonWithIcon.prototype;
-  dart.addTypeTests(elevated_button._ElevatedButtonWithIcon);
-  dart.addTypeCaches(elevated_button._ElevatedButtonWithIcon);
-  dart.setLibraryUri(elevated_button._ElevatedButtonWithIcon, I[1]);
-  var label$ = dart.privateName(elevated_button, "_ElevatedButtonWithIconChild.label");
-  var icon$ = dart.privateName(elevated_button, "_ElevatedButtonWithIconChild.icon");
-  elevated_button._ElevatedButtonWithIconChild = class _ElevatedButtonWithIconChild extends framework.StatelessWidget {
-    get label() {
-      return this[label$];
+  firebase_core_platform_interface.coreNotInitialized = function coreNotInitialized() {
+    let message = null;
+    if (true) {
+      message = "Firebase has not been correctly initialized. Have you added the Firebase import scripts to your index.html file? \n    \nView the Web Installation documentation for more information: https://firebase.flutter.dev/docs/installation/web\n    ";
+    } else if (platform.defaultTargetPlatform == platform.TargetPlatform.android) {
+      message = "Firebase has not been correctly initialized. Have you added the \"google-services.json\" file to the project? \n    \nView the Android Installation documentation for more information: https://firebase.flutter.dev/docs/installation/android\n";
+    } else if (platform.defaultTargetPlatform == platform.TargetPlatform.iOS) {
+      message = "Firebase has not been correctly initialized. Have you added the \"GoogleService-Info.plist\" file to the project? \n    \nView the iOS Installation documentation for more information: https://firebase.flutter.dev/docs/installation/ios\n";
+    } else {
+      message = "Firebase has not been initialized. " + "Please check the documentation for your platform.";
     }
-    set label(value) {
-      super.label = value;
-    }
-    get icon() {
-      return this[icon$];
-    }
-    set icon(value) {
-      super.icon = value;
-    }
-    build(context) {
-      let t0, t0$;
-      if (context == null) dart.nullFailed(I[0], 424, 29, "context");
-      let scale = (t0$ = (t0 = media_query.MediaQuery.maybeOf(context), t0 == null ? null : t0.textScaleFactor), t0$ == null ? 1.0 : t0$);
-      let gap = dart.notNull(scale) <= 1 ? 8.0 : dart.nullCheck(ui.lerpDouble(8, 4, math.min(core.double, dart.notNull(scale) - 1, 1.0)));
-      return new basic.Row.new({mainAxisSize: flex.MainAxisSize.min, children: T.JSArrayOfWidget().of([this.icon, new basic.SizedBox.new({width: gap, $creationLocationd_0dea112b090073317d4: C[17] || CT.C17}), this.label]), $creationLocationd_0dea112b090073317d4: C[20] || CT.C20});
-    }
+    return new firebase_core_platform_interface.FirebaseException.new({plugin: "core", code: "not-initialized", message: message});
   };
-  (elevated_button._ElevatedButtonWithIconChild.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let label = opts && 'label' in opts ? opts.label : null;
-    if (label == null) dart.nullFailed(I[0], 418, 64, "label");
-    let icon = opts && 'icon' in opts ? opts.icon : null;
-    if (icon == null) dart.nullFailed(I[0], 418, 85, "icon");
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[label$] = label;
-    this[icon$] = icon;
-    elevated_button._ElevatedButtonWithIconChild.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = elevated_button._ElevatedButtonWithIconChild.prototype;
-  dart.addTypeTests(elevated_button._ElevatedButtonWithIconChild);
-  dart.addTypeCaches(elevated_button._ElevatedButtonWithIconChild);
-  dart.setMethodSignature(elevated_button._ElevatedButtonWithIconChild, () => ({
-    __proto__: dart.getMethods(elevated_button._ElevatedButtonWithIconChild.__proto__),
-    build: dart.fnType(framework.Widget, [framework.BuildContext])
-  }));
-  dart.setLibraryUri(elevated_button._ElevatedButtonWithIconChild, I[1]);
-  dart.setFieldSignature(elevated_button._ElevatedButtonWithIconChild, () => ({
-    __proto__: dart.getFields(elevated_button._ElevatedButtonWithIconChild.__proto__),
-    label: dart.finalFieldType(framework.Widget),
-    icon: dart.finalFieldType(framework.Widget)
-  }));
-  dart.trackLibraries("packages/flutter/src/material/elevated_button.dart", {
-    "package:flutter/src/material/elevated_button.dart": elevated_button
+  firebase_core_platform_interface.noDefaultAppDelete = function noDefaultAppDelete() {
+    return new firebase_core_platform_interface.FirebaseException.new({plugin: "core", message: "The default Firebase app instance cannot be deleted."});
+  };
+  dart.defineLazy(firebase_core_platform_interface, {
+    /*firebase_core_platform_interface.defaultFirebaseAppName*/get defaultFirebaseAppName() {
+      return "[DEFAULT]";
+    }
+  }, false);
+  dart.trackLibraries("packages/firebase_core_platform_interface/firebase_core_platform_interface.dart", {
+    "package:firebase_core_platform_interface/firebase_core_platform_interface.dart": firebase_core_platform_interface
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["elevated_button.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/material/elevated_button.dart.lib.js"}');
+    "package:firebase_core_platform_interface/firebase_core_platform_interface.dart": ["src/firebase_core_exceptions.dart", "src/firebase_exception.dart", "src/firebase_options.dart", "src/method_channel/method_channel_firebase_app.dart", "src/method_channel/method_channel_firebase.dart", "src/platform_interface/platform_interface_firebase_app.dart", "src/platform_interface/platform_interface_firebase.dart", "src/platform_interface/platform_interface_firebase_plugin.dart"]
+  }, '{"version":3,"sourceRoot":"","sources":["src/firebase_exception.dart","src/firebase_options.dart","src/platform_interface/platform_interface_firebase_app.dart","src/method_channel/method_channel_firebase_app.dart","src/platform_interface/platform_interface_firebase.dart","src/method_channel/method_channel_firebase.dart","src/platform_interface/platform_interface_firebase_plugin.dart","src/firebase_core_exceptions.dart","firebase_core_platform_interface.dart"],"names":[],"mappings":"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","file":"../../../../../../packages/firebase_core_platform_interface/firebase_core_platform_interface.dart.lib.js"}');
   // Exports:
   return {
-    src__material__elevated_button: elevated_button
+    firebase_core_platform_interface: firebase_core_platform_interface
   };
 }));
 
-//# sourceMappingURL=elevated_button.dart.lib.js.map
+//# sourceMappingURL=firebase_core_platform_interface.dart.lib.js.map

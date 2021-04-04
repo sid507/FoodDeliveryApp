@@ -1,18 +1,37 @@
-define(['dart_sdk', 'packages/flutter/src/gestures/velocity_tracker.dart', 'packages/flutter/src/gestures/constants.dart', 'packages/flutter/src/gestures/arena.dart', 'packages/flutter/src/gestures/events.dart', 'packages/flutter/src/gestures/recognizer.dart'], (function load__packages__flutter__src__gestures__long_press_dart(dart_sdk, packages__flutter__src__gestures__velocity_tracker$46dart, packages__flutter__src__gestures__constants$46dart, packages__flutter__src__gestures__arena$46dart, packages__flutter__src__gestures__events$46dart, packages__flutter__src__gestures__recognizer$46dart) {
+define(['dart_sdk', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/gestures/recognizer.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/rendering/viewport_offset.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/rendering/layer.dart', 'packages/flutter/src/rendering/sliver.dart', 'packages/flutter/src/painting/matrix_utils.dart', 'packages/flutter/src/animation/curves.dart'], (function load__packages__flutter__src__widgets__single_child_scroll_view_dart(dart_sdk, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__gestures__recognizer$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__rendering__viewport_offset$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__rendering__layer$46dart, packages__flutter__src__rendering__sliver$46dart, packages__flutter__src__painting__matrix_utils$46dart, packages__flutter__src__animation__curves$46dart) {
   'use strict';
   const core = dart_sdk.core;
   const ui = dart_sdk.ui;
+  const _internal = dart_sdk._internal;
+  const math = dart_sdk.math;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const velocity_tracker = packages__flutter__src__gestures__velocity_tracker$46dart.src__gestures__velocity_tracker;
-  const constants = packages__flutter__src__gestures__constants$46dart.src__gestures__constants;
-  const arena = packages__flutter__src__gestures__arena$46dart.src__gestures__arena;
-  const events = packages__flutter__src__gestures__events$46dart.src__gestures__events;
+  const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
   const recognizer = packages__flutter__src__gestures__recognizer$46dart.src__gestures__recognizer;
-  var long_press = Object.create(dart.library);
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const primary_scroll_controller = packages__flutter__src__widgets__widget_span$46dart.src__widgets__primary_scroll_controller;
+  const scrollable$ = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scrollable;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const scroll_controller = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scroll_controller;
+  const scroll_physics = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scroll_physics;
+  const viewport_offset = packages__flutter__src__rendering__viewport_offset$46dart.src__rendering__viewport_offset;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  const object = packages__flutter__src__rendering__layer$46dart.src__rendering__object;
+  const box = packages__flutter__src__rendering__layer$46dart.src__rendering__box;
+  const layer = packages__flutter__src__rendering__layer$46dart.src__rendering__layer;
+  const viewport = packages__flutter__src__rendering__sliver$46dart.src__rendering__viewport;
+  const matrix_utils = packages__flutter__src__painting__matrix_utils$46dart.src__painting__matrix_utils;
+  const curves = packages__flutter__src__animation__curves$46dart.src__animation__curves;
+  var single_child_scroll_view = Object.create(dart.library);
   dart._checkModuleNullSafetyMode(false);
   var T = {
-    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))()
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    BuildContextAndViewportOffsetTo_SingleChildViewport: () => (T.BuildContextAndViewportOffsetTo_SingleChildViewport = dart.constFn(dart.fnType(single_child_scroll_view._SingleChildViewport, [framework.BuildContext, viewport_offset.ViewportOffset])))(),
+    PaintingContextAndOffsetTovoid: () => (T.PaintingContextAndOffsetTovoid = dart.constFn(dart.fnType(dart.void, [object.PaintingContext, ui.Offset])))(),
+    RenderObjectN: () => (T.RenderObjectN = dart.constFn(dart.nullable(object.RenderObject)))(),
+    OffsetN: () => (T.OffsetN = dart.constFn(dart.nullable(ui.Offset)))(),
+    BoxHitTestResultAndOffsetNTobool: () => (T.BoxHitTestResultAndOffsetNTobool = dart.constFn(dart.fnType(core.bool, [box.BoxHitTestResult, T.OffsetN()])))()
   };
   var T$Eval = Object.assign({
     _: () => T$Eval
@@ -29,547 +48,911 @@ define(['dart_sdk', 'packages/flutter/src/gestures/velocity_tracker.dart', 'pack
   dart.defineLazy(CT, {
     get C0() {
       return C[0] = dart.const({
-        __proto__: ui.Offset.prototype,
-        [OffsetBase__dy]: 0,
-        [OffsetBase__dx]: 0
+        __proto__: basic_types.Axis.prototype,
+        [_name]: "Axis.vertical",
+        index: 1
       });
     },
     get C1() {
       return C[1] = dart.const({
-        __proto__: velocity_tracker.Velocity.prototype,
-        [Velocity_pixelsPerSecond]: C[0] || CT.C0
+        __proto__: recognizer.DragStartBehavior.prototype,
+        [_name$]: "DragStartBehavior.start",
+        index: 1
+      });
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: ui.Clip.prototype,
+        [_name$0]: "Clip.hardEdge",
+        index: 1
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 26,
+        [_Location_line]: 318,
+        [_Location_file]: null
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 45,
+        [_Location_line]: 318,
+        [_Location_file]: null
+      });
+    },
+    get C4() {
+      return C[4] = dart.constList([C[5] || CT.C5, C[6] || CT.C6], T._LocationL());
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[4] || CT.C4,
+        [_Location_name]: null,
+        [_Location_column]: 18,
+        [_Location_line]: 318,
+        [_Location_file]: "file:///C:/flutter/packages/flutter/lib/src/widgets/single_child_scroll_view.dart"
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "axisDirection",
+        [_Location_column]: 11,
+        [_Location_line]: 330,
+        [_Location_file]: null
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "offset",
+        [_Location_column]: 11,
+        [_Location_line]: 331,
+        [_Location_file]: null
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 332,
+        [_Location_file]: null
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "clipBehavior",
+        [_Location_column]: 11,
+        [_Location_line]: 333,
+        [_Location_file]: null
+      });
+    },
+    get C8() {
+      return C[8] = dart.constList([C[9] || CT.C9, C[10] || CT.C10, C[11] || CT.C11, C[12] || CT.C12], T._LocationL());
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[8] || CT.C8,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 329,
+        [_Location_file]: "file:///C:/flutter/packages/flutter/lib/src/widgets/single_child_scroll_view.dart"
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "dragStartBehavior",
+        [_Location_column]: 7,
+        [_Location_line]: 323,
+        [_Location_file]: null
+      });
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "axisDirection",
+        [_Location_column]: 7,
+        [_Location_line]: 324,
+        [_Location_file]: null
+      });
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "controller",
+        [_Location_column]: 7,
+        [_Location_line]: 325,
+        [_Location_file]: null
+      });
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "physics",
+        [_Location_column]: 7,
+        [_Location_line]: 326,
+        [_Location_file]: null
+      });
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "restorationId",
+        [_Location_column]: 7,
+        [_Location_line]: 327,
+        [_Location_file]: null
+      });
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "viewportBuilder",
+        [_Location_column]: 7,
+        [_Location_line]: 328,
+        [_Location_file]: null
+      });
+    },
+    get C14() {
+      return C[14] = dart.constList([C[15] || CT.C15, C[16] || CT.C16, C[17] || CT.C17, C[18] || CT.C18, C[19] || CT.C19, C[20] || CT.C20], T._LocationL());
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[14] || CT.C14,
+        [_Location_name]: null,
+        [_Location_column]: 35,
+        [_Location_line]: 322,
+        [_Location_file]: "file:///C:/flutter/packages/flutter/lib/src/widgets/single_child_scroll_view.dart"
+      });
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 38,
+        [_Location_line]: 338,
+        [_Location_file]: null
+      });
+    },
+    get C22() {
+      return C[22] = dart.constList([C[23] || CT.C23], T._LocationL());
+    },
+    get C21() {
+      return C[21] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[22] || CT.C22,
+        [_Location_name]: null,
+        [_Location_column]: 33,
+        [_Location_line]: 338,
+        [_Location_file]: "file:///C:/flutter/packages/flutter/lib/src/widgets/single_child_scroll_view.dart"
+      });
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: basic_types.AxisDirection.prototype,
+        [_name]: "AxisDirection.down",
+        index: 2
+      });
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: basic_types.Axis.prototype,
+        [_name]: "Axis.horizontal",
+        index: 0
+      });
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: basic_types.AxisDirection.prototype,
+        [_name]: "AxisDirection.up",
+        index: 0
+      });
+    },
+    get C27() {
+      return C[27] = dart.const({
+        __proto__: basic_types.AxisDirection.prototype,
+        [_name]: "AxisDirection.left",
+        index: 3
+      });
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: basic_types.AxisDirection.prototype,
+        [_name]: "AxisDirection.right",
+        index: 1
+      });
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 0
+      });
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: curves.Cubic.prototype,
+        [Cubic_d]: 1,
+        [Cubic_c]: 0.25,
+        [Cubic_b]: 0.1,
+        [Cubic_a]: 0.25
       });
     }
   }, false);
-  var C = Array(2).fill(void 0);
+  var C = Array(31).fill(void 0);
   var I = [
-    "file:///C:/flutter/flutter/packages/flutter/lib/src/gestures/long_press.dart",
-    "package:flutter/src/gestures/long_press.dart"
+    "file:///C:/flutter/packages/flutter/lib/src/widgets/single_child_scroll_view.dart",
+    "package:flutter/src/widgets/single_child_scroll_view.dart"
   ];
-  var globalPosition$ = dart.privateName(long_press, "LongPressStartDetails.globalPosition");
-  var localPosition$ = dart.privateName(long_press, "LongPressStartDetails.localPosition");
-  var OffsetBase__dy = dart.privateName(ui, "OffsetBase._dy");
-  var OffsetBase__dx = dart.privateName(ui, "OffsetBase._dx");
-  long_press.LongPressStartDetails = class LongPressStartDetails extends core.Object {
-    get globalPosition() {
-      return this[globalPosition$];
+  var scrollDirection$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.scrollDirection");
+  var reverse$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.reverse");
+  var padding$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.padding");
+  var controller$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.controller");
+  var primary$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.primary");
+  var physics$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.physics");
+  var child$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.child");
+  var dragStartBehavior$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.dragStartBehavior");
+  var clipBehavior$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.clipBehavior");
+  var restorationId$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.restorationId");
+  var _name = dart.privateName(basic_types, "_name");
+  var _name$ = dart.privateName(recognizer, "_name");
+  var _name$0 = dart.privateName(ui, "_name");
+  var _getDirection = dart.privateName(single_child_scroll_view, "_getDirection");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  single_child_scroll_view.SingleChildScrollView = class SingleChildScrollView extends framework.StatelessWidget {
+    get scrollDirection() {
+      return this[scrollDirection$];
     }
-    set globalPosition(value) {
-      super.globalPosition = value;
+    set scrollDirection(value) {
+      super.scrollDirection = value;
     }
-    get localPosition() {
-      return this[localPosition$];
+    get reverse() {
+      return this[reverse$];
     }
-    set localPosition(value) {
-      super.localPosition = value;
+    set reverse(value) {
+      super.reverse = value;
+    }
+    get padding() {
+      return this[padding$];
+    }
+    set padding(value) {
+      super.padding = value;
+    }
+    get controller() {
+      return this[controller$];
+    }
+    set controller(value) {
+      super.controller = value;
+    }
+    get primary() {
+      return this[primary$];
+    }
+    set primary(value) {
+      super.primary = value;
+    }
+    get physics() {
+      return this[physics$];
+    }
+    set physics(value) {
+      super.physics = value;
+    }
+    get child() {
+      return this[child$];
+    }
+    set child(value) {
+      super.child = value;
+    }
+    get dragStartBehavior() {
+      return this[dragStartBehavior$];
+    }
+    set dragStartBehavior(value) {
+      super.dragStartBehavior = value;
+    }
+    get clipBehavior() {
+      return this[clipBehavior$];
+    }
+    set clipBehavior(value) {
+      super.clipBehavior = value;
+    }
+    get restorationId() {
+      return this[restorationId$];
+    }
+    set restorationId(value) {
+      super.restorationId = value;
+    }
+    [_getDirection](context) {
+      if (context == null) dart.nullFailed(I[0], 309, 44, "context");
+      return basic.getAxisDirectionFromAxisReverseAndDirectionality(context, this.scrollDirection, this.reverse);
+    }
+    build(context) {
+      if (context == null) dart.nullFailed(I[0], 314, 29, "context");
+      let axisDirection = this[_getDirection](context);
+      let contents = this.child;
+      if (this.padding != null) contents = new basic.Padding.new({padding: dart.nullCheck(this.padding), child: contents, $creationLocationd_0dea112b090073317d4: C[3] || CT.C3});
+      let scrollController = dart.test(this.primary) ? primary_scroll_controller.PrimaryScrollController.of(context) : this.controller;
+      let scrollable = new scrollable$.Scrollable.new({dragStartBehavior: this.dragStartBehavior, axisDirection: axisDirection, controller: scrollController, physics: this.physics, restorationId: this.restorationId, viewportBuilder: dart.fn((context, offset) => {
+          if (context == null) dart.nullFailed(I[0], 328, 38, "context");
+          if (offset == null) dart.nullFailed(I[0], 328, 62, "offset");
+          return new single_child_scroll_view._SingleChildViewport.new({axisDirection: axisDirection, offset: offset, child: contents, clipBehavior: this.clipBehavior, $creationLocationd_0dea112b090073317d4: C[7] || CT.C7});
+        }, T.BuildContextAndViewportOffsetTo_SingleChildViewport()), $creationLocationd_0dea112b090073317d4: C[13] || CT.C13});
+      return dart.test(this.primary) && scrollController != null ? new primary_scroll_controller.PrimaryScrollController.none({child: scrollable, $creationLocationd_0dea112b090073317d4: C[21] || CT.C21}) : scrollable;
     }
   };
-  (long_press.LongPressStartDetails.new = function(opts) {
+  (single_child_scroll_view.SingleChildScrollView.new = function(opts) {
     let t0;
-    let globalPosition = opts && 'globalPosition' in opts ? opts.globalPosition : C[0] || CT.C0;
-    if (globalPosition == null) dart.nullFailed(I[0], 57, 10, "globalPosition");
-    let localPosition = opts && 'localPosition' in opts ? opts.localPosition : null;
-    this[globalPosition$] = globalPosition;
-    if (!(globalPosition != null)) dart.assertFailed(null, I[0], 59, 15, "globalPosition != null");
-    this[localPosition$] = (t0 = localPosition, t0 == null ? globalPosition : t0);
+    let key = opts && 'key' in opts ? opts.key : null;
+    let scrollDirection = opts && 'scrollDirection' in opts ? opts.scrollDirection : C[0] || CT.C0;
+    if (scrollDirection == null) dart.nullFailed(I[0], 214, 10, "scrollDirection");
+    let reverse = opts && 'reverse' in opts ? opts.reverse : false;
+    if (reverse == null) dart.nullFailed(I[0], 215, 10, "reverse");
+    let padding = opts && 'padding' in opts ? opts.padding : null;
+    let primary = opts && 'primary' in opts ? opts.primary : null;
+    let physics = opts && 'physics' in opts ? opts.physics : null;
+    let controller = opts && 'controller' in opts ? opts.controller : null;
+    let child = opts && 'child' in opts ? opts.child : null;
+    let dragStartBehavior = opts && 'dragStartBehavior' in opts ? opts.dragStartBehavior : C[1] || CT.C1;
+    if (dragStartBehavior == null) dart.nullFailed(I[0], 221, 10, "dragStartBehavior");
+    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : C[2] || CT.C2;
+    if (clipBehavior == null) dart.nullFailed(I[0], 222, 10, "clipBehavior");
+    let restorationId = opts && 'restorationId' in opts ? opts.restorationId : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[scrollDirection$] = scrollDirection;
+    this[reverse$] = reverse;
+    this[padding$] = padding;
+    this[physics$] = physics;
+    this[controller$] = controller;
+    this[child$] = child;
+    this[dragStartBehavior$] = dragStartBehavior;
+    this[clipBehavior$] = clipBehavior;
+    this[restorationId$] = restorationId;
+    if (!(scrollDirection != null)) dart.assertFailed(null, I[0], 224, 15, "scrollDirection != null");
+    if (!(dragStartBehavior != null)) dart.assertFailed(null, I[0], 225, 15, "dragStartBehavior != null");
+    if (!(clipBehavior != null)) dart.assertFailed(null, I[0], 226, 15, "clipBehavior != null");
+    if (!!(controller != null && primary === true)) dart.assertFailed("Primary ScrollViews obtain their ScrollController via inheritance from a PrimaryScrollController widget. " + "You cannot both set primary to true and pass an explicit controller.", I[0], 227, 15, "!(controller != null && primary == true)");
+    this[primary$] = (t0 = primary, t0 == null ? controller == null && scrollDirection == basic_types.Axis.vertical : t0);
+    single_child_scroll_view.SingleChildScrollView.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
     ;
-  }).prototype = long_press.LongPressStartDetails.prototype;
-  dart.addTypeTests(long_press.LongPressStartDetails);
-  dart.addTypeCaches(long_press.LongPressStartDetails);
-  dart.setLibraryUri(long_press.LongPressStartDetails, I[1]);
-  dart.setFieldSignature(long_press.LongPressStartDetails, () => ({
-    __proto__: dart.getFields(long_press.LongPressStartDetails.__proto__),
-    globalPosition: dart.finalFieldType(ui.Offset),
-    localPosition: dart.finalFieldType(ui.Offset)
+  }).prototype = single_child_scroll_view.SingleChildScrollView.prototype;
+  dart.addTypeTests(single_child_scroll_view.SingleChildScrollView);
+  dart.addTypeCaches(single_child_scroll_view.SingleChildScrollView);
+  dart.setMethodSignature(single_child_scroll_view.SingleChildScrollView, () => ({
+    __proto__: dart.getMethods(single_child_scroll_view.SingleChildScrollView.__proto__),
+    [_getDirection]: dart.fnType(basic_types.AxisDirection, [framework.BuildContext]),
+    build: dart.fnType(framework.Widget, [framework.BuildContext])
   }));
-  var globalPosition$0 = dart.privateName(long_press, "LongPressMoveUpdateDetails.globalPosition");
-  var localPosition$0 = dart.privateName(long_press, "LongPressMoveUpdateDetails.localPosition");
-  var offsetFromOrigin$ = dart.privateName(long_press, "LongPressMoveUpdateDetails.offsetFromOrigin");
-  var localOffsetFromOrigin$ = dart.privateName(long_press, "LongPressMoveUpdateDetails.localOffsetFromOrigin");
-  long_press.LongPressMoveUpdateDetails = class LongPressMoveUpdateDetails extends core.Object {
-    get globalPosition() {
-      return this[globalPosition$0];
+  dart.setLibraryUri(single_child_scroll_view.SingleChildScrollView, I[1]);
+  dart.setFieldSignature(single_child_scroll_view.SingleChildScrollView, () => ({
+    __proto__: dart.getFields(single_child_scroll_view.SingleChildScrollView.__proto__),
+    scrollDirection: dart.finalFieldType(basic_types.Axis),
+    reverse: dart.finalFieldType(core.bool),
+    padding: dart.finalFieldType(dart.nullable(edge_insets.EdgeInsetsGeometry)),
+    controller: dart.finalFieldType(dart.nullable(scroll_controller.ScrollController)),
+    primary: dart.finalFieldType(core.bool),
+    physics: dart.finalFieldType(dart.nullable(scroll_physics.ScrollPhysics)),
+    child: dart.finalFieldType(dart.nullable(framework.Widget)),
+    dragStartBehavior: dart.finalFieldType(recognizer.DragStartBehavior),
+    clipBehavior: dart.finalFieldType(ui.Clip),
+    restorationId: dart.finalFieldType(dart.nullable(core.String))
+  }));
+  var axisDirection$ = dart.privateName(single_child_scroll_view, "_SingleChildViewport.axisDirection");
+  var offset$ = dart.privateName(single_child_scroll_view, "_SingleChildViewport.offset");
+  var clipBehavior$0 = dart.privateName(single_child_scroll_view, "_SingleChildViewport.clipBehavior");
+  single_child_scroll_view._SingleChildViewport = class _SingleChildViewport extends framework.SingleChildRenderObjectWidget {
+    get axisDirection() {
+      return this[axisDirection$];
     }
-    set globalPosition(value) {
-      super.globalPosition = value;
+    set axisDirection(value) {
+      super.axisDirection = value;
     }
-    get localPosition() {
-      return this[localPosition$0];
+    get offset() {
+      return this[offset$];
     }
-    set localPosition(value) {
-      super.localPosition = value;
+    set offset(value) {
+      super.offset = value;
     }
-    get offsetFromOrigin() {
-      return this[offsetFromOrigin$];
+    get clipBehavior() {
+      return this[clipBehavior$0];
     }
-    set offsetFromOrigin(value) {
-      super.offsetFromOrigin = value;
+    set clipBehavior(value) {
+      super.clipBehavior = value;
     }
-    get localOffsetFromOrigin() {
-      return this[localOffsetFromOrigin$];
+    createRenderObject(context) {
+      if (context == null) dart.nullFailed(I[0], 359, 62, "context");
+      return new single_child_scroll_view._RenderSingleChildViewport.new({axisDirection: this.axisDirection, offset: this.offset, clipBehavior: this.clipBehavior});
     }
-    set localOffsetFromOrigin(value) {
-      super.localOffsetFromOrigin = value;
+    updateRenderObject(context, renderObject) {
+      let t0;
+      if (context == null) dart.nullFailed(I[0], 368, 40, "context");
+      single_child_scroll_view._RenderSingleChildViewport.as(renderObject);
+      if (renderObject == null) dart.nullFailed(I[0], 368, 76, "renderObject");
+      t0 = renderObject;
+      (() => {
+        t0.axisDirection = this.axisDirection;
+        t0.offset = this.offset;
+        t0.clipBehavior = this.clipBehavior;
+        return t0;
+      })();
     }
   };
-  (long_press.LongPressMoveUpdateDetails.new = function(opts) {
-    let t0, t0$;
-    let globalPosition = opts && 'globalPosition' in opts ? opts.globalPosition : C[0] || CT.C0;
-    if (globalPosition == null) dart.nullFailed(I[0], 81, 10, "globalPosition");
-    let localPosition = opts && 'localPosition' in opts ? opts.localPosition : null;
-    let offsetFromOrigin = opts && 'offsetFromOrigin' in opts ? opts.offsetFromOrigin : C[0] || CT.C0;
-    if (offsetFromOrigin == null) dart.nullFailed(I[0], 83, 10, "offsetFromOrigin");
-    let localOffsetFromOrigin = opts && 'localOffsetFromOrigin' in opts ? opts.localOffsetFromOrigin : null;
-    this[globalPosition$0] = globalPosition;
-    this[offsetFromOrigin$] = offsetFromOrigin;
-    if (!(globalPosition != null)) dart.assertFailed(null, I[0], 85, 15, "globalPosition != null");
-    if (!(offsetFromOrigin != null)) dart.assertFailed(null, I[0], 86, 15, "offsetFromOrigin != null");
-    this[localPosition$0] = (t0 = localPosition, t0 == null ? globalPosition : t0);
-    this[localOffsetFromOrigin$] = (t0$ = localOffsetFromOrigin, t0$ == null ? offsetFromOrigin : t0$);
+  (single_child_scroll_view._SingleChildViewport.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let axisDirection = opts && 'axisDirection' in opts ? opts.axisDirection : C[24] || CT.C24;
+    if (axisDirection == null) dart.nullFailed(I[0], 346, 10, "axisDirection");
+    let offset = opts && 'offset' in opts ? opts.offset : null;
+    if (offset == null) dart.nullFailed(I[0], 347, 19, "offset");
+    let child = opts && 'child' in opts ? opts.child : null;
+    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : null;
+    if (clipBehavior == null) dart.nullFailed(I[0], 349, 19, "clipBehavior");
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[axisDirection$] = axisDirection;
+    this[offset$] = offset;
+    this[clipBehavior$0] = clipBehavior;
+    if (!(axisDirection != null)) dart.assertFailed(null, I[0], 350, 15, "axisDirection != null");
+    if (!(clipBehavior != null)) dart.assertFailed(null, I[0], 351, 15, "clipBehavior != null");
+    single_child_scroll_view._SingleChildViewport.__proto__.new.call(this, {key: key, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
     ;
-  }).prototype = long_press.LongPressMoveUpdateDetails.prototype;
-  dart.addTypeTests(long_press.LongPressMoveUpdateDetails);
-  dart.addTypeCaches(long_press.LongPressMoveUpdateDetails);
-  dart.setLibraryUri(long_press.LongPressMoveUpdateDetails, I[1]);
-  dart.setFieldSignature(long_press.LongPressMoveUpdateDetails, () => ({
-    __proto__: dart.getFields(long_press.LongPressMoveUpdateDetails.__proto__),
-    globalPosition: dart.finalFieldType(ui.Offset),
-    localPosition: dart.finalFieldType(ui.Offset),
-    offsetFromOrigin: dart.finalFieldType(ui.Offset),
-    localOffsetFromOrigin: dart.finalFieldType(ui.Offset)
+  }).prototype = single_child_scroll_view._SingleChildViewport.prototype;
+  dart.addTypeTests(single_child_scroll_view._SingleChildViewport);
+  dart.addTypeCaches(single_child_scroll_view._SingleChildViewport);
+  dart.setMethodSignature(single_child_scroll_view._SingleChildViewport, () => ({
+    __proto__: dart.getMethods(single_child_scroll_view._SingleChildViewport.__proto__),
+    createRenderObject: dart.fnType(single_child_scroll_view._RenderSingleChildViewport, [framework.BuildContext])
   }));
-  var globalPosition$1 = dart.privateName(long_press, "LongPressEndDetails.globalPosition");
-  var localPosition$1 = dart.privateName(long_press, "LongPressEndDetails.localPosition");
-  var velocity$ = dart.privateName(long_press, "LongPressEndDetails.velocity");
-  var Velocity_pixelsPerSecond = dart.privateName(velocity_tracker, "Velocity.pixelsPerSecond");
-  long_press.LongPressEndDetails = class LongPressEndDetails extends core.Object {
-    get globalPosition() {
-      return this[globalPosition$1];
-    }
-    set globalPosition(value) {
-      super.globalPosition = value;
-    }
-    get localPosition() {
-      return this[localPosition$1];
-    }
-    set localPosition(value) {
-      super.localPosition = value;
-    }
-    get velocity() {
-      return this[velocity$];
-    }
-    set velocity(value) {
-      super.velocity = value;
-    }
-  };
-  (long_press.LongPressEndDetails.new = function(opts) {
-    let t0;
-    let globalPosition = opts && 'globalPosition' in opts ? opts.globalPosition : C[0] || CT.C0;
-    if (globalPosition == null) dart.nullFailed(I[0], 119, 10, "globalPosition");
-    let localPosition = opts && 'localPosition' in opts ? opts.localPosition : null;
-    let velocity = opts && 'velocity' in opts ? opts.velocity : C[1] || CT.C1;
-    if (velocity == null) dart.nullFailed(I[0], 121, 10, "velocity");
-    this[globalPosition$1] = globalPosition;
-    this[velocity$] = velocity;
-    if (!(globalPosition != null)) dart.assertFailed(null, I[0], 122, 15, "globalPosition != null");
-    this[localPosition$1] = (t0 = localPosition, t0 == null ? globalPosition : t0);
-    ;
-  }).prototype = long_press.LongPressEndDetails.prototype;
-  dart.addTypeTests(long_press.LongPressEndDetails);
-  dart.addTypeCaches(long_press.LongPressEndDetails);
-  dart.setLibraryUri(long_press.LongPressEndDetails, I[1]);
-  dart.setFieldSignature(long_press.LongPressEndDetails, () => ({
-    __proto__: dart.getFields(long_press.LongPressEndDetails.__proto__),
-    globalPosition: dart.finalFieldType(ui.Offset),
-    localPosition: dart.finalFieldType(ui.Offset),
-    velocity: dart.finalFieldType(velocity_tracker.Velocity)
+  dart.setLibraryUri(single_child_scroll_view._SingleChildViewport, I[1]);
+  dart.setFieldSignature(single_child_scroll_view._SingleChildViewport, () => ({
+    __proto__: dart.getFields(single_child_scroll_view._SingleChildViewport.__proto__),
+    axisDirection: dart.finalFieldType(basic_types.AxisDirection),
+    offset: dart.finalFieldType(viewport_offset.ViewportOffset),
+    clipBehavior: dart.finalFieldType(ui.Clip)
   }));
-  var onLongPress = dart.privateName(long_press, "LongPressGestureRecognizer.onLongPress");
-  var onLongPressStart = dart.privateName(long_press, "LongPressGestureRecognizer.onLongPressStart");
-  var onLongPressMoveUpdate = dart.privateName(long_press, "LongPressGestureRecognizer.onLongPressMoveUpdate");
-  var onLongPressUp = dart.privateName(long_press, "LongPressGestureRecognizer.onLongPressUp");
-  var onLongPressEnd = dart.privateName(long_press, "LongPressGestureRecognizer.onLongPressEnd");
-  var onSecondaryLongPress = dart.privateName(long_press, "LongPressGestureRecognizer.onSecondaryLongPress");
-  var onSecondaryLongPressStart = dart.privateName(long_press, "LongPressGestureRecognizer.onSecondaryLongPressStart");
-  var onSecondaryLongPressMoveUpdate = dart.privateName(long_press, "LongPressGestureRecognizer.onSecondaryLongPressMoveUpdate");
-  var onSecondaryLongPressUp = dart.privateName(long_press, "LongPressGestureRecognizer.onSecondaryLongPressUp");
-  var onSecondaryLongPressEnd = dart.privateName(long_press, "LongPressGestureRecognizer.onSecondaryLongPressEnd");
-  var onTertiaryLongPress = dart.privateName(long_press, "LongPressGestureRecognizer.onTertiaryLongPress");
-  var onTertiaryLongPressStart = dart.privateName(long_press, "LongPressGestureRecognizer.onTertiaryLongPressStart");
-  var onTertiaryLongPressMoveUpdate = dart.privateName(long_press, "LongPressGestureRecognizer.onTertiaryLongPressMoveUpdate");
-  var onTertiaryLongPressUp = dart.privateName(long_press, "LongPressGestureRecognizer.onTertiaryLongPressUp");
-  var onTertiaryLongPressEnd = dart.privateName(long_press, "LongPressGestureRecognizer.onTertiaryLongPressEnd");
-  var _longPressAccepted = dart.privateName(long_press, "_longPressAccepted");
-  var _longPressOrigin = dart.privateName(long_press, "_longPressOrigin");
-  var _initialButtons = dart.privateName(long_press, "_initialButtons");
-  var _velocityTracker = dart.privateName(long_press, "_velocityTracker");
-  var _checkLongPressStart = dart.privateName(long_press, "_checkLongPressStart");
-  var _checkLongPressEnd = dart.privateName(long_press, "_checkLongPressEnd");
-  var _reset = dart.privateName(long_press, "_reset");
-  var _checkLongPressMoveUpdate = dart.privateName(long_press, "_checkLongPressMoveUpdate");
-  long_press.LongPressGestureRecognizer = class LongPressGestureRecognizer extends recognizer.PrimaryPointerGestureRecognizer {
-    get onLongPress() {
-      return this[onLongPress];
+  var _clipBehavior = dart.privateName(single_child_scroll_view, "_clipBehavior");
+  var _clipRectLayer = dart.privateName(single_child_scroll_view, "_clipRectLayer");
+  var _axisDirection = dart.privateName(single_child_scroll_view, "_axisDirection");
+  var _offset = dart.privateName(single_child_scroll_view, "_offset");
+  var _cacheExtent = dart.privateName(single_child_scroll_view, "_cacheExtent");
+  var _hasScrolled = dart.privateName(single_child_scroll_view, "_hasScrolled");
+  var _viewportExtent = dart.privateName(single_child_scroll_view, "_viewportExtent");
+  var _minScrollExtent = dart.privateName(single_child_scroll_view, "_minScrollExtent");
+  var _maxScrollExtent = dart.privateName(single_child_scroll_view, "_maxScrollExtent");
+  var _getInnerConstraints = dart.privateName(single_child_scroll_view, "_getInnerConstraints");
+  var _paintOffsetForPosition = dart.privateName(single_child_scroll_view, "_paintOffsetForPosition");
+  var _paintOffset = dart.privateName(single_child_scroll_view, "_paintOffset");
+  var _shouldClipAtPaintOffset = dart.privateName(single_child_scroll_view, "_shouldClipAtPaintOffset");
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  var Cubic_d = dart.privateName(curves, "Cubic.d");
+  var Cubic_c = dart.privateName(curves, "Cubic.c");
+  var Cubic_b = dart.privateName(curves, "Cubic.b");
+  var Cubic_a = dart.privateName(curves, "Cubic.a");
+  const RenderBox_RenderObjectWithChildMixin$36 = class RenderBox_RenderObjectWithChildMixin extends box.RenderBox {};
+  (RenderBox_RenderObjectWithChildMixin$36.new = function() {
+    object.RenderObjectWithChildMixin$(box.RenderBox)[dart.mixinNew].call(this);
+    RenderBox_RenderObjectWithChildMixin$36.__proto__.new.call(this);
+  }).prototype = RenderBox_RenderObjectWithChildMixin$36.prototype;
+  dart.applyMixin(RenderBox_RenderObjectWithChildMixin$36, object.RenderObjectWithChildMixin$(box.RenderBox));
+  single_child_scroll_view._RenderSingleChildViewport = class _RenderSingleChildViewport extends RenderBox_RenderObjectWithChildMixin$36 {
+    get axisDirection() {
+      return this[_axisDirection];
     }
-    set onLongPress(value) {
-      this[onLongPress] = value;
+    set axisDirection(value) {
+      if (value == null) dart.nullFailed(I[0], 397, 35, "value");
+      if (!(value != null)) dart.assertFailed(null, I[0], 398, 12, "value != null");
+      if (value == this[_axisDirection]) return;
+      this[_axisDirection] = value;
+      this.markNeedsLayout();
     }
-    get onLongPressStart() {
-      return this[onLongPressStart];
+    get axis() {
+      return basic_types.axisDirectionToAxis(this.axisDirection);
     }
-    set onLongPressStart(value) {
-      this[onLongPressStart] = value;
+    get offset() {
+      return this[_offset];
     }
-    get onLongPressMoveUpdate() {
-      return this[onLongPressMoveUpdate];
+    set offset(value) {
+      if (value == null) dart.nullFailed(I[0], 409, 29, "value");
+      if (!(value != null)) dart.assertFailed(null, I[0], 410, 12, "value != null");
+      if (dart.equals(value, this[_offset])) return;
+      if (dart.test(this.attached)) this[_offset].removeListener(dart.bind(this, _hasScrolled));
+      this[_offset] = value;
+      if (dart.test(this.attached)) this[_offset].addListener(dart.bind(this, _hasScrolled));
+      this.markNeedsLayout();
     }
-    set onLongPressMoveUpdate(value) {
-      this[onLongPressMoveUpdate] = value;
+    get cacheExtent() {
+      return this[_cacheExtent];
     }
-    get onLongPressUp() {
-      return this[onLongPressUp];
+    set cacheExtent(value) {
+      if (value == null) dart.nullFailed(I[0], 424, 26, "value");
+      if (!(value != null)) dart.assertFailed(null, I[0], 425, 12, "value != null");
+      if (value == this[_cacheExtent]) return;
+      this[_cacheExtent] = value;
+      this.markNeedsLayout();
     }
-    set onLongPressUp(value) {
-      this[onLongPressUp] = value;
+    get clipBehavior() {
+      return this[_clipBehavior];
     }
-    get onLongPressEnd() {
-      return this[onLongPressEnd];
+    set clipBehavior(value) {
+      if (value == null) dart.nullFailed(I[0], 437, 25, "value");
+      if (!(value != null)) dart.assertFailed(null, I[0], 438, 12, "value != null");
+      if (value != this[_clipBehavior]) {
+        this[_clipBehavior] = value;
+        this.markNeedsPaint();
+        this.markNeedsSemanticsUpdate();
+      }
     }
-    set onLongPressEnd(value) {
-      this[onLongPressEnd] = value;
+    [_hasScrolled]() {
+      this.markNeedsPaint();
+      this.markNeedsSemanticsUpdate();
     }
-    get onSecondaryLongPress() {
-      return this[onSecondaryLongPress];
+    setupParentData(child) {
+      object.RenderObject.as(child);
+      if (child == null) dart.nullFailed(I[0], 452, 37, "child");
+      if (!object.ParentData.is(child.parentData)) child.parentData = new object.ParentData.new();
     }
-    set onSecondaryLongPress(value) {
-      this[onSecondaryLongPress] = value;
+    attach(owner) {
+      object.PipelineOwner.as(owner);
+      if (owner == null) dart.nullFailed(I[0], 460, 29, "owner");
+      super.attach(owner);
+      this[_offset].addListener(dart.bind(this, _hasScrolled));
     }
-    get onSecondaryLongPressStart() {
-      return this[onSecondaryLongPressStart];
+    detach() {
+      this[_offset].removeListener(dart.bind(this, _hasScrolled));
+      super.detach();
     }
-    set onSecondaryLongPressStart(value) {
-      this[onSecondaryLongPressStart] = value;
+    get isRepaintBoundary() {
+      return true;
     }
-    get onSecondaryLongPressMoveUpdate() {
-      return this[onSecondaryLongPressMoveUpdate];
-    }
-    set onSecondaryLongPressMoveUpdate(value) {
-      this[onSecondaryLongPressMoveUpdate] = value;
-    }
-    get onSecondaryLongPressUp() {
-      return this[onSecondaryLongPressUp];
-    }
-    set onSecondaryLongPressUp(value) {
-      this[onSecondaryLongPressUp] = value;
-    }
-    get onSecondaryLongPressEnd() {
-      return this[onSecondaryLongPressEnd];
-    }
-    set onSecondaryLongPressEnd(value) {
-      this[onSecondaryLongPressEnd] = value;
-    }
-    get onTertiaryLongPress() {
-      return this[onTertiaryLongPress];
-    }
-    set onTertiaryLongPress(value) {
-      this[onTertiaryLongPress] = value;
-    }
-    get onTertiaryLongPressStart() {
-      return this[onTertiaryLongPressStart];
-    }
-    set onTertiaryLongPressStart(value) {
-      this[onTertiaryLongPressStart] = value;
-    }
-    get onTertiaryLongPressMoveUpdate() {
-      return this[onTertiaryLongPressMoveUpdate];
-    }
-    set onTertiaryLongPressMoveUpdate(value) {
-      this[onTertiaryLongPressMoveUpdate] = value;
-    }
-    get onTertiaryLongPressUp() {
-      return this[onTertiaryLongPressUp];
-    }
-    set onTertiaryLongPressUp(value) {
-      this[onTertiaryLongPressUp] = value;
-    }
-    get onTertiaryLongPressEnd() {
-      return this[onTertiaryLongPressEnd];
-    }
-    set onTertiaryLongPressEnd(value) {
-      this[onTertiaryLongPressEnd] = value;
-    }
-    isPointerAllowed(event) {
-      if (event == null) dart.nullFailed(I[0], 334, 42, "event");
-      switch (event.buttons) {
-        case 1:
+    get [_viewportExtent]() {
+      if (!dart.test(this.hasSize)) dart.assertFailed(null, I[0], 475, 12, "hasSize");
+      switch (this.axis) {
+        case C[25] || CT.C25:
         {
-          if (this.onLongPressStart == null && this.onLongPress == null && this.onLongPressMoveUpdate == null && this.onLongPressEnd == null && this.onLongPressUp == null) return false;
-          break;
+          return this.size.width;
         }
-        case 2:
+        case C[0] || CT.C0:
         {
-          if (this.onSecondaryLongPressStart == null && this.onSecondaryLongPress == null && this.onSecondaryLongPressMoveUpdate == null && this.onSecondaryLongPressEnd == null && this.onSecondaryLongPressUp == null) return false;
-          break;
-        }
-        case 4:
-        {
-          if (this.onTertiaryLongPressStart == null && this.onTertiaryLongPress == null && this.onTertiaryLongPressMoveUpdate == null && this.onTertiaryLongPressEnd == null && this.onTertiaryLongPressUp == null) return false;
-          break;
+          return this.size.height;
         }
         default:
         {
-          return false;
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
         }
       }
-      return super.isPointerAllowed(event);
     }
-    didExceedDeadline() {
-      this.resolve(arena.GestureDisposition.accepted);
-      this[_longPressAccepted] = true;
-      super.acceptGesture(dart.nullCheck(this.primaryPointer));
-      this[_checkLongPressStart]();
+    get [_minScrollExtent]() {
+      if (!dart.test(this.hasSize)) dart.assertFailed(null, I[0], 485, 12, "hasSize");
+      return 0.0;
     }
-    handlePrimaryPointer(event) {
-      if (event == null) dart.nullFailed(I[0], 376, 42, "event");
-      if (!dart.test(event.synthesized)) {
-        if (events.PointerDownEvent.is(event)) {
-          this[_velocityTracker] = new velocity_tracker.VelocityTracker.withKind(event.kind);
-          dart.nullCheck(this[_velocityTracker]).addPosition(event.timeStamp, event.localPosition);
+    get [_maxScrollExtent]() {
+      if (!dart.test(this.hasSize)) dart.assertFailed(null, I[0], 490, 12, "hasSize");
+      if (this.child == null) return 0.0;
+      switch (this.axis) {
+        case C[25] || CT.C25:
+        {
+          return math.max(core.double, 0.0, dart.notNull(dart.nullCheck(this.child).size.width) - dart.notNull(this.size.width));
         }
-        if (events.PointerMoveEvent.is(event)) {
-          if (!(this[_velocityTracker] != null)) dart.assertFailed(null, I[0], 383, 16, "_velocityTracker != null");
-          dart.nullCheck(this[_velocityTracker]).addPosition(event.timeStamp, event.localPosition);
+        case C[0] || CT.C0:
+        {
+          return math.max(core.double, 0.0, dart.notNull(dart.nullCheck(this.child).size.height) - dart.notNull(this.size.height));
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
         }
       }
-      if (events.PointerUpEvent.is(event)) {
-        if (this[_longPressAccepted] === true) {
-          this[_checkLongPressEnd](event);
+    }
+    [_getInnerConstraints](constraints) {
+      if (constraints == null) dart.nullFailed(I[0], 501, 54, "constraints");
+      switch (this.axis) {
+        case C[25] || CT.C25:
+        {
+          return constraints.heightConstraints();
+        }
+        case C[0] || CT.C0:
+        {
+          return constraints.widthConstraints();
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
+      }
+    }
+    computeMinIntrinsicWidth(height) {
+      if (height == null) dart.nullFailed(I[0], 511, 42, "height");
+      if (this.child != null) return dart.nullCheck(this.child).getMinIntrinsicWidth(height);
+      return 0.0;
+    }
+    computeMaxIntrinsicWidth(height) {
+      if (height == null) dart.nullFailed(I[0], 518, 42, "height");
+      if (this.child != null) return dart.nullCheck(this.child).getMaxIntrinsicWidth(height);
+      return 0.0;
+    }
+    computeMinIntrinsicHeight(width) {
+      if (width == null) dart.nullFailed(I[0], 525, 43, "width");
+      if (this.child != null) return dart.nullCheck(this.child).getMinIntrinsicHeight(width);
+      return 0.0;
+    }
+    computeMaxIntrinsicHeight(width) {
+      if (width == null) dart.nullFailed(I[0], 532, 43, "width");
+      if (this.child != null) return dart.nullCheck(this.child).getMaxIntrinsicHeight(width);
+      return 0.0;
+    }
+    computeDryLayout(constraints) {
+      if (constraints == null) dart.nullFailed(I[0], 544, 40, "constraints");
+      if (this.child == null) {
+        return constraints.smallest;
+      }
+      let childSize = dart.nullCheck(this.child).getDryLayout(this[_getInnerConstraints](constraints));
+      return constraints.constrain(childSize);
+    }
+    performLayout() {
+      let constraints = this.constraints;
+      if (this.child == null) {
+        this.size = constraints.smallest;
+      } else {
+        dart.nullCheck(this.child).layout(this[_getInnerConstraints](constraints), {parentUsesSize: true});
+        this.size = constraints.constrain(dart.nullCheck(this.child).size);
+      }
+      this.offset.applyViewportDimension(this[_viewportExtent]);
+      this.offset.applyContentDimensions(this[_minScrollExtent], this[_maxScrollExtent]);
+    }
+    get [_paintOffset]() {
+      return this[_paintOffsetForPosition](this.offset.pixels);
+    }
+    [_paintOffsetForPosition](position) {
+      if (position == null) dart.nullFailed(I[0], 568, 41, "position");
+      if (!(this.axisDirection != null)) dart.assertFailed(null, I[0], 569, 12, "axisDirection != null");
+      switch (this.axisDirection) {
+        case C[26] || CT.C26:
+        {
+          return new ui.Offset.new(0.0, dart.notNull(position) - dart.notNull(dart.nullCheck(this.child).size.height) + dart.notNull(this.size.height));
+        }
+        case C[24] || CT.C24:
+        {
+          return new ui.Offset.new(0.0, -dart.notNull(position));
+        }
+        case C[27] || CT.C27:
+        {
+          return new ui.Offset.new(dart.notNull(position) - dart.notNull(dart.nullCheck(this.child).size.width) + dart.notNull(this.size.width), 0.0);
+        }
+        case C[28] || CT.C28:
+        {
+          return new ui.Offset.new(-dart.notNull(position), 0.0);
+        }
+        default:
+        {
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+        }
+      }
+    }
+    [_shouldClipAtPaintOffset](paintOffset) {
+      if (paintOffset == null) dart.nullFailed(I[0], 582, 40, "paintOffset");
+      if (!(this.child != null)) dart.assertFailed(null, I[0], 583, 12, "child != null");
+      return dart.notNull(paintOffset.dx) < 0 || dart.notNull(paintOffset.dy) < 0 || dart.notNull(paintOffset.dx) + dart.notNull(dart.nullCheck(this.child).size.width) > dart.notNull(this.size.width) || dart.notNull(paintOffset.dy) + dart.notNull(dart.nullCheck(this.child).size.height) > dart.notNull(this.size.height);
+    }
+    paint(context, offset) {
+      if (context == null) dart.nullFailed(I[0], 591, 30, "context");
+      if (offset == null) dart.nullFailed(I[0], 591, 46, "offset");
+      if (this.child != null) {
+        let paintOffset = this[_paintOffset];
+        const paintContents = (context, offset) => {
+          if (context == null) dart.nullFailed(I[0], 595, 42, "context");
+          if (offset == null) dart.nullFailed(I[0], 595, 58, "offset");
+          context.paintChild(dart.nullCheck(this.child), offset['+'](paintOffset));
+        };
+        dart.fn(paintContents, T.PaintingContextAndOffsetTovoid());
+        if (dart.test(this[_shouldClipAtPaintOffset](paintOffset)) && this.clipBehavior != ui.Clip.none) {
+          this[_clipRectLayer] = context.pushClipRect(this.needsCompositing, offset, ui.Offset.zero['&'](this.size), paintContents, {clipBehavior: this.clipBehavior, oldLayer: this[_clipRectLayer]});
         } else {
-          this.resolve(arena.GestureDisposition.rejected);
-        }
-        this[_reset]();
-      } else if (events.PointerCancelEvent.is(event)) {
-        this[_reset]();
-      } else if (events.PointerDownEvent.is(event)) {
-        this[_longPressOrigin] = recognizer.OffsetPair.fromEventPosition(event);
-        this[_initialButtons] = event.buttons;
-      } else if (events.PointerMoveEvent.is(event)) {
-        if (event.buttons != this[_initialButtons]) {
-          this.resolve(arena.GestureDisposition.rejected);
-          this.stopTrackingPointer(dart.nullCheck(this.primaryPointer));
-        } else if (dart.test(this[_longPressAccepted])) {
-          this[_checkLongPressMoveUpdate](event);
+          this[_clipRectLayer] = null;
+          paintContents(context, offset);
         }
       }
     }
-    [_checkLongPressStart]() {
-      switch (this[_initialButtons]) {
-        case 1:
+    applyPaintTransform(child, transform) {
+      box.RenderBox.as(child);
+      if (child == null) dart.nullFailed(I[0], 612, 38, "child");
+      if (transform == null) dart.nullFailed(I[0], 612, 53, "transform");
+      let paintOffset = this[_paintOffset];
+      transform.translate(paintOffset.dx, paintOffset.dy);
+    }
+    describeApproximatePaintClip(child) {
+      T.RenderObjectN().as(child);
+      if (child != null && dart.test(this[_shouldClipAtPaintOffset](this[_paintOffset]))) return ui.Offset.zero['&'](this.size);
+      return null;
+    }
+    hitTestChildren(result, opts) {
+      if (result == null) dart.nullFailed(I[0], 625, 41, "result");
+      let position = opts && 'position' in opts ? opts.position : null;
+      if (position == null) dart.nullFailed(I[0], 625, 67, "position");
+      if (this.child != null) {
+        return result.addWithPaintOffset({offset: this[_paintOffset], position: position, hitTest: dart.fn((result, transformed) => {
+            if (result == null) dart.nullFailed(I[0], 630, 36, "result");
+            if (!dart.equals(transformed, position['+'](this[_paintOffset]._negate()))) dart.assertFailed(null, I[0], 631, 18, "transformed == position + -_paintOffset");
+            return dart.nullCheck(this.child).hitTest(result, {position: dart.nullCheck(transformed)});
+          }, T.BoxHitTestResultAndOffsetNTobool())});
+      }
+      return false;
+    }
+    getOffsetToReveal(target, alignment, opts) {
+      if (target == null) dart.nullFailed(I[0], 640, 49, "target");
+      if (alignment == null) dart.nullFailed(I[0], 640, 64, "alignment");
+      let rect = opts && 'rect' in opts ? opts.rect : null;
+      rect == null ? rect = target.paintBounds : null;
+      if (!box.RenderBox.is(target)) return new viewport.RevealedOffset.new({offset: this.offset.pixels, rect: rect});
+      let targetBox = target;
+      let transform = targetBox.getTransformTo(this.child);
+      let bounds = matrix_utils.MatrixUtils.transformRect(transform, rect);
+      let contentSize = dart.nullCheck(this.child).size;
+      let leadingScrollOffset = null;
+      let targetMainAxisExtent = null;
+      let mainAxisExtent = null;
+      if (!(this.axisDirection != null)) dart.assertFailed(null, I[0], 654, 12, "axisDirection != null");
+      switch (this.axisDirection) {
+        case C[26] || CT.C26:
         {
-          if (this.onLongPressStart != null) {
-            let details = new long_press.LongPressStartDetails.new({globalPosition: dart.nullCheck(this[_longPressOrigin]).global, localPosition: dart.nullCheck(this[_longPressOrigin]).local});
-            this.invokeCallback(dart.void, "onLongPressStart", dart.fn(() => dart.nullCheck(this.onLongPressStart)(details), T.VoidTovoid()));
-          }
-          if (this.onLongPress != null) {
-            this.invokeCallback(dart.void, "onLongPress", dart.nullCheck(this.onLongPress));
-          }
+          mainAxisExtent = this.size.height;
+          leadingScrollOffset = dart.notNull(contentSize.height) - dart.notNull(bounds.bottom);
+          targetMainAxisExtent = bounds.height;
           break;
         }
-        case 2:
+        case C[28] || CT.C28:
         {
-          if (this.onSecondaryLongPressStart != null) {
-            let details = new long_press.LongPressStartDetails.new({globalPosition: dart.nullCheck(this[_longPressOrigin]).global, localPosition: dart.nullCheck(this[_longPressOrigin]).local});
-            this.invokeCallback(dart.void, "onSecondaryLongPressStart", dart.fn(() => dart.nullCheck(this.onSecondaryLongPressStart)(details), T.VoidTovoid()));
-          }
-          if (this.onSecondaryLongPress != null) {
-            this.invokeCallback(dart.void, "onSecondaryLongPress", dart.nullCheck(this.onSecondaryLongPress));
-          }
+          mainAxisExtent = this.size.width;
+          leadingScrollOffset = bounds.left;
+          targetMainAxisExtent = bounds.width;
           break;
         }
-        case 4:
+        case C[24] || CT.C24:
         {
-          if (this.onTertiaryLongPressStart != null) {
-            let details = new long_press.LongPressStartDetails.new({globalPosition: dart.nullCheck(this[_longPressOrigin]).global, localPosition: dart.nullCheck(this[_longPressOrigin]).local});
-            this.invokeCallback(dart.void, "onTertiaryLongPressStart", dart.fn(() => dart.nullCheck(this.onTertiaryLongPressStart)(details), T.VoidTovoid()));
-          }
-          if (this.onTertiaryLongPress != null) {
-            this.invokeCallback(dart.void, "onTertiaryLongPress", dart.nullCheck(this.onTertiaryLongPress));
-          }
+          mainAxisExtent = this.size.height;
+          leadingScrollOffset = bounds.top;
+          targetMainAxisExtent = bounds.height;
+          break;
+        }
+        case C[27] || CT.C27:
+        {
+          mainAxisExtent = this.size.width;
+          leadingScrollOffset = dart.notNull(contentSize.width) - dart.notNull(bounds.right);
+          targetMainAxisExtent = bounds.width;
           break;
         }
         default:
         {
-          if (!false) dart.assertFailed("Unhandled button " + dart.str(this[_initialButtons]), I[0], 453, 16, "false");
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
         }
       }
+      let targetOffset = dart.notNull(leadingScrollOffset) - (dart.notNull(mainAxisExtent) - dart.notNull(targetMainAxisExtent)) * dart.notNull(alignment);
+      let targetRect = bounds.shift(this[_paintOffsetForPosition](targetOffset));
+      return new viewport.RevealedOffset.new({offset: targetOffset, rect: targetRect});
     }
-    [_checkLongPressMoveUpdate](event) {
-      if (event == null) dart.nullFailed(I[0], 457, 47, "event");
-      let details = new long_press.LongPressMoveUpdateDetails.new({globalPosition: event.position, localPosition: event.localPosition, offsetFromOrigin: event.position['-'](dart.nullCheck(this[_longPressOrigin]).global), localOffsetFromOrigin: event.localPosition['-'](dart.nullCheck(this[_longPressOrigin]).local)});
-      switch (this[_initialButtons]) {
-        case 1:
+    showOnScreen(opts) {
+      let descendant = opts && 'descendant' in opts ? opts.descendant : null;
+      let rect = opts && 'rect' in opts ? opts.rect : null;
+      let duration = opts && 'duration' in opts ? opts.duration : C[29] || CT.C29;
+      if (duration == null) dart.nullFailed(I[0], 687, 14, "duration");
+      let curve = opts && 'curve' in opts ? opts.curve : C[30] || CT.C30;
+      if (curve == null) dart.nullFailed(I[0], 688, 11, "curve");
+      if (!dart.test(this.offset.allowImplicitScrolling)) {
+        return super.showOnScreen({descendant: descendant, rect: rect, duration: duration, curve: curve});
+      }
+      let newRect = viewport.RenderViewportBase.showInViewport({descendant: descendant, viewport: this, offset: this.offset, rect: rect, duration: duration, curve: curve});
+      super.showOnScreen({rect: newRect, duration: duration, curve: curve});
+    }
+    describeSemanticsClip(child) {
+      object.RenderObject.as(child);
+      if (child == null) dart.nullFailed(I[0], 715, 43, "child");
+      if (!(this.axis != null)) dart.assertFailed(null, I[0], 716, 12, "axis != null");
+      switch (this.axis) {
+        case C[0] || CT.C0:
         {
-          if (this.onLongPressMoveUpdate != null) {
-            this.invokeCallback(dart.void, "onLongPressMoveUpdate", dart.fn(() => dart.nullCheck(this.onLongPressMoveUpdate)(details), T.VoidTovoid()));
-          }
-          break;
+          return new ui.Rect.fromLTRB(this.semanticBounds.left, dart.notNull(this.semanticBounds.top) - dart.notNull(this.cacheExtent), this.semanticBounds.right, dart.notNull(this.semanticBounds.bottom) + dart.notNull(this.cacheExtent));
         }
-        case 2:
+        case C[25] || CT.C25:
         {
-          if (this.onSecondaryLongPressMoveUpdate != null) {
-            this.invokeCallback(dart.void, "onSecondaryLongPressMoveUpdate", dart.fn(() => dart.nullCheck(this.onSecondaryLongPressMoveUpdate)(details), T.VoidTovoid()));
-          }
-          break;
-        }
-        case 4:
-        {
-          if (this.onTertiaryLongPressMoveUpdate != null) {
-            this.invokeCallback(dart.void, "onTertiaryLongPressMoveUpdate", dart.fn(() => dart.nullCheck(this.onTertiaryLongPressMoveUpdate)(details), T.VoidTovoid()));
-          }
-          break;
+          return new ui.Rect.fromLTRB(dart.notNull(this.semanticBounds.left) - dart.notNull(this.cacheExtent), this.semanticBounds.top, dart.notNull(this.semanticBounds.right) + dart.notNull(this.cacheExtent), this.semanticBounds.bottom);
         }
         default:
         {
-          if (!false) dart.assertFailed("Unhandled button " + dart.str(this[_initialButtons]), I[0], 484, 16, "false");
+          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
         }
       }
-    }
-    [_checkLongPressEnd](event) {
-      if (event == null) dart.nullFailed(I[0], 488, 40, "event");
-      let estimate = dart.nullCheck(this[_velocityTracker]).getVelocityEstimate();
-      let velocity = estimate == null ? velocity_tracker.Velocity.zero : new velocity_tracker.Velocity.new({pixelsPerSecond: estimate.pixelsPerSecond});
-      let details = new long_press.LongPressEndDetails.new({globalPosition: event.position, localPosition: event.localPosition, velocity: velocity});
-      this[_velocityTracker] = null;
-      switch (this[_initialButtons]) {
-        case 1:
-        {
-          if (this.onLongPressEnd != null) {
-            this.invokeCallback(dart.void, "onLongPressEnd", dart.fn(() => dart.nullCheck(this.onLongPressEnd)(details), T.VoidTovoid()));
-          }
-          if (this.onLongPressUp != null) {
-            this.invokeCallback(dart.void, "onLongPressUp", dart.nullCheck(this.onLongPressUp));
-          }
-          break;
-        }
-        case 2:
-        {
-          if (this.onSecondaryLongPressEnd != null) {
-            this.invokeCallback(dart.void, "onSecondaryLongPressEnd", dart.fn(() => dart.nullCheck(this.onSecondaryLongPressEnd)(details), T.VoidTovoid()));
-          }
-          if (this.onSecondaryLongPressUp != null) {
-            this.invokeCallback(dart.void, "onSecondaryLongPressUp", dart.nullCheck(this.onSecondaryLongPressUp));
-          }
-          break;
-        }
-        case 4:
-        {
-          if (this.onTertiaryLongPressEnd != null) {
-            this.invokeCallback(dart.void, "onTertiaryLongPressEnd", dart.fn(() => dart.nullCheck(this.onTertiaryLongPressEnd)(details), T.VoidTovoid()));
-          }
-          if (this.onTertiaryLongPressUp != null) {
-            this.invokeCallback(dart.void, "onTertiaryLongPressUp", dart.nullCheck(this.onTertiaryLongPressUp));
-          }
-          break;
-        }
-        default:
-        {
-          if (!false) dart.assertFailed("Unhandled button " + dart.str(this[_initialButtons]), I[0], 526, 16, "false");
-        }
-      }
-    }
-    [_reset]() {
-      this[_longPressAccepted] = false;
-      this[_longPressOrigin] = null;
-      this[_initialButtons] = null;
-      this[_velocityTracker] = null;
-    }
-    resolve(disposition) {
-      if (disposition == null) dart.nullFailed(I[0], 538, 35, "disposition");
-      if (dart.test(this[_longPressAccepted]) && disposition == arena.GestureDisposition.rejected) {
-        this[_reset]();
-      }
-      super.resolve(disposition);
-    }
-    acceptGesture(pointer) {
-      if (pointer == null) dart.nullFailed(I[0], 548, 26, "pointer");
-    }
-    get debugDescription() {
-      return "long press";
     }
   };
-  (long_press.LongPressGestureRecognizer.new = function(opts) {
-    let t0;
-    let duration = opts && 'duration' in opts ? opts.duration : null;
-    let postAcceptSlopTolerance = opts && 'postAcceptSlopTolerance' in opts ? opts.postAcceptSlopTolerance : null;
-    let kind = opts && 'kind' in opts ? opts.kind : null;
-    let debugOwner = opts && 'debugOwner' in opts ? opts.debugOwner : null;
-    this[_longPressAccepted] = false;
-    this[_longPressOrigin] = null;
-    this[_initialButtons] = null;
-    this[onLongPress] = null;
-    this[onLongPressStart] = null;
-    this[onLongPressMoveUpdate] = null;
-    this[onLongPressUp] = null;
-    this[onLongPressEnd] = null;
-    this[onSecondaryLongPress] = null;
-    this[onSecondaryLongPressStart] = null;
-    this[onSecondaryLongPressMoveUpdate] = null;
-    this[onSecondaryLongPressUp] = null;
-    this[onSecondaryLongPressEnd] = null;
-    this[onTertiaryLongPress] = null;
-    this[onTertiaryLongPressStart] = null;
-    this[onTertiaryLongPressMoveUpdate] = null;
-    this[onTertiaryLongPressUp] = null;
-    this[onTertiaryLongPressEnd] = null;
-    this[_velocityTracker] = null;
-    long_press.LongPressGestureRecognizer.__proto__.new.call(this, {deadline: (t0 = duration, t0 == null ? constants.kLongPressTimeout : t0), postAcceptSlopTolerance: postAcceptSlopTolerance, kind: kind, debugOwner: debugOwner});
-    ;
-  }).prototype = long_press.LongPressGestureRecognizer.prototype;
-  dart.addTypeTests(long_press.LongPressGestureRecognizer);
-  dart.addTypeCaches(long_press.LongPressGestureRecognizer);
-  dart.setMethodSignature(long_press.LongPressGestureRecognizer, () => ({
-    __proto__: dart.getMethods(long_press.LongPressGestureRecognizer.__proto__),
-    handlePrimaryPointer: dart.fnType(dart.void, [events.PointerEvent]),
-    [_checkLongPressStart]: dart.fnType(dart.void, []),
-    [_checkLongPressMoveUpdate]: dart.fnType(dart.void, [events.PointerEvent]),
-    [_checkLongPressEnd]: dart.fnType(dart.void, [events.PointerEvent]),
-    [_reset]: dart.fnType(dart.void, [])
+  (single_child_scroll_view._RenderSingleChildViewport.new = function(opts) {
+    let axisDirection = opts && 'axisDirection' in opts ? opts.axisDirection : C[24] || CT.C24;
+    if (axisDirection == null) dart.nullFailed(I[0], 379, 19, "axisDirection");
+    let offset = opts && 'offset' in opts ? opts.offset : null;
+    if (offset == null) dart.nullFailed(I[0], 380, 29, "offset");
+    let cacheExtent = opts && 'cacheExtent' in opts ? opts.cacheExtent : 250;
+    if (cacheExtent == null) dart.nullFailed(I[0], 381, 12, "cacheExtent");
+    let child = opts && 'child' in opts ? opts.child : null;
+    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : null;
+    if (clipBehavior == null) dart.nullFailed(I[0], 383, 19, "clipBehavior");
+    this[_clipBehavior] = ui.Clip.none;
+    this[_clipRectLayer] = null;
+    if (!(axisDirection != null)) dart.assertFailed(null, I[0], 384, 15, "axisDirection != null");
+    if (!(offset != null)) dart.assertFailed(null, I[0], 385, 15, "offset != null");
+    if (!(cacheExtent != null)) dart.assertFailed(null, I[0], 386, 15, "cacheExtent != null");
+    if (!(clipBehavior != null)) dart.assertFailed(null, I[0], 387, 15, "clipBehavior != null");
+    this[_axisDirection] = axisDirection;
+    this[_offset] = offset;
+    this[_cacheExtent] = cacheExtent;
+    this[_clipBehavior] = clipBehavior;
+    single_child_scroll_view._RenderSingleChildViewport.__proto__.new.call(this);
+    this.child = child;
+  }).prototype = single_child_scroll_view._RenderSingleChildViewport.prototype;
+  dart.addTypeTests(single_child_scroll_view._RenderSingleChildViewport);
+  dart.addTypeCaches(single_child_scroll_view._RenderSingleChildViewport);
+  single_child_scroll_view._RenderSingleChildViewport[dart.implements] = () => [viewport.RenderAbstractViewport];
+  dart.setMethodSignature(single_child_scroll_view._RenderSingleChildViewport, () => ({
+    __proto__: dart.getMethods(single_child_scroll_view._RenderSingleChildViewport.__proto__),
+    [_hasScrolled]: dart.fnType(dart.void, []),
+    [_getInnerConstraints]: dart.fnType(box.BoxConstraints, [box.BoxConstraints]),
+    [_paintOffsetForPosition]: dart.fnType(ui.Offset, [core.double]),
+    [_shouldClipAtPaintOffset]: dart.fnType(core.bool, [ui.Offset]),
+    getOffsetToReveal: dart.fnType(viewport.RevealedOffset, [object.RenderObject, core.double], {rect: dart.nullable(ui.Rect)}, {}),
+    describeSemanticsClip: dart.fnType(ui.Rect, [dart.nullable(core.Object)])
   }));
-  dart.setGetterSignature(long_press.LongPressGestureRecognizer, () => ({
-    __proto__: dart.getGetters(long_press.LongPressGestureRecognizer.__proto__),
-    debugDescription: core.String
+  dart.setGetterSignature(single_child_scroll_view._RenderSingleChildViewport, () => ({
+    __proto__: dart.getGetters(single_child_scroll_view._RenderSingleChildViewport.__proto__),
+    axisDirection: basic_types.AxisDirection,
+    axis: basic_types.Axis,
+    offset: viewport_offset.ViewportOffset,
+    cacheExtent: core.double,
+    clipBehavior: ui.Clip,
+    [_viewportExtent]: core.double,
+    [_minScrollExtent]: core.double,
+    [_maxScrollExtent]: core.double,
+    [_paintOffset]: ui.Offset
   }));
-  dart.setLibraryUri(long_press.LongPressGestureRecognizer, I[1]);
-  dart.setFieldSignature(long_press.LongPressGestureRecognizer, () => ({
-    __proto__: dart.getFields(long_press.LongPressGestureRecognizer.__proto__),
-    [_longPressAccepted]: dart.fieldType(core.bool),
-    [_longPressOrigin]: dart.fieldType(dart.nullable(recognizer.OffsetPair)),
-    [_initialButtons]: dart.fieldType(dart.nullable(core.int)),
-    onLongPress: dart.fieldType(dart.nullable(dart.fnType(dart.void, []))),
-    onLongPressStart: dart.fieldType(dart.nullable(dart.fnType(dart.void, [long_press.LongPressStartDetails]))),
-    onLongPressMoveUpdate: dart.fieldType(dart.nullable(dart.fnType(dart.void, [long_press.LongPressMoveUpdateDetails]))),
-    onLongPressUp: dart.fieldType(dart.nullable(dart.fnType(dart.void, []))),
-    onLongPressEnd: dart.fieldType(dart.nullable(dart.fnType(dart.void, [long_press.LongPressEndDetails]))),
-    onSecondaryLongPress: dart.fieldType(dart.nullable(dart.fnType(dart.void, []))),
-    onSecondaryLongPressStart: dart.fieldType(dart.nullable(dart.fnType(dart.void, [long_press.LongPressStartDetails]))),
-    onSecondaryLongPressMoveUpdate: dart.fieldType(dart.nullable(dart.fnType(dart.void, [long_press.LongPressMoveUpdateDetails]))),
-    onSecondaryLongPressUp: dart.fieldType(dart.nullable(dart.fnType(dart.void, []))),
-    onSecondaryLongPressEnd: dart.fieldType(dart.nullable(dart.fnType(dart.void, [long_press.LongPressEndDetails]))),
-    onTertiaryLongPress: dart.fieldType(dart.nullable(dart.fnType(dart.void, []))),
-    onTertiaryLongPressStart: dart.fieldType(dart.nullable(dart.fnType(dart.void, [long_press.LongPressStartDetails]))),
-    onTertiaryLongPressMoveUpdate: dart.fieldType(dart.nullable(dart.fnType(dart.void, [long_press.LongPressMoveUpdateDetails]))),
-    onTertiaryLongPressUp: dart.fieldType(dart.nullable(dart.fnType(dart.void, []))),
-    onTertiaryLongPressEnd: dart.fieldType(dart.nullable(dart.fnType(dart.void, [long_press.LongPressEndDetails]))),
-    [_velocityTracker]: dart.fieldType(dart.nullable(velocity_tracker.VelocityTracker))
+  dart.setSetterSignature(single_child_scroll_view._RenderSingleChildViewport, () => ({
+    __proto__: dart.getSetters(single_child_scroll_view._RenderSingleChildViewport.__proto__),
+    axisDirection: basic_types.AxisDirection,
+    offset: viewport_offset.ViewportOffset,
+    cacheExtent: core.double,
+    clipBehavior: ui.Clip
   }));
-  dart.trackLibraries("packages/flutter/src/gestures/long_press.dart", {
-    "package:flutter/src/gestures/long_press.dart": long_press
+  dart.setLibraryUri(single_child_scroll_view._RenderSingleChildViewport, I[1]);
+  dart.setFieldSignature(single_child_scroll_view._RenderSingleChildViewport, () => ({
+    __proto__: dart.getFields(single_child_scroll_view._RenderSingleChildViewport.__proto__),
+    [_axisDirection]: dart.fieldType(basic_types.AxisDirection),
+    [_offset]: dart.fieldType(viewport_offset.ViewportOffset),
+    [_cacheExtent]: dart.fieldType(core.double),
+    [_clipBehavior]: dart.fieldType(ui.Clip),
+    [_clipRectLayer]: dart.fieldType(dart.nullable(layer.ClipRectLayer))
+  }));
+  dart.trackLibraries("packages/flutter/src/widgets/single_child_scroll_view.dart", {
+    "package:flutter/src/widgets/single_child_scroll_view.dart": single_child_scroll_view
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["long_press.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/gestures/long_press.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["single_child_scroll_view.dart"],"names":[],"mappings":"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","file":"../../../../../../packages/flutter/src/widgets/single_child_scroll_view.dart.lib.js"}');
   // Exports:
   return {
-    src__gestures__long_press: long_press
+    src__widgets__single_child_scroll_view: single_child_scroll_view
   };
 }));
 
-//# sourceMappingURL=long_press.dart.lib.js.map
+//# sourceMappingURL=single_child_scroll_view.dart.lib.js.map

@@ -1,16 +1,39 @@
-define(['dart_sdk'], (function load__packages__flutter__src__painting__border_radius_dart(dart_sdk) {
+define(['dart_sdk', 'packages/geolocator_platform_interface/src/extensions/integer_extensions.dart', 'packages/flutter/src/services/system_channels.dart', 'packages/geolocator_platform_interface/src/enums/location_permission.dart', 'packages/geolocator_platform_interface/src/models/position.dart', 'packages/geolocator_platform_interface/src/enums/location_accuracy.dart', 'packages/geolocator_platform_interface/src/models/location_options.dart', 'packages/geolocator_platform_interface/src/errors/location_service_disabled_exception.dart', 'packages/geolocator_platform_interface/src/errors/already_subscribed_exception.dart', 'packages/geolocator_platform_interface/src/errors/permission_definitions_not_found_exception.dart', 'packages/geolocator_platform_interface/src/errors/permission_denied_exception.dart', 'packages/geolocator_platform_interface/src/errors/permission_request_in_progress_exception.dart', 'packages/geolocator_platform_interface/src/errors/position_update_exception.dart', 'packages/plugin_platform_interface/plugin_platform_interface.dart', 'packages/vector_math/vector_math.dart'], (function load__packages__geolocator_platform_interface__src__implementations__method_channel_geolocator_dart(dart_sdk, packages__geolocator_platform_interface__src__extensions__integer_extensions$46dart, packages__flutter__src__services__system_channels$46dart, packages__geolocator_platform_interface__src__enums__location_permission$46dart, packages__geolocator_platform_interface__src__models__position$46dart, packages__geolocator_platform_interface__src__enums__location_accuracy$46dart, packages__geolocator_platform_interface__src__models__location_options$46dart, packages__geolocator_platform_interface__src__errors__location_service_disabled_exception$46dart, packages__geolocator_platform_interface__src__errors__already_subscribed_exception$46dart, packages__geolocator_platform_interface__src__errors__permission_definitions_not_found_exception$46dart, packages__geolocator_platform_interface__src__errors__permission_denied_exception$46dart, packages__geolocator_platform_interface__src__errors__permission_request_in_progress_exception$46dart, packages__geolocator_platform_interface__src__errors__position_update_exception$46dart, packages__plugin_platform_interface__plugin_platform_interface$46dart, packages__vector_math__vector_math$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const ui = dart_sdk.ui;
-  const _internal = dart_sdk._internal;
+  const async = dart_sdk.async;
+  const _js_helper = dart_sdk._js_helper;
+  const math = dart_sdk.math;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  var border_radius = Object.create(dart.library);
-  var $toStringAsFixed = dartx.toStringAsFixed;
-  var $runtimeType = dartx.runtimeType;
+  const integer_extensions = packages__geolocator_platform_interface__src__extensions__integer_extensions$46dart.src__extensions__integer_extensions;
+  const message_codec = packages__flutter__src__services__system_channels$46dart.src__services__message_codec;
+  const platform_channel = packages__flutter__src__services__system_channels$46dart.src__services__platform_channel;
+  const message_codecs = packages__flutter__src__services__system_channels$46dart.src__services__message_codecs;
+  const location_permission = packages__geolocator_platform_interface__src__enums__location_permission$46dart.src__enums__location_permission;
+  const position = packages__geolocator_platform_interface__src__models__position$46dart.src__models__position;
+  const location_accuracy = packages__geolocator_platform_interface__src__enums__location_accuracy$46dart.src__enums__location_accuracy;
+  const location_options = packages__geolocator_platform_interface__src__models__location_options$46dart.src__models__location_options;
+  const location_service_disabled_exception = packages__geolocator_platform_interface__src__errors__location_service_disabled_exception$46dart.src__errors__location_service_disabled_exception;
+  const already_subscribed_exception = packages__geolocator_platform_interface__src__errors__already_subscribed_exception$46dart.src__errors__already_subscribed_exception;
+  const permission_definitions_not_found_exception = packages__geolocator_platform_interface__src__errors__permission_definitions_not_found_exception$46dart.src__errors__permission_definitions_not_found_exception;
+  const permission_denied_exception = packages__geolocator_platform_interface__src__errors__permission_denied_exception$46dart.src__errors__permission_denied_exception;
+  const permission_request_in_progress_exception = packages__geolocator_platform_interface__src__errors__permission_request_in_progress_exception$46dart.src__errors__permission_request_in_progress_exception;
+  const position_update_exception = packages__geolocator_platform_interface__src__errors__position_update_exception$46dart.src__errors__position_update_exception;
+  const plugin_platform_interface = packages__plugin_platform_interface__plugin_platform_interface$46dart.plugin_platform_interface;
+  const vector_math = packages__vector_math__vector_math$46dart.vector_math;
+  var method_channel_geolocator = Object.create(dart.library);
+  var geolocator_platform_interface = Object.create(dart.library);
+  var geolocator_platform_interface$ = Object.create(dart.library);
   dart._checkModuleNullSafetyMode(false);
   var T = {
-    _: () => T
+    boolN: () => (T.boolN = dart.constFn(dart.nullable(core.bool)))(),
+    boolNTobool: () => (T.boolNTobool = dart.constFn(dart.fnType(core.bool, [T.boolN()])))(),
+    IdentityMapOfString$dynamic: () => (T.IdentityMapOfString$dynamic = dart.constFn(_js_helper.IdentityMap$(core.String, dart.dynamic)))(),
+    PositionN: () => (T.PositionN = dart.constFn(dart.nullable(position.Position)))(),
+    EventSinkTovoid: () => (T.EventSinkTovoid = dart.constFn(dart.fnType(dart.void, [async.EventSink])))(),
+    dynamicToPosition: () => (T.dynamicToPosition = dart.constFn(dart.fnType(position.Position, [dart.dynamic])))(),
+    dynamicToNever: () => (T.dynamicToNever = dart.constFn(dart.fnType(dart.Never, [dart.dynamic])))()
   };
   var T$Eval = Object.assign({
     _: () => T$Eval
@@ -27,692 +50,387 @@ define(['dart_sdk'], (function load__packages__flutter__src__painting__border_ra
   dart.defineLazy(CT, {
     get C0() {
       return C[0] = dart.const({
-        __proto__: ui.Radius.prototype,
-        [Radius_y]: 0,
-        [Radius_x]: 0
+        __proto__: location_accuracy.LocationAccuracy.prototype,
+        [_name]: "LocationAccuracy.best",
+        index: 4
       });
     },
     get C1() {
       return C[1] = dart.const({
-        __proto__: border_radius.BorderRadius.prototype,
-        [bottomRight$]: C[0] || CT.C0,
-        [bottomLeft$]: C[0] || CT.C0,
-        [topRight$]: C[0] || CT.C0,
-        [topLeft$]: C[0] || CT.C0
-      });
-    },
-    get C2() {
-      return C[2] = dart.const({
-        __proto__: ui.TextDirection.prototype,
-        [_name]: "TextDirection.rtl",
-        index: 0
-      });
-    },
-    get C3() {
-      return C[3] = dart.const({
-        __proto__: ui.TextDirection.prototype,
-        [_name]: "TextDirection.ltr",
-        index: 1
+        __proto__: core.Object.prototype
       });
     },
     get C4() {
       return C[4] = dart.const({
-        __proto__: border_radius.BorderRadiusDirectional.prototype,
-        [bottomEnd$]: C[0] || CT.C0,
-        [bottomStart$]: C[0] || CT.C0,
-        [topEnd$]: C[0] || CT.C0,
-        [topStart$]: C[0] || CT.C0
+        __proto__: message_codecs.StandardMessageCodec.prototype
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: message_codecs.StandardMethodCodec.prototype,
+        [StandardMethodCodec_messageCodec]: C[4] || CT.C4
+      });
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: platform_channel.MethodChannel.prototype,
+        [MethodChannel__binaryMessenger]: null,
+        [MethodChannel_codec]: C[3] || CT.C3,
+        [MethodChannel_name]: "flutter.baseflow.com/geolocator"
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: platform_channel.EventChannel.prototype,
+        [EventChannel__binaryMessenger]: null,
+        [EventChannel_codec]: C[3] || CT.C3,
+        [EventChannel_name]: "flutter.baseflow.com/geolocator_updates"
       });
     }
   }, false);
-  var C = Array(5).fill(void 0);
+  var C = Array(6).fill(void 0);
   var I = [
-    "file:///C:/flutter/flutter/packages/flutter/lib/src/painting/border_radius.dart",
-    "package:flutter/src/painting/border_radius.dart"
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_platform_interface-2.0.0/lib/src/implementations/method_channel_geolocator.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/geolocator_platform_interface-2.0.0/lib/src/geolocator_platform_interface.dart",
+    "package:geolocator_platform_interface/src/geolocator_platform_interface.dart",
+    "package:geolocator_platform_interface/src/implementations/method_channel_geolocator.dart"
   ];
-  var _topLeft = dart.privateName(border_radius, "_topLeft");
-  var _topRight = dart.privateName(border_radius, "_topRight");
-  var _bottomLeft = dart.privateName(border_radius, "_bottomLeft");
-  var _bottomRight = dart.privateName(border_radius, "_bottomRight");
-  var _topStart = dart.privateName(border_radius, "_topStart");
-  var _topEnd = dart.privateName(border_radius, "_topEnd");
-  var _bottomStart = dart.privateName(border_radius, "_bottomStart");
-  var _bottomEnd = dart.privateName(border_radius, "_bottomEnd");
-  border_radius.BorderRadiusGeometry = class BorderRadiusGeometry extends core.Object {
-    subtract(other) {
-      if (other == null) dart.nullFailed(I[0], 49, 54, "other");
-      return new border_radius._MixedBorderRadius.new(this[_topLeft]['-'](other[_topLeft]), this[_topRight]['-'](other[_topRight]), this[_bottomLeft]['-'](other[_bottomLeft]), this[_bottomRight]['-'](other[_bottomRight]), this[_topStart]['-'](other[_topStart]), this[_topEnd]['-'](other[_topEnd]), this[_bottomStart]['-'](other[_bottomStart]), this[_bottomEnd]['-'](other[_bottomEnd]));
+  var forceAndroidLocationManager = dart.privateName(method_channel_geolocator, "MethodChannelGeolocator.forceAndroidLocationManager");
+  var _positionStream = dart.privateName(method_channel_geolocator, "_positionStream");
+  var _handlePlatformException = dart.privateName(method_channel_geolocator, "_handlePlatformException");
+  var _name = dart.privateName(location_accuracy, "_name");
+  geolocator_platform_interface.GeolocatorPlatform = class GeolocatorPlatform extends plugin_platform_interface.PlatformInterface {
+    static get instance() {
+      return geolocator_platform_interface.GeolocatorPlatform._instance;
     }
-    add(other) {
-      if (other == null) dart.nullFailed(I[0], 73, 49, "other");
-      return new border_radius._MixedBorderRadius.new(this[_topLeft]['+'](other[_topLeft]), this[_topRight]['+'](other[_topRight]), this[_bottomLeft]['+'](other[_bottomLeft]), this[_bottomRight]['+'](other[_bottomRight]), this[_topStart]['+'](other[_topStart]), this[_topEnd]['+'](other[_topEnd]), this[_bottomStart]['+'](other[_bottomStart]), this[_bottomEnd]['+'](other[_bottomEnd]));
+    static set instance(instance) {
+      if (instance == null) dart.nullFailed(I[1], 35, 42, "instance");
+      plugin_platform_interface.PlatformInterface.verifyToken(instance, geolocator_platform_interface.GeolocatorPlatform._token);
+      geolocator_platform_interface.GeolocatorPlatform._instance = instance;
     }
-    static lerp(a, b, t) {
-      if (t == null) dart.nullFailed(I[0], 132, 94, "t");
-      if (!(t != null)) dart.assertFailed(null, I[0], 133, 12, "t != null");
-      if (a == null && b == null) return null;
-      a == null ? a = border_radius.BorderRadius.zero : null;
-      b == null ? b = border_radius.BorderRadius.zero : null;
-      return a.add(b.subtract(a)['*'](t));
+    checkPermission() {
+      dart.throw(new core.UnimplementedError.new("checkPermission() has not been implemented."));
     }
-    toString() {
-      let visual = null;
-      let logical = null;
-      if (dart.equals(this[_topLeft], this[_topRight]) && dart.equals(this[_topRight], this[_bottomLeft]) && dart.equals(this[_bottomLeft], this[_bottomRight])) {
-        if (!dart.equals(this[_topLeft], ui.Radius.zero)) {
-          if (this[_topLeft].x == this[_topLeft].y) {
-            visual = "BorderRadius.circular(" + this[_topLeft].x[$toStringAsFixed](1) + ")";
-          } else {
-            visual = "BorderRadius.all(" + dart.str(this[_topLeft]) + ")";
-          }
-        }
-      } else {
-        let result = new core.StringBuffer.new();
-        result.write("BorderRadius.only(");
-        let comma = false;
-        if (!dart.equals(this[_topLeft], ui.Radius.zero)) {
-          result.write("topLeft: " + dart.str(this[_topLeft]));
-          comma = true;
-        }
-        if (!dart.equals(this[_topRight], ui.Radius.zero)) {
-          if (comma) result.write(", ");
-          result.write("topRight: " + dart.str(this[_topRight]));
-          comma = true;
-        }
-        if (!dart.equals(this[_bottomLeft], ui.Radius.zero)) {
-          if (comma) result.write(", ");
-          result.write("bottomLeft: " + dart.str(this[_bottomLeft]));
-          comma = true;
-        }
-        if (!dart.equals(this[_bottomRight], ui.Radius.zero)) {
-          if (comma) result.write(", ");
-          result.write("bottomRight: " + dart.str(this[_bottomRight]));
-        }
-        result.write(")");
-        visual = result.toString();
-      }
-      if (dart.equals(this[_topStart], this[_topEnd]) && dart.equals(this[_topEnd], this[_bottomEnd]) && dart.equals(this[_bottomEnd], this[_bottomStart])) {
-        if (!dart.equals(this[_topStart], ui.Radius.zero)) {
-          if (this[_topStart].x == this[_topStart].y) {
-            logical = "BorderRadiusDirectional.circular(" + this[_topStart].x[$toStringAsFixed](1) + ")";
-          } else {
-            logical = "BorderRadiusDirectional.all(" + dart.str(this[_topStart]) + ")";
-          }
-        }
-      } else {
-        let result = new core.StringBuffer.new();
-        result.write("BorderRadiusDirectional.only(");
-        let comma = false;
-        if (!dart.equals(this[_topStart], ui.Radius.zero)) {
-          result.write("topStart: " + dart.str(this[_topStart]));
-          comma = true;
-        }
-        if (!dart.equals(this[_topEnd], ui.Radius.zero)) {
-          if (comma) result.write(", ");
-          result.write("topEnd: " + dart.str(this[_topEnd]));
-          comma = true;
-        }
-        if (!dart.equals(this[_bottomStart], ui.Radius.zero)) {
-          if (comma) result.write(", ");
-          result.write("bottomStart: " + dart.str(this[_bottomStart]));
-          comma = true;
-        }
-        if (!dart.equals(this[_bottomEnd], ui.Radius.zero)) {
-          if (comma) result.write(", ");
-          result.write("bottomEnd: " + dart.str(this[_bottomEnd]));
-        }
-        result.write(")");
-        logical = result.toString();
-      }
-      if (visual != null && logical != null) return dart.str(visual) + " + " + dart.str(logical);
-      if (visual != null) return visual;
-      if (logical != null) return logical;
-      return "BorderRadius.zero";
+    requestPermission() {
+      dart.throw(new core.UnimplementedError.new("requestPermission() has not been implemented."));
     }
-    _equals(other) {
-      if (other == null) return false;
-      if (this === other) return true;
-      if (!dart.equals(dart.runtimeType(other), this[$runtimeType])) return false;
-      return border_radius.BorderRadiusGeometry.is(other) && dart.equals(other[_topLeft], this[_topLeft]) && dart.equals(other[_topRight], this[_topRight]) && dart.equals(other[_bottomLeft], this[_bottomLeft]) && dart.equals(other[_bottomRight], this[_bottomRight]) && dart.equals(other[_topStart], this[_topStart]) && dart.equals(other[_topEnd], this[_topEnd]) && dart.equals(other[_bottomStart], this[_bottomStart]) && dart.equals(other[_bottomEnd], this[_bottomEnd]);
+    isLocationServiceEnabled() {
+      dart.throw(new core.UnimplementedError.new("isLocationServiceEnabled() has not been implemented."));
     }
-    get hashCode() {
-      return ui.hashValues(this[_topLeft], this[_topRight], this[_bottomLeft], this[_bottomRight], this[_topStart], this[_topEnd], this[_bottomStart], this[_bottomEnd]);
+    getLastKnownPosition(opts) {
+      let forceAndroidLocationManager = opts && 'forceAndroidLocationManager' in opts ? opts.forceAndroidLocationManager : false;
+      if (forceAndroidLocationManager == null) dart.nullFailed(I[1], 79, 10, "forceAndroidLocationManager");
+      dart.throw(new core.UnimplementedError.new("getLastKnownPosition() has not been implemented."));
+    }
+    getCurrentPosition(opts) {
+      let desiredAccuracy = opts && 'desiredAccuracy' in opts ? opts.desiredAccuracy : C[0] || CT.C0;
+      if (desiredAccuracy == null) dart.nullFailed(I[1], 103, 22, "desiredAccuracy");
+      let forceAndroidLocationManager = opts && 'forceAndroidLocationManager' in opts ? opts.forceAndroidLocationManager : false;
+      if (forceAndroidLocationManager == null) dart.nullFailed(I[1], 104, 10, "forceAndroidLocationManager");
+      let timeLimit = opts && 'timeLimit' in opts ? opts.timeLimit : null;
+      dart.throw(new core.UnimplementedError.new("getCurrentPosition() has not been implemented."));
+    }
+    getPositionStream(opts) {
+      let desiredAccuracy = opts && 'desiredAccuracy' in opts ? opts.desiredAccuracy : C[0] || CT.C0;
+      if (desiredAccuracy == null) dart.nullFailed(I[1], 145, 22, "desiredAccuracy");
+      let distanceFilter = opts && 'distanceFilter' in opts ? opts.distanceFilter : 0;
+      if (distanceFilter == null) dart.nullFailed(I[1], 146, 9, "distanceFilter");
+      let forceAndroidLocationManager = opts && 'forceAndroidLocationManager' in opts ? opts.forceAndroidLocationManager : false;
+      if (forceAndroidLocationManager == null) dart.nullFailed(I[1], 147, 10, "forceAndroidLocationManager");
+      let timeInterval = opts && 'timeInterval' in opts ? opts.timeInterval : 0;
+      if (timeInterval == null) dart.nullFailed(I[1], 148, 9, "timeInterval");
+      let timeLimit = opts && 'timeLimit' in opts ? opts.timeLimit : null;
+      dart.throw(new core.UnimplementedError.new("getPositionStream() has not been implemented."));
+    }
+    openAppSettings() {
+      return async.async(core.bool, function* openAppSettings() {
+        dart.throw(new core.UnimplementedError.new("openAppSettings() has not been implemented."));
+      });
+    }
+    openLocationSettings() {
+      return async.async(core.bool, function* openLocationSettings() {
+        dart.throw(new core.UnimplementedError.new("openLocationSettings() has not been implemented."));
+      });
+    }
+    distanceBetween(startLatitude, startLongitude, endLatitude, endLongitude) {
+      if (startLatitude == null) dart.nullFailed(I[1], 178, 12, "startLatitude");
+      if (startLongitude == null) dart.nullFailed(I[1], 179, 12, "startLongitude");
+      if (endLatitude == null) dart.nullFailed(I[1], 180, 12, "endLatitude");
+      if (endLongitude == null) dart.nullFailed(I[1], 181, 12, "endLongitude");
+      let earthRadius = 6378137.0;
+      let dLat = geolocator_platform_interface.GeolocatorPlatform._toRadians(dart.notNull(endLatitude) - dart.notNull(startLatitude));
+      let dLon = geolocator_platform_interface.GeolocatorPlatform._toRadians(dart.notNull(endLongitude) - dart.notNull(startLongitude));
+      let a = math.pow(math.sin(core.num.as(dart.dsend(dLat, '/', [2]))), 2) + math.pow(math.sin(core.num.as(dart.dsend(dLon, '/', [2]))), 2) * math.cos(core.num.as(geolocator_platform_interface.GeolocatorPlatform._toRadians(startLatitude))) * math.cos(core.num.as(geolocator_platform_interface.GeolocatorPlatform._toRadians(endLatitude)));
+      let c = 2 * math.asin(math.sqrt(a));
+      return earthRadius * c;
+    }
+    static _toRadians(degree) {
+      if (degree == null) dart.nullFailed(I[1], 196, 28, "degree");
+      return dart.notNull(degree) * 3.141592653589793 / 180;
+    }
+    bearingBetween(startLatitude, startLongitude, endLatitude, endLongitude) {
+      if (startLatitude == null) dart.nullFailed(I[1], 207, 12, "startLatitude");
+      if (startLongitude == null) dart.nullFailed(I[1], 208, 12, "startLongitude");
+      if (endLatitude == null) dart.nullFailed(I[1], 209, 12, "endLatitude");
+      if (endLongitude == null) dart.nullFailed(I[1], 210, 12, "endLongitude");
+      let startLongitudeRadians = vector_math.radians(startLongitude);
+      let startLatitudeRadians = vector_math.radians(startLatitude);
+      let endLongitudeRadians = vector_math.radians(endLongitude);
+      let endLatitudeRadians = vector_math.radians(endLatitude);
+      let y = math.sin(dart.notNull(endLongitudeRadians) - dart.notNull(startLongitudeRadians)) * math.cos(endLatitudeRadians);
+      let x = math.cos(startLatitudeRadians) * math.sin(endLatitudeRadians) - math.sin(startLatitudeRadians) * math.cos(endLatitudeRadians) * math.cos(dart.notNull(endLongitudeRadians) - dart.notNull(startLongitudeRadians));
+      return vector_math.degrees(math.atan2(y, x));
     }
   };
-  (border_radius.BorderRadiusGeometry.new = function() {
+  (geolocator_platform_interface.GeolocatorPlatform.new = function() {
+    geolocator_platform_interface.GeolocatorPlatform.__proto__.new.call(this, {token: geolocator_platform_interface.GeolocatorPlatform._token});
     ;
-  }).prototype = border_radius.BorderRadiusGeometry.prototype;
-  dart.addTypeTests(border_radius.BorderRadiusGeometry);
-  dart.addTypeCaches(border_radius.BorderRadiusGeometry);
-  dart.setMethodSignature(border_radius.BorderRadiusGeometry, () => ({
-    __proto__: dart.getMethods(border_radius.BorderRadiusGeometry.__proto__),
-    subtract: dart.fnType(border_radius.BorderRadiusGeometry, [border_radius.BorderRadiusGeometry]),
-    add: dart.fnType(border_radius.BorderRadiusGeometry, [border_radius.BorderRadiusGeometry])
+  }).prototype = geolocator_platform_interface.GeolocatorPlatform.prototype;
+  dart.addTypeTests(geolocator_platform_interface.GeolocatorPlatform);
+  dart.addTypeCaches(geolocator_platform_interface.GeolocatorPlatform);
+  dart.setMethodSignature(geolocator_platform_interface.GeolocatorPlatform, () => ({
+    __proto__: dart.getMethods(geolocator_platform_interface.GeolocatorPlatform.__proto__),
+    checkPermission: dart.fnType(async.Future$(location_permission.LocationPermission), []),
+    requestPermission: dart.fnType(async.Future$(location_permission.LocationPermission), []),
+    isLocationServiceEnabled: dart.fnType(async.Future$(core.bool), []),
+    getLastKnownPosition: dart.fnType(async.Future$(dart.nullable(position.Position)), [], {forceAndroidLocationManager: core.bool}, {}),
+    getCurrentPosition: dart.fnType(async.Future$(position.Position), [], {desiredAccuracy: location_accuracy.LocationAccuracy, forceAndroidLocationManager: core.bool, timeLimit: dart.nullable(core.Duration)}, {}),
+    getPositionStream: dart.fnType(async.Stream$(position.Position), [], {desiredAccuracy: location_accuracy.LocationAccuracy, distanceFilter: core.int, forceAndroidLocationManager: core.bool, timeInterval: core.int, timeLimit: dart.nullable(core.Duration)}, {}),
+    openAppSettings: dart.fnType(async.Future$(core.bool), []),
+    openLocationSettings: dart.fnType(async.Future$(core.bool), []),
+    distanceBetween: dart.fnType(core.double, [core.double, core.double, core.double, core.double]),
+    bearingBetween: dart.fnType(core.double, [core.double, core.double, core.double, core.double])
   }));
-  dart.setLibraryUri(border_radius.BorderRadiusGeometry, I[1]);
-  dart.defineExtensionMethods(border_radius.BorderRadiusGeometry, ['toString', '_equals']);
-  dart.defineExtensionAccessors(border_radius.BorderRadiusGeometry, ['hashCode']);
-  var topLeft$ = dart.privateName(border_radius, "BorderRadius.topLeft");
-  var topRight$ = dart.privateName(border_radius, "BorderRadius.topRight");
-  var bottomLeft$ = dart.privateName(border_radius, "BorderRadius.bottomLeft");
-  var bottomRight$ = dart.privateName(border_radius, "BorderRadius.bottomRight");
-  var Radius_y = dart.privateName(ui, "Radius.y");
-  var Radius_x = dart.privateName(ui, "Radius.x");
-  border_radius.BorderRadius = class BorderRadius extends border_radius.BorderRadiusGeometry {
-    get topLeft() {
-      return this[topLeft$];
-    }
-    set topLeft(value) {
-      super.topLeft = value;
-    }
-    get topRight() {
-      return this[topRight$];
-    }
-    set topRight(value) {
-      super.topRight = value;
-    }
-    get bottomLeft() {
-      return this[bottomLeft$];
-    }
-    set bottomLeft(value) {
-      super.bottomLeft = value;
-    }
-    get bottomRight() {
-      return this[bottomRight$];
-    }
-    set bottomRight(value) {
-      super.bottomRight = value;
-    }
-    get [_topLeft]() {
-      return this.topLeft;
-    }
-    get [_topRight]() {
-      return this.topRight;
-    }
-    get [_bottomLeft]() {
-      return this.bottomLeft;
-    }
-    get [_bottomRight]() {
-      return this.bottomRight;
-    }
-    get [_topStart]() {
-      return ui.Radius.zero;
-    }
-    get [_topEnd]() {
-      return ui.Radius.zero;
-    }
-    get [_bottomStart]() {
-      return ui.Radius.zero;
-    }
-    get [_bottomEnd]() {
-      return ui.Radius.zero;
-    }
-    toRRect(rect) {
-      if (rect == null) dart.nullFailed(I[0], 370, 22, "rect");
-      return new ui.RRect.fromRectAndCorners(rect, {topLeft: this.topLeft, topRight: this.topRight, bottomLeft: this.bottomLeft, bottomRight: this.bottomRight});
-    }
-    subtract(other) {
-      if (other == null) dart.nullFailed(I[0], 381, 54, "other");
-      if (border_radius.BorderRadius.is(other)) return this['-'](other);
-      return super.subtract(other);
-    }
-    add(other) {
-      if (other == null) dart.nullFailed(I[0], 388, 49, "other");
-      if (border_radius.BorderRadius.is(other)) return this['+'](other);
-      return super.add(other);
-    }
-    ['-'](other) {
-      if (other == null) dart.nullFailed(I[0], 395, 40, "other");
-      return new border_radius.BorderRadius.only({topLeft: this.topLeft['-'](other.topLeft), topRight: this.topRight['-'](other.topRight), bottomLeft: this.bottomLeft['-'](other.bottomLeft), bottomRight: this.bottomRight['-'](other.bottomRight)});
-    }
-    ['+'](other) {
-      if (other == null) dart.nullFailed(I[0], 405, 40, "other");
-      return new border_radius.BorderRadius.only({topLeft: this.topLeft['+'](other.topLeft), topRight: this.topRight['+'](other.topRight), bottomLeft: this.bottomLeft['+'](other.bottomLeft), bottomRight: this.bottomRight['+'](other.bottomRight)});
-    }
-    _negate() {
-      return new border_radius.BorderRadius.only({topLeft: this.topLeft._negate(), topRight: this.topRight._negate(), bottomLeft: this.bottomLeft._negate(), bottomRight: this.bottomRight._negate()});
-    }
-    ['*'](other) {
-      if (other == null) dart.nullFailed(I[0], 429, 34, "other");
-      return new border_radius.BorderRadius.only({topLeft: this.topLeft['*'](other), topRight: this.topRight['*'](other), bottomLeft: this.bottomLeft['*'](other), bottomRight: this.bottomRight['*'](other)});
-    }
-    ['/'](other) {
-      if (other == null) dart.nullFailed(I[0], 440, 34, "other");
-      return new border_radius.BorderRadius.only({topLeft: this.topLeft['/'](other), topRight: this.topRight['/'](other), bottomLeft: this.bottomLeft['/'](other), bottomRight: this.bottomRight['/'](other)});
-    }
-    ['~/'](other) {
-      if (other == null) dart.nullFailed(I[0], 451, 35, "other");
-      return new border_radius.BorderRadius.only({topLeft: this.topLeft['~/'](other), topRight: this.topRight['~/'](other), bottomLeft: this.bottomLeft['~/'](other), bottomRight: this.bottomRight['~/'](other)});
-    }
-    ['%'](other) {
-      if (other == null) dart.nullFailed(I[0], 462, 34, "other");
-      return new border_radius.BorderRadius.only({topLeft: this.topLeft['%'](other), topRight: this.topRight['%'](other), bottomLeft: this.bottomLeft['%'](other), bottomRight: this.bottomRight['%'](other)});
-    }
-    static lerp(a, b, t) {
-      if (t == null) dart.nullFailed(I[0], 476, 70, "t");
-      if (!(t != null)) dart.assertFailed(null, I[0], 477, 12, "t != null");
-      if (a == null && b == null) return null;
-      if (a == null) return dart.nullCheck(b)['*'](t);
-      if (b == null) return a['*'](1.0 - dart.notNull(t));
-      return new border_radius.BorderRadius.only({topLeft: dart.nullCheck(ui.Radius.lerp(a.topLeft, b.topLeft, t)), topRight: dart.nullCheck(ui.Radius.lerp(a.topRight, b.topRight, t)), bottomLeft: dart.nullCheck(ui.Radius.lerp(a.bottomLeft, b.bottomLeft, t)), bottomRight: dart.nullCheck(ui.Radius.lerp(a.bottomRight, b.bottomRight, t))});
-    }
-    resolve(direction) {
-      return this;
-    }
-  };
-  (border_radius.BorderRadius.all = function(radius) {
-    if (radius == null) dart.nullFailed(I[0], 285, 33, "radius");
-    border_radius.BorderRadius.only.call(this, {topLeft: radius, topRight: radius, bottomLeft: radius, bottomRight: radius});
-  }).prototype = border_radius.BorderRadius.prototype;
-  (border_radius.BorderRadius.circular = function(radius) {
-    if (radius == null) dart.nullFailed(I[0], 293, 32, "radius");
-    border_radius.BorderRadius.all.call(this, new ui.Radius.circular(radius));
-  }).prototype = border_radius.BorderRadius.prototype;
-  (border_radius.BorderRadius.vertical = function(opts) {
-    let top = opts && 'top' in opts ? opts.top : C[0] || CT.C0;
-    if (top == null) dart.nullFailed(I[0], 300, 12, "top");
-    let bottom = opts && 'bottom' in opts ? opts.bottom : C[0] || CT.C0;
-    if (bottom == null) dart.nullFailed(I[0], 301, 12, "bottom");
-    border_radius.BorderRadius.only.call(this, {topLeft: top, topRight: top, bottomLeft: bottom, bottomRight: bottom});
-  }).prototype = border_radius.BorderRadius.prototype;
-  (border_radius.BorderRadius.horizontal = function(opts) {
-    let left = opts && 'left' in opts ? opts.left : C[0] || CT.C0;
-    if (left == null) dart.nullFailed(I[0], 312, 12, "left");
-    let right = opts && 'right' in opts ? opts.right : C[0] || CT.C0;
-    if (right == null) dart.nullFailed(I[0], 313, 12, "right");
-    border_radius.BorderRadius.only.call(this, {topLeft: left, topRight: right, bottomLeft: left, bottomRight: right});
-  }).prototype = border_radius.BorderRadius.prototype;
-  (border_radius.BorderRadius.only = function(opts) {
-    let topLeft = opts && 'topLeft' in opts ? opts.topLeft : C[0] || CT.C0;
-    if (topLeft == null) dart.nullFailed(I[0], 324, 10, "topLeft");
-    let topRight = opts && 'topRight' in opts ? opts.topRight : C[0] || CT.C0;
-    if (topRight == null) dart.nullFailed(I[0], 325, 10, "topRight");
-    let bottomLeft = opts && 'bottomLeft' in opts ? opts.bottomLeft : C[0] || CT.C0;
-    if (bottomLeft == null) dart.nullFailed(I[0], 326, 10, "bottomLeft");
-    let bottomRight = opts && 'bottomRight' in opts ? opts.bottomRight : C[0] || CT.C0;
-    if (bottomRight == null) dart.nullFailed(I[0], 327, 10, "bottomRight");
-    this[topLeft$] = topLeft;
-    this[topRight$] = topRight;
-    this[bottomLeft$] = bottomLeft;
-    this[bottomRight$] = bottomRight;
-    border_radius.BorderRadius.__proto__.new.call(this);
-    ;
-  }).prototype = border_radius.BorderRadius.prototype;
-  dart.addTypeTests(border_radius.BorderRadius);
-  dart.addTypeCaches(border_radius.BorderRadius);
-  dart.setMethodSignature(border_radius.BorderRadius, () => ({
-    __proto__: dart.getMethods(border_radius.BorderRadius.__proto__),
-    toRRect: dart.fnType(ui.RRect, [ui.Rect]),
-    '-': dart.fnType(border_radius.BorderRadius, [border_radius.BorderRadius]),
-    '+': dart.fnType(border_radius.BorderRadius, [border_radius.BorderRadius]),
-    _negate: dart.fnType(border_radius.BorderRadius, []),
-    '*': dart.fnType(border_radius.BorderRadius, [core.double]),
-    '/': dart.fnType(border_radius.BorderRadius, [core.double]),
-    '~/': dart.fnType(border_radius.BorderRadius, [core.double]),
-    '%': dart.fnType(border_radius.BorderRadius, [core.double]),
-    resolve: dart.fnType(border_radius.BorderRadius, [dart.nullable(ui.TextDirection)])
-  }));
-  dart.setGetterSignature(border_radius.BorderRadius, () => ({
-    __proto__: dart.getGetters(border_radius.BorderRadius.__proto__),
-    [_topLeft]: ui.Radius,
-    [_topRight]: ui.Radius,
-    [_bottomLeft]: ui.Radius,
-    [_bottomRight]: ui.Radius,
-    [_topStart]: ui.Radius,
-    [_topEnd]: ui.Radius,
-    [_bottomStart]: ui.Radius,
-    [_bottomEnd]: ui.Radius
-  }));
-  dart.setLibraryUri(border_radius.BorderRadius, I[1]);
-  dart.setFieldSignature(border_radius.BorderRadius, () => ({
-    __proto__: dart.getFields(border_radius.BorderRadius.__proto__),
-    topLeft: dart.finalFieldType(ui.Radius),
-    topRight: dart.finalFieldType(ui.Radius),
-    bottomLeft: dart.finalFieldType(ui.Radius),
-    bottomRight: dart.finalFieldType(ui.Radius)
-  }));
-  dart.defineLazy(border_radius.BorderRadius, {
-    /*border_radius.BorderRadius.zero*/get zero() {
+  dart.setLibraryUri(geolocator_platform_interface.GeolocatorPlatform, I[2]);
+  dart.defineLazy(geolocator_platform_interface.GeolocatorPlatform, {
+    /*geolocator_platform_interface.GeolocatorPlatform._token*/get _token() {
       return C[1] || CT.C1;
-    }
+    },
+    /*geolocator_platform_interface.GeolocatorPlatform._instance*/get _instance() {
+      return new method_channel_geolocator.MethodChannelGeolocator.new();
+    },
+    set _instance(_) {}
   }, false);
-  var topStart$ = dart.privateName(border_radius, "BorderRadiusDirectional.topStart");
-  var topEnd$ = dart.privateName(border_radius, "BorderRadiusDirectional.topEnd");
-  var bottomStart$ = dart.privateName(border_radius, "BorderRadiusDirectional.bottomStart");
-  var bottomEnd$ = dart.privateName(border_radius, "BorderRadiusDirectional.bottomEnd");
-  var _name = dart.privateName(ui, "_name");
-  border_radius.BorderRadiusDirectional = class BorderRadiusDirectional extends border_radius.BorderRadiusGeometry {
-    get topStart() {
-      return this[topStart$];
+  var MethodChannel__binaryMessenger = dart.privateName(platform_channel, "MethodChannel._binaryMessenger");
+  var StandardMethodCodec_messageCodec = dart.privateName(message_codecs, "StandardMethodCodec.messageCodec");
+  var MethodChannel_codec = dart.privateName(platform_channel, "MethodChannel.codec");
+  var MethodChannel_name = dart.privateName(platform_channel, "MethodChannel.name");
+  var EventChannel__binaryMessenger = dart.privateName(platform_channel, "EventChannel._binaryMessenger");
+  var EventChannel_codec = dart.privateName(platform_channel, "EventChannel.codec");
+  var EventChannel_name = dart.privateName(platform_channel, "EventChannel.name");
+  method_channel_geolocator.MethodChannelGeolocator = class MethodChannelGeolocator extends geolocator_platform_interface.GeolocatorPlatform {
+    get forceAndroidLocationManager() {
+      return this[forceAndroidLocationManager];
     }
-    set topStart(value) {
-      super.topStart = value;
+    set forceAndroidLocationManager(value) {
+      this[forceAndroidLocationManager] = value;
     }
-    get topEnd() {
-      return this[topEnd$];
-    }
-    set topEnd(value) {
-      super.topEnd = value;
-    }
-    get bottomStart() {
-      return this[bottomStart$];
-    }
-    set bottomStart(value) {
-      super.bottomStart = value;
-    }
-    get bottomEnd() {
-      return this[bottomEnd$];
-    }
-    set bottomEnd(value) {
-      super.bottomEnd = value;
-    }
-    get [_topStart]() {
-      return this.topStart;
-    }
-    get [_topEnd]() {
-      return this.topEnd;
-    }
-    get [_bottomStart]() {
-      return this.bottomStart;
-    }
-    get [_bottomEnd]() {
-      return this.bottomEnd;
-    }
-    get [_topLeft]() {
-      return ui.Radius.zero;
-    }
-    get [_topRight]() {
-      return ui.Radius.zero;
-    }
-    get [_bottomLeft]() {
-      return ui.Radius.zero;
-    }
-    get [_bottomRight]() {
-      return ui.Radius.zero;
-    }
-    subtract(other) {
-      if (other == null) dart.nullFailed(I[0], 598, 54, "other");
-      if (border_radius.BorderRadiusDirectional.is(other)) return this['-'](other);
-      return super.subtract(other);
-    }
-    add(other) {
-      if (other == null) dart.nullFailed(I[0], 605, 49, "other");
-      if (border_radius.BorderRadiusDirectional.is(other)) return this['+'](other);
-      return super.add(other);
-    }
-    ['-'](other) {
-      if (other == null) dart.nullFailed(I[0], 612, 62, "other");
-      return new border_radius.BorderRadiusDirectional.only({topStart: this.topStart['-'](other.topStart), topEnd: this.topEnd['-'](other.topEnd), bottomStart: this.bottomStart['-'](other.bottomStart), bottomEnd: this.bottomEnd['-'](other.bottomEnd)});
-    }
-    ['+'](other) {
-      if (other == null) dart.nullFailed(I[0], 622, 62, "other");
-      return new border_radius.BorderRadiusDirectional.only({topStart: this.topStart['+'](other.topStart), topEnd: this.topEnd['+'](other.topEnd), bottomStart: this.bottomStart['+'](other.bottomStart), bottomEnd: this.bottomEnd['+'](other.bottomEnd)});
-    }
-    _negate() {
-      return new border_radius.BorderRadiusDirectional.only({topStart: this.topStart._negate(), topEnd: this.topEnd._negate(), bottomStart: this.bottomStart._negate(), bottomEnd: this.bottomEnd._negate()});
-    }
-    ['*'](other) {
-      if (other == null) dart.nullFailed(I[0], 646, 45, "other");
-      return new border_radius.BorderRadiusDirectional.only({topStart: this.topStart['*'](other), topEnd: this.topEnd['*'](other), bottomStart: this.bottomStart['*'](other), bottomEnd: this.bottomEnd['*'](other)});
-    }
-    ['/'](other) {
-      if (other == null) dart.nullFailed(I[0], 657, 45, "other");
-      return new border_radius.BorderRadiusDirectional.only({topStart: this.topStart['/'](other), topEnd: this.topEnd['/'](other), bottomStart: this.bottomStart['/'](other), bottomEnd: this.bottomEnd['/'](other)});
-    }
-    ['~/'](other) {
-      if (other == null) dart.nullFailed(I[0], 668, 46, "other");
-      return new border_radius.BorderRadiusDirectional.only({topStart: this.topStart['~/'](other), topEnd: this.topEnd['~/'](other), bottomStart: this.bottomStart['~/'](other), bottomEnd: this.bottomEnd['~/'](other)});
-    }
-    ['%'](other) {
-      if (other == null) dart.nullFailed(I[0], 679, 45, "other");
-      return new border_radius.BorderRadiusDirectional.only({topStart: this.topStart['%'](other), topEnd: this.topEnd['%'](other), bottomStart: this.bottomStart['%'](other), bottomEnd: this.bottomEnd['%'](other)});
-    }
-    static lerp(a, b, t) {
-      if (t == null) dart.nullFailed(I[0], 693, 103, "t");
-      if (!(t != null)) dart.assertFailed(null, I[0], 694, 12, "t != null");
-      if (a == null && b == null) return null;
-      if (a == null) return dart.nullCheck(b)['*'](t);
-      if (b == null) return a['*'](1.0 - dart.notNull(t));
-      return new border_radius.BorderRadiusDirectional.only({topStart: dart.nullCheck(ui.Radius.lerp(a.topStart, b.topStart, t)), topEnd: dart.nullCheck(ui.Radius.lerp(a.topEnd, b.topEnd, t)), bottomStart: dart.nullCheck(ui.Radius.lerp(a.bottomStart, b.bottomStart, t)), bottomEnd: dart.nullCheck(ui.Radius.lerp(a.bottomEnd, b.bottomEnd, t))});
-    }
-    resolve(direction) {
-      if (!(direction != null)) dart.assertFailed(null, I[0], 711, 12, "direction != null");
-      switch (dart.nullCheck(direction)) {
-        case C[2] || CT.C2:
-        {
-          return new border_radius.BorderRadius.only({topLeft: this.topEnd, topRight: this.topStart, bottomLeft: this.bottomEnd, bottomRight: this.bottomStart});
+    checkPermission() {
+      return async.async(location_permission.LocationPermission, (function* checkPermission() {
+        try {
+          let permission = core.int.as(yield method_channel_geolocator.MethodChannelGeolocator._methodChannel.invokeMethod(dart.dynamic, "checkPermission"));
+          return integer_extensions['IntergerExtensions|toLocationPermission'](permission);
+        } catch (e$) {
+          let e = dart.getThrown(e$);
+          if (message_codec.PlatformException.is(e)) {
+            this[_handlePlatformException](e);
+            dart.rethrow(e$);
+          } else
+            throw e$;
         }
-        case C[3] || CT.C3:
+      }).bind(this));
+    }
+    requestPermission() {
+      return async.async(location_permission.LocationPermission, (function* requestPermission() {
+        try {
+          let permission = core.int.as(yield method_channel_geolocator.MethodChannelGeolocator._methodChannel.invokeMethod(dart.dynamic, "requestPermission"));
+          return integer_extensions['IntergerExtensions|toLocationPermission'](permission);
+        } catch (e$) {
+          let e = dart.getThrown(e$);
+          if (message_codec.PlatformException.is(e)) {
+            this[_handlePlatformException](e);
+            dart.rethrow(e$);
+          } else
+            throw e$;
+        }
+      }).bind(this));
+    }
+    isLocationServiceEnabled() {
+      return async.async(core.bool, function* isLocationServiceEnabled() {
+        return method_channel_geolocator.MethodChannelGeolocator._methodChannel.invokeMethod(core.bool, "isLocationServiceEnabled").then(core.bool, dart.fn(value => {
+          let t2;
+          t2 = value;
+          return t2 == null ? false : t2;
+        }, T.boolNTobool()));
+      });
+    }
+    getLastKnownPosition(opts) {
+      let forceAndroidLocationManager = opts && 'forceAndroidLocationManager' in opts ? opts.forceAndroidLocationManager : false;
+      if (forceAndroidLocationManager == null) dart.nullFailed(I[0], 69, 10, "forceAndroidLocationManager");
+      return async.async(T.PositionN(), (function* getLastKnownPosition() {
+        try {
+          let parameters = new (T.IdentityMapOfString$dynamic()).from(["forceAndroidLocationManager", forceAndroidLocationManager]);
+          let positionMap = (yield method_channel_geolocator.MethodChannelGeolocator._methodChannel.invokeMethod(dart.dynamic, "getLastKnownPosition", parameters));
+          return positionMap != null ? position.Position.fromMap(positionMap) : null;
+        } catch (e$) {
+          let e = dart.getThrown(e$);
+          if (message_codec.PlatformException.is(e)) {
+            this[_handlePlatformException](e);
+            dart.rethrow(e$);
+          } else
+            throw e$;
+        }
+      }).bind(this));
+    }
+    getCurrentPosition(opts) {
+      let desiredAccuracy = opts && 'desiredAccuracy' in opts ? opts.desiredAccuracy : C[0] || CT.C0;
+      if (desiredAccuracy == null) dart.nullFailed(I[0], 89, 22, "desiredAccuracy");
+      let forceAndroidLocationManager = opts && 'forceAndroidLocationManager' in opts ? opts.forceAndroidLocationManager : false;
+      if (forceAndroidLocationManager == null) dart.nullFailed(I[0], 90, 10, "forceAndroidLocationManager");
+      let timeLimit = opts && 'timeLimit' in opts ? opts.timeLimit : null;
+      return async.async(position.Position, (function* getCurrentPosition() {
+        let locationOptions = new location_options.LocationOptions.new({accuracy: desiredAccuracy, forceAndroidLocationManager: forceAndroidLocationManager});
+        try {
+          let positionFuture = null;
+          if (timeLimit != null) {
+            positionFuture = method_channel_geolocator.MethodChannelGeolocator._methodChannel.invokeMethod(dart.dynamic, "getCurrentPosition", locationOptions.toJson()).timeout(timeLimit);
+          } else {
+            positionFuture = method_channel_geolocator.MethodChannelGeolocator._methodChannel.invokeMethod(dart.dynamic, "getCurrentPosition", locationOptions.toJson());
+          }
+          let positionMap = (yield positionFuture);
+          return position.Position.fromMap(positionMap);
+        } catch (e$) {
+          let e = dart.getThrown(e$);
+          if (message_codec.PlatformException.is(e)) {
+            this[_handlePlatformException](e);
+            dart.rethrow(e$);
+          } else
+            throw e$;
+        }
+      }).bind(this));
+    }
+    getPositionStream(opts) {
+      let desiredAccuracy = opts && 'desiredAccuracy' in opts ? opts.desiredAccuracy : C[0] || CT.C0;
+      if (desiredAccuracy == null) dart.nullFailed(I[0], 126, 22, "desiredAccuracy");
+      let distanceFilter = opts && 'distanceFilter' in opts ? opts.distanceFilter : 0;
+      if (distanceFilter == null) dart.nullFailed(I[0], 127, 9, "distanceFilter");
+      let forceAndroidLocationManager = opts && 'forceAndroidLocationManager' in opts ? opts.forceAndroidLocationManager : false;
+      if (forceAndroidLocationManager == null) dart.nullFailed(I[0], 128, 10, "forceAndroidLocationManager");
+      let timeInterval = opts && 'timeInterval' in opts ? opts.timeInterval : 0;
+      if (timeInterval == null) dart.nullFailed(I[0], 129, 9, "timeInterval");
+      let timeLimit = opts && 'timeLimit' in opts ? opts.timeLimit : null;
+      let locationOptions = new location_options.LocationOptions.new({accuracy: desiredAccuracy, distanceFilter: distanceFilter, forceAndroidLocationManager: forceAndroidLocationManager, timeInterval: timeInterval});
+      if (this[_positionStream] != null) {
+        return dart.nullCheck(this[_positionStream]);
+      }
+      let positionStream = method_channel_geolocator.MethodChannelGeolocator._eventChannel.receiveBroadcastStream(locationOptions.toJson());
+      if (timeLimit != null) {
+        positionStream = positionStream.timeout(timeLimit, {onTimeout: dart.fn(s => {
+            if (s == null) dart.nullFailed(I[0], 150, 21, "s");
+            s.addError(new async.TimeoutException.new("Time limit reached while waiting for position update.", timeLimit));
+            s.close();
+            this[_positionStream] = null;
+          }, T.EventSinkTovoid())});
+      }
+      this[_positionStream] = positionStream.map(position.Position, dart.fn(element => position.Position.fromMap(dart.dgsend(element, [core.String, dart.dynamic], 'cast', [])), T.dynamicToPosition())).handleError(dart.fn(error => {
+        this[_positionStream] = null;
+        if (message_codec.PlatformException.is(error)) {
+          this[_handlePlatformException](error);
+        }
+        dart.throw(error);
+      }, T.dynamicToNever()));
+      return dart.nullCheck(this[_positionStream]);
+    }
+    openAppSettings() {
+      return async.async(core.bool, function* openAppSettings() {
+        return method_channel_geolocator.MethodChannelGeolocator._methodChannel.invokeMethod(core.bool, "openAppSettings").then(core.bool, dart.fn(value => {
+          let t4;
+          t4 = value;
+          return t4 == null ? false : t4;
+        }, T.boolNTobool()));
+      });
+    }
+    openLocationSettings() {
+      return async.async(core.bool, function* openLocationSettings() {
+        return method_channel_geolocator.MethodChannelGeolocator._methodChannel.invokeMethod(core.bool, "openLocationSettings").then(core.bool, dart.fn(value => {
+          let t4;
+          t4 = value;
+          return t4 == null ? false : t4;
+        }, T.boolNTobool()));
+      });
+    }
+    [_handlePlatformException](exception) {
+      if (exception == null) dart.nullFailed(I[0], 188, 51, "exception");
+      switch (exception.code) {
+        case "LOCATION_SERVICES_DISABLED":
         {
-          return new border_radius.BorderRadius.only({topLeft: this.topStart, topRight: this.topEnd, bottomLeft: this.bottomStart, bottomRight: this.bottomEnd});
+          dart.throw(new location_service_disabled_exception.LocationServiceDisabledException.new());
+        }
+        case "LOCATION_SUBSCRIPTION_ACTIVE":
+        {
+          dart.throw(new already_subscribed_exception.AlreadySubscribedException.new());
+        }
+        case "PERMISSION_DEFINITIONS_NOT_FOUND":
+        {
+          dart.throw(new permission_definitions_not_found_exception.PermissionDefinitionsNotFoundException.new(exception.message));
+        }
+        case "PERMISSION_DENIED":
+        {
+          dart.throw(new permission_denied_exception.PermissionDeniedException.new(exception.message));
+        }
+        case "PERMISSION_REQUEST_IN_PROGRESS":
+        {
+          dart.throw(new permission_request_in_progress_exception.PermissionRequestInProgressException.new(exception.message));
+        }
+        case "LOCATION_UPDATE_FAILURE":
+        {
+          dart.throw(new position_update_exception.PositionUpdateException.new(exception.message));
         }
         default:
         {
-          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
+          dart.throw(exception);
         }
       }
     }
   };
-  (border_radius.BorderRadiusDirectional.all = function(radius) {
-    if (radius == null) dart.nullFailed(I[0], 510, 44, "radius");
-    border_radius.BorderRadiusDirectional.only.call(this, {topStart: radius, topEnd: radius, bottomStart: radius, bottomEnd: radius});
-  }).prototype = border_radius.BorderRadiusDirectional.prototype;
-  (border_radius.BorderRadiusDirectional.circular = function(radius) {
-    if (radius == null) dart.nullFailed(I[0], 518, 43, "radius");
-    border_radius.BorderRadiusDirectional.all.call(this, new ui.Radius.circular(radius));
-  }).prototype = border_radius.BorderRadiusDirectional.prototype;
-  (border_radius.BorderRadiusDirectional.vertical = function(opts) {
-    let top = opts && 'top' in opts ? opts.top : C[0] || CT.C0;
-    if (top == null) dart.nullFailed(I[0], 525, 12, "top");
-    let bottom = opts && 'bottom' in opts ? opts.bottom : C[0] || CT.C0;
-    if (bottom == null) dart.nullFailed(I[0], 526, 12, "bottom");
-    border_radius.BorderRadiusDirectional.only.call(this, {topStart: top, topEnd: top, bottomStart: bottom, bottomEnd: bottom});
-  }).prototype = border_radius.BorderRadiusDirectional.prototype;
-  (border_radius.BorderRadiusDirectional.horizontal = function(opts) {
-    let start = opts && 'start' in opts ? opts.start : C[0] || CT.C0;
-    if (start == null) dart.nullFailed(I[0], 537, 12, "start");
-    let end = opts && 'end' in opts ? opts.end : C[0] || CT.C0;
-    if (end == null) dart.nullFailed(I[0], 538, 12, "end");
-    border_radius.BorderRadiusDirectional.only.call(this, {topStart: start, topEnd: end, bottomStart: start, bottomEnd: end});
-  }).prototype = border_radius.BorderRadiusDirectional.prototype;
-  (border_radius.BorderRadiusDirectional.only = function(opts) {
-    let topStart = opts && 'topStart' in opts ? opts.topStart : C[0] || CT.C0;
-    if (topStart == null) dart.nullFailed(I[0], 549, 10, "topStart");
-    let topEnd = opts && 'topEnd' in opts ? opts.topEnd : C[0] || CT.C0;
-    if (topEnd == null) dart.nullFailed(I[0], 550, 10, "topEnd");
-    let bottomStart = opts && 'bottomStart' in opts ? opts.bottomStart : C[0] || CT.C0;
-    if (bottomStart == null) dart.nullFailed(I[0], 551, 10, "bottomStart");
-    let bottomEnd = opts && 'bottomEnd' in opts ? opts.bottomEnd : C[0] || CT.C0;
-    if (bottomEnd == null) dart.nullFailed(I[0], 552, 10, "bottomEnd");
-    this[topStart$] = topStart;
-    this[topEnd$] = topEnd;
-    this[bottomStart$] = bottomStart;
-    this[bottomEnd$] = bottomEnd;
-    border_radius.BorderRadiusDirectional.__proto__.new.call(this);
+  (method_channel_geolocator.MethodChannelGeolocator.new = function() {
+    this[forceAndroidLocationManager] = false;
+    this[_positionStream] = null;
+    method_channel_geolocator.MethodChannelGeolocator.__proto__.new.call(this);
     ;
-  }).prototype = border_radius.BorderRadiusDirectional.prototype;
-  dart.addTypeTests(border_radius.BorderRadiusDirectional);
-  dart.addTypeCaches(border_radius.BorderRadiusDirectional);
-  dart.setMethodSignature(border_radius.BorderRadiusDirectional, () => ({
-    __proto__: dart.getMethods(border_radius.BorderRadiusDirectional.__proto__),
-    '-': dart.fnType(border_radius.BorderRadiusDirectional, [border_radius.BorderRadiusDirectional]),
-    '+': dart.fnType(border_radius.BorderRadiusDirectional, [border_radius.BorderRadiusDirectional]),
-    _negate: dart.fnType(border_radius.BorderRadiusDirectional, []),
-    '*': dart.fnType(border_radius.BorderRadiusDirectional, [core.double]),
-    '/': dart.fnType(border_radius.BorderRadiusDirectional, [core.double]),
-    '~/': dart.fnType(border_radius.BorderRadiusDirectional, [core.double]),
-    '%': dart.fnType(border_radius.BorderRadiusDirectional, [core.double]),
-    resolve: dart.fnType(border_radius.BorderRadius, [dart.nullable(ui.TextDirection)])
+  }).prototype = method_channel_geolocator.MethodChannelGeolocator.prototype;
+  dart.addTypeTests(method_channel_geolocator.MethodChannelGeolocator);
+  dart.addTypeCaches(method_channel_geolocator.MethodChannelGeolocator);
+  dart.setMethodSignature(method_channel_geolocator.MethodChannelGeolocator, () => ({
+    __proto__: dart.getMethods(method_channel_geolocator.MethodChannelGeolocator.__proto__),
+    [_handlePlatformException]: dart.fnType(dart.void, [message_codec.PlatformException])
   }));
-  dart.setGetterSignature(border_radius.BorderRadiusDirectional, () => ({
-    __proto__: dart.getGetters(border_radius.BorderRadiusDirectional.__proto__),
-    [_topStart]: ui.Radius,
-    [_topEnd]: ui.Radius,
-    [_bottomStart]: ui.Radius,
-    [_bottomEnd]: ui.Radius,
-    [_topLeft]: ui.Radius,
-    [_topRight]: ui.Radius,
-    [_bottomLeft]: ui.Radius,
-    [_bottomRight]: ui.Radius
+  dart.setLibraryUri(method_channel_geolocator.MethodChannelGeolocator, I[3]);
+  dart.setFieldSignature(method_channel_geolocator.MethodChannelGeolocator, () => ({
+    __proto__: dart.getFields(method_channel_geolocator.MethodChannelGeolocator.__proto__),
+    forceAndroidLocationManager: dart.fieldType(core.bool),
+    [_positionStream]: dart.fieldType(dart.nullable(async.Stream$(position.Position)))
   }));
-  dart.setLibraryUri(border_radius.BorderRadiusDirectional, I[1]);
-  dart.setFieldSignature(border_radius.BorderRadiusDirectional, () => ({
-    __proto__: dart.getFields(border_radius.BorderRadiusDirectional.__proto__),
-    topStart: dart.finalFieldType(ui.Radius),
-    topEnd: dart.finalFieldType(ui.Radius),
-    bottomStart: dart.finalFieldType(ui.Radius),
-    bottomEnd: dart.finalFieldType(ui.Radius)
-  }));
-  dart.defineLazy(border_radius.BorderRadiusDirectional, {
-    /*border_radius.BorderRadiusDirectional.zero*/get zero() {
-      return C[4] || CT.C4;
+  dart.defineLazy(method_channel_geolocator.MethodChannelGeolocator, {
+    /*method_channel_geolocator.MethodChannelGeolocator._methodChannel*/get _methodChannel() {
+      return C[2] || CT.C2;
+    },
+    /*method_channel_geolocator.MethodChannelGeolocator._eventChannel*/get _eventChannel() {
+      return C[5] || CT.C5;
     }
   }, false);
-  var _topLeft$ = dart.privateName(border_radius, "_MixedBorderRadius._topLeft");
-  var _topRight$ = dart.privateName(border_radius, "_MixedBorderRadius._topRight");
-  var _bottomLeft$ = dart.privateName(border_radius, "_MixedBorderRadius._bottomLeft");
-  var _bottomRight$ = dart.privateName(border_radius, "_MixedBorderRadius._bottomRight");
-  var _topStart$ = dart.privateName(border_radius, "_MixedBorderRadius._topStart");
-  var _topEnd$ = dart.privateName(border_radius, "_MixedBorderRadius._topEnd");
-  var _bottomStart$ = dart.privateName(border_radius, "_MixedBorderRadius._bottomStart");
-  var _bottomEnd$ = dart.privateName(border_radius, "_MixedBorderRadius._bottomEnd");
-  border_radius._MixedBorderRadius = class _MixedBorderRadius extends border_radius.BorderRadiusGeometry {
-    get [_topLeft]() {
-      return this[_topLeft$];
-    }
-    set [_topLeft](value) {
-      super[_topLeft] = value;
-    }
-    get [_topRight]() {
-      return this[_topRight$];
-    }
-    set [_topRight](value) {
-      super[_topRight] = value;
-    }
-    get [_bottomLeft]() {
-      return this[_bottomLeft$];
-    }
-    set [_bottomLeft](value) {
-      super[_bottomLeft] = value;
-    }
-    get [_bottomRight]() {
-      return this[_bottomRight$];
-    }
-    set [_bottomRight](value) {
-      super[_bottomRight] = value;
-    }
-    get [_topStart]() {
-      return this[_topStart$];
-    }
-    set [_topStart](value) {
-      super[_topStart] = value;
-    }
-    get [_topEnd]() {
-      return this[_topEnd$];
-    }
-    set [_topEnd](value) {
-      super[_topEnd] = value;
-    }
-    get [_bottomStart]() {
-      return this[_bottomStart$];
-    }
-    set [_bottomStart](value) {
-      super[_bottomStart] = value;
-    }
-    get [_bottomEnd]() {
-      return this[_bottomEnd$];
-    }
-    set [_bottomEnd](value) {
-      super[_bottomEnd] = value;
-    }
-    _negate() {
-      return new border_radius._MixedBorderRadius.new(this[_topLeft]._negate(), this[_topRight]._negate(), this[_bottomLeft]._negate(), this[_bottomRight]._negate(), this[_topStart]._negate(), this[_topEnd]._negate(), this[_bottomStart]._negate(), this[_bottomEnd]._negate());
-    }
-    ['*'](other) {
-      if (other == null) dart.nullFailed(I[0], 783, 40, "other");
-      return new border_radius._MixedBorderRadius.new(this[_topLeft]['*'](other), this[_topRight]['*'](other), this[_bottomLeft]['*'](other), this[_bottomRight]['*'](other), this[_topStart]['*'](other), this[_topEnd]['*'](other), this[_bottomStart]['*'](other), this[_bottomEnd]['*'](other));
-    }
-    ['/'](other) {
-      if (other == null) dart.nullFailed(I[0], 797, 40, "other");
-      return new border_radius._MixedBorderRadius.new(this[_topLeft]['/'](other), this[_topRight]['/'](other), this[_bottomLeft]['/'](other), this[_bottomRight]['/'](other), this[_topStart]['/'](other), this[_topEnd]['/'](other), this[_bottomStart]['/'](other), this[_bottomEnd]['/'](other));
-    }
-    ['~/'](other) {
-      if (other == null) dart.nullFailed(I[0], 811, 41, "other");
-      return new border_radius._MixedBorderRadius.new(this[_topLeft]['~/'](other), this[_topRight]['~/'](other), this[_bottomLeft]['~/'](other), this[_bottomRight]['~/'](other), this[_topStart]['~/'](other), this[_topEnd]['~/'](other), this[_bottomStart]['~/'](other), this[_bottomEnd]['~/'](other));
-    }
-    ['%'](other) {
-      if (other == null) dart.nullFailed(I[0], 825, 40, "other");
-      return new border_radius._MixedBorderRadius.new(this[_topLeft]['%'](other), this[_topRight]['%'](other), this[_bottomLeft]['%'](other), this[_bottomRight]['%'](other), this[_topStart]['%'](other), this[_topEnd]['%'](other), this[_bottomStart]['%'](other), this[_bottomEnd]['%'](other));
-    }
-    resolve(direction) {
-      if (!(direction != null)) dart.assertFailed(null, I[0], 840, 12, "direction != null");
-      switch (dart.nullCheck(direction)) {
-        case C[2] || CT.C2:
-        {
-          return new border_radius.BorderRadius.only({topLeft: this[_topLeft]['+'](this[_topEnd]), topRight: this[_topRight]['+'](this[_topStart]), bottomLeft: this[_bottomLeft]['+'](this[_bottomEnd]), bottomRight: this[_bottomRight]['+'](this[_bottomStart])});
-        }
-        case C[3] || CT.C3:
-        {
-          return new border_radius.BorderRadius.only({topLeft: this[_topLeft]['+'](this[_topStart]), topRight: this[_topRight]['+'](this[_topEnd]), bottomLeft: this[_bottomLeft]['+'](this[_bottomStart]), bottomRight: this[_bottomRight]['+'](this[_bottomEnd])});
-        }
-        default:
-        {
-          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
-        }
-      }
-    }
-  };
-  (border_radius._MixedBorderRadius.new = function(_topLeft, _topRight, _bottomLeft, _bottomRight, _topStart, _topEnd, _bottomStart, _bottomEnd) {
-    if (_topLeft == null) dart.nullFailed(I[0], 733, 10, "_topLeft");
-    if (_topRight == null) dart.nullFailed(I[0], 734, 10, "_topRight");
-    if (_bottomLeft == null) dart.nullFailed(I[0], 735, 10, "_bottomLeft");
-    if (_bottomRight == null) dart.nullFailed(I[0], 736, 10, "_bottomRight");
-    if (_topStart == null) dart.nullFailed(I[0], 737, 10, "_topStart");
-    if (_topEnd == null) dart.nullFailed(I[0], 738, 10, "_topEnd");
-    if (_bottomStart == null) dart.nullFailed(I[0], 739, 10, "_bottomStart");
-    if (_bottomEnd == null) dart.nullFailed(I[0], 740, 10, "_bottomEnd");
-    this[_topLeft$] = _topLeft;
-    this[_topRight$] = _topRight;
-    this[_bottomLeft$] = _bottomLeft;
-    this[_bottomRight$] = _bottomRight;
-    this[_topStart$] = _topStart;
-    this[_topEnd$] = _topEnd;
-    this[_bottomStart$] = _bottomStart;
-    this[_bottomEnd$] = _bottomEnd;
-    border_radius._MixedBorderRadius.__proto__.new.call(this);
-    ;
-  }).prototype = border_radius._MixedBorderRadius.prototype;
-  dart.addTypeTests(border_radius._MixedBorderRadius);
-  dart.addTypeCaches(border_radius._MixedBorderRadius);
-  dart.setMethodSignature(border_radius._MixedBorderRadius, () => ({
-    __proto__: dart.getMethods(border_radius._MixedBorderRadius.__proto__),
-    _negate: dart.fnType(border_radius._MixedBorderRadius, []),
-    '*': dart.fnType(border_radius._MixedBorderRadius, [core.double]),
-    '/': dart.fnType(border_radius._MixedBorderRadius, [core.double]),
-    '~/': dart.fnType(border_radius._MixedBorderRadius, [core.double]),
-    '%': dart.fnType(border_radius._MixedBorderRadius, [core.double]),
-    resolve: dart.fnType(border_radius.BorderRadius, [dart.nullable(ui.TextDirection)])
-  }));
-  dart.setLibraryUri(border_radius._MixedBorderRadius, I[1]);
-  dart.setFieldSignature(border_radius._MixedBorderRadius, () => ({
-    __proto__: dart.getFields(border_radius._MixedBorderRadius.__proto__),
-    [_topLeft]: dart.finalFieldType(ui.Radius),
-    [_topRight]: dart.finalFieldType(ui.Radius),
-    [_bottomLeft]: dart.finalFieldType(ui.Radius),
-    [_bottomRight]: dart.finalFieldType(ui.Radius),
-    [_topStart]: dart.finalFieldType(ui.Radius),
-    [_topEnd]: dart.finalFieldType(ui.Radius),
-    [_bottomStart]: dart.finalFieldType(ui.Radius),
-    [_bottomEnd]: dart.finalFieldType(ui.Radius)
-  }));
-  dart.trackLibraries("packages/flutter/src/painting/border_radius.dart", {
-    "package:flutter/src/painting/border_radius.dart": border_radius
+  dart.trackLibraries("packages/geolocator_platform_interface/src/implementations/method_channel_geolocator.dart", {
+    "package:geolocator_platform_interface/src/implementations/method_channel_geolocator.dart": method_channel_geolocator,
+    "package:geolocator_platform_interface/src/geolocator_platform_interface.dart": geolocator_platform_interface,
+    "package:geolocator_platform_interface/geolocator_platform_interface.dart": geolocator_platform_interface$
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["border_radius.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;UAgDqD;AACjD,YAAO,0CACL,AAAS,oBAAE,AAAM,KAAD,aAChB,AAAU,qBAAE,AAAM,KAAD,cACjB,AAAY,uBAAE,AAAM,KAAD,gBACnB,AAAa,wBAAE,AAAM,KAAD,iBACpB,AAAU,qBAAE,AAAM,KAAD,cACjB,AAAQ,mBAAE,AAAM,KAAD,YACf,AAAa,wBAAE,AAAM,KAAD,iBACpB,AAAW,sBAAE,AAAM,KAAD;IAEtB;;UAa8C;AAC5C,YAAO,0CACL,AAAS,oBAAE,AAAM,KAAD,aAChB,AAAU,qBAAE,AAAM,KAAD,cACjB,AAAY,uBAAE,AAAM,KAAD,gBACnB,AAAa,wBAAE,AAAM,KAAD,iBACpB,AAAU,qBAAE,AAAM,KAAD,cACjB,AAAQ,mBAAE,AAAM,KAAD,YACf,AAAa,wBAAE,AAAM,KAAD,iBACpB,AAAW,sBAAE,AAAM,KAAD;IAEtB;gBAgDwD,GAAyB;UAAU;AACzF,YAAO,AAAE,CAAD;AACR,UAAI,AAAE,CAAD,YAAY,AAAE,CAAD,UAChB,MAAO;AACc,MAAvB,AAAE,CAAD,WAAD,IAAmB,kCAAjB;AACqB,MAAvB,AAAE,CAAD,WAAD,IAAmB,kCAAjB;AACF,YAAO,AAAE,EAAD,KAAM,AAAE,AAAa,CAAd,UAAU,CAAC,OAAK,CAAC;IAClC;;AAeU;AAAQ;AAChB,UAAa,YAAT,gBAAY,oBACF,YAAV,iBAAa,sBACD,YAAZ,mBAAe;AACjB,YAAa,aAAT,gBAAmB;AACrB,cAAI,AAAS,AAAE,oBAAG,AAAS;AACyC,YAAlE,SAAS,AAAyD,2BAAhC,AAAS,AAAE,mCAAgB,KAAG;;AAE1B,YAAtC,SAAS,AAA6B,+BAAV,kBAAQ;;;;AAKrB,qBAAS;AACM,QAAlC,AAAO,MAAD,OAAO;AACR,oBAAQ;AACb,YAAa,aAAT,gBAAmB;AACa,UAAlC,AAAO,MAAD,OAAO,AAAoB,uBAAT;AACZ,UAAZ,QAAQ;;AAEV,YAAc,aAAV,iBAAoB;AACtB,cAAI,KAAK,EACP,AAAO,AAAW,MAAZ,OAAO;AACqB,UAApC,AAAO,MAAD,OAAO,AAAsB,wBAAV;AACb,UAAZ,QAAQ;;AAEV,YAAgB,aAAZ,mBAAsB;AACxB,cAAI,KAAK,EACP,AAAO,AAAW,MAAZ,OAAO;AACyB,UAAxC,AAAO,MAAD,OAAO,AAA0B,0BAAZ;AACf,UAAZ,QAAQ;;AAEV,YAAiB,aAAb,oBAAuB;AACzB,cAAI,KAAK,EACP,AAAO,AAAW,MAAZ,OAAO;AAC2B,UAA1C,AAAO,MAAD,OAAO,AAA4B,2BAAb;;AAEb,QAAjB,AAAO,MAAD,OAAO;AACa,QAA1B,SAAS,AAAO,MAAD;;AAEjB,UAAc,YAAV,iBAAa,kBACL,YAAR,eAAW,qBACA,YAAX,kBAAc;AAChB,YAAc,aAAV,iBAAoB;AACtB,cAAI,AAAU,AAAE,qBAAG,AAAU;AACoD,YAA/E,UAAU,AAAqE,sCAAjC,AAAU,AAAE,oCAAgB,KAAG;;AAE1B,YAAnD,UAAU,AAAyC,0CAAX,mBAAS;;;;AAKlC,qBAAS;AACiB,QAA7C,AAAO,MAAD,OAAO;AACR,oBAAQ;AACb,YAAc,aAAV,iBAAoB;AACc,UAApC,AAAO,MAAD,OAAO,AAAsB,wBAAV;AACb,UAAZ,QAAQ;;AAEV,YAAY,aAAR,eAAkB;AACpB,cAAI,KAAK,EACP,AAAO,AAAW,MAAZ,OAAO;AACiB,UAAhC,AAAO,MAAD,OAAO,AAAkB,sBAAR;AACX,UAAZ,QAAQ;;AAEV,YAAiB,aAAb,oBAAuB;AACzB,cAAI,KAAK,EACP,AAAO,AAAW,MAAZ,OAAO;AAC2B,UAA1C,AAAO,MAAD,OAAO,AAA4B,2BAAb;AAChB,UAAZ,QAAQ;;AAEV,YAAe,aAAX,kBAAqB;AACvB,cAAI,KAAK,EACP,AAAO,AAAW,MAAZ,OAAO;AACuB,UAAtC,AAAO,MAAD,OAAO,AAAwB,yBAAX;;AAEX,QAAjB,AAAO,MAAD,OAAO;AACc,QAA3B,UAAU,AAAO,MAAD;;AAElB,UAAI,AAAO,MAAD,YAAY,AAAQ,OAAD,UAC3B,MAA2B,UAAlB,MAAM,qBAAI,OAAO;AAC5B,UAAI,AAAO,MAAD,UACR,MAAO,OAAM;AACf,UAAI,AAAQ,OAAD,UACT,MAAO,QAAO;AAChB,YAAO;IACT;;UAGwB;AACtB,UAAI,AAAU,SAAM,KAAK,EACvB,MAAO;AACT,UAAsB,aAAZ,iBAAN,KAAK,GAAgB,qBACvB,MAAO;AACT,YAAa,AAQT,uCARG,KAAK,KACU,YAAf,AAAM,KAAD,YAAa,mBACF,YAAhB,AAAM,KAAD,aAAc,oBACD,YAAlB,AAAM,KAAD,eAAgB,sBACF,YAAnB,AAAM,KAAD,gBAAiB,uBACN,YAAhB,AAAM,KAAD,aAAc,oBACL,YAAd,AAAM,KAAD,WAAY,kBACE,YAAnB,AAAM,KAAD,gBAAiB,uBACL,YAAjB,AAAM,KAAD,cAAe;IAC7B;;AAIE,YAAO,eACL,gBACA,iBACA,mBACA,oBACA,iBACA,eACA,oBACA;IAEJ;;;;EAzP4B;;;;;;;;;;;;;;;;;;IAwTf;;;;;;IAMA;;;;;;IAMA;;;;;;IAMA;;;;;;;AAfU;IAAO;;AAMN;IAAQ;;AAMN;IAAU;;AAMT;IAAW;;AAGd,YAAO;IAAI;;AAGb,YAAO;IAAI;;AAGN,YAAO;IAAI;;AAGb,YAAO;IAAI;;UAGjB;AACjB,YAAa,iCACX,IAAI,YACK,wBACC,2BACE,8BACC;IAEjB;;UAGmD;AACjD,UAAU,8BAAN,KAAK,GACP,MAAO,AAAK,WAAE,KAAK;AACrB,YAAa,gBAAS,KAAK;IAC7B;;UAG8C;AAC5C,UAAU,8BAAN,KAAK,GACP,MAAO,AAAK,WAAE,KAAK;AACrB,YAAa,WAAI,KAAK;IACxB;;UAGqC;AACnC,YAAoB,+CACT,AAAQ,kBAAE,AAAM,KAAD,qBACd,AAAS,mBAAE,AAAM,KAAD,wBACd,AAAW,qBAAE,AAAM,KAAD,2BACjB,AAAY,sBAAE,AAAM,KAAD;IAEpC;;UAGqC;AACnC,YAAoB,+CACT,AAAQ,kBAAE,AAAM,KAAD,qBACd,AAAS,mBAAE,AAAM,KAAD,wBACd,AAAW,qBAAE,AAAM,KAAD,2BACjB,AAAY,sBAAE,AAAM,KAAD;IAEpC;;AAOE,YAAoB,+CACT,AAAC,kCACA,AAAC,qCACC,AAAC,wCACA,AAAC;IAElB;;UAI+B;AAC7B,YAAoB,+CACT,AAAQ,kBAAE,KAAK,aACd,AAAS,mBAAE,KAAK,eACd,AAAW,qBAAE,KAAK,gBACjB,AAAY,sBAAE,KAAK;IAEpC;;UAI+B;AAC7B,YAAoB,+CACT,AAAQ,kBAAE,KAAK,aACd,AAAS,mBAAE,KAAK,eACd,AAAW,qBAAE,KAAK,gBACjB,AAAY,sBAAE,KAAK;IAEpC;;UAIgC;AAC9B,YAAoB,+CACT,AAAQ,mBAAG,KAAK,aACf,AAAS,oBAAG,KAAK,eACf,AAAW,sBAAG,KAAK,gBAClB,AAAY,uBAAG,KAAK;IAErC;;UAI+B;AAC7B,YAAoB,+CACT,AAAQ,kBAAE,KAAK,aACd,AAAS,mBAAE,KAAK,eACd,AAAW,qBAAE,KAAK,gBACjB,AAAY,sBAAE,KAAK;IAEpC;gBAOwC,GAAiB;UAAU;AACjE,YAAO,AAAE,CAAD;AACR,UAAI,AAAE,CAAD,YAAY,AAAE,CAAD,UAChB,MAAO;AACT,UAAI,AAAE,CAAD,UACH,MAAQ,AAAE,gBAAH,CAAC,OAAI,CAAC;AACf,UAAI,AAAE,CAAD,UACH,MAAO,AAAE,EAAD,MAAI,AAAI,mBAAE,CAAC;AACrB,YAAoB,+CAC2B,eAA7B,eAAK,AAAE,CAAD,UAAU,AAAE,CAAD,UAAU,CAAC,cACI,eAA/B,eAAK,AAAE,CAAD,WAAW,AAAE,CAAD,WAAW,CAAC,gBACO,eAAnC,eAAK,AAAE,CAAD,aAAa,AAAE,CAAD,aAAa,CAAC,iBACI,eAArC,eAAK,AAAE,CAAD,cAAc,AAAE,CAAD,cAAc,CAAC;IAE5D;YAGoC;AAAc;IAAI;;;QAhNxB;yDACnB,MAAM,YACL,MAAM,cACJ,MAAM,eACL,MAAM;EACpB;;QAG4B;8CACpB,uBAAS,MAAM;EACvB;;QAKQ;;QACA;;yDAEE,GAAG,YACF,GAAG,cACD,MAAM,eACL,MAAM;EACpB;;QAKQ;;QACA;;yDAEE,IAAI,YACH,KAAK,cACH,IAAI,eACH,KAAK;EACnB;;QAKM;;QACA;;QACA;;QACA;;IAHA;IACA;IACA;IACA;AAJD;;EAKJ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;MAGwB,+BAAI;;;;;;;;;;IAuOjB;;;;;;IAMA;;;;;;IAMA;;;;;;IAMA;;;;;;;AAfW;IAAQ;;AAMV;IAAM;;AAMD;IAAW;;AAMb;IAAS;;AAGX,YAAO;IAAI;;AAGV,YAAO;IAAI;;AAGT,YAAO;IAAI;;AAGV,YAAO;IAAI;;UAGa;AACjD,UAAU,yCAAN,KAAK,GACP,MAAO,AAAK,WAAE,KAAK;AACrB,YAAa,gBAAS,KAAK;IAC7B;;UAG8C;AAC5C,UAAU,yCAAN,KAAK,GACP,MAAO,AAAK,WAAE,KAAK;AACrB,YAAa,WAAI,KAAK;IACxB;;UAG2D;AACzD,YAA+B,2DACnB,AAAS,mBAAE,AAAM,KAAD,oBAClB,AAAO,iBAAE,AAAM,KAAD,uBACT,AAAY,sBAAE,AAAM,KAAD,0BACrB,AAAU,oBAAE,AAAM,KAAD;IAEhC;;UAG2D;AACzD,YAA+B,2DACnB,AAAS,mBAAE,AAAM,KAAD,oBAClB,AAAO,iBAAE,AAAM,KAAD,uBACT,AAAY,sBAAE,AAAM,KAAD,0BACrB,AAAU,oBAAE,AAAM,KAAD;IAEhC;;AAOE,YAA+B,2DACnB,AAAC,iCACH,AAAC,oCACI,AAAC,uCACH,AAAC;IAEhB;;UAI0C;AACxC,YAA+B,2DACnB,AAAS,mBAAE,KAAK,WAClB,AAAO,iBAAE,KAAK,gBACT,AAAY,sBAAE,KAAK,cACrB,AAAU,oBAAE,KAAK;IAEhC;;UAI0C;AACxC,YAA+B,2DACnB,AAAS,mBAAE,KAAK,WAClB,AAAO,iBAAE,KAAK,gBACT,AAAY,sBAAE,KAAK,cACrB,AAAU,oBAAE,KAAK;IAEhC;;UAI2C;AACzC,YAA+B,2DACnB,AAAS,oBAAG,KAAK,WACnB,AAAO,kBAAG,KAAK,gBACV,AAAY,uBAAG,KAAK,cACtB,AAAU,qBAAG,KAAK;IAEjC;;UAI0C;AACxC,YAA+B,2DACnB,AAAS,mBAAE,KAAK,WAClB,AAAO,iBAAE,KAAK,gBACT,AAAY,sBAAE,KAAK,cACrB,AAAU,oBAAE,KAAK;IAEhC;gBAO8D,GAA4B;UAAU;AAClG,YAAO,AAAE,CAAD;AACR,UAAI,AAAE,CAAD,YAAY,AAAE,CAAD,UAChB,MAAO;AACT,UAAI,AAAE,CAAD,UACH,MAAQ,AAAE,gBAAH,CAAC,OAAI,CAAC;AACf,UAAI,AAAE,CAAD,UACH,MAAO,AAAE,EAAD,MAAI,AAAI,mBAAE,CAAC;AACrB,YAA+B,2DACmB,eAA/B,eAAK,AAAE,CAAD,WAAW,AAAE,CAAD,WAAW,CAAC,YACL,eAA3B,eAAK,AAAE,CAAD,SAAS,AAAE,CAAD,SAAS,CAAC,iBACgB,eAArC,eAAK,AAAE,CAAD,cAAc,AAAE,CAAD,cAAc,CAAC,eACL,eAAjC,eAAK,AAAE,CAAD,YAAY,AAAE,CAAD,YAAY,CAAC;IAEtD;YAGoC;AAClC,YAAO,AAAU,SAAD;AAChB,cAAiB,eAAT,SAAS;;;AAEb,gBAAoB,+CACT,uBACC,2BACE,6BACC;;;;AAGf,gBAAoB,+CACT,yBACC,yBACE,+BACC;;;;AAbnB;;;IAgBF;;;QA1NyC;qEAC7B,MAAM,UACR,MAAM,eACD,MAAM,aACR,MAAM;EAClB;;QAGuC;yDAC/B,uBAAS,MAAM;EACvB;;QAKQ;;QACA;;qEAEG,GAAG,UACL,GAAG,eACE,MAAM,aACR,MAAM;EAClB;;QAKQ;;QACA;;qEAEG,KAAK,UACP,GAAG,eACE,KAAK,aACP,GAAG;EACf;;QAKM;;QACA;;QACA;;QACA;;IAHA;IACA;IACA;IACA;AAJD;;EAKJ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;MAMmC,0CAAI;;;;;;;;;;;;;IAyL5B;;;;;;IAGA;;;;;;IAGA;;;;;;IAGA;;;;;;IAGA;;;;;;IAGA;;;;;;IAGA;;;;;;IAGA;;;;;;;AAIX,YAAO,0CACL,AAAC,0BACD,AAAC,2BACD,AAAC,6BACD,AAAC,8BACD,AAAC,2BACD,AAAC,yBACD,AAAC,8BACD,AAAC;IAEL;;UAIqC;AACnC,YAAO,0CACL,AAAS,oBAAE,KAAK,GAChB,AAAU,qBAAE,KAAK,GACjB,AAAY,uBAAE,KAAK,GACnB,AAAa,wBAAE,KAAK,GACpB,AAAU,qBAAE,KAAK,GACjB,AAAQ,mBAAE,KAAK,GACf,AAAa,wBAAE,KAAK,GACpB,AAAW,sBAAE,KAAK;IAEtB;;UAGqC;AACnC,YAAO,0CACL,AAAS,oBAAE,KAAK,GAChB,AAAU,qBAAE,KAAK,GACjB,AAAY,uBAAE,KAAK,GACnB,AAAa,wBAAE,KAAK,GACpB,AAAU,qBAAE,KAAK,GACjB,AAAQ,mBAAE,KAAK,GACf,AAAa,wBAAE,KAAK,GACpB,AAAW,sBAAE,KAAK;IAEtB;;UAGsC;AACpC,YAAO,0CACL,AAAS,qBAAG,KAAK,GACjB,AAAU,sBAAG,KAAK,GAClB,AAAY,wBAAG,KAAK,GACpB,AAAa,yBAAG,KAAK,GACrB,AAAU,sBAAG,KAAK,GAClB,AAAQ,oBAAG,KAAK,GAChB,AAAa,yBAAG,KAAK,GACrB,AAAW,uBAAG,KAAK;IAEvB;;UAGqC;AACnC,YAAO,0CACL,AAAS,oBAAE,KAAK,GAChB,AAAU,qBAAE,KAAK,GACjB,AAAY,uBAAE,KAAK,GACnB,AAAa,wBAAE,KAAK,GACpB,AAAU,qBAAE,KAAK,GACjB,AAAQ,mBAAE,KAAK,GACf,AAAa,wBAAE,KAAK,GACpB,AAAW,sBAAE,KAAK;IAEtB;YAGoC;AAClC,YAAO,AAAU,SAAD;AAChB,cAAiB,eAAT,SAAS;;;AAEb,gBAAoB,+CACT,AAAS,oBAAE,0BACV,AAAU,qBAAE,8BACV,AAAY,uBAAE,gCACb,AAAa,wBAAE;;;;AAG9B,gBAAoB,+CACT,AAAS,oBAAE,4BACV,AAAU,qBAAE,4BACV,AAAY,uBAAE,kCACb,AAAa,wBAAE;;;;AAblC;;;IAgBF;;mDA5HO,UACA,WACA,aACA,cACA,WACA,SACA,cACA;QAPA;QACA;QACA;QACA;QACA;QACA;QACA;QACA;IAPA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;AARD;;EASL","file":"../../../../../../../packages/flutter/src/painting/border_radius.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["../geolocator_platform_interface.dart","method_channel_geolocator.dart"],"names":[],"mappings":"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","file":"../../../../../../../../packages/geolocator_platform_interface/src/implementations/method_channel_geolocator.dart.lib.js"}');
   // Exports:
   return {
-    src__painting__border_radius: border_radius
+    src__implementations__method_channel_geolocator: method_channel_geolocator,
+    src__geolocator_platform_interface: geolocator_platform_interface,
+    geolocator_platform_interface: geolocator_platform_interface$
   };
 }));
 
-//# sourceMappingURL=border_radius.dart.lib.js.map
+//# sourceMappingURL=method_channel_geolocator.dart.lib.js.map

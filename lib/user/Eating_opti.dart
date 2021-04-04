@@ -14,7 +14,7 @@ class _EatingState extends State<Eating> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: MenuOptionSide(),
+      body: MenuOptionSide(automatic: false),
       drawer: AppDrawer(),
     );
   }
@@ -85,7 +85,7 @@ class _EatingOptionState extends State<EatingOption> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => MenuOptionSide(),
+              builder: (context) => MenuOptionSide(automatic: false),
             ),
           );
         },

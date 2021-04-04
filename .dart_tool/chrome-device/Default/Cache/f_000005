@@ -1,65 +1,70 @@
-define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/material/arc.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/foundation/_platform_web.dart', 'packages/flutter/src/cupertino/debug.dart', 'packages/flutter/src/widgets/icon.dart', 'packages/flutter/src/widgets/icon_data.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/material/page.dart', 'packages/flutter/src/widgets/grid_paper.dart', 'packages/flutter/src/painting/strut_style.dart'], (function load__packages__flutter__src__material__app_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__material__arc$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__foundation___platform_web$46dart, packages__flutter__src__cupertino__debug$46dart, packages__flutter__src__widgets__icon$46dart, packages__flutter__src__widgets__icon_data$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__material__page$46dart, packages__flutter__src__widgets__grid_paper$46dart, packages__flutter__src__painting__strut_style$46dart) {
+define(['dart_sdk', 'packages/cloud_firestore_web/src/utils/exception.dart', 'packages/cloud_firestore_platform_interface/src/platform_interface/platform_interface_write_batch.dart', 'packages/cloud_firestore_web/src/interop/utils/utils.dart', 'packages/cloud_firestore_platform_interface/src/set_options.dart', 'packages/cloud_firestore_web/src/field_value_web.dart', 'packages/cloud_firestore_platform_interface/src/get_options.dart', 'packages/cloud_firestore_platform_interface/src/source.dart', 'packages/cloud_firestore_platform_interface/src/platform_interface/platform_interface_field_value.dart', 'packages/cloud_firestore_platform_interface/src/field_path.dart', 'packages/cloud_firestore_platform_interface/src/timestamp.dart', 'packages/cloud_firestore_platform_interface/src/geo_point.dart', 'packages/cloud_firestore_platform_interface/src/blob.dart', 'packages/cloud_firestore_platform_interface/src/snapshot_metadata.dart', 'packages/cloud_firestore_platform_interface/src/internal/pointer.dart', 'packages/firebase_core_web/src/interop/core.dart'], (function load__packages__cloud_firestore_web__src__write_batch_web_dart(dart_sdk, packages__cloud_firestore_web__src__utils__exception$46dart, packages__cloud_firestore_platform_interface__src__platform_interface__platform_interface_write_batch$46dart, packages__cloud_firestore_web__src__interop__utils__utils$46dart, packages__cloud_firestore_platform_interface__src__set_options$46dart, packages__cloud_firestore_web__src__field_value_web$46dart, packages__cloud_firestore_platform_interface__src__get_options$46dart, packages__cloud_firestore_platform_interface__src__source$46dart, packages__cloud_firestore_platform_interface__src__platform_interface__platform_interface_field_value$46dart, packages__cloud_firestore_platform_interface__src__field_path$46dart, packages__cloud_firestore_platform_interface__src__timestamp$46dart, packages__cloud_firestore_platform_interface__src__geo_point$46dart, packages__cloud_firestore_platform_interface__src__blob$46dart, packages__cloud_firestore_platform_interface__src__snapshot_metadata$46dart, packages__cloud_firestore_platform_interface__src__internal__pointer$46dart, packages__firebase_core_web__src__interop__core$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const ui = dart_sdk.ui;
-  const _internal = dart_sdk._internal;
+  const async = dart_sdk.async;
+  const collection = dart_sdk.collection;
   const _js_helper = dart_sdk._js_helper;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
-  const navigator = packages__flutter__src__widgets__widget_span$46dart.src__widgets__navigator;
-  const heroes = packages__flutter__src__widgets__widget_span$46dart.src__widgets__heroes;
-  const router = packages__flutter__src__widgets__widget_span$46dart.src__widgets__router;
-  const localizations = packages__flutter__src__widgets__widget_span$46dart.src__widgets__localizations;
-  const shortcuts = packages__flutter__src__widgets__widget_span$46dart.src__widgets__shortcuts;
-  const actions = packages__flutter__src__widgets__widget_span$46dart.src__widgets__actions;
-  const overscroll_indicator = packages__flutter__src__widgets__widget_span$46dart.src__widgets__overscroll_indicator;
-  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
-  const scroll_configuration = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scroll_configuration;
-  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
-  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
-  const app = packages__flutter__src__widgets__widget_span$46dart.src__widgets__app;
-  const arc = packages__flutter__src__material__arc$46dart.src__material__arc;
-  const scaffold = packages__flutter__src__material__icon_button$46dart.src__material__scaffold;
-  const theme_data = packages__flutter__src__material__icon_button$46dart.src__material__theme_data;
-  const theme$ = packages__flutter__src__material__icon_button$46dart.src__material__theme;
-  const material_localizations = packages__flutter__src__material__icon_button$46dart.src__material__material_localizations;
-  const floating_action_button = packages__flutter__src__material__icon_button$46dart.src__material__floating_action_button;
-  const platform = packages__flutter__src__foundation___platform_web$46dart.src__foundation__platform;
-  const localizations$ = packages__flutter__src__cupertino__debug$46dart.src__cupertino__localizations;
-  const icon = packages__flutter__src__widgets__icon$46dart.src__widgets__icon;
-  const icon_data = packages__flutter__src__widgets__icon_data$46dart.src__widgets__icon_data;
-  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
-  const page = packages__flutter__src__material__page$46dart.src__material__page;
-  const grid_paper = packages__flutter__src__widgets__grid_paper$46dart.src__widgets__grid_paper;
-  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
-  var app$ = Object.create(dart.library);
+  const exception = packages__cloud_firestore_web__src__utils__exception$46dart.src__utils__exception;
+  const platform_interface_write_batch = packages__cloud_firestore_platform_interface__src__platform_interface__platform_interface_write_batch$46dart.src__platform_interface__platform_interface_write_batch;
+  const platform_interface_document_snapshot = packages__cloud_firestore_platform_interface__src__platform_interface__platform_interface_write_batch$46dart.src__platform_interface__platform_interface_document_snapshot;
+  const platform_interface_transaction = packages__cloud_firestore_platform_interface__src__platform_interface__platform_interface_write_batch$46dart.src__platform_interface__platform_interface_transaction;
+  const platform_interface_firestore = packages__cloud_firestore_platform_interface__src__platform_interface__platform_interface_write_batch$46dart.src__platform_interface__platform_interface_firestore;
+  const platform_interface_field_value_factory = packages__cloud_firestore_platform_interface__src__platform_interface__platform_interface_write_batch$46dart.src__platform_interface__platform_interface_field_value_factory;
+  const platform_interface_query_snapshot = packages__cloud_firestore_platform_interface__src__platform_interface__platform_interface_write_batch$46dart.src__platform_interface__platform_interface_query_snapshot;
+  const platform_interface_query = packages__cloud_firestore_platform_interface__src__platform_interface__platform_interface_write_batch$46dart.src__platform_interface__platform_interface_query;
+  const platform_interface_document_change = packages__cloud_firestore_platform_interface__src__platform_interface__platform_interface_write_batch$46dart.src__platform_interface__platform_interface_document_change;
+  const platform_interface_document_reference = packages__cloud_firestore_platform_interface__src__platform_interface__platform_interface_write_batch$46dart.src__platform_interface__platform_interface_document_reference;
+  const platform_interface_collection_reference = packages__cloud_firestore_platform_interface__src__platform_interface__platform_interface_write_batch$46dart.src__platform_interface__platform_interface_collection_reference;
+  const firestore = packages__cloud_firestore_web__src__interop__utils__utils$46dart.src__interop__firestore;
+  const set_options = packages__cloud_firestore_platform_interface__src__set_options$46dart.src__set_options;
+  const field_value_web = packages__cloud_firestore_web__src__field_value_web$46dart.src__field_value_web;
+  const get_options = packages__cloud_firestore_platform_interface__src__get_options$46dart.src__get_options;
+  const source = packages__cloud_firestore_platform_interface__src__source$46dart.src__source;
+  const platform_interface_field_value = packages__cloud_firestore_platform_interface__src__platform_interface__platform_interface_field_value$46dart.src__platform_interface__platform_interface_field_value;
+  const field_path = packages__cloud_firestore_platform_interface__src__field_path$46dart.src__field_path;
+  const timestamp = packages__cloud_firestore_platform_interface__src__timestamp$46dart.src__timestamp;
+  const geo_point = packages__cloud_firestore_platform_interface__src__geo_point$46dart.src__geo_point;
+  const blob = packages__cloud_firestore_platform_interface__src__blob$46dart.src__blob;
+  const snapshot_metadata = packages__cloud_firestore_platform_interface__src__snapshot_metadata$46dart.src__snapshot_metadata;
+  const pointer = packages__cloud_firestore_platform_interface__src__internal__pointer$46dart.src__internal__pointer;
+  const core$ = packages__firebase_core_web__src__interop__core$46dart.src__interop__core;
+  var write_batch_web = Object.create(dart.library);
+  var transaction_web = Object.create(dart.library);
+  var field_value_factory_web = Object.create(dart.library);
+  var query_web = Object.create(dart.library);
+  var codec_utility = Object.create(dart.library);
+  var web_utils = Object.create(dart.library);
+  var document_reference_web = Object.create(dart.library);
+  var collection_reference_web = Object.create(dart.library);
+  var cloud_firestore_web = Object.create(dart.library);
+  var $addAll = dartx.addAll;
+  var $_get = dartx._get;
+  var $updateAll = dartx.updateAll;
+  var $map = dartx.map;
+  var $toList = dartx.toList;
+  var $length = dartx.length;
+  var $toLowerCase = dartx.toLowerCase;
+  var $join = dartx.join;
+  var $noSuchMethod = dartx.noSuchMethod;
   dart._checkModuleNullSafetyMode(false);
   var T$ = {
-    ThemeModeL: () => (T$.ThemeModeL = dart.constFn(dart.legacy(app$.ThemeMode)))(),
-    StringL: () => (T$.StringL = dart.constFn(dart.legacy(core.String)))(),
-    WidgetL: () => (T$.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
-    BuildContextL: () => (T$.BuildContextL = dart.constFn(dart.legacy(framework.BuildContext)))(),
-    BuildContextLToWidgetL: () => (T$.BuildContextLToWidgetL = dart.constFn(dart.fnType(T$.WidgetL(), [T$.BuildContextL()])))(),
-    BuildContextLToLWidgetL: () => (T$.BuildContextLToLWidgetL = dart.constFn(dart.legacy(T$.BuildContextLToWidgetL())))(),
-    NavigatorObserverL: () => (T$.NavigatorObserverL = dart.constFn(dart.legacy(navigator.NavigatorObserver)))(),
-    LocaleL: () => (T$.LocaleL = dart.constFn(dart.legacy(ui.Locale)))(),
-    RectN: () => (T$.RectN = dart.constFn(dart.nullable(ui.Rect)))(),
-    RectNAndRectNToMaterialRectArcTween: () => (T$.RectNAndRectNToMaterialRectArcTween = dart.constFn(dart.fnType(arc.MaterialRectArcTween, [T$.RectN(), T$.RectN()])))(),
-    _LocationL: () => (T$._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
-    SyncIterableOfLocalizationsDelegate: () => (T$.SyncIterableOfLocalizationsDelegate = dart.constFn(_js_helper.SyncIterable$(localizations.LocalizationsDelegate)))(),
-    BuildContextToWidget: () => (T$.BuildContextToWidget = dart.constFn(dart.fnType(framework.Widget, [framework.BuildContext])))(),
-    StateOfStatefulWidget: () => (T$.StateOfStatefulWidget = dart.constFn(framework.State$(framework.StatefulWidget)))(),
-    GlobalObjectKeyOfStateOfStatefulWidget: () => (T$.GlobalObjectKeyOfStateOfStatefulWidget = dart.constFn(framework.GlobalObjectKey$(T$.StateOfStatefulWidget())))(),
-    ObjectN: () => (T$.ObjectN = dart.constFn(dart.nullable(core.Object)))(),
-    RouteSettingsAndFnToMaterialPageRouteOfT: () => (T$.RouteSettingsAndFnToMaterialPageRouteOfT = dart.constFn(dart.gFnType(T => {
-      var MaterialPageRouteOfT = () => (MaterialPageRouteOfT = dart.constFn(page.MaterialPageRoute$(T)))();
-      return [MaterialPageRouteOfT(), [navigator.RouteSettings, T$.BuildContextToWidget()]];
-    }, T => {
-      var MaterialPageRouteOfT = () => (MaterialPageRouteOfT = dart.constFn(page.MaterialPageRoute$(T)))();
-      return [T$.ObjectN()];
-    })))(),
-    VoidTobool: () => (T$.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))()
+    ListN: () => (T$.ListN = dart.constFn(dart.nullable(core.List)))(),
+    MapOfString$dynamic: () => (T$.MapOfString$dynamic = dart.constFn(core.Map$(core.String, dart.dynamic)))(),
+    LinkedHashMapOfString$dynamic: () => (T$.LinkedHashMapOfString$dynamic = dart.constFn(collection.LinkedHashMap$(core.String, dart.dynamic)))(),
+    IdentityMapOfString$dynamic: () => (T$.IdentityMapOfString$dynamic = dart.constFn(_js_helper.IdentityMap$(core.String, dart.dynamic)))(),
+    QuerySnapshotToQuerySnapshotPlatform: () => (T$.QuerySnapshotToQuerySnapshotPlatform = dart.constFn(dart.fnType(platform_interface_query_snapshot.QuerySnapshotPlatform, [firestore.QuerySnapshot])))(),
+    dynamicToNever: () => (T$.dynamicToNever = dart.constFn(dart.fnType(dart.Never, [dart.dynamic])))(),
+    StringAnddynamicTodynamic: () => (T$.StringAnddynamicTodynamic = dart.constFn(dart.fnType(dart.dynamic, [core.String, dart.dynamic])))(),
+    dynamicTodynamic: () => (T$.dynamicTodynamic = dart.constFn(dart.fnType(dart.dynamic, [dart.dynamic])))(),
+    DocumentSnapshotN: () => (T$.DocumentSnapshotN = dart.constFn(dart.nullable(firestore.DocumentSnapshot)))(),
+    DocumentSnapshotNToDocumentSnapshotPlatform: () => (T$.DocumentSnapshotNToDocumentSnapshotPlatform = dart.constFn(dart.fnType(platform_interface_document_snapshot.DocumentSnapshotPlatform, [T$.DocumentSnapshotN()])))(),
+    DocumentChangeToDocumentChangePlatform: () => (T$.DocumentChangeToDocumentChangePlatform = dart.constFn(dart.fnType(platform_interface_document_change.DocumentChangePlatform, [firestore.DocumentChange])))(),
+    IdentityMapOfString$bool: () => (T$.IdentityMapOfString$bool = dart.constFn(_js_helper.IdentityMap$(core.String, core.bool)))(),
+    FieldPathToString: () => (T$.FieldPathToString = dart.constFn(dart.fnType(core.String, [field_path.FieldPath])))(),
+    DocumentSnapshotToDocumentSnapshotPlatform: () => (T$.DocumentSnapshotToDocumentSnapshotPlatform = dart.constFn(dart.fnType(platform_interface_document_snapshot.DocumentSnapshotPlatform, [firestore.DocumentSnapshot])))(),
+    TransactionN: () => (T$.TransactionN = dart.constFn(dart.nullable(firestore.Transaction)))()
   };
   var T$Eval = Object.assign({
     _: () => T$Eval
@@ -74,1788 +79,951 @@ define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/f
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
-    get C0() {
-      return C[0] = dart.const({
-        __proto__: app$.ThemeMode.prototype,
-        [_name$]: "ThemeMode.system",
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: source.Source.prototype,
+        [_name]: "Source.serverAndCache",
         index: 0
       });
     },
-    get C1() {
-      return C[1] = dart.const({
-        __proto__: app$.ThemeMode.prototype,
-        [_name$]: "ThemeMode.light",
-        index: 1
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: get_options.GetOptions.prototype,
+        [GetOptions_source]: C[1] || CT.C1
       });
     },
     get C2() {
-      return C[2] = dart.const({
-        __proto__: app$.ThemeMode.prototype,
-        [_name$]: "ThemeMode.dark",
+      return C[2] = dart.fn(codec_utility.CodecUtility.valueEncode, T$.dynamicTodynamic());
+    },
+    get C3() {
+      return C[3] = dart.fn(codec_utility.CodecUtility.valueDecode, T$.dynamicTodynamic());
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: source.Source.prototype,
+        [_name]: "Source.cache",
         index: 2
       });
     },
-    get C3() {
-      return C[3] = dart.constList([C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2], T$.ThemeModeL());
-    },
-    get C4() {
-      return C[4] = dart.constMap(T$.StringL(), T$.BuildContextLToLWidgetL(), []);
-    },
     get C5() {
-      return C[5] = dart.constList([], T$.NavigatorObserverL());
-    },
-    get C7() {
-      return C[7] = dart.const({
-        __proto__: ui.Locale.prototype,
-        [Locale__countryCode]: "US",
-        [Locale_scriptCode]: null,
-        [Locale__languageCode]: "en"
+      return C[5] = dart.const({
+        __proto__: source.Source.prototype,
+        [_name]: "Source.server",
+        index: 1
       });
     },
     get C6() {
-      return C[6] = dart.constList([C[7] || CT.C7], T$.LocaleL());
-    },
-    get C8() {
-      return C[8] = dart.const({
-        __proto__: platform.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.iOS",
-        index: 2
-      });
-    },
-    get C9() {
-      return C[9] = dart.const({
-        __proto__: platform.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.linux",
-        index: 3
-      });
-    },
-    get C10() {
-      return C[10] = dart.const({
-        __proto__: platform.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.macOS",
-        index: 4
-      });
-    },
-    get C11() {
-      return C[11] = dart.const({
-        __proto__: platform.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.windows",
-        index: 5
-      });
-    },
-    get C14() {
-      return C[14] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 11,
-        [_Location_line]: 681,
-        [_Location_file]: null
-      });
-    },
-    get C15() {
-      return C[15] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "axisDirection",
-        [_Location_column]: 11,
-        [_Location_line]: 682,
-        [_Location_file]: null
-      });
-    },
-    get C16() {
-      return C[16] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "color",
-        [_Location_column]: 11,
-        [_Location_line]: 683,
-        [_Location_file]: null
-      });
-    },
-    get C13() {
-      return C[13] = dart.constList([C[14] || CT.C14, C[15] || CT.C15, C[16] || CT.C16], T$._LocationL());
-    },
-    get C12() {
-      return C[12] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[13] || CT.C13,
-        [_Location_name]: null,
-        [_Location_column]: 16,
-        [_Location_line]: 680,
-        [_Location_file]: "file:///C:/flutter/flutter/packages/flutter/lib/src/material/app.dart"
-      });
-    },
-    get C17() {
-      return C[17] = dart.const({
-        __proto__: platform.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.android",
-        index: 0
-      });
-    },
-    get C18() {
-      return C[18] = dart.const({
-        __proto__: platform.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.fuchsia",
-        index: 1
-      });
-    },
-    get C22() {
-      return C[22] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "icon",
-        [_Location_column]: 31,
-        [_Location_line]: 714,
-        [_Location_file]: null
-      });
-    },
-    get C21() {
-      return C[21] = dart.constList([C[22] || CT.C22], T$._LocationL());
-    },
-    get C20() {
-      return C[20] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[21] || CT.C21,
-        [_Location_name]: null,
-        [_Location_column]: 20,
-        [_Location_line]: 714,
-        [_Location_file]: "file:///C:/flutter/flutter/packages/flutter/lib/src/material/app.dart"
-      });
-    },
-    get C23() {
-      return C[23] = dart.const({
-        __proto__: icon_data.IconData.prototype,
-        [IconData_matchTextDirection]: false,
-        [IconData_fontPackage]: null,
-        [IconData_fontFamily]: "MaterialIcons",
-        [IconData_codePoint]: 59828
-      });
-    },
-    get C19() {
-      return C[19] = dart.const({
-        __proto__: icon.Icon.prototype,
-        [Widget__location]: C[20] || CT.C20,
-        [Widget_key]: null,
-        [Icon_textDirection]: null,
-        [Icon_semanticLabel]: null,
-        [Icon_color]: null,
-        [Icon_size]: null,
-        [Icon_icon]: C[23] || CT.C23
-      });
-    },
-    get C26() {
-      return C[26] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 714,
-        [_Location_file]: null
-      });
-    },
-    get C27() {
-      return C[27] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onPressed",
-        [_Location_column]: 7,
-        [_Location_line]: 715,
-        [_Location_file]: null
-      });
-    },
-    get C28() {
-      return C[28] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "mini",
-        [_Location_column]: 7,
-        [_Location_line]: 716,
-        [_Location_file]: null
-      });
-    },
-    get C25() {
-      return C[25] = dart.constList([C[26] || CT.C26, C[27] || CT.C27, C[28] || CT.C28], T$._LocationL());
-    },
-    get C24() {
-      return C[24] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[25] || CT.C25,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 713,
-        [_Location_file]: "file:///C:/flutter/flutter/packages/flutter/lib/src/material/app.dart"
-      });
-    },
-    get C31() {
-      return C[31] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "builder",
-        [_Location_column]: 15,
-        [_Location_line]: 744,
-        [_Location_file]: null
-      });
-    },
-    get C30() {
-      return C[30] = dart.constList([C[31] || CT.C31], T$._LocationL());
-    },
-    get C29() {
-      return C[29] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[30] || CT.C30,
-        [_Location_name]: null,
-        [_Location_column]: 13,
-        [_Location_line]: 743,
-        [_Location_file]: "file:///C:/flutter/flutter/packages/flutter/lib/src/material/app.dart"
-      });
-    },
-    get C34() {
-      return C[34] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "data",
-        [_Location_column]: 9,
-        [_Location_line]: 741,
-        [_Location_file]: null
-      });
-    },
-    get C35() {
-      return C[35] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 9,
-        [_Location_line]: 742,
-        [_Location_file]: null
-      });
-    },
-    get C33() {
-      return C[33] = dart.constList([C[34] || CT.C34, C[35] || CT.C35], T$._LocationL());
-    },
-    get C32() {
-      return C[32] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[33] || CT.C33,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 740,
-        [_Location_file]: "file:///C:/flutter/flutter/packages/flutter/lib/src/material/app.dart"
-      });
-    },
-    get C38() {
-      return C[38] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "key",
-        [_Location_column]: 7,
-        [_Location_line]: 739,
-        [_Location_file]: null
-      });
-    },
-    get C39() {
-      return C[39] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 740,
-        [_Location_file]: null
-      });
-    },
-    get C37() {
-      return C[37] = dart.constList([C[38] || CT.C38, C[39] || CT.C39], T$._LocationL());
-    },
-    get C36() {
-      return C[36] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[37] || CT.C37,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 738,
-        [_Location_file]: "file:///C:/flutter/flutter/packages/flutter/lib/src/material/app.dart"
-      });
-    },
-    get C42() {
-      return C[42] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "key",
-        [_Location_column]: 9,
-        [_Location_line]: 775,
-        [_Location_file]: null
-      });
-    },
-    get C43() {
-      return C[43] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "routeInformationProvider",
-        [_Location_column]: 9,
-        [_Location_line]: 776,
-        [_Location_file]: null
-      });
-    },
-    get C44() {
-      return C[44] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "routeInformationParser",
-        [_Location_column]: 9,
-        [_Location_line]: 777,
-        [_Location_file]: null
-      });
-    },
-    get C45() {
-      return C[45] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "routerDelegate",
-        [_Location_column]: 9,
-        [_Location_line]: 778,
-        [_Location_file]: null
-      });
-    },
-    get C46() {
-      return C[46] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "backButtonDispatcher",
-        [_Location_column]: 9,
-        [_Location_line]: 779,
-        [_Location_file]: null
-      });
-    },
-    get C47() {
-      return C[47] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "builder",
-        [_Location_column]: 9,
-        [_Location_line]: 780,
-        [_Location_file]: null
-      });
-    },
-    get C48() {
-      return C[48] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "title",
-        [_Location_column]: 9,
-        [_Location_line]: 781,
-        [_Location_file]: null
-      });
-    },
-    get C49() {
-      return C[49] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onGenerateTitle",
-        [_Location_column]: 9,
-        [_Location_line]: 782,
-        [_Location_file]: null
-      });
-    },
-    get C50() {
-      return C[50] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "textStyle",
-        [_Location_column]: 9,
-        [_Location_line]: 783,
-        [_Location_file]: null
-      });
-    },
-    get C51() {
-      return C[51] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "color",
-        [_Location_column]: 9,
-        [_Location_line]: 784,
-        [_Location_file]: null
-      });
-    },
-    get C52() {
-      return C[52] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "locale",
-        [_Location_column]: 9,
-        [_Location_line]: 785,
-        [_Location_file]: null
-      });
-    },
-    get C53() {
-      return C[53] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "localizationsDelegates",
-        [_Location_column]: 9,
-        [_Location_line]: 786,
-        [_Location_file]: null
-      });
-    },
-    get C54() {
-      return C[54] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "localeResolutionCallback",
-        [_Location_column]: 9,
-        [_Location_line]: 787,
-        [_Location_file]: null
-      });
-    },
-    get C55() {
-      return C[55] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "localeListResolutionCallback",
-        [_Location_column]: 9,
-        [_Location_line]: 788,
-        [_Location_file]: null
-      });
-    },
-    get C56() {
-      return C[56] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "supportedLocales",
-        [_Location_column]: 9,
-        [_Location_line]: 789,
-        [_Location_file]: null
-      });
-    },
-    get C57() {
-      return C[57] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "showPerformanceOverlay",
-        [_Location_column]: 9,
-        [_Location_line]: 790,
-        [_Location_file]: null
-      });
-    },
-    get C58() {
-      return C[58] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "checkerboardRasterCacheImages",
-        [_Location_column]: 9,
-        [_Location_line]: 791,
-        [_Location_file]: null
-      });
-    },
-    get C59() {
-      return C[59] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "checkerboardOffscreenLayers",
-        [_Location_column]: 9,
-        [_Location_line]: 792,
-        [_Location_file]: null
-      });
-    },
-    get C60() {
-      return C[60] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "showSemanticsDebugger",
-        [_Location_column]: 9,
-        [_Location_line]: 793,
-        [_Location_file]: null
-      });
-    },
-    get C61() {
-      return C[61] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "debugShowCheckedModeBanner",
-        [_Location_column]: 9,
-        [_Location_line]: 794,
-        [_Location_file]: null
-      });
-    },
-    get C62() {
-      return C[62] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "inspectorSelectButtonBuilder",
-        [_Location_column]: 9,
-        [_Location_line]: 795,
-        [_Location_file]: null
-      });
-    },
-    get C63() {
-      return C[63] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "shortcuts",
-        [_Location_column]: 9,
-        [_Location_line]: 796,
-        [_Location_file]: null
-      });
-    },
-    get C64() {
-      return C[64] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "actions",
-        [_Location_column]: 9,
-        [_Location_line]: 797,
-        [_Location_file]: null
-      });
-    },
-    get C65() {
-      return C[65] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "restorationScopeId",
-        [_Location_column]: 9,
-        [_Location_line]: 798,
-        [_Location_file]: null
-      });
-    },
-    get C41() {
-      return C[41] = dart.constList([C[42] || CT.C42, C[43] || CT.C43, C[44] || CT.C44, C[45] || CT.C45, C[46] || CT.C46, C[47] || CT.C47, C[48] || CT.C48, C[49] || CT.C49, C[50] || CT.C50, C[51] || CT.C51, C[52] || CT.C52, C[53] || CT.C53, C[54] || CT.C54, C[55] || CT.C55, C[56] || CT.C56, C[57] || CT.C57, C[58] || CT.C58, C[59] || CT.C59, C[60] || CT.C60, C[61] || CT.C61, C[62] || CT.C62, C[63] || CT.C63, C[64] || CT.C64, C[65] || CT.C65], T$._LocationL());
-    },
-    get C40() {
-      return C[40] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[41] || CT.C41,
-        [_Location_name]: null,
-        [_Location_column]: 25,
-        [_Location_line]: 774,
-        [_Location_file]: "file:///C:/flutter/flutter/packages/flutter/lib/src/material/app.dart"
-      });
-    },
-    get C68() {
-      return C[68] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "key",
-        [_Location_column]: 7,
-        [_Location_line]: 803,
-        [_Location_file]: null
-      });
-    },
-    get C69() {
-      return C[69] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "navigatorKey",
-        [_Location_column]: 7,
-        [_Location_line]: 804,
-        [_Location_file]: null
-      });
-    },
-    get C70() {
-      return C[70] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "navigatorObservers",
-        [_Location_column]: 7,
-        [_Location_line]: 805,
-        [_Location_file]: null
-      });
-    },
-    get C71() {
-      return C[71] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "pageRouteBuilder",
-        [_Location_column]: 7,
-        [_Location_line]: 806,
-        [_Location_file]: null
-      });
-    },
-    get C72() {
-      return C[72] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "home",
-        [_Location_column]: 7,
-        [_Location_line]: 809,
-        [_Location_file]: null
-      });
-    },
-    get C73() {
-      return C[73] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "routes",
-        [_Location_column]: 7,
-        [_Location_line]: 810,
-        [_Location_file]: null
-      });
-    },
-    get C74() {
-      return C[74] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "initialRoute",
-        [_Location_column]: 7,
-        [_Location_line]: 811,
-        [_Location_file]: null
-      });
-    },
-    get C75() {
-      return C[75] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onGenerateRoute",
-        [_Location_column]: 7,
-        [_Location_line]: 812,
-        [_Location_file]: null
-      });
-    },
-    get C76() {
-      return C[76] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onGenerateInitialRoutes",
-        [_Location_column]: 7,
-        [_Location_line]: 813,
-        [_Location_file]: null
-      });
-    },
-    get C77() {
-      return C[77] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onUnknownRoute",
-        [_Location_column]: 7,
-        [_Location_line]: 814,
-        [_Location_file]: null
-      });
-    },
-    get C78() {
-      return C[78] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "builder",
-        [_Location_column]: 7,
-        [_Location_line]: 815,
-        [_Location_file]: null
-      });
-    },
-    get C79() {
-      return C[79] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "title",
-        [_Location_column]: 7,
-        [_Location_line]: 816,
-        [_Location_file]: null
-      });
-    },
-    get C80() {
-      return C[80] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onGenerateTitle",
-        [_Location_column]: 7,
-        [_Location_line]: 817,
-        [_Location_file]: null
-      });
-    },
-    get C81() {
-      return C[81] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "textStyle",
-        [_Location_column]: 7,
-        [_Location_line]: 818,
-        [_Location_file]: null
-      });
-    },
-    get C82() {
-      return C[82] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "color",
-        [_Location_column]: 7,
-        [_Location_line]: 819,
-        [_Location_file]: null
-      });
-    },
-    get C83() {
-      return C[83] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "locale",
-        [_Location_column]: 7,
-        [_Location_line]: 820,
-        [_Location_file]: null
-      });
-    },
-    get C84() {
-      return C[84] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "localizationsDelegates",
-        [_Location_column]: 7,
-        [_Location_line]: 821,
-        [_Location_file]: null
-      });
-    },
-    get C85() {
-      return C[85] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "localeResolutionCallback",
-        [_Location_column]: 7,
-        [_Location_line]: 822,
-        [_Location_file]: null
-      });
-    },
-    get C86() {
-      return C[86] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "localeListResolutionCallback",
-        [_Location_column]: 7,
-        [_Location_line]: 823,
-        [_Location_file]: null
-      });
-    },
-    get C87() {
-      return C[87] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "supportedLocales",
-        [_Location_column]: 7,
-        [_Location_line]: 824,
-        [_Location_file]: null
-      });
-    },
-    get C88() {
-      return C[88] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "showPerformanceOverlay",
-        [_Location_column]: 7,
-        [_Location_line]: 825,
-        [_Location_file]: null
-      });
-    },
-    get C89() {
-      return C[89] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "checkerboardRasterCacheImages",
-        [_Location_column]: 7,
-        [_Location_line]: 826,
-        [_Location_file]: null
-      });
-    },
-    get C90() {
-      return C[90] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "checkerboardOffscreenLayers",
-        [_Location_column]: 7,
-        [_Location_line]: 827,
-        [_Location_file]: null
-      });
-    },
-    get C91() {
-      return C[91] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "showSemanticsDebugger",
-        [_Location_column]: 7,
-        [_Location_line]: 828,
-        [_Location_file]: null
-      });
-    },
-    get C92() {
-      return C[92] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "debugShowCheckedModeBanner",
-        [_Location_column]: 7,
-        [_Location_line]: 829,
-        [_Location_file]: null
-      });
-    },
-    get C93() {
-      return C[93] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "inspectorSelectButtonBuilder",
-        [_Location_column]: 7,
-        [_Location_line]: 830,
-        [_Location_file]: null
-      });
-    },
-    get C94() {
-      return C[94] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "shortcuts",
-        [_Location_column]: 7,
-        [_Location_line]: 831,
-        [_Location_file]: null
-      });
-    },
-    get C95() {
-      return C[95] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "actions",
-        [_Location_column]: 7,
-        [_Location_line]: 832,
-        [_Location_file]: null
-      });
-    },
-    get C96() {
-      return C[96] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "restorationScopeId",
-        [_Location_column]: 7,
-        [_Location_line]: 833,
-        [_Location_file]: null
-      });
-    },
-    get C67() {
-      return C[67] = dart.constList([C[68] || CT.C68, C[69] || CT.C69, C[70] || CT.C70, C[71] || CT.C71, C[72] || CT.C72, C[73] || CT.C73, C[74] || CT.C74, C[75] || CT.C75, C[76] || CT.C76, C[77] || CT.C77, C[78] || CT.C78, C[79] || CT.C79, C[80] || CT.C80, C[81] || CT.C81, C[82] || CT.C82, C[83] || CT.C83, C[84] || CT.C84, C[85] || CT.C85, C[86] || CT.C86, C[87] || CT.C87, C[88] || CT.C88, C[89] || CT.C89, C[90] || CT.C90, C[91] || CT.C91, C[92] || CT.C92, C[93] || CT.C93, C[94] || CT.C94, C[95] || CT.C95, C[96] || CT.C96], T$._LocationL());
-    },
-    get C66() {
-      return C[66] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[67] || CT.C67,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 802,
-        [_Location_file]: "file:///C:/flutter/flutter/packages/flutter/lib/src/material/app.dart"
-      });
-    },
-    get C97() {
-      return C[97] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 3774462944.0
-      });
-    },
-    get C100() {
-      return C[100] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "color",
-        [_Location_column]: 11,
-        [_Location_line]: 844,
-        [_Location_file]: null
-      });
-    },
-    get C101() {
-      return C[101] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "interval",
-        [_Location_column]: 11,
-        [_Location_line]: 845,
-        [_Location_file]: null
-      });
-    },
-    get C102() {
-      return C[102] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "divisions",
-        [_Location_column]: 11,
-        [_Location_line]: 846,
-        [_Location_file]: null
-      });
-    },
-    get C103() {
-      return C[103] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "subdivisions",
-        [_Location_column]: 11,
-        [_Location_line]: 847,
-        [_Location_file]: null
-      });
-    },
-    get C104() {
-      return C[104] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 11,
-        [_Location_line]: 848,
-        [_Location_file]: null
-      });
-    },
-    get C99() {
-      return C[99] = dart.constList([C[100] || CT.C100, C[101] || CT.C101, C[102] || CT.C102, C[103] || CT.C103, C[104] || CT.C104], T$._LocationL());
-    },
-    get C98() {
-      return C[98] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[99] || CT.C99,
-        [_Location_name]: null,
-        [_Location_column]: 18,
-        [_Location_line]: 843,
-        [_Location_file]: "file:///C:/flutter/flutter/packages/flutter/lib/src/material/app.dart"
-      });
-    },
-    get C107() {
-      return C[107] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "controller",
-        [_Location_column]: 9,
-        [_Location_line]: 857,
-        [_Location_file]: null
-      });
-    },
-    get C108() {
-      return C[108] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 9,
-        [_Location_line]: 858,
-        [_Location_file]: null
-      });
-    },
-    get C106() {
-      return C[106] = dart.constList([C[107] || CT.C107, C[108] || CT.C108], T$._LocationL());
-    },
-    get C105() {
-      return C[105] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[106] || CT.C106,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 856,
-        [_Location_file]: "file:///C:/flutter/flutter/packages/flutter/lib/src/material/app.dart"
-      });
-    },
-    get C111() {
-      return C[111] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "behavior",
-        [_Location_column]: 7,
-        [_Location_line]: 855,
-        [_Location_file]: null
-      });
-    },
-    get C112() {
-      return C[112] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 856,
-        [_Location_file]: null
-      });
-    },
-    get C110() {
-      return C[110] = dart.constList([C[111] || CT.C111, C[112] || CT.C112], T$._LocationL());
-    },
-    get C109() {
-      return C[109] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[110] || CT.C110,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 854,
-        [_Location_file]: "file:///C:/flutter/flutter/packages/flutter/lib/src/material/app.dart"
-      });
-    },
-    get C114() {
-      return C[114] = dart.const({
-        __proto__: ui.TextDecorationStyle.prototype,
-        [_name$0]: "TextDecorationStyle.double",
-        index: 1
-      });
-    },
-    get C115() {
-      return C[115] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4294967040.0
-      });
-    },
-    get C116() {
-      return C[116] = dart.const({
-        __proto__: ui.TextDecoration.prototype,
-        [TextDecoration__mask]: 1
-      });
-    },
-    get C117() {
-      return C[117] = dart.const({
-        __proto__: ui.FontWeight.prototype,
-        [FontWeight_index]: 8
-      });
-    },
-    get C118() {
-      return C[118] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 3506372608.0
-      });
-    },
-    get C113() {
-      return C[113] = dart.const({
-        __proto__: text_style.TextStyle.prototype,
-        [TextStyle_fontFeatures]: null,
-        [TextStyle_shadows]: null,
-        [TextStyle_debugLabel]: "fallback style; consider putting your text in a Material",
-        [TextStyle_decorationThickness]: null,
-        [TextStyle_decorationStyle]: C[114] || CT.C114,
-        [TextStyle_decorationColor]: C[115] || CT.C115,
-        [TextStyle_decoration]: C[116] || CT.C116,
-        [TextStyle_background]: null,
-        [TextStyle_foreground]: null,
-        [TextStyle_locale]: null,
-        [TextStyle_height]: null,
-        [TextStyle_textBaseline]: null,
-        [TextStyle_wordSpacing]: null,
-        [TextStyle_letterSpacing]: null,
-        [TextStyle_fontStyle]: null,
-        [TextStyle_fontWeight]: C[117] || CT.C117,
-        [TextStyle_fontSize]: 48,
-        [TextStyle__package]: null,
-        [TextStyle__fontFamilyFallback]: null,
-        [TextStyle_fontFamily]: "monospace",
-        [TextStyle_backgroundColor]: null,
-        [TextStyle_color]: C[118] || CT.C118,
-        [TextStyle_inherit]: true
+      return C[6] = dart.const(new _js_helper.PrivateSymbol.new('_pointer', _pointer));
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 30000000
       });
     }
   }, false);
-  var C = Array(119).fill(void 0);
+  var C = Array(8).fill(void 0);
   var I = [
-    "file:///C:/flutter/flutter/packages/flutter/lib/src/material/app.dart",
-    "package:flutter/src/material/app.dart"
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-1.0.3/lib/src/write_batch_web.dart",
+    "package:cloud_firestore_web/src/write_batch_web.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-1.0.3/lib/src/transaction_web.dart",
+    "package:cloud_firestore_web/src/transaction_web.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-1.0.3/lib/src/field_value_factory_web.dart",
+    "package:cloud_firestore_web/src/field_value_factory_web.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-1.0.3/lib/src/query_web.dart",
+    "package:cloud_firestore_web/src/query_web.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-1.0.3/lib/src/utils/codec_utility.dart",
+    "package:cloud_firestore_web/src/utils/codec_utility.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-1.0.3/lib/src/utils/web_utils.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-1.0.3/lib/src/document_reference_web.dart",
+    "package:cloud_firestore_web/src/document_reference_web.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-1.0.3/lib/src/collection_reference_web.dart",
+    "package:cloud_firestore_web/src/collection_reference_web.dart",
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-1.0.3/lib/cloud_firestore_web.dart",
+    "package:cloud_firestore_web/cloud_firestore_web.dart"
   ];
-  var _name$ = dart.privateName(app$, "_name");
-  app$.ThemeMode = class ThemeMode extends core.Object {
-    toString() {
-      return this[_name$];
-    }
-  };
-  (app$.ThemeMode.new = function(index, _name) {
-    if (index == null) dart.nullFailed(I[0], 40, 6, "index");
-    if (_name == null) dart.nullFailed(I[0], 40, 6, "_name");
-    this.index = index;
-    this[_name$] = _name;
-    ;
-  }).prototype = app$.ThemeMode.prototype;
-  dart.addTypeTests(app$.ThemeMode);
-  dart.addTypeCaches(app$.ThemeMode);
-  dart.setLibraryUri(app$.ThemeMode, I[1]);
-  dart.setFieldSignature(app$.ThemeMode, () => ({
-    __proto__: dart.getFields(app$.ThemeMode.__proto__),
-    index: dart.finalFieldType(core.int),
-    [_name$]: dart.finalFieldType(core.String)
-  }));
-  dart.defineExtensionMethods(app$.ThemeMode, ['toString']);
-  app$.ThemeMode.system = C[0] || CT.C0;
-  app$.ThemeMode.light = C[1] || CT.C1;
-  app$.ThemeMode.dark = C[2] || CT.C2;
-  app$.ThemeMode.values = C[3] || CT.C3;
-  var navigatorKey$ = dart.privateName(app$, "MaterialApp.navigatorKey");
-  var scaffoldMessengerKey$ = dart.privateName(app$, "MaterialApp.scaffoldMessengerKey");
-  var home$ = dart.privateName(app$, "MaterialApp.home");
-  var routes$ = dart.privateName(app$, "MaterialApp.routes");
-  var initialRoute$ = dart.privateName(app$, "MaterialApp.initialRoute");
-  var onGenerateRoute$ = dart.privateName(app$, "MaterialApp.onGenerateRoute");
-  var onGenerateInitialRoutes$ = dart.privateName(app$, "MaterialApp.onGenerateInitialRoutes");
-  var onUnknownRoute$ = dart.privateName(app$, "MaterialApp.onUnknownRoute");
-  var navigatorObservers$ = dart.privateName(app$, "MaterialApp.navigatorObservers");
-  var routeInformationProvider$ = dart.privateName(app$, "MaterialApp.routeInformationProvider");
-  var routeInformationParser$ = dart.privateName(app$, "MaterialApp.routeInformationParser");
-  var routerDelegate$ = dart.privateName(app$, "MaterialApp.routerDelegate");
-  var backButtonDispatcher$ = dart.privateName(app$, "MaterialApp.backButtonDispatcher");
-  var builder$ = dart.privateName(app$, "MaterialApp.builder");
-  var title$ = dart.privateName(app$, "MaterialApp.title");
-  var onGenerateTitle$ = dart.privateName(app$, "MaterialApp.onGenerateTitle");
-  var theme$0 = dart.privateName(app$, "MaterialApp.theme");
-  var darkTheme$ = dart.privateName(app$, "MaterialApp.darkTheme");
-  var highContrastTheme$ = dart.privateName(app$, "MaterialApp.highContrastTheme");
-  var highContrastDarkTheme$ = dart.privateName(app$, "MaterialApp.highContrastDarkTheme");
-  var themeMode$ = dart.privateName(app$, "MaterialApp.themeMode");
-  var color$ = dart.privateName(app$, "MaterialApp.color");
-  var locale$ = dart.privateName(app$, "MaterialApp.locale");
-  var localizationsDelegates$ = dart.privateName(app$, "MaterialApp.localizationsDelegates");
-  var localeListResolutionCallback$ = dart.privateName(app$, "MaterialApp.localeListResolutionCallback");
-  var localeResolutionCallback$ = dart.privateName(app$, "MaterialApp.localeResolutionCallback");
-  var supportedLocales$ = dart.privateName(app$, "MaterialApp.supportedLocales");
-  var showPerformanceOverlay$ = dart.privateName(app$, "MaterialApp.showPerformanceOverlay");
-  var checkerboardRasterCacheImages$ = dart.privateName(app$, "MaterialApp.checkerboardRasterCacheImages");
-  var checkerboardOffscreenLayers$ = dart.privateName(app$, "MaterialApp.checkerboardOffscreenLayers");
-  var showSemanticsDebugger$ = dart.privateName(app$, "MaterialApp.showSemanticsDebugger");
-  var debugShowCheckedModeBanner$ = dart.privateName(app$, "MaterialApp.debugShowCheckedModeBanner");
-  var shortcuts$ = dart.privateName(app$, "MaterialApp.shortcuts");
-  var actions$ = dart.privateName(app$, "MaterialApp.actions");
-  var restorationScopeId$ = dart.privateName(app$, "MaterialApp.restorationScopeId");
-  var debugShowMaterialGrid$ = dart.privateName(app$, "MaterialApp.debugShowMaterialGrid");
-  var Locale__countryCode = dart.privateName(ui, "Locale._countryCode");
-  var Locale_scriptCode = dart.privateName(ui, "Locale.scriptCode");
-  var Locale__languageCode = dart.privateName(ui, "Locale._languageCode");
-  app$.MaterialApp = class MaterialApp extends framework.StatefulWidget {
-    get navigatorKey() {
-      return this[navigatorKey$];
-    }
-    set navigatorKey(value) {
-      super.navigatorKey = value;
-    }
-    get scaffoldMessengerKey() {
-      return this[scaffoldMessengerKey$];
-    }
-    set scaffoldMessengerKey(value) {
-      super.scaffoldMessengerKey = value;
-    }
-    get home() {
-      return this[home$];
-    }
-    set home(value) {
-      super.home = value;
-    }
-    get routes() {
-      return this[routes$];
-    }
-    set routes(value) {
-      super.routes = value;
-    }
-    get initialRoute() {
-      return this[initialRoute$];
-    }
-    set initialRoute(value) {
-      super.initialRoute = value;
-    }
-    get onGenerateRoute() {
-      return this[onGenerateRoute$];
-    }
-    set onGenerateRoute(value) {
-      super.onGenerateRoute = value;
-    }
-    get onGenerateInitialRoutes() {
-      return this[onGenerateInitialRoutes$];
-    }
-    set onGenerateInitialRoutes(value) {
-      super.onGenerateInitialRoutes = value;
-    }
-    get onUnknownRoute() {
-      return this[onUnknownRoute$];
-    }
-    set onUnknownRoute(value) {
-      super.onUnknownRoute = value;
-    }
-    get navigatorObservers() {
-      return this[navigatorObservers$];
-    }
-    set navigatorObservers(value) {
-      super.navigatorObservers = value;
-    }
-    get routeInformationProvider() {
-      return this[routeInformationProvider$];
-    }
-    set routeInformationProvider(value) {
-      super.routeInformationProvider = value;
-    }
-    get routeInformationParser() {
-      return this[routeInformationParser$];
-    }
-    set routeInformationParser(value) {
-      super.routeInformationParser = value;
-    }
-    get routerDelegate() {
-      return this[routerDelegate$];
-    }
-    set routerDelegate(value) {
-      super.routerDelegate = value;
-    }
-    get backButtonDispatcher() {
-      return this[backButtonDispatcher$];
-    }
-    set backButtonDispatcher(value) {
-      super.backButtonDispatcher = value;
-    }
-    get builder() {
-      return this[builder$];
-    }
-    set builder(value) {
-      super.builder = value;
-    }
-    get title() {
-      return this[title$];
-    }
-    set title(value) {
-      super.title = value;
-    }
-    get onGenerateTitle() {
-      return this[onGenerateTitle$];
-    }
-    set onGenerateTitle(value) {
-      super.onGenerateTitle = value;
-    }
-    get theme() {
-      return this[theme$0];
-    }
-    set theme(value) {
-      super.theme = value;
-    }
-    get darkTheme() {
-      return this[darkTheme$];
-    }
-    set darkTheme(value) {
-      super.darkTheme = value;
-    }
-    get highContrastTheme() {
-      return this[highContrastTheme$];
-    }
-    set highContrastTheme(value) {
-      super.highContrastTheme = value;
-    }
-    get highContrastDarkTheme() {
-      return this[highContrastDarkTheme$];
-    }
-    set highContrastDarkTheme(value) {
-      super.highContrastDarkTheme = value;
-    }
-    get themeMode() {
-      return this[themeMode$];
-    }
-    set themeMode(value) {
-      super.themeMode = value;
-    }
-    get color() {
-      return this[color$];
-    }
-    set color(value) {
-      super.color = value;
-    }
-    get locale() {
-      return this[locale$];
-    }
-    set locale(value) {
-      super.locale = value;
-    }
-    get localizationsDelegates() {
-      return this[localizationsDelegates$];
-    }
-    set localizationsDelegates(value) {
-      super.localizationsDelegates = value;
-    }
-    get localeListResolutionCallback() {
-      return this[localeListResolutionCallback$];
-    }
-    set localeListResolutionCallback(value) {
-      super.localeListResolutionCallback = value;
-    }
-    get localeResolutionCallback() {
-      return this[localeResolutionCallback$];
-    }
-    set localeResolutionCallback(value) {
-      super.localeResolutionCallback = value;
-    }
-    get supportedLocales() {
-      return this[supportedLocales$];
-    }
-    set supportedLocales(value) {
-      super.supportedLocales = value;
-    }
-    get showPerformanceOverlay() {
-      return this[showPerformanceOverlay$];
-    }
-    set showPerformanceOverlay(value) {
-      super.showPerformanceOverlay = value;
-    }
-    get checkerboardRasterCacheImages() {
-      return this[checkerboardRasterCacheImages$];
-    }
-    set checkerboardRasterCacheImages(value) {
-      super.checkerboardRasterCacheImages = value;
-    }
-    get checkerboardOffscreenLayers() {
-      return this[checkerboardOffscreenLayers$];
-    }
-    set checkerboardOffscreenLayers(value) {
-      super.checkerboardOffscreenLayers = value;
-    }
-    get showSemanticsDebugger() {
-      return this[showSemanticsDebugger$];
-    }
-    set showSemanticsDebugger(value) {
-      super.showSemanticsDebugger = value;
-    }
-    get debugShowCheckedModeBanner() {
-      return this[debugShowCheckedModeBanner$];
-    }
-    set debugShowCheckedModeBanner(value) {
-      super.debugShowCheckedModeBanner = value;
-    }
-    get shortcuts() {
-      return this[shortcuts$];
-    }
-    set shortcuts(value) {
-      super.shortcuts = value;
-    }
-    get actions() {
-      return this[actions$];
-    }
-    set actions(value) {
-      super.actions = value;
-    }
-    get restorationScopeId() {
-      return this[restorationScopeId$];
-    }
-    set restorationScopeId(value) {
-      super.restorationScopeId = value;
-    }
-    get debugShowMaterialGrid() {
-      return this[debugShowMaterialGrid$];
-    }
-    set debugShowMaterialGrid(value) {
-      super.debugShowMaterialGrid = value;
-    }
-    createState() {
-      return new app$._MaterialAppState.new();
-    }
-    static createMaterialHeroController() {
-      return new heroes.HeroController.new({createRectTween: dart.fn((begin, end) => new arc.MaterialRectArcTween.new({begin: begin, end: end}), T$.RectNAndRectNToMaterialRectArcTween())});
-    }
-  };
-  (app$.MaterialApp.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let navigatorKey = opts && 'navigatorKey' in opts ? opts.navigatorKey : null;
-    let scaffoldMessengerKey = opts && 'scaffoldMessengerKey' in opts ? opts.scaffoldMessengerKey : null;
-    let home = opts && 'home' in opts ? opts.home : null;
-    let routes = opts && 'routes' in opts ? opts.routes : C[4] || CT.C4;
-    if (routes == null) dart.nullFailed(I[0], 172, 37, "routes");
-    let initialRoute = opts && 'initialRoute' in opts ? opts.initialRoute : null;
-    let onGenerateRoute = opts && 'onGenerateRoute' in opts ? opts.onGenerateRoute : null;
-    let onGenerateInitialRoutes = opts && 'onGenerateInitialRoutes' in opts ? opts.onGenerateInitialRoutes : null;
-    let onUnknownRoute = opts && 'onUnknownRoute' in opts ? opts.onUnknownRoute : null;
-    let navigatorObservers = opts && 'navigatorObservers' in opts ? opts.navigatorObservers : C[5] || CT.C5;
-    if (navigatorObservers == null) dart.nullFailed(I[0], 177, 34, "navigatorObservers");
-    let builder = opts && 'builder' in opts ? opts.builder : null;
-    let title = opts && 'title' in opts ? opts.title : "";
-    if (title == null) dart.nullFailed(I[0], 179, 10, "title");
-    let onGenerateTitle = opts && 'onGenerateTitle' in opts ? opts.onGenerateTitle : null;
-    let color = opts && 'color' in opts ? opts.color : null;
-    let theme = opts && 'theme' in opts ? opts.theme : null;
-    let darkTheme = opts && 'darkTheme' in opts ? opts.darkTheme : null;
-    let highContrastTheme = opts && 'highContrastTheme' in opts ? opts.highContrastTheme : null;
-    let highContrastDarkTheme = opts && 'highContrastDarkTheme' in opts ? opts.highContrastDarkTheme : null;
-    let themeMode = opts && 'themeMode' in opts ? opts.themeMode : C[0] || CT.C0;
-    let locale = opts && 'locale' in opts ? opts.locale : null;
-    let localizationsDelegates = opts && 'localizationsDelegates' in opts ? opts.localizationsDelegates : null;
-    let localeListResolutionCallback = opts && 'localeListResolutionCallback' in opts ? opts.localeListResolutionCallback : null;
-    let localeResolutionCallback = opts && 'localeResolutionCallback' in opts ? opts.localeResolutionCallback : null;
-    let supportedLocales = opts && 'supportedLocales' in opts ? opts.supportedLocales : C[6] || CT.C6;
-    if (supportedLocales == null) dart.nullFailed(I[0], 191, 10, "supportedLocales");
-    let debugShowMaterialGrid = opts && 'debugShowMaterialGrid' in opts ? opts.debugShowMaterialGrid : false;
-    if (debugShowMaterialGrid == null) dart.nullFailed(I[0], 192, 10, "debugShowMaterialGrid");
-    let showPerformanceOverlay = opts && 'showPerformanceOverlay' in opts ? opts.showPerformanceOverlay : false;
-    if (showPerformanceOverlay == null) dart.nullFailed(I[0], 193, 10, "showPerformanceOverlay");
-    let checkerboardRasterCacheImages = opts && 'checkerboardRasterCacheImages' in opts ? opts.checkerboardRasterCacheImages : false;
-    if (checkerboardRasterCacheImages == null) dart.nullFailed(I[0], 194, 10, "checkerboardRasterCacheImages");
-    let checkerboardOffscreenLayers = opts && 'checkerboardOffscreenLayers' in opts ? opts.checkerboardOffscreenLayers : false;
-    if (checkerboardOffscreenLayers == null) dart.nullFailed(I[0], 195, 10, "checkerboardOffscreenLayers");
-    let showSemanticsDebugger = opts && 'showSemanticsDebugger' in opts ? opts.showSemanticsDebugger : false;
-    if (showSemanticsDebugger == null) dart.nullFailed(I[0], 196, 10, "showSemanticsDebugger");
-    let debugShowCheckedModeBanner = opts && 'debugShowCheckedModeBanner' in opts ? opts.debugShowCheckedModeBanner : true;
-    if (debugShowCheckedModeBanner == null) dart.nullFailed(I[0], 197, 10, "debugShowCheckedModeBanner");
-    let shortcuts = opts && 'shortcuts' in opts ? opts.shortcuts : null;
-    let actions = opts && 'actions' in opts ? opts.actions : null;
-    let restorationScopeId = opts && 'restorationScopeId' in opts ? opts.restorationScopeId : null;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[navigatorKey$] = navigatorKey;
-    this[scaffoldMessengerKey$] = scaffoldMessengerKey;
-    this[home$] = home;
-    this[routes$] = routes;
-    this[initialRoute$] = initialRoute;
-    this[onGenerateRoute$] = onGenerateRoute;
-    this[onGenerateInitialRoutes$] = onGenerateInitialRoutes;
-    this[onUnknownRoute$] = onUnknownRoute;
-    this[navigatorObservers$] = navigatorObservers;
-    this[builder$] = builder;
-    this[title$] = title;
-    this[onGenerateTitle$] = onGenerateTitle;
-    this[color$] = color;
-    this[theme$0] = theme;
-    this[darkTheme$] = darkTheme;
-    this[highContrastTheme$] = highContrastTheme;
-    this[highContrastDarkTheme$] = highContrastDarkTheme;
-    this[themeMode$] = themeMode;
-    this[locale$] = locale;
-    this[localizationsDelegates$] = localizationsDelegates;
-    this[localeListResolutionCallback$] = localeListResolutionCallback;
-    this[localeResolutionCallback$] = localeResolutionCallback;
-    this[supportedLocales$] = supportedLocales;
-    this[debugShowMaterialGrid$] = debugShowMaterialGrid;
-    this[showPerformanceOverlay$] = showPerformanceOverlay;
-    this[checkerboardRasterCacheImages$] = checkerboardRasterCacheImages;
-    this[checkerboardOffscreenLayers$] = checkerboardOffscreenLayers;
-    this[showSemanticsDebugger$] = showSemanticsDebugger;
-    this[debugShowCheckedModeBanner$] = debugShowCheckedModeBanner;
-    this[shortcuts$] = shortcuts;
-    this[actions$] = actions;
-    this[restorationScopeId$] = restorationScopeId;
-    if (!(routes != null)) dart.assertFailed(null, I[0], 201, 15, "routes != null");
-    if (!(navigatorObservers != null)) dart.assertFailed(null, I[0], 202, 15, "navigatorObservers != null");
-    if (!(title != null)) dart.assertFailed(null, I[0], 203, 15, "title != null");
-    if (!(debugShowMaterialGrid != null)) dart.assertFailed(null, I[0], 204, 15, "debugShowMaterialGrid != null");
-    if (!(showPerformanceOverlay != null)) dart.assertFailed(null, I[0], 205, 15, "showPerformanceOverlay != null");
-    if (!(checkerboardRasterCacheImages != null)) dart.assertFailed(null, I[0], 206, 15, "checkerboardRasterCacheImages != null");
-    if (!(checkerboardOffscreenLayers != null)) dart.assertFailed(null, I[0], 207, 15, "checkerboardOffscreenLayers != null");
-    if (!(showSemanticsDebugger != null)) dart.assertFailed(null, I[0], 208, 15, "showSemanticsDebugger != null");
-    if (!(debugShowCheckedModeBanner != null)) dart.assertFailed(null, I[0], 209, 15, "debugShowCheckedModeBanner != null");
-    this[routeInformationProvider$] = null;
-    this[routeInformationParser$] = null;
-    this[routerDelegate$] = null;
-    this[backButtonDispatcher$] = null;
-    app$.MaterialApp.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = app$.MaterialApp.prototype;
-  (app$.MaterialApp.router = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let scaffoldMessengerKey = opts && 'scaffoldMessengerKey' in opts ? opts.scaffoldMessengerKey : null;
-    let routeInformationProvider = opts && 'routeInformationProvider' in opts ? opts.routeInformationProvider : null;
-    let routeInformationParser = opts && 'routeInformationParser' in opts ? opts.routeInformationParser : null;
-    if (routeInformationParser == null) dart.nullFailed(I[0], 221, 50, "routeInformationParser");
-    let routerDelegate = opts && 'routerDelegate' in opts ? opts.routerDelegate : null;
-    if (routerDelegate == null) dart.nullFailed(I[0], 222, 42, "routerDelegate");
-    let backButtonDispatcher = opts && 'backButtonDispatcher' in opts ? opts.backButtonDispatcher : null;
-    let builder = opts && 'builder' in opts ? opts.builder : null;
-    let title = opts && 'title' in opts ? opts.title : "";
-    if (title == null) dart.nullFailed(I[0], 225, 10, "title");
-    let onGenerateTitle = opts && 'onGenerateTitle' in opts ? opts.onGenerateTitle : null;
-    let color = opts && 'color' in opts ? opts.color : null;
-    let theme = opts && 'theme' in opts ? opts.theme : null;
-    let darkTheme = opts && 'darkTheme' in opts ? opts.darkTheme : null;
-    let highContrastTheme = opts && 'highContrastTheme' in opts ? opts.highContrastTheme : null;
-    let highContrastDarkTheme = opts && 'highContrastDarkTheme' in opts ? opts.highContrastDarkTheme : null;
-    let themeMode = opts && 'themeMode' in opts ? opts.themeMode : C[0] || CT.C0;
-    let locale = opts && 'locale' in opts ? opts.locale : null;
-    let localizationsDelegates = opts && 'localizationsDelegates' in opts ? opts.localizationsDelegates : null;
-    let localeListResolutionCallback = opts && 'localeListResolutionCallback' in opts ? opts.localeListResolutionCallback : null;
-    let localeResolutionCallback = opts && 'localeResolutionCallback' in opts ? opts.localeResolutionCallback : null;
-    let supportedLocales = opts && 'supportedLocales' in opts ? opts.supportedLocales : C[6] || CT.C6;
-    if (supportedLocales == null) dart.nullFailed(I[0], 237, 10, "supportedLocales");
-    let debugShowMaterialGrid = opts && 'debugShowMaterialGrid' in opts ? opts.debugShowMaterialGrid : false;
-    if (debugShowMaterialGrid == null) dart.nullFailed(I[0], 238, 10, "debugShowMaterialGrid");
-    let showPerformanceOverlay = opts && 'showPerformanceOverlay' in opts ? opts.showPerformanceOverlay : false;
-    if (showPerformanceOverlay == null) dart.nullFailed(I[0], 239, 10, "showPerformanceOverlay");
-    let checkerboardRasterCacheImages = opts && 'checkerboardRasterCacheImages' in opts ? opts.checkerboardRasterCacheImages : false;
-    if (checkerboardRasterCacheImages == null) dart.nullFailed(I[0], 240, 10, "checkerboardRasterCacheImages");
-    let checkerboardOffscreenLayers = opts && 'checkerboardOffscreenLayers' in opts ? opts.checkerboardOffscreenLayers : false;
-    if (checkerboardOffscreenLayers == null) dart.nullFailed(I[0], 241, 10, "checkerboardOffscreenLayers");
-    let showSemanticsDebugger = opts && 'showSemanticsDebugger' in opts ? opts.showSemanticsDebugger : false;
-    if (showSemanticsDebugger == null) dart.nullFailed(I[0], 242, 10, "showSemanticsDebugger");
-    let debugShowCheckedModeBanner = opts && 'debugShowCheckedModeBanner' in opts ? opts.debugShowCheckedModeBanner : true;
-    if (debugShowCheckedModeBanner == null) dart.nullFailed(I[0], 243, 10, "debugShowCheckedModeBanner");
-    let shortcuts = opts && 'shortcuts' in opts ? opts.shortcuts : null;
-    let actions = opts && 'actions' in opts ? opts.actions : null;
-    let restorationScopeId = opts && 'restorationScopeId' in opts ? opts.restorationScopeId : null;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[scaffoldMessengerKey$] = scaffoldMessengerKey;
-    this[routeInformationProvider$] = routeInformationProvider;
-    this[routeInformationParser$] = routeInformationParser;
-    this[routerDelegate$] = routerDelegate;
-    this[backButtonDispatcher$] = backButtonDispatcher;
-    this[builder$] = builder;
-    this[title$] = title;
-    this[onGenerateTitle$] = onGenerateTitle;
-    this[color$] = color;
-    this[theme$0] = theme;
-    this[darkTheme$] = darkTheme;
-    this[highContrastTheme$] = highContrastTheme;
-    this[highContrastDarkTheme$] = highContrastDarkTheme;
-    this[themeMode$] = themeMode;
-    this[locale$] = locale;
-    this[localizationsDelegates$] = localizationsDelegates;
-    this[localeListResolutionCallback$] = localeListResolutionCallback;
-    this[localeResolutionCallback$] = localeResolutionCallback;
-    this[supportedLocales$] = supportedLocales;
-    this[debugShowMaterialGrid$] = debugShowMaterialGrid;
-    this[showPerformanceOverlay$] = showPerformanceOverlay;
-    this[checkerboardRasterCacheImages$] = checkerboardRasterCacheImages;
-    this[checkerboardOffscreenLayers$] = checkerboardOffscreenLayers;
-    this[showSemanticsDebugger$] = showSemanticsDebugger;
-    this[debugShowCheckedModeBanner$] = debugShowCheckedModeBanner;
-    this[shortcuts$] = shortcuts;
-    this[actions$] = actions;
-    this[restorationScopeId$] = restorationScopeId;
-    if (!(routeInformationParser != null)) dart.assertFailed(null, I[0], 247, 15, "routeInformationParser != null");
-    if (!(routerDelegate != null)) dart.assertFailed(null, I[0], 248, 15, "routerDelegate != null");
-    if (!(title != null)) dart.assertFailed(null, I[0], 249, 15, "title != null");
-    if (!(debugShowMaterialGrid != null)) dart.assertFailed(null, I[0], 250, 15, "debugShowMaterialGrid != null");
-    if (!(showPerformanceOverlay != null)) dart.assertFailed(null, I[0], 251, 15, "showPerformanceOverlay != null");
-    if (!(checkerboardRasterCacheImages != null)) dart.assertFailed(null, I[0], 252, 15, "checkerboardRasterCacheImages != null");
-    if (!(checkerboardOffscreenLayers != null)) dart.assertFailed(null, I[0], 253, 15, "checkerboardOffscreenLayers != null");
-    if (!(showSemanticsDebugger != null)) dart.assertFailed(null, I[0], 254, 15, "showSemanticsDebugger != null");
-    if (!(debugShowCheckedModeBanner != null)) dart.assertFailed(null, I[0], 255, 15, "debugShowCheckedModeBanner != null");
-    this[navigatorObservers$] = null;
-    this[navigatorKey$] = null;
-    this[onGenerateRoute$] = null;
-    this[home$] = null;
-    this[onGenerateInitialRoutes$] = null;
-    this[onUnknownRoute$] = null;
-    this[routes$] = null;
-    this[initialRoute$] = null;
-    app$.MaterialApp.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = app$.MaterialApp.prototype;
-  dart.addTypeTests(app$.MaterialApp);
-  dart.addTypeCaches(app$.MaterialApp);
-  dart.setMethodSignature(app$.MaterialApp, () => ({
-    __proto__: dart.getMethods(app$.MaterialApp.__proto__),
-    createState: dart.fnType(app$._MaterialAppState, [])
-  }));
-  dart.setLibraryUri(app$.MaterialApp, I[1]);
-  dart.setFieldSignature(app$.MaterialApp, () => ({
-    __proto__: dart.getFields(app$.MaterialApp.__proto__),
-    navigatorKey: dart.finalFieldType(dart.nullable(framework.GlobalKey$(navigator.NavigatorState))),
-    scaffoldMessengerKey: dart.finalFieldType(dart.nullable(framework.GlobalKey$(scaffold.ScaffoldMessengerState))),
-    home: dart.finalFieldType(dart.nullable(framework.Widget)),
-    routes: dart.finalFieldType(dart.nullable(core.Map$(core.String, dart.fnType(framework.Widget, [framework.BuildContext])))),
-    initialRoute: dart.finalFieldType(dart.nullable(core.String)),
-    onGenerateRoute: dart.finalFieldType(dart.nullable(dart.fnType(dart.nullable(navigator.Route), [navigator.RouteSettings]))),
-    onGenerateInitialRoutes: dart.finalFieldType(dart.nullable(dart.fnType(core.List$(navigator.Route), [core.String]))),
-    onUnknownRoute: dart.finalFieldType(dart.nullable(dart.fnType(dart.nullable(navigator.Route), [navigator.RouteSettings]))),
-    navigatorObservers: dart.finalFieldType(dart.nullable(core.List$(navigator.NavigatorObserver))),
-    routeInformationProvider: dart.finalFieldType(dart.nullable(router.RouteInformationProvider)),
-    routeInformationParser: dart.finalFieldType(dart.nullable(router.RouteInformationParser$(core.Object))),
-    routerDelegate: dart.finalFieldType(dart.nullable(router.RouterDelegate$(core.Object))),
-    backButtonDispatcher: dart.finalFieldType(dart.nullable(router.BackButtonDispatcher)),
-    builder: dart.finalFieldType(dart.nullable(dart.fnType(framework.Widget, [framework.BuildContext, dart.nullable(framework.Widget)]))),
-    title: dart.finalFieldType(core.String),
-    onGenerateTitle: dart.finalFieldType(dart.nullable(dart.fnType(core.String, [framework.BuildContext]))),
-    theme: dart.finalFieldType(dart.nullable(theme_data.ThemeData)),
-    darkTheme: dart.finalFieldType(dart.nullable(theme_data.ThemeData)),
-    highContrastTheme: dart.finalFieldType(dart.nullable(theme_data.ThemeData)),
-    highContrastDarkTheme: dart.finalFieldType(dart.nullable(theme_data.ThemeData)),
-    themeMode: dart.finalFieldType(dart.nullable(app$.ThemeMode)),
-    color: dart.finalFieldType(dart.nullable(ui.Color)),
-    locale: dart.finalFieldType(dart.nullable(ui.Locale)),
-    localizationsDelegates: dart.finalFieldType(dart.nullable(core.Iterable$(localizations.LocalizationsDelegate))),
-    localeListResolutionCallback: dart.finalFieldType(dart.nullable(dart.fnType(dart.nullable(ui.Locale), [dart.nullable(core.List$(ui.Locale)), core.Iterable$(ui.Locale)]))),
-    localeResolutionCallback: dart.finalFieldType(dart.nullable(dart.fnType(dart.nullable(ui.Locale), [dart.nullable(ui.Locale), core.Iterable$(ui.Locale)]))),
-    supportedLocales: dart.finalFieldType(core.Iterable$(ui.Locale)),
-    showPerformanceOverlay: dart.finalFieldType(core.bool),
-    checkerboardRasterCacheImages: dart.finalFieldType(core.bool),
-    checkerboardOffscreenLayers: dart.finalFieldType(core.bool),
-    showSemanticsDebugger: dart.finalFieldType(core.bool),
-    debugShowCheckedModeBanner: dart.finalFieldType(core.bool),
-    shortcuts: dart.finalFieldType(dart.nullable(core.Map$(shortcuts.LogicalKeySet, actions.Intent))),
-    actions: dart.finalFieldType(dart.nullable(core.Map$(core.Type, actions.Action$(actions.Intent)))),
-    restorationScopeId: dart.finalFieldType(dart.nullable(core.String)),
-    debugShowMaterialGrid: dart.finalFieldType(core.bool)
-  }));
-  var _name = dart.privateName(platform, "_name");
-  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
-  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
-  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
-  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
-  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  app$._MaterialScrollBehavior = class _MaterialScrollBehavior extends scroll_configuration.ScrollBehavior {
-    getPlatform(context) {
-      if (context == null) dart.nullFailed(I[0], 664, 43, "context");
-      return theme$.Theme.of(context).platform;
-    }
-    buildViewportChrome(context, child, axisDirection) {
-      if (context == null) dart.nullFailed(I[0], 669, 43, "context");
-      if (child == null) dart.nullFailed(I[0], 669, 59, "child");
-      if (axisDirection == null) dart.nullFailed(I[0], 669, 80, "axisDirection");
-      switch (this.getPlatform(context)) {
-        case C[8] || CT.C8:
-        case C[9] || CT.C9:
-        case C[10] || CT.C10:
-        case C[11] || CT.C11:
-        {
-          return child;
+  var _webFirestoreDelegate$ = dart.privateName(write_batch_web, "_webFirestoreDelegate");
+  var _webWriteBatchDelegate = dart.privateName(write_batch_web, "_webWriteBatchDelegate");
+  write_batch_web.WriteBatchWeb = class WriteBatchWeb extends platform_interface_write_batch.WriteBatchPlatform {
+    commit() {
+      return async.async(dart.void, (function* commit() {
+        try {
+          yield this[_webWriteBatchDelegate].commit();
+        } catch (e$) {
+          let e = dart.getThrown(e$);
+          if (core.Object.is(e)) {
+            dart.throw(exception.getFirebaseException(e));
+          } else
+            throw e$;
         }
-        case C[17] || CT.C17:
-        case C[18] || CT.C18:
-        {
-          return new overscroll_indicator.GlowingOverscrollIndicator.new({child: child, axisDirection: axisDirection, color: theme$.Theme.of(context).accentColor, $creationLocationd_0dea112b090073317d4: C[12] || CT.C12});
-        }
-        default:
-        {
-          dart.throw(new _internal.ReachabilityError.new("`null` encountered as case in a switch expression with a non-nullable enum type."));
-        }
-      }
-    }
-  };
-  (app$._MaterialScrollBehavior.new = function() {
-    app$._MaterialScrollBehavior.__proto__.new.call(this);
-    ;
-  }).prototype = app$._MaterialScrollBehavior.prototype;
-  dart.addTypeTests(app$._MaterialScrollBehavior);
-  dart.addTypeCaches(app$._MaterialScrollBehavior);
-  dart.setLibraryUri(app$._MaterialScrollBehavior, I[1]);
-  var ___MaterialAppState__heroController = dart.privateName(app$, "_#_MaterialAppState#_heroController");
-  var ___MaterialAppState__heroController_isSet = dart.privateName(app$, "_#_MaterialAppState#_heroController#isSet");
-  var _heroController = dart.privateName(app$, "_heroController");
-  var _usesRouter = dart.privateName(app$, "_usesRouter");
-  var _localizationsDelegates = dart.privateName(app$, "_localizationsDelegates");
-  var Widget__location = dart.privateName(framework, "Widget._location");
-  var Widget_key = dart.privateName(framework, "Widget.key");
-  var Icon_textDirection = dart.privateName(icon, "Icon.textDirection");
-  var Icon_semanticLabel = dart.privateName(icon, "Icon.semanticLabel");
-  var Icon_color = dart.privateName(icon, "Icon.color");
-  var Icon_size = dart.privateName(icon, "Icon.size");
-  var IconData_matchTextDirection = dart.privateName(icon_data, "IconData.matchTextDirection");
-  var IconData_fontPackage = dart.privateName(icon_data, "IconData.fontPackage");
-  var IconData_fontFamily = dart.privateName(icon_data, "IconData.fontFamily");
-  var IconData_codePoint = dart.privateName(icon_data, "IconData.codePoint");
-  var Icon_icon = dart.privateName(icon, "Icon.icon");
-  var _inspectorSelectButtonBuilder = dart.privateName(app$, "_inspectorSelectButtonBuilder");
-  var _materialBuilder = dart.privateName(app$, "_materialBuilder");
-  var _buildWidgetApp = dart.privateName(app$, "_buildWidgetApp");
-  var Color_value = dart.privateName(ui, "Color.value");
-  app$._MaterialAppState = class _MaterialAppState extends framework.State$(app$.MaterialApp) {
-    get [_heroController]() {
-      let t0;
-      return dart.test(this[___MaterialAppState__heroController_isSet]) ? (t0 = this[___MaterialAppState__heroController], t0) : dart.throw(new _internal.LateError.fieldNI("_heroController"));
-    }
-    set [_heroController](t0) {
-      if (t0 == null) dart.nullFailed(I[0], 690, 23, "null");
-      this[___MaterialAppState__heroController_isSet] = true;
-      this[___MaterialAppState__heroController] = t0;
-    }
-    get [_usesRouter]() {
-      return this.widget.routerDelegate != null;
-    }
-    initState() {
-      super.initState();
-      this[_heroController] = app$.MaterialApp.createMaterialHeroController();
-    }
-    get [_localizationsDelegates]() {
-      return new (T$.SyncIterableOfLocalizationsDelegate()).new((function* _localizationsDelegates() {
-        if (this.widget.localizationsDelegates != null) yield* dart.nullCheck(this.widget.localizationsDelegates);
-        yield material_localizations.DefaultMaterialLocalizations.delegate;
-        yield localizations$.DefaultCupertinoLocalizations.delegate;
       }).bind(this));
     }
-    [_inspectorSelectButtonBuilder](context, onPressed) {
-      if (context == null) dart.nullFailed(I[0], 712, 53, "context");
-      if (onPressed == null) dart.nullFailed(I[0], 712, 75, "onPressed");
-      return new floating_action_button.FloatingActionButton.new({child: C[19] || CT.C19, onPressed: onPressed, mini: true, $creationLocationd_0dea112b090073317d4: C[24] || CT.C24});
+    delete(documentPath) {
+      if (documentPath == null) dart.nullFailed(I[0], 32, 22, "documentPath");
+      this[_webWriteBatchDelegate].delete(this[_webFirestoreDelegate$].doc(documentPath));
     }
-    [_materialBuilder](context, child) {
-      let t1, t1$;
-      if (context == null) dart.nullFailed(I[0], 720, 40, "context");
-      let mode = (t1 = this.widget.themeMode, t1 == null ? app$.ThemeMode.system : t1);
-      let platformBrightness = media_query.MediaQuery.platformBrightnessOf(context);
-      let useDarkTheme = mode == app$.ThemeMode.dark || mode == app$.ThemeMode.system && platformBrightness == ui.Brightness.dark;
-      let highContrast = media_query.MediaQuery.highContrastOf(context);
-      let theme = null;
-      if (useDarkTheme && dart.test(highContrast) && this.widget.highContrastDarkTheme != null) {
-        theme = this.widget.highContrastDarkTheme;
-      } else if (useDarkTheme && this.widget.darkTheme != null) {
-        theme = this.widget.darkTheme;
-      } else if (dart.test(highContrast) && this.widget.highContrastTheme != null) {
-        theme = this.widget.highContrastTheme;
-      }
-      theme == null ? theme = (t1$ = this.widget.theme, t1$ == null ? theme_data.ThemeData.light() : t1$) : null;
-      return new scaffold.ScaffoldMessenger.new({key: this.widget.scaffoldMessengerKey, child: new theme$.AnimatedTheme.new({data: theme, child: this.widget.builder != null ? new basic.Builder.new({builder: dart.fn(context => {
-              if (context == null) dart.nullFailed(I[0], 744, 38, "context");
-              return dart.nullCheck(this.widget.builder)(context, child);
-            }, T$.BuildContextToWidget()), $creationLocationd_0dea112b090073317d4: C[29] || CT.C29}) : dart.nullCheck(child), $creationLocationd_0dea112b090073317d4: C[32] || CT.C32}), $creationLocationd_0dea112b090073317d4: C[36] || CT.C36});
+    set(documentPath, data, options = null) {
+      if (documentPath == null) dart.nullFailed(I[0], 37, 19, "documentPath");
+      if (data == null) dart.nullFailed(I[0], 37, 54, "data");
+      this[_webWriteBatchDelegate].set(this[_webFirestoreDelegate$].doc(documentPath), dart.nullCheck(codec_utility.CodecUtility.encodeMapData(data)), web_utils.convertSetOptions(options));
     }
-    [_buildWidgetApp](context) {
-      let t2, t1, t1$;
-      if (context == null) dart.nullFailed(I[0], 764, 39, "context");
-      let materialColor = (t1$ = (t1 = this.widget.color, t1 == null ? (t2 = this.widget.theme, t2 == null ? null : t2.primaryColor) : t1), t1$ == null ? colors.Colors.blue : t1$);
-      if (dart.test(this[_usesRouter])) {
-        return new app.WidgetsApp.router({key: new (T$.GlobalObjectKeyOfStateOfStatefulWidget()).new(this), routeInformationProvider: this.widget.routeInformationProvider, routeInformationParser: dart.nullCheck(this.widget.routeInformationParser), routerDelegate: dart.nullCheck(this.widget.routerDelegate), backButtonDispatcher: this.widget.backButtonDispatcher, builder: dart.bind(this, _materialBuilder), title: this.widget.title, onGenerateTitle: this.widget.onGenerateTitle, textStyle: app$._errorTextStyle, color: materialColor, locale: this.widget.locale, localizationsDelegates: this[_localizationsDelegates], localeResolutionCallback: this.widget.localeResolutionCallback, localeListResolutionCallback: this.widget.localeListResolutionCallback, supportedLocales: this.widget.supportedLocales, showPerformanceOverlay: this.widget.showPerformanceOverlay, checkerboardRasterCacheImages: this.widget.checkerboardRasterCacheImages, checkerboardOffscreenLayers: this.widget.checkerboardOffscreenLayers, showSemanticsDebugger: this.widget.showSemanticsDebugger, debugShowCheckedModeBanner: this.widget.debugShowCheckedModeBanner, inspectorSelectButtonBuilder: dart.bind(this, _inspectorSelectButtonBuilder), shortcuts: this.widget.shortcuts, actions: this.widget.actions, restorationScopeId: this.widget.restorationScopeId, $creationLocationd_0dea112b090073317d4: C[40] || CT.C40});
-      }
-      return new app.WidgetsApp.new({key: new (T$.GlobalObjectKeyOfStateOfStatefulWidget()).new(this), navigatorKey: this.widget.navigatorKey, navigatorObservers: dart.nullCheck(this.widget.navigatorObservers), pageRouteBuilder: dart.fn((T, settings, builder) => {
-          if (settings == null) dart.nullFailed(I[0], 806, 43, "settings");
-          if (builder == null) dart.nullFailed(I[0], 806, 67, "builder");
-          return new (page.MaterialPageRoute$(T)).new({settings: settings, builder: builder});
-        }, T$.RouteSettingsAndFnToMaterialPageRouteOfT()), home: this.widget.home, routes: dart.nullCheck(this.widget.routes), initialRoute: this.widget.initialRoute, onGenerateRoute: this.widget.onGenerateRoute, onGenerateInitialRoutes: this.widget.onGenerateInitialRoutes, onUnknownRoute: this.widget.onUnknownRoute, builder: dart.bind(this, _materialBuilder), title: this.widget.title, onGenerateTitle: this.widget.onGenerateTitle, textStyle: app$._errorTextStyle, color: materialColor, locale: this.widget.locale, localizationsDelegates: this[_localizationsDelegates], localeResolutionCallback: this.widget.localeResolutionCallback, localeListResolutionCallback: this.widget.localeListResolutionCallback, supportedLocales: this.widget.supportedLocales, showPerformanceOverlay: this.widget.showPerformanceOverlay, checkerboardRasterCacheImages: this.widget.checkerboardRasterCacheImages, checkerboardOffscreenLayers: this.widget.checkerboardOffscreenLayers, showSemanticsDebugger: this.widget.showSemanticsDebugger, debugShowCheckedModeBanner: this.widget.debugShowCheckedModeBanner, inspectorSelectButtonBuilder: dart.bind(this, _inspectorSelectButtonBuilder), shortcuts: this.widget.shortcuts, actions: this.widget.actions, restorationScopeId: this.widget.restorationScopeId, $creationLocationd_0dea112b090073317d4: C[66] || CT.C66});
-    }
-    build(context) {
-      if (context == null) dart.nullFailed(I[0], 838, 29, "context");
-      let result = this[_buildWidgetApp](context);
-      if (!dart.test(dart.fn(() => {
-        if (dart.test(this.widget.debugShowMaterialGrid)) {
-          result = new grid_paper.GridPaper.new({color: C[97] || CT.C97, interval: 8.0, divisions: 2, subdivisions: 1, child: result, $creationLocationd_0dea112b090073317d4: C[98] || CT.C98});
-        }
-        return true;
-      }, T$.VoidTobool())())) dart.assertFailed(null, I[0], 841, 12, "() {\r\n      if (widget.debugShowMaterialGrid) {\r\n        result = GridPaper(\r\n          color: const Color(0xE0F9BBE0),\r\n          interval: 8.0,\r\n          divisions: 2,\r\n          subdivisions: 1,\r\n          child: result,\r\n        );\r\n      }\r\n      return true;\r\n    }()");
-      return new scroll_configuration.ScrollConfiguration.new({behavior: new app$._MaterialScrollBehavior.new(), child: new navigator.HeroControllerScope.new({controller: this[_heroController], child: result, $creationLocationd_0dea112b090073317d4: C[105] || CT.C105}), $creationLocationd_0dea112b090073317d4: C[109] || CT.C109});
+    update(documentPath, data) {
+      if (documentPath == null) dart.nullFailed(I[0], 45, 12, "documentPath");
+      if (data == null) dart.nullFailed(I[0], 46, 26, "data");
+      this[_webWriteBatchDelegate].update(this[_webFirestoreDelegate$].doc(documentPath), dart.nullCheck(codec_utility.CodecUtility.encodeMapData(data)));
     }
   };
-  (app$._MaterialAppState.new = function() {
-    this[___MaterialAppState__heroController] = null;
-    this[___MaterialAppState__heroController_isSet] = false;
-    app$._MaterialAppState.__proto__.new.call(this);
+  (write_batch_web.WriteBatchWeb.new = function(_webFirestoreDelegate) {
+    if (_webFirestoreDelegate == null) dart.nullFailed(I[0], 18, 22, "_webFirestoreDelegate");
+    this[_webFirestoreDelegate$] = _webFirestoreDelegate;
+    this[_webWriteBatchDelegate] = dart.nullCheck(_webFirestoreDelegate.batch());
+    write_batch_web.WriteBatchWeb.__proto__.new.call(this);
     ;
-  }).prototype = app$._MaterialAppState.prototype;
-  dart.addTypeTests(app$._MaterialAppState);
-  dart.addTypeCaches(app$._MaterialAppState);
-  dart.setMethodSignature(app$._MaterialAppState, () => ({
-    __proto__: dart.getMethods(app$._MaterialAppState.__proto__),
-    [_inspectorSelectButtonBuilder]: dart.fnType(framework.Widget, [framework.BuildContext, dart.fnType(dart.void, [])]),
-    [_materialBuilder]: dart.fnType(framework.Widget, [framework.BuildContext, dart.nullable(framework.Widget)]),
-    [_buildWidgetApp]: dart.fnType(framework.Widget, [framework.BuildContext]),
-    build: dart.fnType(framework.Widget, [framework.BuildContext])
+  }).prototype = write_batch_web.WriteBatchWeb.prototype;
+  dart.addTypeTests(write_batch_web.WriteBatchWeb);
+  dart.addTypeCaches(write_batch_web.WriteBatchWeb);
+  dart.setLibraryUri(write_batch_web.WriteBatchWeb, I[1]);
+  dart.setFieldSignature(write_batch_web.WriteBatchWeb, () => ({
+    __proto__: dart.getFields(write_batch_web.WriteBatchWeb.__proto__),
+    [_webFirestoreDelegate$]: dart.finalFieldType(firestore.Firestore),
+    [_webWriteBatchDelegate]: dart.fieldType(firestore.WriteBatch)
   }));
-  dart.setGetterSignature(app$._MaterialAppState, () => ({
-    __proto__: dart.getGetters(app$._MaterialAppState.__proto__),
-    [_heroController]: heroes.HeroController,
-    [_usesRouter]: core.bool,
-    [_localizationsDelegates]: core.Iterable$(localizations.LocalizationsDelegate)
+  var _firestore$ = dart.privateName(transaction_web, "_firestore");
+  var _webFirestoreDelegate$0 = dart.privateName(transaction_web, "_webFirestoreDelegate");
+  var _webTransactionDelegate$ = dart.privateName(transaction_web, "_webTransactionDelegate");
+  transaction_web.TransactionWeb = class TransactionWeb extends platform_interface_transaction.TransactionPlatform {
+    delete(documentPath) {
+      if (documentPath == null) dart.nullFailed(I[2], 25, 32, "documentPath");
+      this[_webTransactionDelegate$].delete(this[_webFirestoreDelegate$0].doc(documentPath));
+      return this;
+    }
+    get(documentPath) {
+      if (documentPath == null) dart.nullFailed(I[2], 31, 47, "documentPath");
+      return async.async(platform_interface_document_snapshot.DocumentSnapshotPlatform, (function* get() {
+        try {
+          let webDocumentSnapshot = (yield this[_webTransactionDelegate$].get(this[_webFirestoreDelegate$0].doc(documentPath)));
+          return web_utils.convertWebDocumentSnapshot(this[_firestore$], webDocumentSnapshot);
+        } catch (e$) {
+          let e = dart.getThrown(e$);
+          if (core.Object.is(e)) {
+            dart.throw(exception.getFirebaseException(e));
+          } else
+            throw e$;
+        }
+      }).bind(this));
+    }
+    set(documentPath, data, options = null) {
+      if (documentPath == null) dart.nullFailed(I[2], 43, 29, "documentPath");
+      if (data == null) dart.nullFailed(I[2], 43, 64, "data");
+      this[_webTransactionDelegate$].set(this[_webFirestoreDelegate$0].doc(documentPath), dart.nullCheck(codec_utility.CodecUtility.encodeMapData(data)), web_utils.convertSetOptions(options));
+      return this;
+    }
+    update(documentPath, data) {
+      if (documentPath == null) dart.nullFailed(I[2], 52, 12, "documentPath");
+      if (data == null) dart.nullFailed(I[2], 53, 26, "data");
+      this[_webTransactionDelegate$].update(this[_webFirestoreDelegate$0].doc(documentPath), dart.nullCheck(codec_utility.CodecUtility.encodeMapData(data)));
+      return this;
+    }
+  };
+  (transaction_web.TransactionWeb.new = function(_firestore, _webFirestoreDelegate, _webTransactionDelegate) {
+    if (_firestore == null) dart.nullFailed(I[2], 21, 12, "_firestore");
+    if (_webFirestoreDelegate == null) dart.nullFailed(I[2], 21, 29, "_webFirestoreDelegate");
+    if (_webTransactionDelegate == null) dart.nullFailed(I[2], 21, 57, "_webTransactionDelegate");
+    this[_firestore$] = _firestore;
+    this[_webFirestoreDelegate$0] = _webFirestoreDelegate;
+    this[_webTransactionDelegate$] = _webTransactionDelegate;
+    transaction_web.TransactionWeb.__proto__.new.call(this);
+    ;
+  }).prototype = transaction_web.TransactionWeb.prototype;
+  dart.addTypeTests(transaction_web.TransactionWeb);
+  dart.addTypeCaches(transaction_web.TransactionWeb);
+  dart.setMethodSignature(transaction_web.TransactionWeb, () => ({
+    __proto__: dart.getMethods(transaction_web.TransactionWeb.__proto__),
+    delete: dart.fnType(transaction_web.TransactionWeb, [core.String]),
+    set: dart.fnType(transaction_web.TransactionWeb, [core.String, core.Map$(core.String, dart.dynamic)], [dart.nullable(set_options.SetOptions)]),
+    update: dart.fnType(transaction_web.TransactionWeb, [core.String, core.Map$(core.String, dart.dynamic)])
   }));
-  dart.setSetterSignature(app$._MaterialAppState, () => ({
-    __proto__: dart.getSetters(app$._MaterialAppState.__proto__),
-    [_heroController]: heroes.HeroController
+  dart.setLibraryUri(transaction_web.TransactionWeb, I[3]);
+  dart.setFieldSignature(transaction_web.TransactionWeb, () => ({
+    __proto__: dart.getFields(transaction_web.TransactionWeb.__proto__),
+    [_webFirestoreDelegate$0]: dart.finalFieldType(firestore.Firestore),
+    [_webTransactionDelegate$]: dart.finalFieldType(firestore.Transaction),
+    [_firestore$]: dart.fieldType(platform_interface_firestore.FirebaseFirestorePlatform)
   }));
-  dart.setLibraryUri(app$._MaterialAppState, I[1]);
-  dart.setFieldSignature(app$._MaterialAppState, () => ({
-    __proto__: dart.getFields(app$._MaterialAppState.__proto__),
-    [___MaterialAppState__heroController]: dart.fieldType(dart.nullable(heroes.HeroController)),
-    [___MaterialAppState__heroController_isSet]: dart.fieldType(core.bool)
+  field_value_factory_web.FieldValueFactoryWeb = class FieldValueFactoryWeb extends platform_interface_field_value_factory.FieldValueFactoryPlatform {
+    arrayRemove(elements) {
+      if (elements == null) dart.nullFailed(I[4], 16, 34, "elements");
+      return new field_value_web.FieldValueWeb.new(firestore.FieldValue.arrayRemove(T$.ListN().as(codec_utility.CodecUtility.valueEncode(elements))));
+    }
+    arrayUnion(elements) {
+      if (elements == null) dart.nullFailed(I[4], 21, 33, "elements");
+      return new field_value_web.FieldValueWeb.new(firestore.FieldValue.arrayUnion(T$.ListN().as(codec_utility.CodecUtility.valueEncode(elements))));
+    }
+    delete() {
+      return new field_value_web.FieldValueWeb.new(firestore.FieldValue.delete());
+    }
+    increment(value) {
+      if (value == null) dart.nullFailed(I[4], 30, 31, "value");
+      return new field_value_web.FieldValueWeb.new(firestore.FieldValue.increment(value));
+    }
+    serverTimestamp() {
+      return new field_value_web.FieldValueWeb.new(firestore.FieldValue.serverTimestamp());
+    }
+  };
+  (field_value_factory_web.FieldValueFactoryWeb.new = function() {
+    field_value_factory_web.FieldValueFactoryWeb.__proto__.new.call(this);
+    ;
+  }).prototype = field_value_factory_web.FieldValueFactoryWeb.prototype;
+  dart.addTypeTests(field_value_factory_web.FieldValueFactoryWeb);
+  dart.addTypeCaches(field_value_factory_web.FieldValueFactoryWeb);
+  dart.setMethodSignature(field_value_factory_web.FieldValueFactoryWeb, () => ({
+    __proto__: dart.getMethods(field_value_factory_web.FieldValueFactoryWeb.__proto__),
+    arrayRemove: dart.fnType(field_value_web.FieldValueWeb, [core.List]),
+    arrayUnion: dart.fnType(field_value_web.FieldValueWeb, [core.List]),
+    delete: dart.fnType(field_value_web.FieldValueWeb, []),
+    increment: dart.fnType(field_value_web.FieldValueWeb, [core.num]),
+    serverTimestamp: dart.fnType(field_value_web.FieldValueWeb, [])
   }));
-  var TextStyle_fontFeatures = dart.privateName(text_style, "TextStyle.fontFeatures");
-  var TextStyle_shadows = dart.privateName(text_style, "TextStyle.shadows");
-  var TextStyle_debugLabel = dart.privateName(text_style, "TextStyle.debugLabel");
-  var TextStyle_decorationThickness = dart.privateName(text_style, "TextStyle.decorationThickness");
-  var _name$0 = dart.privateName(ui, "_name");
-  var TextStyle_decorationStyle = dart.privateName(text_style, "TextStyle.decorationStyle");
-  var TextStyle_decorationColor = dart.privateName(text_style, "TextStyle.decorationColor");
-  var TextDecoration__mask = dart.privateName(ui, "TextDecoration._mask");
-  var TextStyle_decoration = dart.privateName(text_style, "TextStyle.decoration");
-  var TextStyle_background = dart.privateName(text_style, "TextStyle.background");
-  var TextStyle_foreground = dart.privateName(text_style, "TextStyle.foreground");
-  var TextStyle_locale = dart.privateName(text_style, "TextStyle.locale");
-  var TextStyle_height = dart.privateName(text_style, "TextStyle.height");
-  var TextStyle_textBaseline = dart.privateName(text_style, "TextStyle.textBaseline");
-  var TextStyle_wordSpacing = dart.privateName(text_style, "TextStyle.wordSpacing");
-  var TextStyle_letterSpacing = dart.privateName(text_style, "TextStyle.letterSpacing");
-  var TextStyle_fontStyle = dart.privateName(text_style, "TextStyle.fontStyle");
-  var FontWeight_index = dart.privateName(ui, "FontWeight.index");
-  var TextStyle_fontWeight = dart.privateName(text_style, "TextStyle.fontWeight");
-  var TextStyle_fontSize = dart.privateName(text_style, "TextStyle.fontSize");
-  var TextStyle__package = dart.privateName(text_style, "TextStyle._package");
-  var TextStyle__fontFamilyFallback = dart.privateName(text_style, "TextStyle._fontFamilyFallback");
-  var TextStyle_fontFamily = dart.privateName(text_style, "TextStyle.fontFamily");
-  var TextStyle_backgroundColor = dart.privateName(text_style, "TextStyle.backgroundColor");
-  var TextStyle_color = dart.privateName(text_style, "TextStyle.color");
-  var TextStyle_inherit = dart.privateName(text_style, "TextStyle.inherit");
-  dart.defineLazy(app$, {
-    /*app$._errorTextStyle*/get _errorTextStyle() {
-      return C[113] || CT.C113;
+  dart.setLibraryUri(field_value_factory_web.FieldValueFactoryWeb, I[5]);
+  var isCollectionGroupQuery$ = dart.privateName(query_web, "QueryWeb.isCollectionGroupQuery");
+  var _firestore$0 = dart.privateName(query_web, "_firestore");
+  var _path$ = dart.privateName(query_web, "_path");
+  var _webQuery$ = dart.privateName(query_web, "_webQuery");
+  var _copyWithParameters = dart.privateName(query_web, "_copyWithParameters");
+  var _buildWebQueryWithParameters = dart.privateName(query_web, "_buildWebQueryWithParameters");
+  var _name = dart.privateName(source, "_name");
+  var GetOptions_source = dart.privateName(get_options, "GetOptions.source");
+  query_web.QueryWeb = class QueryWeb extends platform_interface_query.QueryPlatform {
+    get isCollectionGroupQuery() {
+      return this[isCollectionGroupQuery$];
+    }
+    set isCollectionGroupQuery(value) {
+      super.isCollectionGroupQuery = value;
+    }
+    [_copyWithParameters](parameters) {
+      let t2;
+      if (parameters == null) dart.nullFailed(I[6], 32, 53, "parameters");
+      return new query_web.QueryWeb.new(this[_firestore$0], this[_path$], this[_webQuery$], {isCollectionGroupQuery: this.isCollectionGroupQuery, parameters: T$.MapOfString$dynamic().unmodifiable((t2 = T$.LinkedHashMapOfString$dynamic().from(this.parameters), (() => {
+          t2[$addAll](parameters);
+          return t2;
+        })()))});
+    }
+    [_buildWebQueryWithParameters]() {
+      let query = this[_webQuery$];
+      for (let t2 of core.Iterable.as(this.parameters[$_get]("orderBy"))) {
+        let order = core.List.as(t2);
+        query = query.orderBy(codec_utility.CodecUtility.valueEncode(order[$_get](0)), dart.dtest(order[$_get](1)) ? "desc" : "asc");
+      }
+      if (this.parameters[$_get]("startAt") != null) {
+        query = query.startAt({fieldValues: T$.ListN().as(codec_utility.CodecUtility.valueEncode(this.parameters[$_get]("startAt")))});
+      }
+      if (this.parameters[$_get]("startAfter") != null) {
+        query = query.startAfter({fieldValues: T$.ListN().as(codec_utility.CodecUtility.valueEncode(this.parameters[$_get]("startAfter")))});
+      }
+      if (this.parameters[$_get]("endAt") != null) {
+        query = query.endAt({fieldValues: T$.ListN().as(codec_utility.CodecUtility.valueEncode(this.parameters[$_get]("endAt")))});
+      }
+      if (this.parameters[$_get]("endBefore") != null) {
+        query = query.endBefore({fieldValues: T$.ListN().as(codec_utility.CodecUtility.valueEncode(this.parameters[$_get]("endBefore")))});
+      }
+      if (this.parameters[$_get]("limit") != null) {
+        query = query.limit(core.num.as(this.parameters[$_get]("limit")));
+      }
+      if (this.parameters[$_get]("limitToLast") != null) {
+        query = query.limitToLast(core.num.as(this.parameters[$_get]("limitToLast")));
+      }
+      for (let t3 of core.Iterable.as(this.parameters[$_get]("where"))) {
+        let condition = core.List.as(t3);
+        let fieldPath = codec_utility.CodecUtility.valueEncode(condition[$_get](0));
+        let opStr = core.String.as(condition[$_get](1));
+        let value = codec_utility.CodecUtility.valueEncode(condition[$_get](2));
+        query = query.where(fieldPath, opStr, value);
+      }
+      return query;
+    }
+    endAtDocument(orders, values) {
+      if (orders == null) dart.nullFailed(I[6], 89, 45, "orders");
+      if (values == null) dart.nullFailed(I[6], 89, 67, "values");
+      return this[_copyWithParameters](new (T$.IdentityMapOfString$dynamic()).from(["orderBy", orders, "endAt", values, "endBefore", null]));
+    }
+    endAt(fields) {
+      if (fields == null) dart.nullFailed(I[6], 98, 37, "fields");
+      return this[_copyWithParameters](new (T$.IdentityMapOfString$dynamic()).from(["endAt", fields, "endBefore", null]));
+    }
+    endBeforeDocument(orders, values) {
+      if (orders == null) dart.nullFailed(I[6], 106, 49, "orders");
+      if (values == null) dart.nullFailed(I[6], 106, 71, "values");
+      return this[_copyWithParameters](new (T$.IdentityMapOfString$dynamic()).from(["orderBy", orders, "endAt", null, "endBefore", values]));
+    }
+    endBefore(fields) {
+      if (fields == null) dart.nullFailed(I[6], 115, 41, "fields");
+      return this[_copyWithParameters](new (T$.IdentityMapOfString$dynamic()).from(["endAt", null, "endBefore", fields]));
+    }
+    get(options = C[0] || CT.C0) {
+      if (options == null) dart.nullFailed(I[6], 124, 19, "options");
+      return async.async(platform_interface_query_snapshot.QuerySnapshotPlatform, (function* get() {
+        try {
+          return web_utils.convertWebQuerySnapshot(this.firestore, yield this[_buildWebQueryWithParameters]().get(web_utils.convertGetOptions(options)));
+        } catch (e$) {
+          let e = dart.getThrown(e$);
+          if (core.Object.is(e)) {
+            dart.throw(exception.getFirebaseException(e));
+          } else
+            throw e$;
+        }
+      }).bind(this));
+    }
+    limit(limit) {
+      if (limit == null) dart.nullFailed(I[6], 134, 27, "limit");
+      return this[_copyWithParameters](new (T$.IdentityMapOfString$dynamic()).from(["limit", limit, "limitToLast", null]));
+    }
+    limitToLast(limit) {
+      if (limit == null) dart.nullFailed(I[6], 142, 33, "limit");
+      return this[_copyWithParameters](new (T$.IdentityMapOfString$dynamic()).from(["limit", null, "limitToLast", limit]));
+    }
+    snapshots(opts) {
+      let includeMetadataChanges = opts && 'includeMetadataChanges' in opts ? opts.includeMetadataChanges : false;
+      if (includeMetadataChanges == null) dart.nullFailed(I[6], 151, 10, "includeMetadataChanges");
+      let querySnapshots = null;
+      if (dart.test(includeMetadataChanges)) {
+        querySnapshots = this[_buildWebQueryWithParameters]().onSnapshotMetadata;
+      } else {
+        querySnapshots = this[_buildWebQueryWithParameters]().onSnapshot;
+      }
+      return querySnapshots.map(platform_interface_query_snapshot.QuerySnapshotPlatform, dart.fn(webQuerySnapshot => {
+        if (webQuerySnapshot == null) dart.nullFailed(I[6], 160, 15, "webQuerySnapshot");
+        return web_utils.convertWebQuerySnapshot(this.firestore, webQuerySnapshot);
+      }, T$.QuerySnapshotToQuerySnapshotPlatform())).handleError(dart.fn(e => {
+        dart.throw(exception.getFirebaseException(core.Object.as(e)));
+      }, T$.dynamicToNever()));
+    }
+    orderBy(orders) {
+      if (orders == null) dart.nullFailed(I[6], 168, 45, "orders");
+      return this[_copyWithParameters](new (T$.IdentityMapOfString$dynamic()).from(["orderBy", orders]));
+    }
+    startAfterDocument(orders, values) {
+      if (orders == null) dart.nullFailed(I[6], 173, 50, "orders");
+      if (values == null) dart.nullFailed(I[6], 173, 72, "values");
+      return this[_copyWithParameters](new (T$.IdentityMapOfString$dynamic()).from(["orderBy", orders, "startAt", null, "startAfter", values]));
+    }
+    startAfter(fields) {
+      if (fields == null) dart.nullFailed(I[6], 182, 42, "fields");
+      return this[_copyWithParameters](new (T$.IdentityMapOfString$dynamic()).from(["startAt", null, "startAfter", fields]));
+    }
+    startAtDocument(orders, values) {
+      if (orders == null) dart.nullFailed(I[6], 190, 47, "orders");
+      if (values == null) dart.nullFailed(I[6], 190, 69, "values");
+      return this[_copyWithParameters](new (T$.IdentityMapOfString$dynamic()).from(["orderBy", orders, "startAt", values, "startAfter", null]));
+    }
+    startAt(fields) {
+      if (fields == null) dart.nullFailed(I[6], 199, 39, "fields");
+      return this[_copyWithParameters](new (T$.IdentityMapOfString$dynamic()).from(["startAt", fields, "startAfter", null]));
+    }
+    where(conditions) {
+      if (conditions == null) dart.nullFailed(I[6], 207, 43, "conditions");
+      return this[_copyWithParameters](new (T$.IdentityMapOfString$dynamic()).from(["where", conditions]));
+    }
+  };
+  (query_web.QueryWeb.new = function(_firestore, _path, _webQuery, opts) {
+    if (_firestore == null) dart.nullFailed(I[6], 25, 10, "_firestore");
+    if (_path == null) dart.nullFailed(I[6], 26, 10, "_path");
+    if (_webQuery == null) dart.nullFailed(I[6], 27, 10, "_webQuery");
+    let parameters = opts && 'parameters' in opts ? opts.parameters : null;
+    let isCollectionGroupQuery = opts && 'isCollectionGroupQuery' in opts ? opts.isCollectionGroupQuery : false;
+    if (isCollectionGroupQuery == null) dart.nullFailed(I[6], 29, 10, "isCollectionGroupQuery");
+    this[_firestore$0] = _firestore;
+    this[_path$] = _path;
+    this[_webQuery$] = _webQuery;
+    this[isCollectionGroupQuery$] = isCollectionGroupQuery;
+    query_web.QueryWeb.__proto__.new.call(this, _firestore, parameters);
+    ;
+  }).prototype = query_web.QueryWeb.prototype;
+  dart.addTypeTests(query_web.QueryWeb);
+  dart.addTypeCaches(query_web.QueryWeb);
+  dart.setMethodSignature(query_web.QueryWeb, () => ({
+    __proto__: dart.getMethods(query_web.QueryWeb.__proto__),
+    [_copyWithParameters]: dart.fnType(query_web.QueryWeb, [core.Map$(core.String, dart.dynamic)]),
+    [_buildWebQueryWithParameters]: dart.fnType(firestore.Query$(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query")), [])
+  }));
+  dart.setLibraryUri(query_web.QueryWeb, I[7]);
+  dart.setFieldSignature(query_web.QueryWeb, () => ({
+    __proto__: dart.getFields(query_web.QueryWeb.__proto__),
+    [_webQuery$]: dart.finalFieldType(firestore.Query$(dart.lazyJSType(() => dart.global.firebase.firestore.Query, "firebase.firestore.Query"))),
+    [_firestore$0]: dart.finalFieldType(platform_interface_firestore.FirebaseFirestorePlatform),
+    [_path$]: dart.finalFieldType(core.String),
+    isCollectionGroupQuery: dart.finalFieldType(core.bool)
+  }));
+  codec_utility.CodecUtility = class CodecUtility extends core.Object {
+    static encodeMapData(data) {
+      if (data == null) {
+        return null;
+      }
+      let output = T$.LinkedHashMapOfString$dynamic().from(data);
+      output[$updateAll](dart.fn((key, value) => {
+        if (key == null) dart.nullFailed(I[8], 21, 23, "key");
+        return codec_utility.CodecUtility.valueEncode(value);
+      }, T$.StringAnddynamicTodynamic()));
+      return output;
+    }
+    static encodeArrayData(data) {
+      if (data == null) {
+        return null;
+      }
+      return core.List.from(data)[$map](dart.dynamic, C[2] || CT.C2)[$toList]();
+    }
+    static valueEncode(value) {
+      if (platform_interface_field_value.FieldValuePlatform.is(value)) {
+        let delegate = field_value_web.FieldValueWeb.as(platform_interface_field_value.FieldValuePlatform.getDelegate(value));
+        return delegate.data;
+      } else if (field_path.FieldPath.is(value)) {
+        let components = value.components;
+        let length = components[$length];
+        switch (length) {
+          case 1:
+          {
+            return new dart.global.firebase.firestore.FieldPath(components[$_get](0));
+          }
+          case 2:
+          {
+            return new dart.global.firebase.firestore.FieldPath(components[$_get](0), components[$_get](1));
+          }
+          case 3:
+          {
+            return new dart.global.firebase.firestore.FieldPath(components[$_get](0), components[$_get](1), components[$_get](2));
+          }
+          case 4:
+          {
+            return new dart.global.firebase.firestore.FieldPath(components[$_get](0), components[$_get](1), components[$_get](2), components[$_get](3));
+          }
+          case 5:
+          {
+            return new dart.global.firebase.firestore.FieldPath(components[$_get](0), components[$_get](1), components[$_get](2), components[$_get](3), components[$_get](4));
+          }
+          case 6:
+          {
+            return new dart.global.firebase.firestore.FieldPath(components[$_get](0), components[$_get](1), components[$_get](2), components[$_get](3), components[$_get](4), components[$_get](5));
+          }
+          case 7:
+          {
+            return new dart.global.firebase.firestore.FieldPath(components[$_get](0), components[$_get](1), components[$_get](2), components[$_get](3), components[$_get](4), components[$_get](5), components[$_get](6));
+          }
+          case 8:
+          {
+            return new dart.global.firebase.firestore.FieldPath(components[$_get](0), components[$_get](1), components[$_get](2), components[$_get](3), components[$_get](4), components[$_get](5), components[$_get](6), components[$_get](7));
+          }
+          case 9:
+          {
+            return new dart.global.firebase.firestore.FieldPath(components[$_get](0), components[$_get](1), components[$_get](2), components[$_get](3), components[$_get](4), components[$_get](5), components[$_get](6), components[$_get](7), components[$_get](8));
+          }
+          case 10:
+          {
+            return new dart.global.firebase.firestore.FieldPath(components[$_get](0), components[$_get](1), components[$_get](2), components[$_get](3), components[$_get](4), components[$_get](5), components[$_get](6), components[$_get](7), components[$_get](8), components[$_get](9));
+          }
+          default:
+          {
+            dart.throw(core.Exception.new("Firestore web FieldPath only supports 10 levels deep field paths"));
+          }
+        }
+      } else if (dart.equals(value, field_path.FieldPath.documentId)) {
+        return dart.global.firebase.firestore.FieldPath.documentId();
+      } else if (timestamp.Timestamp.is(value)) {
+        return value.toDate();
+      } else if (geo_point.GeoPoint.is(value)) {
+        return new dart.global.firebase.firestore.GeoPoint(value.latitude, value.longitude);
+      } else if (blob.Blob.is(value)) {
+        return dart.global.firebase.firestore.Blob.fromUint8Array(value.bytes);
+      } else if (document_reference_web.DocumentReferenceWeb.is(value)) {
+        return value.firestoreWeb.doc(value.path);
+      } else if (T$.MapOfString$dynamic().is(value)) {
+        return codec_utility.CodecUtility.encodeMapData(value);
+      } else if (core.List.is(value)) {
+        return codec_utility.CodecUtility.encodeArrayData(value);
+      }
+      return value;
+    }
+    static decodeMapData(data) {
+      if (data == null) {
+        return null;
+      }
+      let output = T$.LinkedHashMapOfString$dynamic().from(data);
+      output[$updateAll](dart.fn((key, value) => {
+        if (key == null) dart.nullFailed(I[8], 132, 23, "key");
+        return codec_utility.CodecUtility.valueDecode(value);
+      }, T$.StringAnddynamicTodynamic()));
+      return output;
+    }
+    static decodeArrayData(data) {
+      if (data == null) {
+        return null;
+      }
+      return core.List.from(data)[$map](dart.dynamic, C[3] || CT.C3)[$toList]();
+    }
+    static valueDecode(value) {
+      if (dart.lazyJSType(() => dart.global.firebase.firestore.GeoPoint, "firebase.firestore.GeoPoint").is(value)) {
+        return new geo_point.GeoPoint.new(value.latitude, value.longitude);
+      } else if (core.DateTime.is(value)) {
+        return timestamp.Timestamp.fromDate(value);
+      } else if (dart.anonymousJSType("Blob").is(value)) {
+        return new blob.Blob.new(value.toUint8Array());
+      } else if (firestore.DocumentReference.is(value)) {
+        return cloud_firestore_web.FirebaseFirestoreWeb.as(platform_interface_firestore.FirebaseFirestorePlatform.instance).doc(value.path);
+      } else if (T$.MapOfString$dynamic().is(value)) {
+        return codec_utility.CodecUtility.decodeMapData(value);
+      } else if (core.List.is(value)) {
+        return codec_utility.CodecUtility.decodeArrayData(value);
+      }
+      return value;
+    }
+  };
+  (codec_utility.CodecUtility.new = function() {
+    ;
+  }).prototype = codec_utility.CodecUtility.prototype;
+  dart.addTypeTests(codec_utility.CodecUtility);
+  dart.addTypeCaches(codec_utility.CodecUtility);
+  dart.setLibraryUri(codec_utility.CodecUtility, I[9]);
+  web_utils.convertWebQuerySnapshot = function convertWebQuerySnapshot(firestore, webQuerySnapshot) {
+    if (firestore == null) dart.nullFailed(I[10], 16, 31, "firestore");
+    if (webQuerySnapshot == null) dart.nullFailed(I[10], 17, 37, "webQuerySnapshot");
+    return new platform_interface_query_snapshot.QuerySnapshotPlatform.new(webQuerySnapshot.docs[$map](platform_interface_document_snapshot.DocumentSnapshotPlatform, dart.fn(webDocumentSnapshot => web_utils.convertWebDocumentSnapshot(firestore, dart.nullCheck(webDocumentSnapshot)), T$.DocumentSnapshotNToDocumentSnapshotPlatform()))[$toList](), webQuerySnapshot.docChanges()[$map](platform_interface_document_change.DocumentChangePlatform, dart.fn(webDocumentChange => {
+      if (webDocumentChange == null) dart.nullFailed(I[10], 25, 15, "webDocumentChange");
+      return web_utils.convertWebDocumentChange(firestore, webDocumentChange);
+    }, T$.DocumentChangeToDocumentChangePlatform()))[$toList](), web_utils.convertWebSnapshotMetadata(webQuerySnapshot.metadata));
+  };
+  web_utils.convertWebDocumentSnapshot = function convertWebDocumentSnapshot(firestore, webSnapshot) {
+    if (firestore == null) dart.nullFailed(I[10], 34, 31, "firestore");
+    if (webSnapshot == null) dart.nullFailed(I[10], 35, 40, "webSnapshot");
+    return new platform_interface_document_snapshot.DocumentSnapshotPlatform.new(firestore, dart.nullCheck(webSnapshot.ref).path, new (T$.IdentityMapOfString$dynamic()).from(["data", codec_utility.CodecUtility.decodeMapData(webSnapshot.data()), "metadata", new (T$.IdentityMapOfString$bool()).from(["hasPendingWrites", webSnapshot.metadata.hasPendingWrites, "isFromCache", webSnapshot.metadata.fromCache])]));
+  };
+  web_utils.convertWebDocumentChange = function convertWebDocumentChange(firestore, webDocumentChange) {
+    if (firestore == null) dart.nullFailed(I[10], 51, 31, "firestore");
+    if (webDocumentChange == null) dart.nullFailed(I[10], 52, 38, "webDocumentChange");
+    return new platform_interface_document_change.DocumentChangePlatform.new(web_utils.convertWebDocumentChangeType(webDocumentChange.type), dart.asInt(webDocumentChange.oldIndex), dart.asInt(webDocumentChange.newIndex), web_utils.convertWebDocumentSnapshot(firestore, dart.nullCheck(webDocumentChange.doc)));
+  };
+  web_utils.convertWebDocumentChangeType = function convertWebDocumentChangeType(changeType) {
+    if (changeType == null) dart.nullFailed(I[10], 61, 56, "changeType");
+    switch (changeType[$toLowerCase]()) {
+      case "added":
+      {
+        return platform_interface_document_change.DocumentChangeType.added;
+      }
+      case "modified":
+      {
+        return platform_interface_document_change.DocumentChangeType.modified;
+      }
+      case "removed":
+      {
+        return platform_interface_document_change.DocumentChangeType.removed;
+      }
+      default:
+      {
+        dart.throw(new core.FallThroughError.new());
+      }
+    }
+  };
+  web_utils.convertWebSnapshotMetadata = function convertWebSnapshotMetadata(webSnapshotMetadata) {
+    if (webSnapshotMetadata == null) dart.nullFailed(I[10], 76, 40, "webSnapshotMetadata");
+    return new snapshot_metadata.SnapshotMetadataPlatform.new(webSnapshotMetadata.hasPendingWrites, webSnapshotMetadata.fromCache);
+  };
+  web_utils.convertGetOptions = function convertGetOptions(options) {
+    if (options == null) return null;
+    let source = null;
+    switch (options.source) {
+      case C[1] || CT.C1:
+      {
+        source = "default";
+        break;
+      }
+      case C[4] || CT.C4:
+      {
+        source = "cache";
+        break;
+      }
+      case C[5] || CT.C5:
+      {
+        source = "server";
+        break;
+      }
+      default:
+      {
+        source = "default";
+        break;
+      }
+    }
+    return {source: source};
+  };
+  web_utils.convertSetOptions = function convertSetOptions(options) {
+    if (options == null) return null;
+    let parsedOptions = null;
+    if (options.merge != null) {
+      parsedOptions = {merge: options.merge};
+    } else if (options.mergeFields != null) {
+      parsedOptions = {mergeFields: dart.nullCheck(options.mergeFields)[$map](core.String, dart.fn(e => {
+          if (e == null) dart.nullFailed(I[10], 115, 19, "e");
+          return e.components[$toList]()[$join](".");
+        }, T$.FieldPathToString()))[$toList]()};
+    }
+    return parsedOptions;
+  };
+  web_utils.convertFieldPath = function convertFieldPath(fieldPath) {
+    if (fieldPath == null) dart.nullFailed(I[10], 123, 56, "fieldPath");
+    return new dart.global.firebase.firestore.FieldPath(fieldPath.components[$toList]()[$join]("."));
+  };
+  dart.defineLazy(web_utils, {
+    /*web_utils._kChangeTypeAdded*/get _kChangeTypeAdded() {
+      return "added";
+    },
+    /*web_utils._kChangeTypeModified*/get _kChangeTypeModified() {
+      return "modified";
+    },
+    /*web_utils._kChangeTypeRemoved*/get _kChangeTypeRemoved() {
+      return "removed";
     }
   }, false);
-  dart.trackLibraries("packages/flutter/src/material/app.dart", {
-    "package:flutter/src/material/app.dart": app$
+  var firestoreWeb$ = dart.privateName(document_reference_web, "DocumentReferenceWeb.firestoreWeb");
+  var _delegate = dart.privateName(document_reference_web, "_delegate");
+  document_reference_web.DocumentReferenceWeb = class DocumentReferenceWeb extends platform_interface_document_reference.DocumentReferencePlatform {
+    get firestoreWeb() {
+      return this[firestoreWeb$];
+    }
+    set firestoreWeb(value) {
+      super.firestoreWeb = value;
+    }
+    set(data, options = null) {
+      if (data == null) dart.nullFailed(I[11], 29, 41, "data");
+      return async.async(dart.void, (function* set() {
+        try {
+          yield this[_delegate].set(dart.nullCheck(codec_utility.CodecUtility.encodeMapData(data)), web_utils.convertSetOptions(options));
+        } catch (e$) {
+          let e = dart.getThrown(e$);
+          if (core.Object.is(e)) {
+            dart.throw(exception.getFirebaseException(e));
+          } else
+            throw e$;
+        }
+      }).bind(this));
+    }
+    update(data) {
+      if (data == null) dart.nullFailed(I[11], 41, 44, "data");
+      return async.async(dart.void, (function* update() {
+        try {
+          yield this[_delegate].update(dart.nullCheck(codec_utility.CodecUtility.encodeMapData(data)));
+        } catch (e$) {
+          let e = dart.getThrown(e$);
+          if (core.Object.is(e)) {
+            dart.throw(exception.getFirebaseException(e));
+          } else
+            throw e$;
+        }
+      }).bind(this));
+    }
+    get(options = C[0] || CT.C0) {
+      if (options == null) dart.nullFailed(I[11], 51, 19, "options");
+      return async.async(platform_interface_document_snapshot.DocumentSnapshotPlatform, (function* get() {
+        try {
+          let documentSnapshot = (yield this[_delegate].get(web_utils.convertGetOptions(options)));
+          return web_utils.convertWebDocumentSnapshot(this.firestore, documentSnapshot);
+        } catch (e$) {
+          let e = dart.getThrown(e$);
+          if (core.Object.is(e)) {
+            dart.throw(exception.getFirebaseException(e));
+          } else
+            throw e$;
+        }
+      }).bind(this));
+    }
+    delete() {
+      return async.async(dart.void, (function* $delete() {
+        try {
+          yield this[_delegate].delete();
+        } catch (e$) {
+          let e = dart.getThrown(e$);
+          if (core.Object.is(e)) {
+            dart.throw(exception.getFirebaseException(e));
+          } else
+            throw e$;
+        }
+      }).bind(this));
+    }
+    snapshots(opts) {
+      let includeMetadataChanges = opts && 'includeMetadataChanges' in opts ? opts.includeMetadataChanges : false;
+      if (includeMetadataChanges == null) dart.nullFailed(I[11], 72, 10, "includeMetadataChanges");
+      let querySnapshots = this[_delegate].onSnapshot;
+      if (dart.test(includeMetadataChanges)) {
+        querySnapshots = this[_delegate].onMetadataChangesSnapshot;
+      }
+      return querySnapshots.map(platform_interface_document_snapshot.DocumentSnapshotPlatform, dart.fn(webSnapshot => {
+        if (webSnapshot == null) dart.nullFailed(I[11], 81, 14, "webSnapshot");
+        return web_utils.convertWebDocumentSnapshot(this.firestore, webSnapshot);
+      }, T$.DocumentSnapshotToDocumentSnapshotPlatform())).handleError(dart.fn(e => {
+        dart.throw(exception.getFirebaseException(core.Object.as(e)));
+      }, T$.dynamicToNever()));
+    }
+  };
+  (document_reference_web.DocumentReferenceWeb.new = function(firestore, firestoreWeb, path) {
+    if (firestore == null) dart.nullFailed(I[11], 22, 31, "firestore");
+    if (firestoreWeb == null) dart.nullFailed(I[11], 23, 10, "firestoreWeb");
+    if (path == null) dart.nullFailed(I[11], 24, 12, "path");
+    this[firestoreWeb$] = firestoreWeb;
+    this[_delegate] = firestoreWeb.doc(path);
+    document_reference_web.DocumentReferenceWeb.__proto__.new.call(this, firestore, path);
+    ;
+  }).prototype = document_reference_web.DocumentReferenceWeb.prototype;
+  dart.addTypeTests(document_reference_web.DocumentReferenceWeb);
+  dart.addTypeCaches(document_reference_web.DocumentReferenceWeb);
+  dart.setLibraryUri(document_reference_web.DocumentReferenceWeb, I[12]);
+  dart.setFieldSignature(document_reference_web.DocumentReferenceWeb, () => ({
+    __proto__: dart.getFields(document_reference_web.DocumentReferenceWeb.__proto__),
+    firestoreWeb: dart.finalFieldType(firestore.Firestore),
+    [_delegate]: dart.finalFieldType(firestore.DocumentReference)
+  }));
+  var _firestorePlatform$ = dart.privateName(collection_reference_web, "_firestorePlatform");
+  var _webFirestore$ = dart.privateName(collection_reference_web, "_webFirestore");
+  var _delegate$ = dart.privateName(collection_reference_web, "_delegate");
+  var _pointer = dart.privateName(collection_reference_web, "_pointer");
+  var _pointer$ = dart.privateName(platform_interface_collection_reference, "_pointer");
+  collection_reference_web.CollectionReferenceWeb = class CollectionReferenceWeb extends query_web.QueryWeb {
+    get path() {
+      return this[_delegate$].path;
+    }
+    doc(path = null) {
+      let documentReference = this[_delegate$].doc(path);
+      return new document_reference_web.DocumentReferenceWeb.new(this[_firestorePlatform$], this[_webFirestore$], documentReference.path);
+    }
+    get id() {
+      return this[_delegate$].id;
+    }
+    get parent() {
+      let documentReference = this[_delegate$].parent;
+      if (documentReference == null) {
+        return null;
+      }
+      return new document_reference_web.DocumentReferenceWeb.new(this[_firestorePlatform$], this[_webFirestore$], documentReference.path);
+    }
+    get [_pointer$]() {
+      return pointer.Pointer.as(this[$noSuchMethod](new core._Invocation.getter(C[6] || CT.C6)));
+    }
+  };
+  (collection_reference_web.CollectionReferenceWeb.new = function(_firestorePlatform, _webFirestore, path) {
+    if (_firestorePlatform == null) dart.nullFailed(I[13], 27, 12, "_firestorePlatform");
+    if (_webFirestore == null) dart.nullFailed(I[13], 27, 37, "_webFirestore");
+    if (path == null) dart.nullFailed(I[13], 27, 59, "path");
+    this[_firestorePlatform$] = _firestorePlatform;
+    this[_webFirestore$] = _webFirestore;
+    this[_delegate$] = _webFirestore.collection(path);
+    collection_reference_web.CollectionReferenceWeb.__proto__.new.call(this, _firestorePlatform, path, _webFirestore.collection(path));
+    ;
+  }).prototype = collection_reference_web.CollectionReferenceWeb.prototype;
+  dart.addTypeTests(collection_reference_web.CollectionReferenceWeb);
+  dart.addTypeCaches(collection_reference_web.CollectionReferenceWeb);
+  collection_reference_web.CollectionReferenceWeb[dart.implements] = () => [platform_interface_collection_reference.CollectionReferencePlatform];
+  dart.setMethodSignature(collection_reference_web.CollectionReferenceWeb, () => ({
+    __proto__: dart.getMethods(collection_reference_web.CollectionReferenceWeb.__proto__),
+    doc: dart.fnType(platform_interface_document_reference.DocumentReferencePlatform, [], [dart.nullable(core.String)])
+  }));
+  dart.setGetterSignature(collection_reference_web.CollectionReferenceWeb, () => ({
+    __proto__: dart.getGetters(collection_reference_web.CollectionReferenceWeb.__proto__),
+    path: core.String,
+    id: core.String,
+    parent: dart.nullable(platform_interface_document_reference.DocumentReferencePlatform),
+    [_pointer$]: pointer.Pointer
+  }));
+  dart.setLibraryUri(collection_reference_web.CollectionReferenceWeb, I[14]);
+  dart.setFieldSignature(collection_reference_web.CollectionReferenceWeb, () => ({
+    __proto__: dart.getFields(collection_reference_web.CollectionReferenceWeb.__proto__),
+    [_webFirestore$]: dart.finalFieldType(firestore.Firestore),
+    [_firestorePlatform$]: dart.finalFieldType(platform_interface_firestore.FirebaseFirestorePlatform),
+    [_delegate$]: dart.finalFieldType(firestore.CollectionReference$(dart.lazyJSType(() => dart.global.firebase.firestore.CollectionReference, "firebase.firestore.CollectionReference")))
+  }));
+  var _webFirestore = dart.privateName(cloud_firestore_web, "_webFirestore");
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  cloud_firestore_web.FirebaseFirestoreWeb = class FirebaseFirestoreWeb extends platform_interface_firestore.FirebaseFirestorePlatform {
+    static registerWith(registrar) {
+      if (registrar == null) dart.nullFailed(I[15], 28, 38, "registrar");
+      platform_interface_firestore.FirebaseFirestorePlatform.instance = new cloud_firestore_web.FirebaseFirestoreWeb.new();
+    }
+    delegateFor(opts) {
+      let app = opts && 'app' in opts ? opts.app : null;
+      if (app == null) dart.nullFailed(I[15], 43, 42, "app");
+      return new cloud_firestore_web.FirebaseFirestoreWeb.new({app: app});
+    }
+    collection(collectionPath) {
+      if (collectionPath == null) dart.nullFailed(I[15], 48, 49, "collectionPath");
+      return new collection_reference_web.CollectionReferenceWeb.new(this, this[_webFirestore], collectionPath);
+    }
+    batch() {
+      return new write_batch_web.WriteBatchWeb.new(this[_webFirestore]);
+    }
+    clearPersistence() {
+      return async.async(dart.void, (function* clearPersistence() {
+        try {
+          yield this[_webFirestore].clearPersistence();
+        } catch (e$) {
+          let e = dart.getThrown(e$);
+          if (core.Object.is(e)) {
+            dart.throw(exception.getFirebaseException(e));
+          } else
+            throw e$;
+        }
+      }).bind(this));
+    }
+    collectionGroup(collectionPath) {
+      if (collectionPath == null) dart.nullFailed(I[15], 65, 40, "collectionPath");
+      return new query_web.QueryWeb.new(this, collectionPath, this[_webFirestore].collectionGroup(collectionPath), {isCollectionGroupQuery: true});
+    }
+    disableNetwork() {
+      return async.async(dart.void, (function* disableNetwork() {
+        try {
+          yield this[_webFirestore].disableNetwork();
+        } catch (e$) {
+          let e = dart.getThrown(e$);
+          if (core.Object.is(e)) {
+            dart.throw(exception.getFirebaseException(e));
+          } else
+            throw e$;
+        }
+      }).bind(this));
+    }
+    doc(documentPath) {
+      if (documentPath == null) dart.nullFailed(I[15], 81, 40, "documentPath");
+      return new document_reference_web.DocumentReferenceWeb.new(this, this[_webFirestore], documentPath);
+    }
+    enableNetwork() {
+      return async.async(dart.void, (function* enableNetwork() {
+        try {
+          yield this[_webFirestore].enableNetwork();
+        } catch (e$) {
+          let e = dart.getThrown(e$);
+          if (core.Object.is(e)) {
+            dart.throw(exception.getFirebaseException(e));
+          } else
+            throw e$;
+        }
+      }).bind(this));
+    }
+    snapshotsInSync() {
+      return this[_webFirestore].snapshotsInSync();
+    }
+    runTransaction(T, transactionHandler, opts) {
+      if (transactionHandler == null) dart.nullFailed(I[15], 99, 54, "transactionHandler");
+      let timeout = opts && 'timeout' in opts ? opts.timeout : C[7] || CT.C7;
+      if (timeout == null) dart.nullFailed(I[15], 100, 17, "timeout");
+      return async.async(dart.nullable(T), (function* runTransaction() {
+        try {
+          yield this[_webFirestore].runTransaction(dart.fn(transaction => async.async(dart.nullable(T), (function*() {
+            return transactionHandler(new transaction_web.TransactionWeb.new(this, this[_webFirestore], dart.nullCheck(transaction)));
+          }).bind(this)), dart.fnType(async.Future$(dart.nullable(T)), [T$.TransactionN()]))).timeout(timeout);
+          return null;
+        } catch (e$) {
+          let e = dart.getThrown(e$);
+          if (core.Object.is(e)) {
+            dart.throw(exception.getFirebaseException(e));
+          } else
+            throw e$;
+        }
+      }).bind(this));
+    }
+    set settings(settings) {
+      if (settings == null) dart.nullFailed(I[15], 115, 25, "settings");
+      let cacheSizeBytes = null;
+      if (settings.cacheSizeBytes == null) {
+        cacheSizeBytes = 40000000;
+      } else if (settings.cacheSizeBytes === -1) {
+        cacheSizeBytes = -1;
+      } else {
+        cacheSizeBytes = settings.cacheSizeBytes;
+      }
+      if (settings.host != null && settings.sslEnabled != null) {
+        this[_webFirestore].settings({cacheSizeBytes: cacheSizeBytes, host: settings.host, ssl: settings.sslEnabled});
+      } else {
+        this[_webFirestore].settings({cacheSizeBytes: cacheSizeBytes});
+      }
+    }
+    get settings() {
+      return super.settings;
+    }
+    enablePersistence(settings = null) {
+      return async.async(dart.void, (function* enablePersistence() {
+        let t13, t13$;
+        try {
+          yield this[_webFirestore].enablePersistence({synchronizeTabs: (t13$ = (t13 = settings, t13 == null ? null : t13.synchronizeTabs), t13$ == null ? false : t13$)});
+        } catch (e$) {
+          let e = dart.getThrown(e$);
+          if (core.Object.is(e)) {
+            dart.throw(exception.getFirebaseException(e));
+          } else
+            throw e$;
+        }
+      }).bind(this));
+    }
+    terminate() {
+      return async.async(dart.void, (function* terminate() {
+        try {
+          yield this[_webFirestore].terminate();
+        } catch (e$) {
+          let e = dart.getThrown(e$);
+          if (core.Object.is(e)) {
+            dart.throw(exception.getFirebaseException(e));
+          } else
+            throw e$;
+        }
+      }).bind(this));
+    }
+    waitForPendingWrites() {
+      return async.async(dart.void, (function* waitForPendingWrites() {
+        try {
+          yield this[_webFirestore].waitForPendingWrites();
+        } catch (e$) {
+          let e = dart.getThrown(e$);
+          if (core.Object.is(e)) {
+            dart.throw(exception.getFirebaseException(e));
+          } else
+            throw e$;
+        }
+      }).bind(this));
+    }
+  };
+  (cloud_firestore_web.FirebaseFirestoreWeb.new = function(opts) {
+    let t9;
+    let app = opts && 'app' in opts ? opts.app : null;
+    this[_webFirestore] = firestore.getFirestoreInstance(core$.app((t9 = app, t9 == null ? null : t9.name)));
+    cloud_firestore_web.FirebaseFirestoreWeb.__proto__.new.call(this, {appInstance: app});
+    platform_interface_field_value_factory.FieldValueFactoryPlatform.instance = new field_value_factory_web.FieldValueFactoryWeb.new();
+  }).prototype = cloud_firestore_web.FirebaseFirestoreWeb.prototype;
+  dart.addTypeTests(cloud_firestore_web.FirebaseFirestoreWeb);
+  dart.addTypeCaches(cloud_firestore_web.FirebaseFirestoreWeb);
+  dart.setMethodSignature(cloud_firestore_web.FirebaseFirestoreWeb, () => ({
+    __proto__: dart.getMethods(cloud_firestore_web.FirebaseFirestoreWeb.__proto__),
+    runTransaction: dart.gFnType(T => [async.Future$(dart.nullable(T)), [dart.fnType(dart.nullable(async.Future$(dart.nullable(T))), [platform_interface_transaction.TransactionPlatform])], {timeout: core.Duration}, {}], T => [dart.nullable(core.Object)])
+  }));
+  dart.setLibraryUri(cloud_firestore_web.FirebaseFirestoreWeb, I[16]);
+  dart.setFieldSignature(cloud_firestore_web.FirebaseFirestoreWeb, () => ({
+    __proto__: dart.getFields(cloud_firestore_web.FirebaseFirestoreWeb.__proto__),
+    [_webFirestore]: dart.finalFieldType(firestore.Firestore)
+  }));
+  dart.trackLibraries("packages/cloud_firestore_web/src/write_batch_web.dart", {
+    "package:cloud_firestore_web/src/write_batch_web.dart": write_batch_web,
+    "package:cloud_firestore_web/src/transaction_web.dart": transaction_web,
+    "package:cloud_firestore_web/src/field_value_factory_web.dart": field_value_factory_web,
+    "package:cloud_firestore_web/src/query_web.dart": query_web,
+    "package:cloud_firestore_web/src/utils/codec_utility.dart": codec_utility,
+    "package:cloud_firestore_web/src/utils/web_utils.dart": web_utils,
+    "package:cloud_firestore_web/src/document_reference_web.dart": document_reference_web,
+    "package:cloud_firestore_web/src/collection_reference_web.dart": collection_reference_web,
+    "package:cloud_firestore_web/cloud_firestore_web.dart": cloud_firestore_web
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["app.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAiDA;;;QAVK;;;;;EAUL;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;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","file":"../../../../../../../packages/flutter/src/material/app.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["write_batch_web.dart","transaction_web.dart","field_value_factory_web.dart","query_web.dart","utils/codec_utility.dart","utils/web_utils.dart","document_reference_web.dart","collection_reference_web.dart","../cloud_firestore_web.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAsBqB;AACjB;AACuC,UAArC,MAAM,AAAuB;;cACtB;AAAP;AAC6B,YAA7B,WAAM,+BAAqB,CAAC;;;;MAEhC;;;UAGmB;AACqD,MAAtE,AAAuB,oCAAO,AAAsB,iCAAI,YAAY;IACtE;QAGgB,cAAmC,MAClC;UADD;UAAmC;AAGiB,MADlE,AAAuB,iCAAI,AAAsB,iCAAI,YAAY,GAC7B,eAAnB,yCAAc,IAAI,IAAI,4BAAkB,OAAO;IAClE;WAIS,cACc;UADd;UACc;AAGiB,MADtC,AAAuB,oCAAO,AAAsB,iCAAI,YAAY,GAChC,eAAnB,yCAAc,IAAI;IACrC;;;QAhCmB;;IACU,+BAA+B,eAA7B,AAAsB,qBAAD;AAC9C;;EAAO;;;;;;;;;;;;;;UCKgB;AAC4C,MAAvE,AAAwB,sCAAO,AAAsB,kCAAI,YAAY;AACrE,YAAO;IACT;;UAG4C;AAAR;AAClC;AACQ,qCAAsB,MAAM,AAC7B,mCAAI,AAAsB,kCAAI,YAAY;AAE/C,gBAAO,sCAA2B,mBAAY,mBAAmB;;cAC1D;AAAP;AAC6B,YAA7B,WAAM,+BAAqB,CAAC;;;;MAEhC;;QAG0B,cAAmC,MAC5C;UADS;UAAmC;AAGO,MADlE,AAAwB,mCAAI,AAAsB,kCAAI,YAAY,GAC9B,eAAnB,yCAAc,IAAI,IAAI,4BAAkB,OAAO;AAChE,YAAO;IACT;WAIS,cACc;UADd;UACc;AAGiB,MADtC,AAAwB,sCAAO,AAAsB,kCAAI,YAAY,GACjC,eAAnB,yCAAc,IAAI;AACnC,YAAO;IACT;;iDArCS,YAAiB,uBAA4B;QAA7C;QAAiB;QAA4B;IAA7C;IAAiB;IAA4B;AAChD;;EAAO;;;;;;;;;;;;;;;;;;UCNkB;AAC3B,mDAA2C,+CAC1B,uCAAY,QAAQ;IAAG;;UAGd;AAC1B,mDAA2C,8CAC1B,uCAAY,QAAQ;IAAG;;AAIxC,mDAA2C;IAAS;;UAG5B;AACxB,mDAA2C,+BAAU,KAAK;IAAE;;AAI5D,mDAA2C;IAAkB;;;;;EACnE;;;;;;;;;;;;;;;;;;;;;IChBa;;;;;;0BAYuC;;;AAChD,YAAO,4BAAS,oBAAY,cAAO,2CACP,yCACZ,4CACV,wCAA+B,kBAA/B;AAA4C,sBAAO,UAAU;;;IAErE;;AAI0B,kBAAQ;AAEhC,sCAAkC,AAAU,uBAAC;AAApB,oBAAzB;AAEoE,QADlE,QAAQ,AAAM,KAAD,SACI,uCAAY,AAAK,KAAA,QAAC,gBAAK,AAAK,KAAA,QAAC,MAAK,SAAS;;AAG9D,UAAI,AAAU,AAAY,uBAAX;AAEoD,QADjE,QAAQ,AAAM,KAAD,qCACiB,uCAAY,AAAU,uBAAC;;AAGvD,UAAI,AAAU,AAAe,uBAAd;AAEuD,QADpE,QAAQ,AAAM,KAAD,wCACiB,uCAAY,AAAU,uBAAC;;AAGvD,UAAI,AAAU,AAAU,uBAAT;AAEkD,QAD/D,QAAQ,AAAM,KAAD,mCACiB,uCAAY,AAAU,uBAAC;;AAGvD,UAAI,AAAU,AAAc,uBAAb;AAEsD,QADnE,QAAQ,AAAM,KAAD,uCACiB,uCAAY,AAAU,uBAAC;;AAGvD,UAAI,AAAU,AAAU,uBAAT;AAC2B,QAAxC,QAAQ,AAAM,KAAD,mBAAO,AAAU,uBAAC;;AAGjC,UAAI,AAAU,AAAgB,uBAAf;AACuC,QAApD,QAAQ,AAAM,KAAD,yBAAa,AAAU,uBAAC;;AAGvC,sCAAsC,AAAU,uBAAC;AAAxB,wBAAzB;AACU,wBAAyB,uCAAY,AAAS,SAAA,QAAC;AAChD,mCAAQ,AAAS,SAAA,QAAC;AACjB,oBAAqB,uCAAY,AAAS,SAAA,QAAC;AAEP,QAA5C,QAAQ,AAAM,KAAD,OAAO,SAAS,EAAE,KAAK,EAAE,KAAK;;AAG7C,YAAO,MAAK;IACd;kBAG0C,QAAsB;UAAtB;UAAsB;AAC9D,YAAO,2BAAqC,6CAC1C,WAAW,MAAM,EACjB,SAAS,MAAM,EACf,aAAa;IAEjB;;UAGkC;AAChC,YAAO,2BAAqC,6CAC1C,SAAS,MAAM,EACf,aAAa;IAEjB;sBAG8C,QAAsB;UAAtB;UAAsB;AAClE,YAAO,2BAAqC,6CAC1C,WAAW,MAAM,EACjB,SAAS,MACT,aAAa,MAAM;IAEvB;;UAGsC;AACpC,YAAO,2BAAqC,6CAC1C,SAAS,MACT,aAAa,MAAM;IAEvB;;UAIgB;AADiB;AAE/B;AACE,gBAAO,mCAAwB,gBAC3B,MAAM,AAA+B,yCAAI,4BAAkB,OAAO;;cAC/D;AAAP;AAC6B,YAA7B,WAAM,+BAAqB,CAAC;;;;MAEhC;;;UAGwB;AACtB,YAAO,2BAAqC,6CAC1C,SAAS,KAAK,EACd,eAAe;IAEnB;;UAG8B;AAC5B,YAAO,2BAAqC,6CAC1C,SAAS,MACT,eAAe,KAAK;IAExB;;UAIO;;AAEmC;AACxC,oBAAI,sBAAsB;AAC0C,QAAlE,iBAAiB,AAA+B;;AAEU,QAA1D,iBAAiB,AAA+B;;AAElD,YAAO,AACF,AAEA,eAHgB,8DACZ;YAAC;AACF,iDAAwB,gBAAW,gBAAgB;iEAC1C,QAAC;AACa,QAA7B,WAAM,8CAAqB,CAAC;;IAEhC;;UAG0C;AACxC,YAAO,2BAAqC,6CAAC,WAAW,MAAM;IAChE;uBAG+C,QAAsB;UAAtB;UAAsB;AACnE,YAAO,2BAAqC,6CAC1C,WAAW,MAAM,EACjB,WAAW,MACX,cAAc,MAAM;IAExB;;UAGuC;AACrC,YAAO,2BAAqC,6CAC1C,WAAW,MACX,cAAc,MAAM;IAExB;oBAG4C,QAAsB;UAAtB;UAAsB;AAChE,YAAO,2BAAqC,6CAC1C,WAAW,MAAM,EACjB,WAAW,MAAM,EACjB,cAAc;IAElB;;UAGoC;AAClC,YAAO,2BAAqC,6CAC1C,WAAW,MAAM,EACjB,cAAc;IAElB;;UAGwC;AACtC,YAAO,2BAAqC,6CAC1C,SAAS,UAAU;IAEvB;;qCA1LO,YACA,OACA;QAFA;QACA;QACA;QACiB;QACjB;;IAJA;IACA;IACA;IAEA;AACF,gDAAM,UAAU,EAAE,UAAU;;EAAC;;;;;;;;;;;;;;;;;yBCd+B;AAC/D,UAAI,AAAK,IAAD;AACN,cAAO;;AAEY,mBAAa,wCAAK,IAAI;AACS,MAApD,AAAO,MAAD,aAAW,SAAC,KAAK;YAAL;AAAe,sDAAY,KAAK;;AAClD,YAAO,OAAM;IACf;2BAGqD;AACnD,UAAI,AAAK,IAAD;AACN,cAAO;;AAET,YAAY,AAAW,AAAiB,gBAAvB,IAAI;IACvB;uBAGmC;AACjC,UAAU,qDAAN,KAAK;AACO,wDAA8B,8DAAY,KAAK;AAC7D,cAAO,AAAS,SAAD;YACV,KAAU,wBAAN,KAAK;AACD,yBAAa,AAAM,KAAD;AAC3B,qBAAS,AAAW,UAAD;AAKvB,gBAAQ,MAAM;;;AAEV,kBAAyB,8CAAU,AAAU,UAAA,QAAC;;;;AAE9C,kBAAyB,8CAAU,AAAU,UAAA,QAAC,IAAI,AAAU,UAAA,QAAC;;;;AAE7D,kBAAyB,8CACrB,AAAU,UAAA,QAAC,IAAI,AAAU,UAAA,QAAC,IAAI,AAAU,UAAA,QAAC;;;;AAE7C,kBAAyB,8CACrB,AAAU,UAAA,QAAC,IAAI,AAAU,UAAA,QAAC,IAAI,AAAU,UAAA,QAAC,IAAI,AAAU,UAAA,QAAC;;;;AAE5D,kBAAyB,8CAAU,AAAU,UAAA,QAAC,IAAI,AAAU,UAAA,QAAC,IACzD,AAAU,UAAA,QAAC,IAAI,AAAU,UAAA,QAAC,IAAI,AAAU,UAAA,QAAC;;;;AAE7C,kBAAyB,8CAAU,AAAU,UAAA,QAAC,IAAI,AAAU,UAAA,QAAC,IACzD,AAAU,UAAA,QAAC,IAAI,AAAU,UAAA,QAAC,IAAI,AAAU,UAAA,QAAC,IAAI,AAAU,UAAA,QAAC;;;;AAE5D,kBAAyB,8CACrB,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC;;;;AAEf,kBAAyB,8CACrB,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC;;;;AAEf,kBAAyB,8CACrB,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC;;;;AAEf,kBAAyB,8CACrB,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC,IACX,AAAU,UAAA,QAAC;;;;AAGwD,YADvE,WAAM,mBACF;;;YAEH,KAAU,YAAN,KAAK,EAAc;AAC5B,cAAmC;YAC9B,KAAU,uBAAN,KAAK;AACd,cAAO,AAAM,MAAD;YACP,KAAU,sBAAN,KAAK;AACd,cAAyB,6CAAS,AAAM,KAAD,WAAW,AAAM,KAAD;YAClD,KAAU,aAAN,KAAK;AACd,cAA8B,oDAAe,AAAM,KAAD;YAC7C,KAAU,+CAAN,KAAK;AACd,cAAO,AAAM,AAAa,MAAd,kBAAkB,AAAM,KAAD;YAC9B,KAAU,4BAAN,KAAK;AACd,cAAO,0CAAc,KAAK;YACrB,KAAU,aAAN,KAAK;AACd,cAAO,4CAAgB,KAAK;;AAE9B,YAAO,MAAK;IACd;yBAGiE;AAC/D,UAAI,AAAK,IAAD;AACN,cAAO;;AAEY,mBAAa,wCAAK,IAAI;AACS,MAApD,AAAO,MAAD,aAAW,SAAC,KAAK;YAAL;AAAe,sDAAY,KAAK;;AAClD,YAAO,OAAM;IACf;2BAGqD;AACnD,UAAI,AAAK,IAAD;AACN,cAAO;;AAET,YAAY,AAAW,AAAiB,gBAAvB,IAAI;IACvB;uBAGmC;AACjC,UAAU,iGAAN,KAAK;AACP,cAAO,4BAAS,AAAM,KAAD,WAAqB,AAAM,KAAD;YAC1C,KAAU,iBAAN,KAAK;AACd,cAAiB,8BAAS,KAAK;YAC1B,KAAU,gCAAN,KAAK;AACd,cAAO,mBAAK,AAAM,KAAD;YACZ,KAAU,+BAAN,KAAK;AACd,cAA2C,AACtC,6CAD6B,qEACzB,AAAM,KAAD;YACT,KAAU,4BAAN,KAAK;AACd,cAAO,0CAAc,KAAK;YACrB,KAAU,aAAN,KAAK;AACd,cAAO,4CAAgB,KAAK;;AAE9B,YAAO,MAAK;IACd;;;;EACF;;;;uEClJ8B,WACM;QADN;QACM;AAClC,UAAO,iEACL,AAAiB,AACZ,AAEA,gBAHW,2EACP,QAAC,uBACF,qCAA2B,SAAS,EAAqB,eAAnB,mBAAmB,mEAEjE,AACK,AACA,AAEA,gBAJW,+EAEP;UAAC;AACF,gDAAyB,SAAS,EAAE,iBAAiB;iEAE7D,qCAA2B,AAAiB,gBAAD;EAE/C;6EAI8B,WACS;QADT;QACS;AACrC,UAAO,uEACL,SAAS,EACM,AAAE,eAAjB,AAAY,WAAD,YACM,6CACf,QAAqB,yCAAc,AAAY,WAAD,UAC9C,YAA0B,0CACxB,oBAAoB,AAAY,AAAS,WAAV,4BAC/B,eAAe,AAAY,AAAS,WAAV;EAIlC;yEAI8B,WACO;QADP;QACO;AACnC,UAAO,mEACH,uCAA6B,AAAkB,iBAAD,QACnB,WAA3B,AAAkB,iBAAD,YACU,WAA3B,AAAkB,iBAAD,YACjB,qCAA2B,SAAS,EAAuB,eAArB,AAAkB,iBAAD;EAC7D;;QAGuD;AACrD,YAAQ,AAAW,UAAD;;;AAEd,cAA0B;;;;AAE1B,cAA0B;;;;AAE1B,cAA0B;;;;AAEF,QAAxB,WAAM;;;EAEZ;;QAIuC;AACrC,UAAO,oDACH,AAAoB,mBAAD,mBAAmB,AAAoB,mBAAD;EAC/D;2DAG4D;AAC1D,QAAI,AAAQ,OAAD,UAAU,MAAO;AAEpB;AAER,YAAQ,AAAQ,OAAD;;;AAEO,QAAlB,SAAS;AACT;;;;AAEgB,QAAhB,SAAS;AACT;;;;AAEiB,QAAjB,SAAS;AACT;;;;AAEkB,QAAlB,SAAS;AACT;;;AAGJ,UAAyB,UAAmB,MAAM;EACpD;2DAG4D;AAC1D,QAAI,AAAQ,OAAD,UAAU,MAAO;AAEE;AAC9B,QAAI,AAAQ,AAAM,OAAP;AACyD,MAAlE,gBAAkC,QAAkB,AAAQ,OAAD;UACtD,KAAI,AAAQ,AAAY,OAAb;AAIE,MAHlB,gBAAkC,cACE,AAC3B,AACA,eAFQ,AAAQ,OAAD,iCACX;cAAC;AAAM,gBAAA,AAAE,AAAW,AAAS,EAArB,8BAA0B;;;AAIjD,UAAO,cAAa;EACtB;;QAGuD;AACrD,UAAyB,8CAAU,AAAU,AAAW,AAAS,SAArB,8BAA0B;EACxE;;MAnHM,2BAAiB;;;MACjB,8BAAoB;;;MACpB,6BAAmB;;;;;;;ICEW;;;;;;QAeI,MAAmB;UAAnB;AAAtB;AACd;AAIG,UAHD,MAAM,AAAU,oBACkB,eAAnB,yCAAc,IAAI,IAC/B,4BAAkB,OAAO;;cAEpB;AAAP;AAC6B,YAA7B,WAAM,+BAAqB,CAAC;;;;MAEhC;;;UAGyC;AAAtB;AACjB;AAC2D,UAAzD,MAAM,AAAU,uBAAuC,eAAnB,yCAAc,IAAI;;cAC/C;AAAP;AAC6B,YAA7B,WAAM,+BAAqB,CAAC;;;;MAEhC;;;UAIgB;AADoB;AAElC;AACqC,kCAC/B,MAAM,AAAU,oBAAI,4BAAkB,OAAO;AACjD,gBAAO,sCAA2B,gBAAW,gBAAgB;;cACtD;AAAP;AAC6B,YAA7B,WAAM,+BAAqB,CAAC;;;;MAEhC;;;AAGmB;AACjB;AAC0B,UAAxB,MAAM,AAAU;;cACT;AAAP;AAC6B,YAA7B,WAAM,+BAAqB,CAAC;;;;MAEhC;;;UAIO;;AAEsC,2BACvC,AAAU;AACd,oBAAI,sBAAsB;AAC4B,QAApD,iBAAiB,AAAU;;AAE7B,YAAO,AACF,AAEA,eAHgB,oEAEb;YAAC;AAAgB,oDAA2B,gBAAW,WAAW;uEACzD,QAAC;AACa,QAA7B,WAAM,8CAAqB,CAAC;;IAEhC;;8DA/D4B,WACrB,cACE;QAFmB;QACrB;QACE;IADF;IAES,kBAAE,AAAa,YAAD,KAAK,IAAI;AACjC,yEAAM,SAAS,EAAE,IAAI;;EAAC;;;;;;;;;;;;;;;;ACMT,YAAA,AAAU;IAAI;QAGM;AACD,8BAAoB,AAAU,qBAAI,IAAI;AAC1E,YAAO,qDACH,2BAAoB,sBAAe,AAAkB,iBAAD;IAC1D;;AAGiB,YAAA,AAAU;IAAE;;AAIU,8BAAoB,AAAU;AAEnE,UAAI,AAAkB,iBAAD;AACnB,cAAO;;AAGT,YAAO,qDACH,2BAAoB,sBAAe,AAAkB,iBAAD;IAC1D;;;;;kEA3BS,oBAAyB,eAAsB;QAA/C;QAAyB;QAAsB;IAA/C;IAAyB;IAClB,mBAAE,AAAc,aAAD,YAAY,IAAI;AACzC,6EAAM,kBAAkB,EAAE,IAAI,EAAE,AAAc,aAAD,YAAY,IAAI;;EAAE;;;;;;;;;;;;;;;;;;;;;;;;;;UCDlC;AAC0B,MAAjC,kEAAW;IACvC;;UAauC;;AACrC,YAAO,wDAA0B,GAAG;IACtC;;UAG8C;AAC5C,YAAO,yDAAuB,MAAM,qBAAe,cAAc;IACnE;;AAG8B,mDAAc;IAAc;;AAG7B;AAC3B;AACwC,UAAtC,MAAM,AAAc;;cACb;AAAP;AAC6B,YAA7B,WAAM,+BAAqB,CAAC;;;;MAEhC;;;UAGqC;AACnC,YAAO,4BACH,MAAM,cAAc,EAAE,AAAc,oCAAgB,cAAc,4BAC1C;IAC9B;;AAG2B;AACzB;AACsC,UAApC,MAAM,AAAc;;cACb;AAAP;AAC6B,YAA7B,WAAM,+BAAqB,CAAC;;;;MAEhC;;;UAGqC;AACjC,iEAAqB,MAAM,qBAAe,YAAY;IAAC;;AAGjC;AACxB;AACqC,UAAnC,MAAM,AAAc;;cACb;AAAP;AAC6B,YAA7B,WAAM,+BAAqB,CAAC;;;;MAEhC;;;AAIE,YAAO,AAAc;IACvB;;UAGmD;UACrC;;AADc;AAE1B;AAIqB,UAHnB,MAAM,AAAc,AAGjB,mCAHgC,QAAC;AAClC,kBAAO,AAAkB,mBAAA,CACrB,uCAAe,MAAM,qBAA0B,eAAX,WAAW;UACpD,4FAAU,OAAO;AAGlB,gBAAO;;cACA;AAAP;AAC6B,YAA7B,WAAM,+BAAqB,CAAC;;;;MAEhC;;;UAGsB;AACf;AAEL,UAAI,AAAS,AAAe,QAAhB;AACe,QAAzB,iBAAiB;YACZ,KAAI,AAAS,AAAe,QAAhB;AAEE,QAAnB,iBAAiB,CAAC;;AAEsB,QAAxC,iBAAiB,AAAS,QAAD;;AAG3B,UAAI,AAAS,AAAK,QAAN,iBAAiB,AAAS,AAAW,QAAZ;AAIL,QAH9B,AAAc,6BAA2B,iBACrB,cAAc,QACxB,AAAS,QAAD,YACT,AAAS,QAAD;;AAGwD,QADzE,AACK,6BAA2B,iBAAyB,cAAc;;IAE3E;;;;sBAIqD;AAAvB;;AAC5B;AAG+D,UAF7D,MAAM,AAAc,sCACE,mBAC6B,cAA1B,QAAQ,gBAAR,OAAU,sBAAV,eAA6B;;cAC/C;AAAP;AAC6B,YAA7B,WAAM,+BAAqB,CAAC;;;;MAEhC;;;AAGsB;AACpB;AACiC,UAA/B,MAAM,AAAc;;cACb;AAAP;AAC6B,YAA7B,WAAM,+BAAqB,CAAC;;;;MAEhC;;;AAGiC;AAC/B;AAC4C,UAA1C,MAAM,AAAc;;cACb;AAAP;AAC6B,YAA7B,WAAM,+BAAqB,CAAC;;;;MAEhC;;;;;QApImC;IACf,sBACV,+BAAuC,gBAAiB,GAAG,eAAH,OAAK;AACjE,oFAAmB,GAAG;AACiC,IAAjC,4EAAW;EACvC","file":"../../../../../../../packages/cloud_firestore_web/src/write_batch_web.dart.lib.js"}');
   // Exports:
   return {
-    src__material__app: app$
+    src__write_batch_web: write_batch_web,
+    src__transaction_web: transaction_web,
+    src__field_value_factory_web: field_value_factory_web,
+    src__query_web: query_web,
+    src__utils__codec_utility: codec_utility,
+    src__utils__web_utils: web_utils,
+    src__document_reference_web: document_reference_web,
+    src__collection_reference_web: collection_reference_web,
+    cloud_firestore_web: cloud_firestore_web
   };
 }));
 
-//# sourceMappingURL=app.dart.lib.js.map
+//# sourceMappingURL=write_batch_web.dart.lib.js.map

@@ -81,7 +81,8 @@ class _EatLaterState extends State<EatLater> {
                             dd["dishName"].toString(),
                             dd["price"].toDouble(),
                             dd["imageUrl"].toString(),
-                            "25 min");
+                            "25 min",
+                            dd["mealType"]);
                         dishes.add(dish);
                       }
                     }
@@ -327,8 +328,14 @@ class _SingleCardState extends State<SingleCard> {
                       onPressed: () {
                         // Respond to button press
                         CartData().addItem(
-                            Dishes(widget.name, widget.rating, widget.dishName,
-                                widget.price, widget.image, widget.time),
+                            Dishes(
+                                widget.name,
+                                widget.rating,
+                                widget.dishName,
+                                widget.price,
+                                widget.image,
+                                widget.time,
+                                widget.dishName),
                             widget.quantity);
                       },
                       label: Text(

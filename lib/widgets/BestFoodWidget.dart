@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../user/ScaleRoute.dart';
 import '../user/Chefdata.dart';
+import '../user/FoodDetailsPage.dart';
 
 class BestFoodWidget extends StatefulWidget {
   @override
@@ -57,14 +59,24 @@ class BestFoodTiles extends StatelessWidget {
   String dishName;
   String imageUrl;
   double rating;
+  String time;
+  int numberOfRating;
   double price;
+  String chefName;
+  String mealType;
+  CartData cartData;
 
   BestFoodTiles({
     Key key,
     @required this.dishName,
     @required this.imageUrl,
     @required this.rating,
+    @required this.numberOfRating,
     @required this.price,
+    @required this.time,
+    @required this.chefName,
+    @required this.mealType,
+    @required this.cartData,
   }) : super(key: key);
 
   @override
@@ -73,7 +85,20 @@ class BestFoodTiles extends StatelessWidget {
     double totalHeight = MediaQuery.of(context).size.height;
     return InkWell(
       onTap: () {
-        // Navigator.push(context, ScaleRoute(page: FoodDetailsPage()));
+        Navigator.push(
+          context,
+          ScaleRoute(
+            page: FoodDetailsPage(
+              dishName: this.dishName,
+              imageUrl: this.imageUrl,
+              rating: this.rating,
+              price: this.price,
+              time: this.time,
+              chefName: this.chefName,
+              mealType: this.mealType,
+            ),
+          ),
+        );
       },
       child: Column(
         children: <Widget>[
@@ -164,7 +189,8 @@ class _BestFoodListState extends State<BestFoodList> {
                         dd["dishName"].toString(),
                         dd["price"].toDouble(),
                         dd["imageUrl"].toString(),
-                        "25 min");
+                        "25 min",
+                        dd["mealType"]);
                     dishes.add(dish);
                   }
                   print(dishes);
@@ -179,6 +205,11 @@ class _BestFoodListState extends State<BestFoodList> {
                         price: data.getPrice(),
                         imageUrl: data.getimage(),
                         rating: data.getRating(),
+                        time: data.gettime(),
+                        numberOfRating: 200,
+                        chefName: data.name,
+                        mealType: data.getMealType(),
+                        cartData: cartdata,
                       ),
                     );
                   }).toList());

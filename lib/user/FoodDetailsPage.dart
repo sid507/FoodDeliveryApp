@@ -1,13 +1,30 @@
 import 'package:flutter/material.dart';
 import 'ScaleRoute.dart';
 import 'Cart.dart';
+import 'ChefData.dart';
 
-class FoodDetailsPage extends StatefulWidget {
-  @override
-  _FoodDetailsPageState createState() => _FoodDetailsPageState();
-}
+class FoodDetailsPage extends StatelessWidget {
+  final String dishName;
+  final String imageUrl;
+  final double rating;
+  final String time;
+  final double price;
+  final String chefName;
+  final String mealType;
+  CartData cartdata;
 
-class _FoodDetailsPageState extends State<FoodDetailsPage> {
+  FoodDetailsPage({
+    Key key,
+    @required this.dishName,
+    @required this.imageUrl,
+    @required this.rating,
+    @required this.price,
+    @required this.time,
+    @required this.chefName,
+    @required this.mealType,
+    @required this.cartdata,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     double totalWidth = MediaQuery.of(context).size.width;
@@ -49,8 +66,8 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
               Card(
                 semanticContainer: true,
                 clipBehavior: Clip.antiAliasWithSaveLayer,
-                child: Image.asset(
-                  'assets/images/panner_tikka.JPG',
+                child: Image.network(
+                  imageUrl,
                   width: totalWidth * 200 / 420,
                   height: totalHeight * 2 / 7,
                 ),
@@ -69,13 +86,22 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
               ),*/
 
               FoodTitleWidget(
-                  productName: "Paneer Tikka",
-                  productPrice: "\Rs. 250.00",
-                  productHost: "The Punjabi Dhaba"),
+                  productName: dishName,
+                  productPrice: "\Rs. $price",
+                  productHost: "Chef $chefName"),
               SizedBox(
                 height: totalHeight * 15 / 700,
               ),
-              AddToCartMenu(),
+              AddToCartMenu(
+                dishName: dishName,
+                imageUrl: imageUrl,
+                rating: rating,
+                price: price,
+                time: time,
+                chefName: chefName,
+                mealType: mealType,
+                cartData: cartdata,
+              ),
               SizedBox(
                 height: totalHeight * 15 / 700,
               ),
@@ -106,17 +132,16 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                 child: TabBarView(
                   children: [
                     Container(
-                      color: Colors.white24,
-                      child: DetailContentMenu(),
-                    ),
+                        color: Colors.white24,
+                        child: DetailContentMenu(dishName: this.dishName)),
                     Container(
-                      color: Colors.white24,
-                      child: DetailContentMenu(),
-                    ), // class name
+                        color: Colors.white24,
+                        child: DetailContentMenu(
+                            dishName: this.dishName)), // class name
                   ],
                 ),
               ),
-              BottomMenu(),
+              BottomMenu(time: time, mealType: mealType, rating: rating),
             ],
           ),
         ),
@@ -189,6 +214,17 @@ class FoodTitleWidget extends StatelessWidget {
 }
 
 class BottomMenu extends StatelessWidget {
+  String time;
+  String mealType;
+  double rating;
+
+  BottomMenu(
+      {Key key,
+      @required this.time,
+      @required this.mealType,
+      @required this.rating})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     double totalWidth = MediaQuery.of(context).size.width;
@@ -209,7 +245,7 @@ class BottomMenu extends StatelessWidget {
                 height: totalHeight * 15 / 700,
               ),
               Text(
-                "12pm-3pm",
+                time,
                 style: TextStyle(
                     fontSize: totalHeight * 15 / 700,
                     color: Color(0xFF002140),
@@ -220,7 +256,7 @@ class BottomMenu extends StatelessWidget {
           Column(
             children: <Widget>[
               Icon(
-                Icons.directions,
+                Icons.food_bank,
                 color: Color(0xFF23c58a),
                 size: totalHeight * 35 / 700,
               ),
@@ -228,7 +264,7 @@ class BottomMenu extends StatelessWidget {
                 height: totalHeight * 15 / 700,
               ),
               Text(
-                "3.5 km",
+                mealType,
                 style: TextStyle(
                     fontSize: totalHeight * 15 / 700,
                     color: Color(0xFF002140),
@@ -239,7 +275,7 @@ class BottomMenu extends StatelessWidget {
           Column(
             children: <Widget>[
               Icon(
-                Icons.map,
+                Icons.rate_review,
                 color: Color(0xFFff0654),
                 size: totalHeight * 35 / 700,
               ),
@@ -247,7 +283,7 @@ class BottomMenu extends StatelessWidget {
                 height: totalHeight * 15 / 700,
               ),
               Text(
-                "Map View",
+                rating.toString(),
                 style: TextStyle(
                     fontSize: totalHeight * 15 / 700,
                     color: Color(0xFF002140),
@@ -281,6 +317,27 @@ class BottomMenu extends StatelessWidget {
 }
 
 class AddToCartMenu extends StatelessWidget {
+  final String dishName;
+  final String imageUrl;
+  final double rating;
+  final String time;
+  final double price;
+  final String chefName;
+  final String mealType;
+  CartData cartData;
+
+  AddToCartMenu({
+    Key key,
+    @required this.dishName,
+    @required this.imageUrl,
+    @required this.rating,
+    @required this.price,
+    @required this.time,
+    @required this.chefName,
+    @required this.mealType,
+    @required this.cartData,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     double totalWidth = MediaQuery.of(context).size.width;
@@ -289,12 +346,12 @@ class AddToCartMenu extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.remove),
-            color: Colors.black,
-            iconSize: totalHeight * 30 / 700,
-          ),
+          // IconButton(
+          //   onPressed: () {},
+          //   icon: Icon(Icons.remove),
+          //   color: Colors.black,
+          //   iconSize: totalHeight * 30 / 700,
+          // ),
           InkWell(
             onTap: () {
               Navigator.push(context, ScaleRoute(page: FoodOrderPage()));
@@ -311,22 +368,30 @@ class AddToCartMenu extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Center(
-                child: Text(
-                  'Add To Bag',
-                  style: new TextStyle(
-                      fontSize: totalHeight * 18 / 700,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400),
+                child: TextButton(
+                  child: Text(
+                    'Add To Bag',
+                    style: new TextStyle(
+                        fontSize: totalHeight * 18 / 700,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400),
+                  ),
+                  onPressed: () {
+                    cartData.addItem(
+                        Dishes(chefName, rating, dishName, price, imageUrl,
+                            time, dishName),
+                        1);
+                  },
                 ),
               ),
             ),
           ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.add),
-            color: Color(0xFFfd2c2c),
-            iconSize: totalHeight * 30 / 700,
-          ),
+          // IconButton(
+          //   onPressed: () {},
+          //   icon: Icon(Icons.add),
+          //   color: Color(0xFFfd2c2c),
+          //   iconSize: totalHeight * 30 / 700,
+          // ),
         ],
       ),
     );
@@ -334,13 +399,18 @@ class AddToCartMenu extends StatelessWidget {
 }
 
 class DetailContentMenu extends StatelessWidget {
+  String dishName;
+  DetailContentMenu({
+    Key key,
+    @required this.dishName,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     double totalWidth = MediaQuery.of(context).size.width;
     double totalHeight = MediaQuery.of(context).size.height;
     return Container(
       child: Text(
-        'Paneer Tikka',
+        dishName,
         style: TextStyle(
             fontSize: totalHeight * 14 / 700,
             color: Colors.black87,

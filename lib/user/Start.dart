@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import 'UserHome.dart';
 import 'Menucard.dart';
-import 'MapsPage.dart';
 
 class StartPage extends StatelessWidget {
   @override
@@ -66,7 +65,7 @@ class StartPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => MenuOptionSide(),
+                        builder: (context) => MenuOptionSide(automatic: true),
                       ),
                     );
                   },
