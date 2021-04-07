@@ -58,22 +58,36 @@ class _EatNowState extends State<EatNow> {
                     List<Dishes> dishes = [];
                     for (int i = 0; i < snapshot.data.docs.length; i++) {
                       final now = new DateTime.now();
-
+                      // String sort_key = "";
+                      // int flag = 0;
+                      // timetable.forEach((key, value) {
+                      //   if (now.hour >= key && flag == 0) {
+                      //     print(key + 7);
+                      //     print(timetable[17]);
+                      //     sort_key = value;
+                      //     flag = 1;
+                      //   }
+                      // });
+                      //
+                      print(chefs);
                       if (snapshot.data.docs[i]['mealType'].toLowerCase() ==
                           this.tellMeType(now.hour).toLowerCase()) {
                         var chef_detail =
                             chefs[snapshot.data.docs[i]["chefId"]];
                         // print(chef_detail);
                         var dd = snapshot.data.docs[i];
-                        Dishes dish = new Dishes(
-                            chef_detail["fname"],
-                            chef_detail["rating"],
-                            dd["dishName"].toString(),
-                            dd["price"].toDouble(),
-                            dd["imageUrl"].toString(),
-                            "25 min",
-                            dd["mealType"]);
-                        dishes.add(dish);
+                        print(chef_detail);
+                        if (chef_detail != null) {
+                          Dishes dish = new Dishes(
+                              chef_detail["fname"].toString(),
+                              chef_detail["rating"].toDouble(),
+                              dd["dishName"].toString(),
+                              dd["price"].toDouble(),
+                              dd["imageUrl"].toString(),
+                              "25 min",
+                              dd["mealType"]);
+                          dishes.add(dish);
+                        }
                       }
                     }
                     print(dishes);

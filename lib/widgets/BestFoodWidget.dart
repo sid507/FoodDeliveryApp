@@ -183,15 +183,17 @@ class _BestFoodListState extends State<BestFoodList> {
                   for (int i = 0; i < snapshot.data.docs.length; i++) {
                     var chef_detail = chef[snapshot.data.docs[i]["chefId"]];
                     var dd = snapshot.data.docs[i];
-                    Dishes dish = new Dishes(
-                        chef_detail["fname"].toString(),
-                        dd["rating"],
-                        dd["dishName"].toString(),
-                        dd["price"].toDouble(),
-                        dd["imageUrl"].toString(),
-                        "25 min",
-                        dd["mealType"]);
-                    dishes.add(dish);
+                    if (chef_detail != null) {
+                      Dishes dish = new Dishes(
+                          chef_detail["fname"].toString(),
+                          dd["rating"],
+                          dd["dishName"].toString(),
+                          dd["price"].toDouble(),
+                          dd["imageUrl"].toString(),
+                          "25 min",
+                          dd["mealType"]);
+                      dishes.add(dish);
+                    }
                   }
                   print(dishes);
 
