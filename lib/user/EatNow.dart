@@ -45,7 +45,7 @@ class _EatNowState extends State<EatNow> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return StreamBuilder<QuerySnapshot>(
-                stream: db.collection('Chefs').snapshots(),
+                stream: db.collection('Chef').snapshots(),
                 builder: (context, snapshot2) {
                   if (snapshot2.hasData) {
                     Map chefs = {};
@@ -67,21 +67,25 @@ class _EatNowState extends State<EatNow> {
                       //     flag = 1;
                       //   }
                       // });
-
+                      //
+                      print(chefs);
                       if (snapshot.data.docs[i]['mealType'].toLowerCase() ==
                           this.tellMeType(now.hour).toLowerCase()) {
                         var chef_detail =
                             chefs[snapshot.data.docs[i]["chefId"]];
                         var dd = snapshot.data.docs[i];
-                        Dishes dish = new Dishes(
-                            chef_detail["chefName"].toString(),
-                            chef_detail["rating"]..toDouble(),
-                            dd["dishName"].toString(),
-                            dd["price"].toDouble(),
-                            dd["imageUrl"].toString(),
-                            "25 min",
-                            dd["mealType"]);
-                        dishes.add(dish);
+                        print(chef_detail);
+                        if (chef_detail != null) {
+                          Dishes dish = new Dishes(
+                              chef_detail["fname"].toString(),
+                              chef_detail["rating"].toDouble(),
+                              dd["dishName"].toString(),
+                              dd["price"].toDouble(),
+                              dd["imageUrl"].toString(),
+                              "25 min",
+                              dd["mealType"]);
+                          dishes.add(dish);
+                        }
                       }
                     }
                     print(dishes);
