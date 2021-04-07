@@ -42,13 +42,13 @@ class _MealDaily2State extends State<MealDaily2> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return StreamBuilder<QuerySnapshot>(
-                  stream: db.collection('Chefs').snapshots(),
+                  stream: db.collection('Chef').snapshots(),
                   builder: (context, snapshot2) {
                     if (snapshot2.hasData) {
-                      Map chefs = {};
+                      Map chef = {};
                       for (int i = 0; i < snapshot2.data.docs.length; i++) {
                         print(snapshot2.data.docs[i].data());
-                        chefs[snapshot2.data.docs[i].id] =
+                        chef[snapshot2.data.docs[i].id] =
                             snapshot2.data.docs[i].data();
                       }
                       List<Dishes> dishes = [];
@@ -56,10 +56,10 @@ class _MealDaily2State extends State<MealDaily2> {
                         if (snapshot.data.docs[i]["mealType"].toLowerCase() ==
                             widget.type.toLowerCase()) {
                           var chef_detail =
-                              chefs[snapshot.data.docs[i]["chefId"]];
+                              chef[snapshot.data.docs[i]["chefId"]];
                           var dd = snapshot.data.docs[i];
                           Dishes dish = new Dishes(
-                              chef_detail["chefName"].toString(),
+                              chef_detail["fname"].toString(),
                               chef_detail["rating"]..toDouble(),
                               dd["dishName"].toString(),
                               dd["price"].toDouble(),
@@ -175,9 +175,9 @@ class _MealDaily2State extends State<MealDaily2> {
 
 class SingleCard extends StatefulWidget {
   String name, dishName, image, time;
-  double rating;
+  dynamic rating;
   int quantity;
-  double price;
+  dynamic price;
   CartData cartData;
   SingleCard(this.name, this.rating, this.price, this.dishName, this.image,
       this.time, this.quantity, this.cartData);

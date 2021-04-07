@@ -8,7 +8,7 @@ import 'UserHome.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/user/Chefdata.dart';
 import 'package:food_delivery_app/widgets/drawer.dart';
-import 'package:food_delivery_app/user/my_account.dart';
+import 'package:food_delivery_app/my_account_page/my_account.dart';
 
 class MenuOptionSide extends StatefulWidget {
   bool automatic;

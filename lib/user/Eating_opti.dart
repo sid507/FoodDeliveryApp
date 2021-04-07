@@ -6,6 +6,8 @@ import 'package:food_delivery_app/widgets/drawer.dart';
 import 'UserHome.dart';
 
 class Eating extends StatefulWidget {
+  bool automatic;
+  Eating({Key key, @required this.automatic}) : super(key: key);
   @override
   _EatingState createState() => _EatingState();
 }
@@ -14,8 +16,8 @@ class _EatingState extends State<Eating> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: MenuOptionSide(automatic: false),
-      drawer: AppDrawer(),
+      body: MenuOptionSide(automatic: widget.automatic),
+      drawer: AppDrawer(automatic: widget.automatic),
     );
   }
 }

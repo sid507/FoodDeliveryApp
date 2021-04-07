@@ -183,7 +183,7 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      drawer: Drawer(child: AppDrawer()),
+      drawer: Drawer(child: AppDrawer(automatic: widget.automatic)),
       drawerEnableOpenDragGesture: false,
       appBar: AppBar(
         toolbarHeight: mediaQuery.size.height * 50 / 700,

@@ -9,7 +9,7 @@ class FoodDetailsPage extends StatelessWidget {
   final double rating;
   final String time;
   final double price;
-  final String chefName;
+  final String fname;
   final String mealType;
   CartData cartdata;
 
@@ -20,7 +20,7 @@ class FoodDetailsPage extends StatelessWidget {
     @required this.rating,
     @required this.price,
     @required this.time,
-    @required this.chefName,
+    @required this.fname,
     @required this.mealType,
     @required this.cartdata,
   }) : super(key: key);
@@ -88,7 +88,7 @@ class FoodDetailsPage extends StatelessWidget {
               FoodTitleWidget(
                   productName: dishName,
                   productPrice: "\Rs. $price",
-                  productHost: "Chef $chefName"),
+                  productHost: "Chef $fname"),
               SizedBox(
                 height: totalHeight * 15 / 700,
               ),
@@ -98,7 +98,7 @@ class FoodDetailsPage extends StatelessWidget {
                 rating: rating,
                 price: price,
                 time: time,
-                chefName: chefName,
+                fname: fname,
                 mealType: mealType,
                 cartData: cartdata,
               ),
@@ -322,7 +322,7 @@ class AddToCartMenu extends StatelessWidget {
   final double rating;
   final String time;
   final double price;
-  final String chefName;
+  final String fname;
   final String mealType;
   CartData cartData;
 
@@ -333,7 +333,7 @@ class AddToCartMenu extends StatelessWidget {
     @required this.rating,
     @required this.price,
     @required this.time,
-    @required this.chefName,
+    @required this.fname,
     @required this.mealType,
     @required this.cartData,
   }) : super(key: key);
@@ -352,40 +352,40 @@ class AddToCartMenu extends StatelessWidget {
           //   color: Colors.black,
           //   iconSize: totalHeight * 30 / 700,
           // ),
-          InkWell(
-            onTap: () {
-              Navigator.push(context, ScaleRoute(page: FoodOrderPage()));
-            },
-            child: Container(
-              width: totalWidth * 200 / 420,
-              height: totalHeight * 45 / 700,
-              decoration: new BoxDecoration(
-                color: Color(0xFFfd2c2c),
-                border: Border.all(
-                  color: Colors.white,
-                  width: totalWidth * 2 / 420,
-                ),
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: Center(
-                child: TextButton(
-                  child: Text(
-                    'Add To Bag',
-                    style: new TextStyle(
-                        fontSize: totalHeight * 18 / 700,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400),
-                  ),
-                  onPressed: () {
-                    cartData.addItem(
-                        Dishes(chefName, rating, dishName, price, imageUrl,
-                            time, dishName),
-                        1);
-                  },
-                ),
-              ),
-            ),
-          ),
+          // InkWell(
+          //   onTap: () {
+          //     Navigator.push(context, ScaleRoute(page: FoodOrderPage()));
+          //   },
+          //   child: Container(
+          //     width: totalWidth * 200 / 420,
+          //     height: totalHeight * 45 / 700,
+          //     decoration: new BoxDecoration(
+          //       color: Color(0xFFfd2c2c),
+          //       border: Border.all(
+          //         color: Colors.white,
+          //         width: totalWidth * 2 / 420,
+          //       ),
+          //       borderRadius: BorderRadius.circular(10.0),
+          //     ),
+          //     child: Center(
+          //       child: TextButton(
+          //         child: Text(
+          //           'Add To Cart',
+          //           style: new TextStyle(
+          //               fontSize: totalHeight * 18 / 700,
+          //               color: Colors.white,
+          //               fontWeight: FontWeight.w400),
+          //         ),
+          //         onPressed: () {
+          //           CartData().addItem(
+          //               Dishes(fname, rating, dishName, price, imageUrl,
+          //                   time, mealType),
+          //               1);
+          //         },
+          //       ),
+          //     ),
+          //   ),
+          // ),
           // IconButton(
           //   onPressed: () {},
           //   icon: Icon(Icons.add),

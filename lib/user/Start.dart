@@ -58,7 +58,7 @@ class StartPage extends StatelessWidget {
                 //   textAlign: TextAlign.center,
                 // ),
                 SizedBox(
-                  height: totalHeight * 50 / 700,
+                  height: totalHeight * 30 / 700,
                 ),
                 ElevatedButton(
                   onPressed: () {
@@ -93,7 +93,7 @@ class StartPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: totalHeight * 20 / 700,
+                  height: totalHeight * 15 / 700,
                 ),
                 ElevatedButton(
                   onPressed: () {
@@ -119,7 +119,7 @@ class StartPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: totalHeight * 50 / 700,
+                  height: totalHeight * 100 / 700,
                 ),
               ],
             ),

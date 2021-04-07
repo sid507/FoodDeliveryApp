@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 import 'package:food_delivery_app/user/Start.dart';
 import 'package:food_delivery_app/auth_screens/sign_in.dart';
-import 'package:food_delivery_app/user/UserHome.dart';
+import 'package:food_delivery_app/auth_screens/sign_up.dart';
 import 'package:food_delivery_app/user/Menucard.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(FoodMain());
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp(FoodMain());
+  });
 }
 
 class FoodMain extends StatelessWidget {
@@ -18,9 +23,11 @@ class FoodMain extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => SignIn(),
+        '/': (context) => SignUp(),
+        '/signin': (context) => SignIn(),
+        '/start': (context) => StartPage(),
         '/user': (context) => StartPage(),
-        '/home': (context) => MenuOptionSide(automatic: false),
+        '/home': (context) => MenuOptionSide(automatic: true),
       },
       theme: ThemeData(
           primarySwatch: Colors.indigo,

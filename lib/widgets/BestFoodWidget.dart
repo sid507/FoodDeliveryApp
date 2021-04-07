@@ -58,11 +58,11 @@ class BestFoodTitle extends StatelessWidget {
 class BestFoodTiles extends StatelessWidget {
   String dishName;
   String imageUrl;
-  double rating;
+  dynamic rating;
   String time;
   int numberOfRating;
-  double price;
-  String chefName;
+  dynamic price;
+  String fname;
   String mealType;
   CartData cartData;
 
@@ -74,7 +74,7 @@ class BestFoodTiles extends StatelessWidget {
     @required this.numberOfRating,
     @required this.price,
     @required this.time,
-    @required this.chefName,
+    @required this.fname,
     @required this.mealType,
     @required this.cartData,
   }) : super(key: key);
@@ -94,7 +94,7 @@ class BestFoodTiles extends StatelessWidget {
               rating: this.rating,
               price: this.price,
               time: this.time,
-              chefName: this.chefName,
+              fname: this.fname,
               mealType: this.mealType,
             ),
           ),
@@ -170,21 +170,21 @@ class _BestFoodListState extends State<BestFoodList> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return StreamBuilder<QuerySnapshot>(
-              stream: db.collection('Chefs').snapshots(),
+              stream: db.collection('Chef').snapshots(),
               builder: (context, snapshot2) {
                 if (snapshot2.hasData) {
-                  Map chefs = {};
+                  Map chef = {};
                   for (int i = 0; i < snapshot2.data.docs.length; i++) {
                     print(snapshot2.data.docs[i].data());
-                    chefs[snapshot2.data.docs[i].id] =
+                    chef[snapshot2.data.docs[i].id] =
                         snapshot2.data.docs[i].data();
                   }
                   List<Dishes> dishes = [];
                   for (int i = 0; i < snapshot.data.docs.length; i++) {
-                    var chef_detail = chefs[snapshot.data.docs[i]["chefId"]];
+                    var chef_detail = chef[snapshot.data.docs[i]["chefId"]];
                     var dd = snapshot.data.docs[i];
                     Dishes dish = new Dishes(
-                        chef_detail["chefName"].toString(),
+                        chef_detail["fname"].toString(),
                         dd["rating"],
                         dd["dishName"].toString(),
                         dd["price"].toDouble(),
@@ -207,7 +207,7 @@ class _BestFoodListState extends State<BestFoodList> {
                         rating: data.getRating(),
                         time: data.gettime(),
                         numberOfRating: 200,
-                        chefName: data.name,
+                        fname: data.name,
                         mealType: data.getMealType(),
                         cartData: cartdata,
                       ),

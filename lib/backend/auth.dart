@@ -43,7 +43,7 @@ class Auth {
                         UserCredential userCredential =
                             await _auth.signInWithCredential(credential);
                         Navigator.pushNamedAndRemoveUntil(
-                            context, '/user', (route) => false);
+                            context, '/start', (route) => false);
                       },
                       child: Text(
                         "Confirm",
@@ -102,7 +102,7 @@ class Auth {
                         await Database()
                             .storeUserDetails(fname, lname, phoneNumber, role);
                         Navigator.pushNamedAndRemoveUntil(
-                            context, '/user', (route) => false);
+                            context, '/start', (route) => false);
                       },
                       child: Text(
                         "Confirm",

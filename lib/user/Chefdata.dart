@@ -3,8 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class Chef {
   String name;
-  double rating;
-  Chef(String name, double rating) {
+  dynamic rating;
+  Chef(String name, dynamic rating) {
     this.name = name;
     this.rating = rating;
   }
@@ -12,12 +12,12 @@ class Chef {
 
 class Dishes extends Chef {
   String _dishname;
-  double _price;
-  double _rating;
+  dynamic _price;
+  dynamic _rating;
   String _image;
   String _time;
   String _mealType;
-  Dishes(String name, double rating, String dishname, double price,
+  Dishes(String name, dynamic rating, String dishname, dynamic price,
       String image, String time, String mealType)
       : super(name, rating) {
     this._dishname = dishname;
@@ -103,7 +103,7 @@ class EatNowData {
 
     final db = FirebaseFirestore.instance;
     var chef = new Map();
-    CollectionReference collectionReference = db.collection('Chefs');
+    CollectionReference collectionReference = db.collection('Chef');
     collectionReference.snapshots().listen((snapshot) {
       for (int i = 0; i < snapshot.docs.length; i++) {
         chef[snapshot.docs[i].id] = snapshot.docs[i].data();

@@ -44,13 +44,13 @@ class _EatLaterState extends State<EatLater> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return StreamBuilder<QuerySnapshot>(
-                stream: db.collection('Chefs').snapshots(),
+                stream: db.collection('Chef').snapshots(),
                 builder: (context, snapshot2) {
                   if (snapshot2.hasData) {
-                    Map chefs = {};
+                    Map chef = {};
                     for (int i = 0; i < snapshot2.data.docs.length; i++) {
                       print(snapshot2.data.docs[i].data());
-                      chefs[snapshot2.data.docs[i].id] =
+                      chef[snapshot2.data.docs[i].id] =
                           snapshot2.data.docs[i].data();
                     }
                     List<Dishes> dishes = [];
@@ -83,12 +83,12 @@ class _EatLaterState extends State<EatLater> {
 
                       if (snapshot.data.docs[i]['mealType'].toLowerCase() ==
                           this.tellMeType(now.hour).toLowerCase()) {
-                        var chef_detail =
-                            chefs[snapshot.data.docs[i]["chefId"]];
+                        var chef_detail = chef[snapshot.data.docs[i]["chefId"]];
+                        // print(chef_detail);
                         var dd = snapshot.data.docs[i];
                         Dishes dish = new Dishes(
-                            chef_detail["chefName"].toString(),
-                            chef_detail["rating"]..toDouble(),
+                            chef_detail["fname"],
+                            chef_detail["rating"],
                             dd["dishName"].toString(),
                             dd["price"].toDouble(),
                             dd["imageUrl"].toString(),
@@ -149,9 +149,9 @@ class _EatLaterState extends State<EatLater> {
 
 class SingleCard extends StatefulWidget {
   String name, dishName, image, time;
-  double rating;
+  dynamic rating;
   int quantity;
-  double price;
+  dynamic price;
   SingleCard(this.name, this.rating, this.price, this.dishName, this.image,
       this.time, this.quantity);
   @override

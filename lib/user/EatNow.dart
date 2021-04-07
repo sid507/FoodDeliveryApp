@@ -45,37 +45,29 @@ class _EatNowState extends State<EatNow> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return StreamBuilder<QuerySnapshot>(
-                stream: db.collection('Chefs').snapshots(),
+                stream: db.collection('Chef').snapshots(),
                 builder: (context, snapshot2) {
                   if (snapshot2.hasData) {
                     Map chefs = {};
                     for (int i = 0; i < snapshot2.data.docs.length; i++) {
-                      print(snapshot2.data.docs[i].data());
+                      // print(snapshot2.data.docs[i].data());
                       chefs[snapshot2.data.docs[i].id] =
                           snapshot2.data.docs[i].data();
                     }
+                    print(chefs);
                     List<Dishes> dishes = [];
                     for (int i = 0; i < snapshot.data.docs.length; i++) {
                       final now = new DateTime.now();
-                      // String sort_key = "";
-                      // int flag = 0;
-                      // timetable.forEach((key, value) {
-                      //   if (now.hour >= key && flag == 0) {
-                      //     print(key + 7);
-                      //     print(timetable[17]);
-                      //     sort_key = value;
-                      //     flag = 1;
-                      //   }
-                      // });
 
                       if (snapshot.data.docs[i]['mealType'].toLowerCase() ==
                           this.tellMeType(now.hour).toLowerCase()) {
                         var chef_detail =
                             chefs[snapshot.data.docs[i]["chefId"]];
+                        // print(chef_detail);
                         var dd = snapshot.data.docs[i];
                         Dishes dish = new Dishes(
-                            chef_detail["chefName"].toString(),
-                            chef_detail["rating"]..toDouble(),
+                            chef_detail["fname"],
+                            chef_detail["rating"],
                             dd["dishName"].toString(),
                             dd["price"].toDouble(),
                             dd["imageUrl"].toString(),
@@ -128,9 +120,9 @@ class _EatNowState extends State<EatNow> {
 
 class SingleCard extends StatefulWidget {
   String name, dishName, image, time;
-  double rating;
+  dynamic rating;
   int quantity;
-  double price;
+  dynamic price;
   CartData cartData;
   SingleCard(this.name, this.rating, this.price, this.dishName, this.image,
       this.time, this.quantity, this.cartData);

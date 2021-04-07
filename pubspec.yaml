@@ -63,13 +63,13 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/logo.PNG
-    - assets/images/flag.png
     - assets/images/panner_tikka.JPG
     - assets/images/dosa.jpg
     - assets/images/north_indian.JPG
     - assets/images/start_page.jpeg
     - assets/images/empty_shopping_cart.png
     - assets/images/drawer_header_background.png
+    - assets/images/dp.png
 
     - assets/images/menus/ic_search_menu.png
     - assets/images/menus/ic_account.png

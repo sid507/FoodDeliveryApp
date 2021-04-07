@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:food_delivery_app/user/Menucard.dart';
+import 'package:food_delivery_app/user/UserHome.dart';
 
 class AppDrawer extends StatelessWidget {
+  bool automatic;
+  AppDrawer({Key key, @required this.automatic}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -40,18 +46,19 @@ class AppDrawer extends StatelessWidget {
           image: AssetImage('assets/images/drawer_header_background.png'),
         ),
       ),
-      child: Stack(
-        children: <Widget>[
-          Positioned(
-              bottom: 12.0,
-              left: 16.0,
-              child: Text("Food Delivery App",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.w500))),
-        ],
-      ),
+      child: Container(),
+      // child: Stack(
+      //   children: <Widget>[
+      //     Positioned(
+      //         bottom: 12.0,
+      //         left: 16.0,
+      //         child: Text("Food Delivery App",
+      //             style: TextStyle(
+      //                 color: Colors.white,
+      //                 fontSize: 20.0,
+      //                 fontWeight: FontWeight.w500))),
+      //   ],
+      // ),
     );
   }
 
@@ -68,7 +75,17 @@ class AppDrawer extends StatelessWidget {
         ],
       ),
       onTap: () {
-        Navigator.pushNamed(context, '/$link');
+        if (link == 'signin') {
+          FirebaseAuth.instance.signOut();
+          Navigator.pushNamed(context, '/$link');
+        } else {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => MenuOptionSide(automatic: automatic),
+            ),
+          );
+        }
       },
     );
   }

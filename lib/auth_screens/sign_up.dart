@@ -60,17 +60,17 @@ class _SignUpState extends State<SignUp> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Container(
-                    width: totalHeight * 150 / 420,
-                    height: totalHeight * 1 / 7,
-                    alignment: Alignment.center,
-                    child: Image.asset(
-                      "assets/images/logo.PNG",
-                    ),
-                  ),
-                  SizedBox(
-                    height: totalHeight * 55 / 700,
-                  ),
+                  // Container(
+                  //   width: totalHeight * 150 / 420,
+                  //   height: totalHeight * 1 / 7,
+                  //   alignment: Alignment.center,
+                  //   child: Image.asset(
+                  //     "assets/images/logo.PNG",
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //   height: totalHeight * 55 / 700,
+                  // ),
                   Row(
                     children: <Widget>[
                       Flexible(
