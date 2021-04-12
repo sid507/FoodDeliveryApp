@@ -7,6 +7,7 @@ import 'package:food_delivery_app/my_account_page/diagonal_clipper.dart';
 import 'package:food_delivery_app/my_account_page/initial_list.dart';
 import 'package:food_delivery_app/my_account_page/list_model.dart';
 import 'package:food_delivery_app/my_account_page/task_row.dart';
+import 'package:food_delivery_app/auth_screens/sign_in.dart';
 
 class MyAccount extends StatefulWidget {
   MyAccount({Key key}) : super(key: key);
@@ -102,12 +103,16 @@ class _MyAccountState extends State<MyAccount> {
             ),
           ),
           new IconButton(
-              icon: Icon(Icons.login),
-              color: Colors.white,
-              onPressed: () {
-                FirebaseAuth.instance.signOut();
-                Navigator.pushNamed(context, '/signin');
-              })
+            icon: Icon(Icons.login),
+            color: Colors.white,
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => SignIn()),
+                  (Route<dynamic> route) => false);
+            },
+          ),
         ],
       ),
     );

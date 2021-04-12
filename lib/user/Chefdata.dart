@@ -17,8 +17,9 @@ class Dishes extends Chef {
   String _image;
   String _time;
   String _mealType;
+  int _count;
   Dishes(String name, dynamic rating, String dishname, dynamic price,
-      String image, String time, String mealType)
+      String image, String time, String mealType, int count)
       : super(name, rating) {
     this._dishname = dishname;
     this._price = price;
@@ -26,6 +27,7 @@ class Dishes extends Chef {
     this._image = image;
     this._time = time;
     this._mealType = mealType;
+    this._count = count;
   }
   String getDishName() {
     return this._dishname;
@@ -35,11 +37,15 @@ class Dishes extends Chef {
     return this._mealType;
   }
 
-  double getPrice() {
+  dynamic getPrice() {
     return this._price;
   }
 
-  double getRating() {
+  int getCount() {
+    return this._count;
+  }
+
+  dynamic getRating() {
     if (this._rating != null)
       return this._rating;
     else
@@ -75,16 +81,16 @@ class CartData {
     return dishes;
   }
 
-  double calculateTotal(List<SingleCartItem> dishe) {
-    double price = 0;
+  dynamic calculateTotal(List<SingleCartItem> dishe) {
+    dynamic price = 0;
     for (int i = 0; i < dishe.length; i++) {
       price += dishe[i].quantity * dishe[i].dish.getPrice();
     }
     return price;
   }
 
-  double calculateGrandTotal() {
-    double price = this.calculateTotal(dishes);
+  dynamic calculateGrandTotal() {
+    dynamic price = this.calculateTotal(dishes);
     return price > 0 ? (price + 50) : 0;
   }
 }
@@ -94,9 +100,9 @@ class EatNowData {
   List<String> d = [];
   EatNowData() {
     Dishes d1 = new Dishes("Siddharth Mishra", 4.5, "Paneer Tikka", 250,
-        "panner_tikka.JPG", "25 min", "Lunch");
-    Dishes d2 = new Dishes(
-        "Nishant Pal", 4.7, "Dosa", 250, "dosa.jpg", "30 mins", "Breakfast");
+        "panner_tikka.JPG", "25 min", "Lunch", 5);
+    Dishes d2 = new Dishes("Nishant Pal", 4.7, "Dosa", 250, "dosa.jpg",
+        "30 mins", "Breakfast", 10);
     this.data.add(d1);
     this.data.add(d2);
     this.data.add(d2);

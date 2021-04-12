@@ -13,7 +13,7 @@ class _FoodOrderPageState extends State<FoodOrderPage> {
   int counter = 3;
   List<SingleCartItem> dishes;
   Helper help = new Helper();
-  double totalCost = 0;
+  dynamic totalCost = 0;
 
   @override
   void initState() {

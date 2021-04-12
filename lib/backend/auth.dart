@@ -5,6 +5,14 @@ import 'package:food_delivery_app/backend/database.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Auth {
+  FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+
+  String getUserId() {
+    return _firebaseAuth.currentUser.uid;
+  }
+
+  // otp verification during login
   Future<void> phoneNumberVerificationLogin(
       String phoneNumber, BuildContext context) async {
     final TextEditingController _codeController = TextEditingController();
@@ -99,8 +107,8 @@ class Auth {
                             await _auth.signInWithCredential(credential);
                         User user = userCredential.user;
                         // store details of new user
-                        await Database()
-                            .storeUserDetails(fname, lname, phoneNumber, role);
+                        await Database().storeUserDetails(
+                            user.uid, fname, lname, phoneNumber, role);
                         Navigator.pushNamedAndRemoveUntil(
                             context, '/start', (route) => false);
                       },

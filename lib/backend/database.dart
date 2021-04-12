@@ -1,7 +1,10 @@
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:food_delivery_app/backend/auth.dart';
 
 class Database {
+  static final firestore = FirebaseFirestore.instance;
+
   Future<bool> userExists(String phoneNum) async {
     QuerySnapshot user;
     user = await FirebaseFirestore.instance
@@ -15,10 +18,12 @@ class Database {
     }
   }
 
-  Future<DocumentReference> storeUserDetails(
-      String fname, String lname, String phoneNum, String role) async {
-    return FirebaseFirestore.instance
-        .collection(role)
-        .add({'fname': fname, 'lname': lname, 'phoneNum': phoneNum});
+  storeUserDetails(String uid, String fname, String lname, String phoneNum,
+      String role) async {
+    return FirebaseFirestore.instance.collection('User').doc(uid).set({
+      'fname': fname,
+      'lname': lname,
+      'phoneNum': phoneNum,
+    });
   }
 }

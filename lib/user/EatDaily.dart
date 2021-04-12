@@ -107,7 +107,7 @@ class _EatDailyState extends State<EatDaily> {
                   // Respond to button press
 
                   CartData().addItem(
-                      Dishes(name, rating, dishtype, 0, image, "0", "Lunch"),
+                      Dishes(name, rating, dishtype, 0, image, "0", "Lunch", 5),
                       0);
                 },
                 label: Text(

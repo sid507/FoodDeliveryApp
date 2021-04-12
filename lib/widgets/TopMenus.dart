@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../user/MenuCard.dart';
+import 'package:food_delivery_app/user/Utils.dart';
 
 class TopMenus extends StatefulWidget {
   @override
@@ -13,7 +14,7 @@ class _TopMenusState extends State<TopMenus> {
     double totalWidth = MediaQuery.of(context).size.width;
     double totalHeight = MediaQuery.of(context).size.height;
     return Container(
-      height: totalHeight * 2 / 7,
+      height: totalHeight * 1.5 / 7,
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: <Widget>[
@@ -72,44 +73,49 @@ class TopMenuTiles extends StatelessWidget {
         children: <Widget>[
           Container(
             padding: EdgeInsets.only(
-                left: totalWidth * 1 / 420,
-                right: totalWidth * 1 / 420,
-                top: totalHeight * 1 / 700,
-                bottom: totalHeight * 1 / 700),
+                left: totalWidth * 15 / 420,
+                right: totalWidth * 15 / 420,
+                top: totalHeight * 5 / 700,
+                bottom: totalHeight * 10 / 700),
             decoration: new BoxDecoration(boxShadow: [
               new BoxShadow(
-                color: Color(0xFFdee8ff),
+                color: Color(0xffdee8ff),
                 blurRadius: 25.0,
                 offset: Offset(0.0, 0.75),
               ),
             ]),
-            child: Card(
-                color: Colors.white,
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(10.0),
-                  ),
+            // child: Card(
+            //   color: Colors.orangeAccent[200],
+            //   elevation: 0,
+            //   shape: RoundedRectangleBorder(
+            //     borderRadius: const BorderRadius.all(
+            //       Radius.circular(10.0),
+            //     ),
+            //   ),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Helper().button,
+                border: new Border.all(
+                  width: 1.5,
+                  color: Helper().button,
                 ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('assets/images/topmenu/' + imageUrl),
-                        fit: BoxFit.cover),
-                  ),
-                  width: totalWidth * 120 / 420,
-                  height: totalHeight * 1 / 7,
-                  // child: Center(
-                  //     child: Image.asset(
-                  //   'assets/images/topmenu/' + imageUrl,
-                  //   width: totalWidth * 80 / 420,
-                  //   height: totalHeight * 80 / 700,
-                  // )),
-                )),
+                borderRadius: BorderRadius.circular(totalHeight * 0.1),
+                // shape: BoxShape.circle
+              ),
+              width: totalWidth * 100 / 420,
+              height: totalHeight * 1 / 9,
+              child: CircleAvatar(
+                backgroundColor: Helper().button,
+                backgroundImage:
+                    AssetImage('assets/images/topmenu/' + imageUrl),
+                radius: totalHeight * 0.08,
+              ),
+            ),
+            // ),
           ),
           Text(name,
               style: TextStyle(
-                  color: Color(0xFF002140),
+                  color: Colors.blue,
                   fontSize: totalHeight * 16 / 700,
                   fontWeight: FontWeight.w500)),
         ],

@@ -66,7 +66,8 @@ class _MealDaily2State extends State<MealDaily2> {
                                 dd["price"].toDouble(),
                                 dd["imageUrl"].toString(),
                                 "25 min",
-                                dd["mealType"]);
+                                dd["mealType"],
+                                dd["count"]);
                             dishes.add(dish);
                           }
                         }
@@ -116,7 +117,8 @@ class _MealDaily2State extends State<MealDaily2> {
                                   data.getimage(),
                                   data.gettime(),
                                   1,
-                                  this.cartData),
+                                  this.cartData,
+                                  data.getCount()),
                             );
                           }).toList()),
                         ],
@@ -178,11 +180,11 @@ class _MealDaily2State extends State<MealDaily2> {
 class SingleCard extends StatefulWidget {
   String name, dishName, image, time;
   dynamic rating;
-  int quantity;
+  int quantity, count;
   dynamic price;
   CartData cartData;
   SingleCard(this.name, this.rating, this.price, this.dishName, this.image,
-      this.time, this.quantity, this.cartData);
+      this.time, this.quantity, this.cartData, this.count);
   @override
   _SingleCardState createState() => _SingleCardState();
 }
@@ -335,7 +337,8 @@ class _SingleCardState extends State<SingleCard> {
                                 widget.price,
                                 widget.image,
                                 widget.time,
-                                widget.dishName),
+                                widget.dishName,
+                                widget.count),
                             widget.quantity);
                         print(widget.cartData);
                       },

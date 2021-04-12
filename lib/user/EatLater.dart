@@ -94,7 +94,8 @@ class _EatLaterState extends State<EatLater> {
                               dd["price"].toDouble(),
                               dd["imageUrl"].toString(),
                               "25 min",
-                              dd["mealType"]);
+                              dd["mealType"],
+                              dd["count"]);
                           dishes.add(dish);
                         }
                       }
@@ -152,7 +153,7 @@ class _EatLaterState extends State<EatLater> {
 class SingleCard extends StatefulWidget {
   String name, dishName, image, time;
   dynamic rating;
-  int quantity;
+  int quantity, count;
   dynamic price;
   SingleCard(this.name, this.rating, this.price, this.dishName, this.image,
       this.time, this.quantity);
@@ -348,7 +349,8 @@ class _SingleCardState extends State<SingleCard> {
                                 widget.price,
                                 widget.image,
                                 widget.time,
-                                widget.dishName),
+                                widget.dishName,
+                                widget.count),
                             widget.quantity);
                       },
                       label: Text(

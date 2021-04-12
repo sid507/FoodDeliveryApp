@@ -6,6 +6,7 @@ import 'package:food_delivery_app/auth_screens/sign_in.dart';
 import 'package:food_delivery_app/auth_screens/sign_up.dart';
 import 'package:food_delivery_app/user/Menucard.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +22,7 @@ class FoodMain extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialRoute: '/home',
       routes: {
         '/': (context) => SignUp(),
         '/signin': (context) => SignIn(),
@@ -29,6 +30,9 @@ class FoodMain extends StatelessWidget {
         '/user': (context) => StartPage(),
         '/home': (context) => MenuOptionSide(automatic: true),
       },
+      // home: FirebaseAuth.instance.currentUser == null
+      //     ? SignIn()
+      //     : MenuOptionSide(automatic: true),
       theme: ThemeData(
           primarySwatch: Colors.indigo,
           visualDensity: VisualDensity.adaptivePlatformDensity,

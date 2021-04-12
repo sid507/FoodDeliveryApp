@@ -11,6 +11,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'ScaleRoute.dart';
 import 'Cart.dart';
 import 'Menucard.dart';
+import 'package:food_delivery_app/user/Chefdata.dart';
 import 'package:food_delivery_app/widgets/BestFoodWidget.dart';
 import 'package:food_delivery_app/auth_screens/sign_in.dart';
 import 'package:food_delivery_app/widgets/PopularFoodsWidget.dart';
@@ -52,25 +53,27 @@ class _MapHomePageState extends State<MapHomePage> {
             onMapCreated: onMapCreated,
             onTap: _handleTap,
             markers: Set.from(myMarker),
-            mapType: MapType.hybrid,
+            // mapType: MapType.hybrid,
             myLocationEnabled: true,
           ),
           Align(
-              alignment: Alignment.bottomCenter,
-              child: ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    getLoc();
-                  });
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MenuOptionSide(automatic: false),
-                    ),
-                  );
-                },
-                child: Text("DONE"),
-              )),
+            alignment: Alignment.bottomCenter,
+            child: ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  getLoc();
+                });
+                setState(() {});
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MenuOptionSide(automatic: false),
+                  ),
+                );
+              },
+              child: Text("DONE"),
+            ),
+          ),
         ],
       ),
     );
@@ -176,14 +179,16 @@ class _HomePageState extends State<HomePage> {
     if (widget.automatic) {
       getLoc();
     }
+    print(_address);
   }
 
   Widget build(BuildContext context) {
     MediaQueryData mediaQuery = MediaQuery.of(context);
+    CartData cartdata = new CartData();
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      drawer: Drawer(child: AppDrawer(automatic: widget.automatic)),
+      // drawer: Drawer(child: AppDrawer(automatic: widget.automatic)),
       drawerEnableOpenDragGesture: false,
       appBar: AppBar(
         toolbarHeight: mediaQuery.size.height * 50 / 700,
@@ -228,12 +233,15 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: <Widget>[
             SearchWidget(),
-            TopMenus(),
-            PopularFoodsWidget(),
-            BestFoodWidget(),
             SizedBox(
               height: mediaQuery.size.height * 15 / 700,
-            )
+            ),
+            TopMenus(),
+            PopularFoodsWidget(cartData: cartdata),
+            SizedBox(
+              height: mediaQuery.size.height * 15 / 700,
+            ),
+            BestFoodWidget(cartData: cartdata),
           ],
         ),
       ),
