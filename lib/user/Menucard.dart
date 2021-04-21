@@ -2,6 +2,7 @@ import 'package:food_delivery_app/user/AllEatOption.dart';
 import 'package:food_delivery_app/user/Cart.dart';
 import 'package:food_delivery_app/user/Eating_opti.dart';
 import 'package:food_delivery_app/auth_screens/sign_in.dart';
+import 'package:food_delivery_app/user/SearchPage.dart';
 import 'package:food_delivery_app/user/Utils.dart';
 import 'UserHome.dart';
 

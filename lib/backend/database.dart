@@ -5,7 +5,7 @@ import 'package:food_delivery_app/backend/auth.dart';
 class Database {
   static final firestore = FirebaseFirestore.instance;
 
-  Future<bool> userExists(String phoneNum) async {
+  Future<bool> userExists(BuildContext context, String phoneNum) async {
     QuerySnapshot user;
     user = await FirebaseFirestore.instance
         .collection('User')

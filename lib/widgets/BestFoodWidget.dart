@@ -180,7 +180,7 @@ class _BestFoodTilesState extends State<BestFoodTiles> {
                               setState(() {
                                 widget.quantity =
                                     help.addQuantity(widget.quantity);
-                                print(widget.quantity);
+                                // print(widget.quantity);
                               })
                             },
                           ),
@@ -194,7 +194,7 @@ class _BestFoodTilesState extends State<BestFoodTiles> {
                               setState(() {
                                 widget.quantity =
                                     help.delQuantity(widget.quantity);
-                                print(widget.quantity);
+                                // print(widget.quantity);
                               })
                             },
                           ),
@@ -339,7 +339,7 @@ class _BestFoodListState extends State<BestFoodList> {
                 if (snapshot2.hasData) {
                   Map chef = {};
                   for (int i = 0; i < snapshot2.data.docs.length; i++) {
-                    print(snapshot2.data.docs[i].data());
+                    // print(snapshot2.data.docs[i].data());
                     chef[snapshot2.data.docs[i].id] =
                         snapshot2.data.docs[i].data();
                   }
@@ -361,11 +361,11 @@ class _BestFoodListState extends State<BestFoodList> {
                     }
                   }
                   dishes.sort((a, b) => b.getRating().compareTo(a.getRating()));
-                  print(dishes);
+                  // print(dishes);
 
                   return Row(
                       children: dishes.map((data) {
-                    print(ll);
+                    // print(ll);
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: BestFoodTiles(

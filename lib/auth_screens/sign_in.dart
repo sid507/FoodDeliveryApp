@@ -4,6 +4,7 @@ import 'package:food_delivery_app/auth_screens/sign_up.dart';
 import 'package:food_delivery_app/backend/auth.dart';
 import 'package:food_delivery_app/backend/database.dart';
 import 'package:food_delivery_app/widgets/alert.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SignIn extends StatefulWidget {
   @override
@@ -29,7 +30,6 @@ class _SignInState extends State<SignIn> {
     print(totalWidth);
     double totalHeight = MediaQuery.of(context).size.height;
     print(totalHeight);
-    String defaultFontFamily = 'Roboto-Light.ttf';
     double defaultFontSize = totalHeight * 14 / 700;
     double defaultIconSize = totalHeight * 17 / 700;
 
@@ -51,17 +51,9 @@ class _SignInState extends State<SignIn> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  // Container(
-                  //   width: totalHeight * 150 / 420,
-                  //   height: totalHeight * 1 / 7,
-                  //   alignment: Alignment.center,
-                  //   child: Image.asset(
-                  //     "assets/images/logo.PNG",
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   height: totalHeight * 55 / 700,
-                  // ),
+                  SizedBox(
+                    height: totalHeight * 0.2,
+                  ),
                   TextField(
                     maxLength: 10,
                     controller: _phoneController,
@@ -84,7 +76,6 @@ class _SignInState extends State<SignIn> {
                         fillColor: Color(0xFFF2F3F5),
                         hintStyle: TextStyle(
                             color: Color(0xFF666666),
-                            fontFamily: defaultFontFamily,
                             fontSize: defaultFontSize),
                         hintText: "Phone Number",
                         errorText:
@@ -94,7 +85,11 @@ class _SignInState extends State<SignIn> {
                     height: totalHeight * 15 / 700,
                   ),
                   clickedOnSignIn
-                      ? Text("wait for verification code...")
+                      ? Center(
+                          child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                  Color(0xFFFF785B))),
+                        )
                       : Container(),
                   SizedBox(
                     height: totalHeight * 8 / 700,
@@ -127,28 +122,25 @@ class _SignInState extends State<SignIn> {
                             vertical: 10.0, horizontal: 5.0),
                         child: Text(
                           "Sign In",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: totalHeight * 20 / 700,
-                          ),
+                          style: GoogleFonts.montserrat(
+                              color: Colors.white, fontSize: 16),
                         ),
                       ),
                       onPressed: () async {
                         if (!validation()) {
-                          setState(() {});
+                          setState(() {}); // set state to show error messages
                         } else {
                           // first check in cloud firestore whether user is registered
-                          bool userExist = await Database()
-                              .userExists("+91" + _phoneController.text);
+                          bool userExist = await Database().userExists(
+                              context, "+91" + _phoneController.text);
                           if (userExist == true) {
                             // if user exists then we perform OTP verification
-                            setState(() {
-                              clickedOnSignIn = true;
-                            });
+                            setState(() => clickedOnSignIn = true);
                             await Auth().phoneNumberVerificationLogin(
                                 "+91" + _phoneController.text, context);
+                            setState(() => clickedOnSignIn = false);
                           } else {
-                            AlertMessage().showAlertDialog(context,
+                            AlertMessage().showAlertDialog(context, "Error!",
                                 "You are not a registered user! You can register on the Sign Up page");
                           }
                         }
@@ -191,7 +183,6 @@ class _SignInState extends State<SignIn> {
                           "Sign Up",
                           style: TextStyle(
                             color: Color(0xFFf7418c),
-                            fontFamily: defaultFontFamily,
                             fontSize: defaultFontSize,
                             fontStyle: FontStyle.normal,
                           ),

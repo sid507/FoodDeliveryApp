@@ -8,8 +8,6 @@ import 'package:food_delivery_app/user/MealDaily2.dart';
 import 'package:food_delivery_app/user/Menucard.dart';
 import 'package:food_delivery_app/user/Utils.dart';
 
-void main() => runApp(MyApp());
-
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
@@ -23,6 +21,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(accentColor: Color.fromRGBO(185, 204, 252, 1)),
       home: DefaultTabController(
         length: 4,
@@ -31,7 +30,8 @@ class _MyAppState extends State<MyApp> {
             preferredSize: Size.fromHeight(70.0),
             child: AppBar(
               title: Text(
-                'Food App',
+                'Order',
+                textAlign: TextAlign.start,
                 style: TextStyle(
                     fontWeight: FontWeight.bold, color: Helper().heading),
               ),

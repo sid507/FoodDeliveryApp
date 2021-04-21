@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:dropdown_formfield/dropdown_formfield.dart';
 import 'package:food_delivery_app/auth_screens/sign_in.dart';
 import 'package:food_delivery_app/backend/auth.dart';
 import 'package:food_delivery_app/backend/database.dart';
 import 'package:food_delivery_app/widgets/alert.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -20,19 +22,20 @@ class _SignUpState extends State<SignUp> {
   bool clickedOnSignUp = false;
 
   bool validation() {
+    bool retVal = true;
     if (_fnameController.text == "" || _fnameController.text == null) {
       fnameError = true;
-      return false;
+      retVal = false;
     }
     if (_lnameController.text == "" || _lnameController.text == null) {
       lnameError = true;
-      return false;
+      retVal = false;
     }
     if (_phoneController.text.length < 10 || _phoneController.text == null) {
       phoneError = true;
-      return false;
+      retVal = false;
     }
-    return true;
+    return retVal;
   }
 
   @override
@@ -60,17 +63,9 @@ class _SignUpState extends State<SignUp> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  // Container(
-                  //   width: totalHeight * 150 / 420,
-                  //   height: totalHeight * 1 / 7,
-                  //   alignment: Alignment.center,
-                  //   child: Image.asset(
-                  //     "assets/images/logo.PNG",
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   height: totalHeight * 55 / 700,
-                  // ),
+                  SizedBox(
+                    height: totalHeight * 0.15,
+                  ),
                   Row(
                     children: <Widget>[
                       Flexible(
@@ -166,7 +161,11 @@ class _SignUpState extends State<SignUp> {
                     height: totalHeight * 15 / 700,
                   ),
                   clickedOnSignUp
-                      ? Text('wait for verification code..')
+                      ? Center(
+                          child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                  Color(0xFFFF785B))),
+                        )
                       : Container(),
                   SizedBox(
                     height: totalHeight * 15 / 700,
@@ -197,35 +196,30 @@ class _SignUpState extends State<SignUp> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                             vertical: 10.0, horizontal: 5.0),
-                        child: Text(
-                          "Sign Up",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: totalHeight * 18 / 700,
-                              fontFamily: "Roboto"),
-                        ),
+                        child: Text("Sign Up",
+                            style: GoogleFonts.montserrat(
+                                color: Colors.white, fontSize: 16)),
                       ),
                       onPressed: () async {
                         // first check in cloud firestore whether user is registered
                         if (!validation()) {
                           setState(() {});
                         } else {
-                          bool userExist = await Database()
-                              .userExists("+91" + _phoneController.text);
+                          bool userExist = await Database().userExists(
+                              context, "+91" + _phoneController.text);
                           if (userExist == false) {
                             // we perform OTP verification only if it is a new user
-                            setState(() {
-                              clickedOnSignUp = true;
-                            });
+                            setState(() => clickedOnSignUp = true);
                             await Auth().phoneNumberVerificationRegister(
                                 "+91" + _phoneController.text,
                                 _fnameController.text,
                                 _lnameController.text,
                                 _role,
                                 context);
+                            setState(() => clickedOnSignUp = false);
                           } else {
-                            AlertMessage().showAlertDialog(context,
-                                "This phone number is already registered");
+                            AlertMessage().showAlertDialog(context, "Error",
+                                "A user with this phone number already exists!");
                           }
                         }
                       },

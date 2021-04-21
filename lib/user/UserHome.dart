@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:foldable_sidebar/foldable_sidebar.dart';
+import 'package:food_delivery_app/user/Utils.dart';
 import 'package:food_delivery_app/widgets/drawer.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:location/location.dart';
@@ -21,6 +22,7 @@ import 'package:food_delivery_app/widgets/AppBarWidget.dart';
 
 String _address = "Searching Location ...";
 List<Marker> myMarker = [];
+bool locationSet = false;
 
 class MapHomePage extends StatefulWidget {
   @override
@@ -161,9 +163,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool _isEditingText = false;
+  bool _isEditingText = true;
   TextEditingController _editingController;
-  String initialText = _address;
 
   LocationData _currentPosition;
   GoogleMapController mapController;
@@ -176,10 +177,197 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    if (widget.automatic) {
+    if (widget.automatic && !(locationSet)) {
       getLoc();
     }
+    _editingController = TextEditingController(text: _address);
     print(_address);
+    // Navigator.pop(context);
+    // Navigator.pushNamed(context, "home");
+  }
+
+  @override
+  void dispose() {
+    _editingController.dispose();
+    super.dispose();
+  }
+
+  Widget _editTitleTextField(context) {
+    double totalWidth = MediaQuery.of(context).size.width;
+    double totalHeight = MediaQuery.of(context).size.height;
+    if (_isEditingText)
+      return Center(
+        child: TextField(
+          onSubmitted: (newValue) {
+            setState(() {
+              _address = newValue;
+              _isEditingText = false;
+              locationSet = true;
+            });
+          },
+          autofocus: true,
+          controller: _editingController,
+        ),
+      );
+    return InkWell(
+      onTap: () {
+        setState(() {
+          _isEditingText = true;
+        });
+      },
+      child: Text(
+        _address,
+        overflow: TextOverflow.ellipsis,
+        maxLines: 3,
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: totalHeight * 15 / 700,
+        ),
+      ),
+    );
+  }
+
+  _showModalBottomSheet(context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        double totalWidth = MediaQuery.of(context).size.width;
+        double totalHeight = MediaQuery.of(context).size.height;
+        return Container(
+          // color: Colors.grey,
+          height: totalHeight / 3,
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    // color: Colors.grey,
+                    height: totalHeight / 3,
+                    // decoration: BoxDecoration(
+                    //   color: Color(0xffdee8ff),
+                    //   borderRadius: BorderRadius.only(
+                    //     topLeft: Radius.circular(20),
+                    //     topRight: Radius.circular(20),
+                    //   ),
+                    // ),
+                    decoration: BoxDecoration(
+                        color: Color(0xffdee8ff),
+                        border: Border.all(
+                          color: Color(0xffaeb8ff),
+                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    child: Column(
+                      children: <Widget>[
+                        Divider(
+                          color: Colors.black12,
+                        ),
+                        Text(
+                          "Select Delivery Address",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                              fontSize: totalHeight * 20 / 700,
+                              fontFamily: "Robonto",
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Divider(
+                          color: Colors.black12,
+                        ),
+                        SizedBox(
+                          height: totalHeight * 15 / 700,
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Icon(Icons.home),
+                            SizedBox(width: totalWidth * 0.01),
+                            Text("HOME",
+                                style: TextStyle(
+                                    fontSize: totalHeight * 18 / 700,
+                                    fontFamily: "Robonto",
+                                    fontWeight: FontWeight.bold)),
+                          ],
+                        ),
+                        SizedBox(
+                          height: totalHeight * 5 / 700,
+                        ),
+                        // Row(
+                        //   children: <Widget>[
+                        //     Icon(Icons.home),
+                        //     SizedBox(width: totalWidth * 0.1),
+                        _editTitleTextField(context),
+                        //   ],
+                        // ),
+                        SizedBox(
+                          height: totalHeight * 15 / 700,
+                        ),
+                        Divider(
+                          color: Colors.black12,
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MapHomePage(),
+                              ),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.white,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                    totalHeight * 10 / 700)),
+                          ),
+                          child: RichText(
+                            text: TextSpan(
+                              children: [
+                                WidgetSpan(
+                                  child: Icon(Icons.add_location_sharp,
+                                      color: Color(0xFF002140),
+                                      size: totalHeight * 20 / 700),
+                                ),
+                                TextSpan(
+                                  text: " Set Your Location Manually",
+                                  style: TextStyle(
+                                      color: Color(0xFF002140),
+                                      fontSize: totalHeight * 20 / 700,
+                                      fontWeight: FontWeight.normal),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Divider(
+                          color: Colors.black12,
+                        ),
+                        // ElevatedButton(
+                        //   onPressed: () {
+                        //     setState(() {});
+                        //   },
+                        //   style: ElevatedButton.styleFrom(
+                        //     primary: Colors.white,
+                        //     shape: RoundedRectangleBorder(
+                        //         borderRadius:
+                        //             BorderRadius.circular(totalHeight * 10 / 700)),
+                        //   ),
+                        //   child: Text(
+                        //     "SELECT & PROCEED",
+                        //     style: TextStyle(
+                        //         color: Color(0xFF002140),
+                        //         fontSize: totalHeight * 22 / 700,
+                        //         fontWeight: FontWeight.normal),
+                        //   ),
+                        // ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
   }
 
   Widget build(BuildContext context) {
@@ -219,12 +407,14 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: Icon(Icons.edit),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => MapHomePage(),
-                ),
-              );
+              _showModalBottomSheet(context);
+              setState(() {});
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => MapHomePage(),
+              //   ),
+              // );
             },
           ),
         ],
@@ -232,6 +422,9 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
+            SizedBox(
+              height: mediaQuery.size.height * 5 / 700,
+            ),
             SearchWidget(),
             SizedBox(
               height: mediaQuery.size.height * 15 / 700,
