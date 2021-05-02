@@ -43,7 +43,7 @@ class _MyAccountState extends State<MyAccount> {
           _buildTopHeader(height),
           _buildProfileRow(height),
           _buildBottomPart(height),
-          _buildFab(height, totalWidth),
+          // _buildFab(height, totalWidth),
         ],
       ),
     );
@@ -51,11 +51,12 @@ class _MyAccountState extends State<MyAccount> {
 
   Widget _buildFab(double height, double totalWidth) {
     return new Positioned(
-        top: height - height * 1 / 3,
-        right: totalWidth * 1 / 3,
-        child: new AnimatedFab(
-          onClick: _changeFilterState,
-        ));
+      top: height - height * 1 / 3,
+      right: totalWidth * 1 / 3,
+      child: new AnimatedFab(
+        onClick: _changeFilterState,
+      ),
+    );
   }
 
   void _changeFilterState() {
@@ -177,7 +178,7 @@ class _MyAccountState extends State<MyAccount> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           _buildMyTasksHeader(height),
-          _buildTasksList(),
+          // _buildTasksList(),
         ],
       ),
     );
@@ -208,10 +209,10 @@ class _MyAccountState extends State<MyAccount> {
             'My Orders',
             style: new TextStyle(fontSize: height / 16.0),
           ),
-          new Text(
-            '5 April, 2021',
-            style: new TextStyle(color: Colors.grey, fontSize: height / 18.0),
-          ),
+          // new Text(
+          //   '5 April, 2021',
+          //   style: new TextStyle(color: Colors.grey, fontSize: height / 18.0),
+          // ),
         ],
       ),
     );

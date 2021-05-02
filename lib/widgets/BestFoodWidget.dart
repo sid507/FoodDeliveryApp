@@ -344,10 +344,11 @@ class _BestFoodListState extends State<BestFoodList> {
                         snapshot2.data.docs[i].data();
                   }
                   List<Dishes> dishes = [];
+                  List<Dishes> temp = [];
                   for (int i = 0; i < snapshot.data.docs.length; i++) {
                     var chef_detail = chef[snapshot.data.docs[i]["chefId"]];
                     var dd = snapshot.data.docs[i];
-                    if (chef_detail != null && dd["rating"] > 4) {
+                    if (chef_detail != null) {
                       Dishes dish = new Dishes(
                           chef_detail["fname"].toString(),
                           dd["rating"],
@@ -361,6 +362,7 @@ class _BestFoodListState extends State<BestFoodList> {
                     }
                   }
                   dishes.sort((a, b) => b.getRating().compareTo(a.getRating()));
+                  if (dishes.length > 10) dishes = dishes.take(10).toList();
                   // print(dishes);
 
                   return Row(

@@ -321,7 +321,7 @@ class _PopularFoodItemsState extends State<PopularFoodItems> {
                   for (int i = 0; i < snapshot.data.docs.length; i++) {
                     var chef_detail = chef[snapshot.data.docs[i]["chefId"]];
                     var dd = snapshot.data.docs[i];
-                    if (chef_detail != null && dd["count"] >= 10) {
+                    if (chef_detail != null) {
                       Dishes dish = new Dishes(
                           chef_detail["fname"].toString(),
                           dd["rating"],
@@ -335,6 +335,7 @@ class _PopularFoodItemsState extends State<PopularFoodItems> {
                     }
                   }
                   dishes.sort((a, b) => b.getCount().compareTo(a.getCount()));
+                  if (dishes.length > 10) dishes = dishes.take(10).toList();
                   // print(dishes);
 
                   return Row(

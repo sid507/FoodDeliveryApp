@@ -75,7 +75,7 @@ class _SearchPageState extends State<SearchPage> {
                       print(chefs);
                       if (snapshot.data.docs[i]['dishName']
                           .toLowerCase()
-                          .contains(widget.searchText)) {
+                          .contains(widget.searchText.toLowerCase())) {
                         var chef_detail =
                             chefs[snapshot.data.docs[i]["chefId"]];
                         // print(chef_detail);
@@ -128,7 +128,11 @@ class _SearchPageState extends State<SearchPage> {
               // print(tp);
 
             } else {
-              return Container();
+              return Container(
+                child: Center(
+                  child: Text('Sorry....No Food Item Found'),
+                ),
+              );
             }
           },
         )
