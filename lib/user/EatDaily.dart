@@ -1,126 +1,580 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:food_delivery_app/user/Chefdata.dart';
 import 'package:food_delivery_app/user/Utils.dart';
+import '../user/Chefdata.dart';
+import 'dart:async';
+import 'package:intl/intl.dart';
 
-class EatDaily extends StatefulWidget {
+class EatTomorrow extends StatefulWidget {
+  CartData cartData;
+  EatTomorrow({@required this.cartData});
   @override
-  _EatDailyState createState() => _EatDailyState();
+  _EatTomorrowState createState() => _EatTomorrowState();
 }
 
-class _EatDailyState extends State<EatDaily> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SingleCard(
-                "Siddharth Mishra", 4.5, "Maharashtrian", "north_indian.JPG"),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SingleCard("Nishant Pal", 4.7, "South Indian", "dosa.jpg"),
-          ),
-        ],
-      ),
-    );
+class _EatTomorrowState extends State<EatTomorrow> {
+  EatNowData items = new EatNowData();
+  List<Dishes> l;
+  CartData cartdata;
+  Map ll;
+  final db = FirebaseFirestore.instance;
+  Map timetable = {7: "Breakfast", 12: "Lunch", 17: "Dinner"};
+
+  String tellMeType(int p) {
+    if (p >= 7 && p <= 12) {
+      return "Breakfast";
+    } else if (p > 12 && p <= 17) {
+      return "Lunch";
+    } else {
+      return "Dinner";
+    }
   }
 
-  Widget SingleCard(String name, double rating, String dishtype, String image) {
+  @override
+  void initState() {
+    super.initState();
+    this.l = items.getData();
+    this.cartdata = widget.cartData;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    int count_dish;
+    return Scaffold(
+      backgroundColor: Color.fromRGBO(247, 247, 248, 1),
+      body: ListView(children: [
+        StreamBuilder<QuerySnapshot>(
+          stream: db.collection('Food_items').snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return StreamBuilder<QuerySnapshot>(
+                stream: db.collection('Chef').snapshots(),
+                builder: (context, snapshot2) {
+                  if (snapshot2.hasData) {
+                    Map chefs = {};
+                    for (int i = 0; i < snapshot2.data.docs.length; i++) {
+                      // print(snapshot2.data.docs[i].data());
+                      chefs[snapshot2.data.docs[i].id] =
+                          snapshot2.data.docs[i].data();
+                    }
+                    // print(chefs);
+                    List<Dishes> dishes = [];
+                    for (int i = 0; i < snapshot.data.docs.length; i++) {
+                      final now = new DateTime.now();
+
+                      var tmprser = new DateFormat("dd-MM-yyyy HH:mm");
+                      print("\t" +
+                          tmprser
+                              .parse(snapshot.data.docs[i]["fromDate"]
+                                      .toString() +
+                                  " " +
+                                  snapshot.data.docs[i]["toTime"].toString())
+                              .toString());
+
+                      var nextDate = tmprser.parse(
+                          snapshot.data.docs[i]["fromDate"].toString() +
+                              " " +
+                              snapshot.data.docs[i]["toTime"].toString());
+
+                      var checkTime = tmprser
+                          .parse(snapshot.data.docs[i]["fromDate"].toString() +
+                              " " +
+                              snapshot.data.docs[i]["toTime"]
+                                  .toString()
+                                  .toString())
+                          .compareTo(tmprser.parse(now.day.toString() +
+                              "-" +
+                              now.month.toString() +
+                              "-" +
+                              now.year.toString() +
+                              " " +
+                              now.hour.toString() +
+                              ":" +
+                              now.minute.toString()));
+                      print("\n" + checkTime.toString());
+                      if (snapshot.data.docs[i]['mealType'].toLowerCase() ==
+                              this.tellMeType(now.hour).toLowerCase() &&
+                          checkTime > 0) {
+                        // print("\n" + checkTime.toString());
+
+                        var chef_detail =
+                            chefs[snapshot.data.docs[i]["chefId"]];
+                        // print(chef_detail);
+                        var dd = snapshot.data.docs[i];
+
+                        //Take the difference of the toTime of item from now
+
+                        var leftTime = tmprser
+                            .parse(
+                                (snapshot.data.docs[i]["fromDate"].toString() +
+                                    " " +
+                                    snapshot.data.docs[i]["toTime"]
+                                        .toString()
+                                        .toString()))
+                            .difference(tmprser.parse(now.day.toString() +
+                                "-" +
+                                now.month.toString() +
+                                "-" +
+                                now.year.toString() +
+                                " " +
+                                now.hour.toString() +
+                                ":" +
+                                now.minute.toString().toString()));
+
+                        print("LeftTime" + leftTime.inMinutes.toString());
+
+                        // var leftsecond_format =
+                        //     new DateFormat("dd-MM-yyyy HH:mm")
+                        //         .parse(leftTime.inHours.toString());
+
+                        // var leftseconds = leftsecond_format.day * 24 * 60 +
+                        //     leftsecond_format.hour * 60 +
+                        //     leftsecond_format.minute;
+                        var leftseconds = leftTime.inMinutes.toString();
+                        // print(leftTime);
+                        print("\n");
+                        print(leftseconds);
+
+                        if (chef_detail != null) {
+                          // var toTime =
+                          //     new DateFormat("HH:mm").parse(dd["toTime"]);
+                          // print(toTime);
+                          // var fromTime =
+                          //     new DateFormat("HH:mm").parse(dd["fromTime"]);
+
+                          // int remaining_time = (toTime.hour) * 60 +
+                          //     toTime.minute -
+                          //     (now.hour * 60 + now.minute);
+
+                          // print(remaining_time.toString() + "ending");
+                          Dishes dish = new Dishes(
+                              chef_detail["fname"].toString(),
+                              chef_detail["rating"].toDouble(),
+                              dd["dishName"].toString(),
+                              dd["price"].toDouble(),
+                              dd["imageUrl"].toString(),
+                              leftseconds.toString(),
+                              dd["mealType"],
+                              dd["count"]);
+                          dishes.add(dish);
+                        }
+                      }
+                    }
+                    print(dishes);
+
+                    return Column(
+                        children: dishes.map((data) {
+                      print(ll);
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SingleCard(
+                            data.name,
+                            data.rating,
+                            data.getPrice(),
+                            data.getDishName(),
+                            data.getimage(),
+                            data.gettime(),
+                            1,
+                            this.cartdata),
+                      );
+                    }).toList());
+                  } else {
+                    return Container(
+                      child: Center(
+                        child: Text('Sorry....No Items are availble'),
+                      ),
+                    );
+                  }
+                },
+              );
+              // for (int i = 0; i <elem; i++) {
+              //   tp.add(snapshot.data.docs[i]);
+              // }
+              // print(tp);
+
+            } else {
+              return Container();
+            }
+          },
+        )
+      ]),
+    );
+  }
+}
+
+class SingleCard extends StatefulWidget {
+  String name, dishName, image, time;
+  dynamic rating;
+  int quantity, count;
+  dynamic price;
+  CartData cartData;
+  SingleCard(this.name, this.rating, this.price, this.dishName, this.image,
+      this.time, this.quantity, this.cartData);
+  @override
+  _SingleCardState createState() => _SingleCardState();
+}
+
+class _SingleCardState extends State<SingleCard> {
+  Helper help = new Helper();
+
+  int _counter;
+  Timer _timer;
+  var canAdd = 1;
+
+  int hour = 0, minute = 0, sec = 0;
+
+  void _startTimer(int time) {
+    _counter = time;
+    if (_timer != null) {
+      _timer.cancel();
+    }
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        if (_counter > 0) {
+          _counter--;
+          // hour=_counter/
+        } else {
+          _timer.cancel();
+          setState(() {
+            canAdd = 0;
+          });
+        }
+      });
+    });
+  }
+
+  void checkCart_add() {
+    for (int i = 0; i < CartData.dishes.length; i++) {
+      if (CartData.dishes[i].dish.getDishName() == widget.dishName &&
+          CartData.dishes[i].dish.name == widget.name) {
+        setState(() {
+          canAdd = 0;
+        });
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // var total_remaining_time = int.parse(widget.time);
+    checkCart_add();
+    _startTimer(int.parse(widget.time) * 60);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _timer.cancel();
+
+    // canAdd=0;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    double totalWidth = MediaQuery.of(context).size.width;
+    double totalHeight = MediaQuery.of(context).size.height;
+
     return Card(
+      color: help.card,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0),
       ),
-      color: Helper().card,
       clipBehavior: Clip.antiAlias,
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-            child: Stack(children: [
-              Image(
-                // height: 100.0,
-                width: double.infinity,
-                image: AssetImage("assets/images/$image"),
-              ),
-              Positioned(
-                  right: 0,
-                  top: 5,
-                  child: OutlinedButton.icon(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                          if (!states.contains(MaterialState.pressed))
-                            return Helper().button;
-                          return null; // Use the component's default.
-                        },
-                      ),
-                    ),
-                    onPressed: () {
-                      // Respond to button press
-                    },
-                    label: Text(
-                      dishtype,
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold),
-                    ),
-                    icon: Icon(
-                      Icons.dinner_dining,
-                      size: 30,
-                      color: Colors.white,
-                    ),
-                  ))
-            ]),
-          ),
-          Row(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Icon(Icons.person),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Icon(Icons.person),
+                      ),
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(widget.name,
+                                style: TextStyle(
+                                    fontSize: 16.0, color: help.heading)),
+                            Text('Rating ' + widget.rating.toString() + ' ⭐',
+                                style: TextStyle(
+                                    fontSize: 10.0,
+                                    fontWeight: FontWeight.w300)),
+                          ])
+                    ],
                   ),
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(name, style: TextStyle(fontSize: 16.0)),
-                        Text('Rating ' + rating.toString() + ' ⭐',
-                            style: TextStyle(
-                                fontSize: 10.0, fontWeight: FontWeight.w300)),
-                      ]),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      widget.dishName,
+                      style: TextStyle(
+                          color: help.heading, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      widget.price.toString() + "₹ (per serve)",
+                      style: TextStyle(
+                          color: help.normalText, fontWeight: FontWeight.w100),
+                    ),
+                  ),
+                  Row(
+                    // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        // mainAxisAlignment: MainAxisAlignment.center,
+                        // crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            child: Text(widget.quantity.toString(),
+                                style: new TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w900)),
+                            decoration: new BoxDecoration(
+                                borderRadius: new BorderRadius.all(
+                                    new Radius.circular(10.0)),
+                                color: help.button),
+                            padding:
+                                new EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                          ),
+                          // Ink(
+                          //   decoration: ShapeDecoration(
+                          //     color: Colors.red,
+                          //     shape: CircleBorder(),
+                          //   ),
+                          //   child: IconButton(
+                          //   icon: Icon(
+                          //     Icons.add,
+                          //     color: Color.fromRGBO(232, 140, 48, 1),
+                          //   ),
+                          //   tooltip: 'Add',
+                          //   onPressed: () => {
+                          //     setState(() {
+                          //       widget.quantity =
+                          //           help.addQuantity(widget.quantity);
+                          //       print(widget.quantity);
+                          //     })
+                          //   },
+                          // ),
+                          // ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.add_circle,
+                              color: Helper().button,
+                              size: 30,
+                            ),
+                            tooltip: 'Add',
+                            onPressed: () => {
+                              setState(() {
+                                widget.quantity =
+                                    help.addQuantity(widget.quantity);
+                                print(widget.quantity);
+                              })
+                            },
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.remove_circle,
+                              color: Helper().button,
+                              size: 30,
+                            ),
+                            tooltip: 'Delete',
+                            onPressed: () => {
+                              setState(() {
+                                widget.quantity =
+                                    help.delQuantity(widget.quantity);
+                                print(widget.quantity);
+                              })
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ],
               ),
-              OutlinedButton.icon(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                    (Set<MaterialState> states) {
-                      if (!states.contains(MaterialState.pressed))
-                        return Helper().button.withOpacity(1);
-                      return null; // Use the component's default.
-                    },
+              Stack(children: [
+                Container(
+                  height: 100.0,
+                  width: 140.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                    image: DecorationImage(
+                        image: NetworkImage(
+                          widget.image,
+                        ),
+                        fit: BoxFit.cover),
                   ),
                 ),
-                onPressed: () {
-                  // Respond to button press
-
-                  CartData().addItem(
-                      Dishes(name, rating, dishtype, 0, image, "0", "Lunch", 5),
-                      0);
-                },
-                label: Text(
-                  "Subscribe",
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
-                ),
-                icon: Icon(Icons.favorite, size: 18, color: Colors.white),
-              )
-            ],
-          ),
-        ],
+                Positioned(
+                    right: 5,
+                    bottom: -5,
+                    left: 5,
+                    child: OutlinedButton.icon(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.resolveWith<Color>(
+                          (Set<MaterialState> states) {
+                            if (canAdd != 1) {
+                              return Colors.grey.withOpacity(0.8);
+                            }
+                            if (!states.contains(MaterialState.pressed))
+                              return help.button.withOpacity(0.8);
+                            return null; // Use the component's default.
+                          },
+                        ),
+                      ),
+                      onPressed: () {
+                        if (canAdd == 1) {
+                          CartData().addItem(
+                              Dishes(
+                                  widget.name,
+                                  widget.rating,
+                                  widget.dishName,
+                                  widget.price,
+                                  widget.image,
+                                  widget.time,
+                                  widget.dishName,
+                                  widget.count),
+                              widget.quantity);
+                          checkCart_add();
+                        }
+                      },
+                      label: Text(
+                        "ADD",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                      icon: Icon(
+                        Icons.delivery_dining,
+                        size: totalHeight * 30 / 700,
+                        color: Colors.white,
+                      ),
+                    )),
+                Positioned(
+                  right: 3,
+                  top: 3,
+                  child: Container(
+                    decoration: new BoxDecoration(
+                      color: Colors.red.withOpacity(0.6),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    child: Text(
+                      (_counter ~/ 3600).toString() +
+                          ":" +
+                          ((_counter % 3600) ~/ 60).toString() +
+                          ":" +
+                          ((_counter % 60)).toString(),
+                      style: TextStyle(
+                          fontSize: totalHeight * 12 / 700,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    padding: EdgeInsets.all(4.0),
+                  ),
+                )
+              ])
+            ]),
       ),
+      // child: Column(
+      //   children: [
+      //     ListTile(
+      //       leading: Padding(
+      //         padding: const EdgeInsets.all(8.0),
+      //         child: Icon(Icons.person),
+      //       ),
+      //       title: Text(name),
+      //       subtitle: Text(
+      //         'Rating ' + rating.toString() + ' ⭐',
+      //         style: TextStyle(color: Colors.black.withOpacity(0.6)),
+      //       ),
+      //     ),
+      //     Padding(
+      //       padding: const EdgeInsets.all(16.0),
+      //       child: Text(
+      //         dishName,
+      //         style: TextStyle(color: Colors.black.withOpacity(1)),
+      //       ),
+      //     ),
+      //     Padding(
+      //       padding: EdgeInsets.all(16.0),
+      //       child: Image(
+      //         image: AssetImage("assets/images/$image"),
+      //       ),
+      //     ),
+      //     ButtonBar(
+      //       alignment: MainAxisAlignment.spaceAround,
+      //       children: [
+      //         ButtonBar(
+      //           alignment: MainAxisAlignment.start,
+      //           children: [
+      //             Container(
+      //               child: Text("5",
+      //                   style: new TextStyle(
+      //                       color: Colors.white, fontWeight: FontWeight.w900)),
+      //               decoration: new BoxDecoration(
+      //                   borderRadius:
+      //                       new BorderRadius.all(new Radius.circular(10.0)),
+      //                   color: Colors.grey),
+      //               padding: new EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+      //             ),
+      //             ElevatedButton(
+      //               onPressed: () {
+      //                 // Perform some action
+      //                 // f.getdata().map((e) => print(e.name));
+      //               },
+      //               style: ButtonStyle(
+      //                   backgroundColor:
+      //                       MaterialStateProperty.resolveWith<Color>(
+      //                     (Set<MaterialState> states) {
+      //                       if (states.contains(MaterialState.pressed))
+      //                         return Colors.green;
+      //                       return null; // Use the component's default.
+      //                     },
+      //                   ),
+      //                   shape: MaterialStateProperty
+      //                       .all<RoundedRectangleBorder>(RoundedRectangleBorder(
+      //                           borderRadius: BorderRadius.circular(240.0),
+      //                           side: BorderSide(color: Colors.transparent)))),
+      //               child: Icon(Icons.add),
+      //             ),
+      //             ElevatedButton(
+      //               onPressed: () {
+      //                 // Perform some action
+      //               },
+      //               style: ButtonStyle(
+      //                   shape: MaterialStateProperty
+      //                       .all<RoundedRectangleBorder>(RoundedRectangleBorder(
+      //                           borderRadius: BorderRadius.circular(140.0),
+      //                           side: BorderSide(color: Colors.transparent)))),
+      //               child: Icon(Icons.remove),
+      //             ),
+      //           ],
+      //         ),
+      //         ElevatedButton(
+      //           onPressed: () {
+      //             // Perform some action
+      //           },
+      //           style: ButtonStyle(
+      //               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+      //                   RoundedRectangleBorder(
+      //                       borderRadius: BorderRadius.circular(140.0),
+      //                       side: BorderSide(color: Colors.transparent)))),
+      //           child: Icon(Icons.add_shopping_cart),
+      //         ),
+      //       ],
+      //     ),
+      //   ],
+      // ),
     );
   }
 }

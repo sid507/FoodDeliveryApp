@@ -164,6 +164,7 @@ class SingleCard extends StatefulWidget {
 class _SingleCardState extends State<SingleCard> {
   Helper help = new Helper();
   TimeOfDay _ttime = TimeOfDay(hour: 7, minute: 15);
+  var canAdd = 1;
 
   void _selectTime() async {
     final TimeOfDay newTime = await showTimePicker(
@@ -176,6 +177,17 @@ class _SingleCardState extends State<SingleCard> {
         widget.time = (_ttime.hour.toString() + ':' + _ttime.minute.toString())
             .toString();
       });
+    }
+  }
+
+  void checkCart_add() {
+    for (int i = 0; i < CartData.dishes.length; i++) {
+      if (CartData.dishes[i].dish.getDishName() == widget.dishName &&
+          CartData.dishes[i].dish.name == widget.name) {
+        setState(() {
+          canAdd = 0;
+        });
+      }
     }
   }
 
@@ -279,8 +291,9 @@ class _SingleCardState extends State<SingleCard> {
                           ),
                           IconButton(
                             icon: Icon(
-                              Icons.add,
-                              color: help.button,
+                              Icons.add_circle,
+                              color: Helper().button,
+                              size: 30,
                             ),
                             tooltip: 'Add',
                             onPressed: () => {
@@ -293,8 +306,9 @@ class _SingleCardState extends State<SingleCard> {
                           ),
                           IconButton(
                             icon: Icon(
-                              Icons.remove,
-                              color: help.button,
+                              Icons.remove_circle,
+                              color: Helper().button,
+                              size: 30,
                             ),
                             tooltip: 'Delete',
                             onPressed: () => {
@@ -333,6 +347,9 @@ class _SingleCardState extends State<SingleCard> {
                         backgroundColor:
                             MaterialStateProperty.resolveWith<Color>(
                           (Set<MaterialState> states) {
+                            if (canAdd != 1) {
+                              return Colors.grey.withOpacity(0.8);
+                            }
                             if (!states.contains(MaterialState.pressed))
                               return help.button.withOpacity(0.8);
                             return null; // Use the component's default.
@@ -341,17 +358,20 @@ class _SingleCardState extends State<SingleCard> {
                       ),
                       onPressed: () {
                         // Respond to button press
-                        CartData().addItem(
-                            Dishes(
-                                widget.name,
-                                widget.rating,
-                                widget.dishName,
-                                widget.price,
-                                widget.image,
-                                widget.time,
-                                widget.dishName,
-                                widget.count),
-                            widget.quantity);
+                        if (canAdd == 1) {
+                          CartData().addItem(
+                              Dishes(
+                                  widget.name,
+                                  widget.rating,
+                                  widget.dishName,
+                                  widget.price,
+                                  widget.image,
+                                  widget.time,
+                                  widget.dishName,
+                                  widget.count),
+                              widget.quantity);
+                          checkCart_add();
+                        }
                       },
                       label: Text(
                         "ADD +",

@@ -64,7 +64,7 @@ class _MenuOptionSideState extends State<MenuOptionSide> {
             ),
             BottomNavigationBarItem(
               label: "Cart",
-              icon: Icon(Icons.shopping_cart_outlined),
+              icon: Icon(Icons.delivery_dining),
             ),
             BottomNavigationBarItem(
               label: "My Account",

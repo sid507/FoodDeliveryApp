@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
                 tabs: [
                   Tab(text: "Eat Now"),
                   Tab(text: "Eat Later"),
-                  Tab(text: "Eat Daily"),
+                  Tab(text: "Eat Tomorrow"),
                   Tab(text: "Meal Daily")
                 ],
               ),
@@ -54,7 +54,7 @@ class _MyAppState extends State<MyApp> {
             children: [
               EatNow(cartData: cartdata),
               EatLater(),
-              EatDaily(),
+              EatTomorrow(),
               flag == ""
                   ? MealDaily((value) => {
                         setState(() {

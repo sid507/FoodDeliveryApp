@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/user/Utils.dart';
 import '../user/Chefdata.dart';
+import 'dart:async';
+import 'package:intl/intl.dart';
 
 class EatNow extends StatefulWidget {
   CartData cartData;
@@ -37,6 +39,7 @@ class _EatNowState extends State<EatNow> {
 
   @override
   Widget build(BuildContext context) {
+    int count_dish;
     return Scaffold(
       backgroundColor: Color.fromRGBO(247, 247, 248, 1),
       body: ListView(children: [
@@ -58,33 +61,65 @@ class _EatNowState extends State<EatNow> {
                     List<Dishes> dishes = [];
                     for (int i = 0; i < snapshot.data.docs.length; i++) {
                       final now = new DateTime.now();
-                      // String sort_key = "";
-                      // int flag = 0;
-                      // timetable.forEach((key, value) {
-                      //   if (now.hour >= key && flag == 0) {
-                      //     print(key + 7);
-                      //     print(timetable[17]);
-                      //     sort_key = value;
-                      //     flag = 1;
-                      //   }
-                      // });
-                      //
-                      print(chefs);
+
+                      var timeparser = new DateFormat("HH:mm");
+
+                      int checkTime = (timeparser
+                                      .parse(snapshot.data.docs[i]['toTime'])
+                                      .hour *
+                                  60 +
+                              timeparser
+                                  .parse(snapshot.data.docs[i]['toTime'])
+                                  .minute) -
+                          (now.hour * 60 + now.minute);
+
                       if (snapshot.data.docs[i]['mealType'].toLowerCase() ==
-                          this.tellMeType(now.hour).toLowerCase()) {
+                              this.tellMeType(now.hour).toLowerCase() &&
+                          checkTime > 0) {
                         var chef_detail =
                             chefs[snapshot.data.docs[i]["chefId"]];
                         // print(chef_detail);
                         var dd = snapshot.data.docs[i];
-                        print(chef_detail);
+
+                        //Take the difference of the toTime of item from now
+
+                        var leftTime = timeparser
+                            .parse(snapshot.data.docs[i]['toTime'])
+                            .difference(timeparser.parse(now.hour.toString() +
+                                ":" +
+                                now.minute.toString()));
+
+                        var leftseconds = new DateFormat("HH:mm:ss")
+                                    .parse(leftTime.toString())
+                                    .hour *
+                                60 +
+                            new DateFormat("HH:mm:ss")
+                                .parse(leftTime.toString())
+                                .minute;
+
+                        print(leftTime);
+                        print("\n");
+                        print(leftseconds);
+
                         if (chef_detail != null) {
+                          // var toTime =
+                          //     new DateFormat("HH:mm").parse(dd["toTime"]);
+                          // print(toTime);
+                          // var fromTime =
+                          //     new DateFormat("HH:mm").parse(dd["fromTime"]);
+
+                          // int remaining_time = (toTime.hour) * 60 +
+                          //     toTime.minute -
+                          //     (now.hour * 60 + now.minute);
+
+                          // print(remaining_time.toString() + "ending");
                           Dishes dish = new Dishes(
                               chef_detail["fname"].toString(),
                               chef_detail["rating"].toDouble(),
                               dd["dishName"].toString(),
                               dd["price"].toDouble(),
                               dd["imageUrl"].toString(),
-                              "25 min",
+                              leftseconds.toString(),
                               dd["mealType"],
                               dd["count"]);
                           dishes.add(dish);
@@ -147,10 +182,65 @@ class SingleCard extends StatefulWidget {
 
 class _SingleCardState extends State<SingleCard> {
   Helper help = new Helper();
+
+  int _counter;
+  Timer _timer;
+  var canAdd = 1;
+
+  int hour = 0, minute = 0, sec = 0;
+
+  void _startTimer(int time) {
+    _counter = time;
+    if (_timer != null) {
+      _timer.cancel();
+    }
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        if (_counter > 0) {
+          _counter--;
+          // hour=_counter/
+        } else {
+          _timer.cancel();
+          setState(() {
+            canAdd = 0;
+          });
+        }
+      });
+    });
+  }
+
+  void checkCart_add() {
+    for (int i = 0; i < CartData.dishes.length; i++) {
+      if (CartData.dishes[i].dish.getDishName() == widget.dishName &&
+          CartData.dishes[i].dish.name == widget.name) {
+        setState(() {
+          canAdd = 0;
+        });
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // var total_remaining_time = int.parse(widget.time);
+    checkCart_add();
+    _startTimer(int.parse(widget.time) * 60);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _timer.cancel();
+
+    // canAdd=0;
+  }
+
   @override
   Widget build(BuildContext context) {
     double totalWidth = MediaQuery.of(context).size.width;
     double totalHeight = MediaQuery.of(context).size.height;
+
     return Card(
       color: help.card,
       shape: RoundedRectangleBorder(
@@ -222,10 +312,31 @@ class _SingleCardState extends State<SingleCard> {
                             padding:
                                 new EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
                           ),
+                          // Ink(
+                          //   decoration: ShapeDecoration(
+                          //     color: Colors.red,
+                          //     shape: CircleBorder(),
+                          //   ),
+                          //   child: IconButton(
+                          //   icon: Icon(
+                          //     Icons.add,
+                          //     color: Color.fromRGBO(232, 140, 48, 1),
+                          //   ),
+                          //   tooltip: 'Add',
+                          //   onPressed: () => {
+                          //     setState(() {
+                          //       widget.quantity =
+                          //           help.addQuantity(widget.quantity);
+                          //       print(widget.quantity);
+                          //     })
+                          //   },
+                          // ),
+                          // ),
                           IconButton(
                             icon: Icon(
-                              Icons.add,
-                              color: Color.fromRGBO(232, 140, 48, 1),
+                              Icons.add_circle,
+                              color: Helper().button,
+                              size: 30,
                             ),
                             tooltip: 'Add',
                             onPressed: () => {
@@ -237,9 +348,10 @@ class _SingleCardState extends State<SingleCard> {
                             },
                           ),
                           IconButton(
-                            icon: const Icon(
-                              Icons.remove,
-                              color: Color.fromRGBO(232, 140, 48, 1),
+                            icon: Icon(
+                              Icons.remove_circle,
+                              color: Helper().button,
+                              size: 30,
                             ),
                             tooltip: 'Delete',
                             onPressed: () => {
@@ -278,6 +390,9 @@ class _SingleCardState extends State<SingleCard> {
                         backgroundColor:
                             MaterialStateProperty.resolveWith<Color>(
                           (Set<MaterialState> states) {
+                            if (canAdd != 1) {
+                              return Colors.grey.withOpacity(0.8);
+                            }
                             if (!states.contains(MaterialState.pressed))
                               return help.button.withOpacity(0.8);
                             return null; // Use the component's default.
@@ -285,17 +400,20 @@ class _SingleCardState extends State<SingleCard> {
                         ),
                       ),
                       onPressed: () {
-                        widget.cartData.addItem(
-                            Dishes(
-                                widget.name,
-                                widget.rating,
-                                widget.dishName,
-                                widget.price,
-                                widget.image,
-                                widget.time,
-                                widget.dishName,
-                                widget.count),
-                            widget.quantity);
+                        if (canAdd == 1) {
+                          widget.cartData.addItem(
+                              Dishes(
+                                  widget.name,
+                                  widget.rating,
+                                  widget.dishName,
+                                  widget.price,
+                                  widget.image,
+                                  widget.time,
+                                  widget.dishName,
+                                  widget.count),
+                              widget.quantity);
+                          checkCart_add();
+                        }
                       },
                       label: Text(
                         "ADD",
@@ -313,14 +431,18 @@ class _SingleCardState extends State<SingleCard> {
                   top: 3,
                   child: Container(
                     decoration: new BoxDecoration(
-                      color: Colors.white.withOpacity(0.6),
+                      color: Colors.red.withOpacity(0.6),
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
                     child: Text(
-                      widget.time,
+                      (_counter ~/ 3600).toString() +
+                          ":" +
+                          ((_counter % 3600) ~/ 60).toString() +
+                          ":" +
+                          ((_counter % 60)).toString(),
                       style: TextStyle(
                           fontSize: totalHeight * 12 / 700,
-                          color: Colors.black,
+                          color: Colors.white,
                           fontWeight: FontWeight.bold),
                     ),
                     padding: EdgeInsets.all(4.0),

@@ -81,7 +81,9 @@ class _FoodOrderPageState extends State<FoodOrderPage> {
                                   setState(() => {
                                         dishes.removeWhere((element) =>
                                             element.dish.getDishName() ==
-                                            data.dish.getDishName()),
+                                                data.dish.getDishName() &&
+                                            element.dish.name ==
+                                                data.dish.name),
                                       });
                                   totalCost = CartData().calculateTotal(dishes);
                                   print(data.dish.getDishName());
