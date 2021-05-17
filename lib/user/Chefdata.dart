@@ -2,27 +2,26 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class Chef {
-  String id;
   String name;
   dynamic rating;
-  Chef(String name, dynamic rating, String id) {
+  Chef(String name, dynamic rating) {
     this.name = name;
     this.rating = rating;
-    this.id = id;
   }
 }
 
 class Dishes extends Chef {
   String _dishname;
+  String _chefId;
   dynamic _price;
   dynamic _rating;
   String _image;
   String _time;
   String _mealType;
   int _count;
-  Dishes(String id, String name, dynamic rating, String dishname, dynamic price,
-      String image, String time, String mealType, int count)
-      : super(name, rating, id) {
+  Dishes(String name, dynamic rating, String dishname, dynamic price,
+      String image, String time, String mealType, int count, String chefId)
+      : super(name, rating) {
     this._dishname = dishname;
     this._price = price;
     this._rating = rating;
@@ -30,9 +29,14 @@ class Dishes extends Chef {
     this._time = time;
     this._mealType = mealType;
     this._count = count;
+    this._chefId = chefId;
   }
   String getDishName() {
     return this._dishname;
+  }
+
+  String getChefId() {
+    return this._chefId;
   }
 
   String getMealType() {
@@ -101,13 +105,13 @@ class EatNowData {
   List<Dishes> data = [];
   List<String> d = [];
   EatNowData() {
-    // Dishes d1 = new Dishes("Siddharth Mishra", 4.5, "Paneer Tikka", 250,
-    //     "panner_tikka.JPG", "25 min", "Lunch", 5);
-    // Dishes d2 = new Dishes("Nishant Pal", 4.7, "Dosa", 250, "dosa.jpg",
-    //     "30 mins", "Breakfast", 10);
-    // this.data.add(d1);
-    // this.data.add(d2);
-    // this.data.add(d2);
+    Dishes d1 = new Dishes("Siddharth Mishra", 4.5, "Paneer Tikka", 250,
+        "panner_tikka.JPG", "25 min", "Lunch", 5, "c1");
+    Dishes d2 = new Dishes("Nishant Pal", 4.7, "Dosa", 250, "dosa.jpg",
+        "30 mins", "Breakfast", 10, "c2");
+    this.data.add(d1);
+    this.data.add(d2);
+    this.data.add(d2);
 
     final db = FirebaseFirestore.instance;
     var chef = new Map();

@@ -84,6 +84,10 @@ class _EatTomorrowState extends State<EatTomorrow> {
                               now.month.toString() +
                               "-" +
                               now.year.toString()));
+                      // " " +
+                      // now.hour.toString() +
+                      // ":" +
+                      // now.minute.toString()));
                       print("\n" + checkTime.toString());
                       if (snapshot.data.docs[i]['mealType'].toLowerCase() ==
                               this.tellMeType(now.hour).toLowerCase() &&
@@ -141,7 +145,6 @@ class _EatTomorrowState extends State<EatTomorrow> {
 
                           // print(remaining_time.toString() + "ending");
                           Dishes dish = new Dishes(
-                              snapshot.data.docs[i]["chefId"],
                               chef_detail["fname"].toString(),
                               chef_detail["rating"].toDouble(),
                               dd["dishName"].toString(),
@@ -149,7 +152,8 @@ class _EatTomorrowState extends State<EatTomorrow> {
                               dd["imageUrl"].toString(),
                               leftseconds.toString(),
                               dd["mealType"],
-                              dd["count"]);
+                              dd["count"],
+                              dd["chefId"]);
                           dishes.add(dish);
                         }
                       }
@@ -158,13 +162,14 @@ class _EatTomorrowState extends State<EatTomorrow> {
 
                     return Column(
                         children: dishes.map((data) {
+                      print(ll);
                       if (CartData.dishes.length == 0 ||
-                          data.id == CartData.dishes[0].dish.id) {
+                          data.getChefId() ==
+                              CartData.dishes[0].dish.getChefId()) {
                         print(ll);
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: SingleCard(
-                              data.id,
                               data.name,
                               data.rating,
                               data.getPrice(),
@@ -172,7 +177,8 @@ class _EatTomorrowState extends State<EatTomorrow> {
                               data.getimage(),
                               data.gettime(),
                               1,
-                              this.cartdata),
+                              this.cartdata,
+                              data.getChefId()),
                         );
                       } else {
                         return Container();
@@ -203,13 +209,13 @@ class _EatTomorrowState extends State<EatTomorrow> {
 }
 
 class SingleCard extends StatefulWidget {
-  String name, dishName, image, time, id;
+  String name, dishName, image, time, chefId;
   dynamic rating;
   int quantity, count;
   dynamic price;
   CartData cartData;
-  SingleCard(this.id, this.name, this.rating, this.price, this.dishName,
-      this.image, this.time, this.quantity, this.cartData);
+  SingleCard(this.name, this.rating, this.price, this.dishName, this.image,
+      this.time, this.quantity, this.cartData, this.chefId);
   @override
   _SingleCardState createState() => _SingleCardState();
 }
@@ -378,30 +384,30 @@ class _SingleCardState extends State<SingleCard> {
                           // ),
                           IconButton(
                             icon: Icon(
-                              Icons.add_circle,
-                              color: Helper().button,
-                              size: 30,
-                            ),
-                            tooltip: 'Add',
-                            onPressed: () => {
-                              setState(() {
-                                widget.quantity =
-                                    help.addQuantity(widget.quantity);
-                                print(widget.quantity);
-                              })
-                            },
-                          ),
-                          IconButton(
-                            icon: Icon(
                               Icons.remove_circle,
                               color: Helper().button,
-                              size: 30,
+                              size: totalHeight * 28 / 700,
                             ),
                             tooltip: 'Delete',
                             onPressed: () => {
                               setState(() {
                                 widget.quantity =
                                     help.delQuantity(widget.quantity);
+                                print(widget.quantity);
+                              })
+                            },
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.add_circle,
+                              color: Helper().button,
+                              size: totalHeight * 28 / 700,
+                            ),
+                            tooltip: 'Add',
+                            onPressed: () => {
+                              setState(() {
+                                widget.quantity =
+                                    help.addQuantity(widget.quantity);
                                 print(widget.quantity);
                               })
                             },
@@ -414,8 +420,8 @@ class _SingleCardState extends State<SingleCard> {
               ),
               Stack(children: [
                 Container(
-                  height: 100.0,
-                  width: 140.0,
+                  height: totalHeight * 1.5 / 7,
+                  width: totalWidth * 3 / 7,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
                     image: DecorationImage(
@@ -447,7 +453,6 @@ class _SingleCardState extends State<SingleCard> {
                         if (canAdd == 1) {
                           CartData().addItem(
                               Dishes(
-                                  widget.id,
                                   widget.name,
                                   widget.rating,
                                   widget.dishName,
@@ -455,7 +460,8 @@ class _SingleCardState extends State<SingleCard> {
                                   widget.image,
                                   widget.time,
                                   widget.dishName,
-                                  widget.count),
+                                  widget.count,
+                                  widget.chefId),
                               widget.quantity);
                           checkCart_add();
                         }

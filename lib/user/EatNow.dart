@@ -28,7 +28,7 @@ class _EatNowState extends State<EatNow> {
   String tellMeType(int p) {
     if (p >= 7 && p <= 12) {
       return "Breakfast";
-    } else if (p > 12 && p < 17) {
+    } else if (p > 12 && p <= 17) {
       return "Lunch";
     } else {
       return "Dinner";
@@ -89,7 +89,6 @@ class _EatNowState extends State<EatNow> {
                     }
                     print(chefs);
                     dishes = [];
-
                     for (int i = 0; i < snapshot.data.docs.length; i++) {
                       final now = new DateTime.now();
 
@@ -128,10 +127,7 @@ class _EatNowState extends State<EatNow> {
                                 .parse(leftTime.toString())
                                 .minute;
 
-                        // if (chef_detail != null) {
-
                         Dishes dish = new Dishes(
-                            snapshot.data.docs[i]["chefId"],
                             chef_detail["fname"].toString(),
                             chef_detail["rating"].toDouble(),
                             dd["dishName"].toString(),
@@ -139,9 +135,9 @@ class _EatNowState extends State<EatNow> {
                             dd["imageUrl"].toString(),
                             leftseconds.toString(),
                             dd["mealType"],
-                            dd["count"]);
+                            dd["count"],
+                            dd["chefId"]);
                         dishes.add(dish);
-                        // }
                       }
                     }
                     print(dishes);
@@ -149,13 +145,13 @@ class _EatNowState extends State<EatNow> {
                     return Column(
                         children: dishes.map((data) {
                       if (CartData.dishes.length == 0 ||
-                          data.id == CartData.dishes[0].dish.id) {
+                          data.getChefId().toString() ==
+                              CartData.dishes[0].dish.getChefId().toString()) {
                         print(ll);
 
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: SingleCard(
-                              data.id,
                               data.name,
                               data.rating,
                               data.getPrice(),
@@ -164,6 +160,7 @@ class _EatNowState extends State<EatNow> {
                               data.gettime(),
                               1,
                               this.cartdata,
+                              data.getChefId().toString(),
                               () => {
                                     widget.refreshCartNumber(),
                                     refresher_funct()
@@ -198,14 +195,14 @@ class _EatNowState extends State<EatNow> {
 }
 
 class SingleCard extends StatefulWidget {
-  String name, dishName, image, time, id;
+  String name, dishName, image, time, chefId;
   dynamic rating;
   int quantity, count;
   dynamic price;
   CartData cartData;
   Function refresh;
-  SingleCard(this.id, this.name, this.rating, this.price, this.dishName,
-      this.image, this.time, this.quantity, this.cartData, this.refresh);
+  SingleCard(this.name, this.rating, this.price, this.dishName, this.image,
+      this.time, this.quantity, this.cartData, this.chefId, this.refresh);
   @override
   _SingleCardState createState() => _SingleCardState();
 }
@@ -376,7 +373,7 @@ class _SingleCardState extends State<SingleCard> {
                             icon: Icon(
                               Icons.add_circle,
                               color: Helper().button,
-                              size: 30,
+                              size: totalHeight * 28 / 700,
                             ),
                             tooltip: 'Add',
                             onPressed: () => {
@@ -391,7 +388,7 @@ class _SingleCardState extends State<SingleCard> {
                             icon: Icon(
                               Icons.remove_circle,
                               color: Helper().button,
-                              size: 30,
+                              size: totalHeight * 28 / 700,
                             ),
                             tooltip: 'Delete',
                             onPressed: () => {
@@ -410,8 +407,8 @@ class _SingleCardState extends State<SingleCard> {
               ),
               Stack(children: [
                 Container(
-                  height: 100.0,
-                  width: 140.0,
+                  height: totalHeight * 1.5 / 7,
+                  width: totalWidth * 3 / 7,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
                     image: DecorationImage(
@@ -443,7 +440,6 @@ class _SingleCardState extends State<SingleCard> {
                         if (canAdd == 1) {
                           widget.cartData.addItem(
                               Dishes(
-                                  widget.id,
                                   widget.name,
                                   widget.rating,
                                   widget.dishName,
@@ -451,11 +447,9 @@ class _SingleCardState extends State<SingleCard> {
                                   widget.image,
                                   widget.time,
                                   widget.dishName,
-                                  widget.count),
+                                  widget.count,
+                                  widget.chefId.toString()),
                               widget.quantity);
-
-                          // setState(() {});
-                          // super.initState();
                           Fluttertoast.showToast(
                               msg: "Showing " + widget.name + "'s food only",
                               toastLength: Toast.LENGTH_SHORT,

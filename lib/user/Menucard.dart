@@ -1,6 +1,6 @@
+import 'package:food_delivery_app/account/AccountPage.dart';
 import 'package:food_delivery_app/user/AllEatOption.dart';
 import 'package:food_delivery_app/user/Cart.dart';
-import 'package:food_delivery_app/user/Eating_opti.dart';
 import 'package:food_delivery_app/auth_screens/sign_in.dart';
 import 'package:food_delivery_app/user/SearchPage.dart';
 import 'package:food_delivery_app/user/Utils.dart';
@@ -9,12 +9,12 @@ import 'package:badges/badges.dart';
 
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/user/Chefdata.dart';
-import 'package:food_delivery_app/widgets/drawer.dart';
-import 'package:food_delivery_app/my_account_page/my_account.dart';
 
 class MenuOptionSide extends StatefulWidget {
   bool automatic;
-  MenuOptionSide({Key key, @required this.automatic}) : super(key: key);
+  String address;
+  MenuOptionSide({Key key, @required this.automatic, @required this.address})
+      : super(key: key);
   @override
   _MenuOptionSideState createState() => _MenuOptionSideState();
 }
@@ -35,8 +35,8 @@ class _MenuOptionSideState extends State<MenuOptionSide> {
     this._children = [
       HomePage(automatic: widget.automatic),
       MyApp(() => refresh()),
-      FoodOrderPage(),
-      MyAccount()
+      FoodOrderPage(address: widget.address),
+      AccountScreen()
     ];
     print(this._children);
     super.initState();
@@ -71,11 +71,12 @@ class _MenuOptionSideState extends State<MenuOptionSide> {
               icon: Icon(Icons.shopping_cart),
             ),
             BottomNavigationBarItem(
-                label: "Cart",
-                icon: Badge(
-                  badgeContent: Text(count.toString()),
-                  child: Icon(Icons.delivery_dining),
-                )),
+              label: "Cart",
+              icon: Badge(
+                badgeContent: Text(count.toString()),
+                child: Icon(Icons.delivery_dining),
+              ),
+            ),
             BottomNavigationBarItem(
               label: "My Account",
               icon: Icon(Icons.person_outline),

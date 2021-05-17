@@ -44,11 +44,12 @@ dependencies:
   cloud_firestore: ^1.0.2
   firebase_auth: ^1.0.1
   firebase_core : ^1.0.2
+  firebase_database: ^6.1.2
+  flutter_colored_progress_indicators: ^1.2.0
   flappy_search_bar: ^1.7.2
   dio: ^4.0.0
   badges: ^2.0.1
   fluttertoast: ^8.0.6
-
 
 dev_dependencies:
   flutter_test:
@@ -73,43 +74,17 @@ flutter:
     - assets/images/north_indian.JPG
     - assets/images/start_page.jpeg
     - assets/images/empty_shopping_cart.png
+    - assets/images/search_not_found.PNG
     - assets/images/drawer_header_background.png
     - assets/images/dp.png
 
-    - assets/images/menus/ic_search_menu.png
-    - assets/images/menus/ic_account.png
-    - assets/images/menus/ic_cart.png
-    - assets/images/menus/ic_home.png
-    - assets/images/menus/ic_delete.png
-    - assets/images/menus/ic_near_by.png
-    - assets/images/menus/ic_credit_card.png
-    - assets/images/menus/ic_app_icon.png
-    - assets/images/menus/ic_food_express.png
-    - assets/images/menus/ic_app_icon_black.png
     - assets/images/topmenu/north_indian.jpg
     - assets/images/topmenu/west_indian.png
     - assets/images/topmenu/maharashtrian.jpg
     - assets/images/topmenu/south_indian.jpeg
     - assets/images/topmenu/north_east_indian.jpg
     - assets/images/topmenu/bengali.jpg
-    - assets/images/topmenu/ice_cream.jpg
-    - assets/images/topmenu/soft_drink.jpeg
-    - assets/images/popular_foods/ic_popular_food_1.png
-    - assets/images/popular_foods/ic_popular_food_2.png
-    - assets/images/popular_foods/ic_popular_food_3.png
-    - assets/images/popular_foods/ic_popular_food_4.png
-    - assets/images/popular_foods/ic_popular_food_5.png
-    - assets/images/popular_foods/ic_popular_food_6.png
-    - assets/images/bestfood/ic_best_food_1.jpeg
-    - assets/images/bestfood/ic_best_food_2.jpeg
-    - assets/images/bestfood/ic_best_food_3.jpeg
-    - assets/images/bestfood/ic_best_food_4.jpeg
-    - assets/images/bestfood/ic_best_food_5.jpeg
-    - assets/images/bestfood/ic_best_food_6.jpeg
-    - assets/images/bestfood/ic_best_food_7.jpeg
-    - assets/images/bestfood/ic_best_food_8.jpeg
-    - assets/images/bestfood/ic_best_food_9.jpeg
-    - assets/images/bestfood/ic_best_food_10.jpeg
+    - assets/images/topmenu/all.jpg
     
 
   # An image asset can refer to one or more resolution-specific "variants", see

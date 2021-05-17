@@ -20,12 +20,6 @@ class _MyAppState extends State<MyApp> {
 
   String flag = "";
 
-  // void refreshMe() {
-  //   print("sssssssssssssssssssssssssssssssssssssssssss");
-  //   Navigator.push(context,
-  //       new MaterialPageRoute(builder: (context) => this.build(context)));
-  // }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

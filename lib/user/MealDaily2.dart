@@ -60,7 +60,6 @@ class _MealDaily2State extends State<MealDaily2> {
                           var dd = snapshot.data.docs[i];
                           if (chef_detail != null) {
                             Dishes dish = new Dishes(
-                                snapshot.data.docs[i]["chefId"],
                                 chef_detail["fname"].toString(),
                                 chef_detail["rating"].toDouble(),
                                 dd["dishName"].toString(),
@@ -68,7 +67,8 @@ class _MealDaily2State extends State<MealDaily2> {
                                 dd["imageUrl"].toString(),
                                 "25 min",
                                 dd["mealType"],
-                                dd["count"]);
+                                dd["count"],
+                                dd["chefId"]);
                             dishes.add(dish);
                           }
                         }
@@ -109,11 +109,11 @@ class _MealDaily2State extends State<MealDaily2> {
                               children: dishes.map((data) {
                             print(ll);
                             if (CartData.dishes.length == 0 ||
-                                data.id == CartData.dishes[0].dish.id) {
+                                data.getChefId() ==
+                                    CartData.dishes[0].dish.getChefId()) {
                               return Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: SingleCard(
-                                    data.id,
                                     data.name,
                                     data.rating,
                                     data.getPrice(),
@@ -122,7 +122,8 @@ class _MealDaily2State extends State<MealDaily2> {
                                     data.gettime(),
                                     1,
                                     this.cartData,
-                                    data.getCount()),
+                                    data.getCount(),
+                                    data.getChefId()),
                               );
                             } else {
                               return Container();
@@ -185,19 +186,39 @@ class _MealDaily2State extends State<MealDaily2> {
 }
 
 class SingleCard extends StatefulWidget {
-  String name, dishName, image, time, id;
+  String name, dishName, image, time, chefId;
   dynamic rating;
   int quantity, count;
   dynamic price;
   CartData cartData;
-  SingleCard(this.id, this.name, this.rating, this.price, this.dishName,
-      this.image, this.time, this.quantity, this.cartData, this.count);
+  SingleCard(this.name, this.rating, this.price, this.dishName, this.image,
+      this.time, this.quantity, this.cartData, this.count, this.chefId);
   @override
   _SingleCardState createState() => _SingleCardState();
 }
 
 class _SingleCardState extends State<SingleCard> {
   Helper help = new Helper();
+  var canAdd = 1;
+
+  void checkCart_add() {
+    for (int i = 0; i < CartData.dishes.length; i++) {
+      if (CartData.dishes[i].dish.getDishName() == widget.dishName &&
+          CartData.dishes[i].dish.name == widget.name) {
+        setState(() {
+          canAdd = 0;
+        });
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // var total_remaining_time = int.parse(widget.time);
+    checkCart_add();
+  }
+
   @override
   Widget build(BuildContext context) {
     double totalWidth = MediaQuery.of(context).size.width;
@@ -275,28 +296,30 @@ class _SingleCardState extends State<SingleCard> {
                           ),
                           IconButton(
                             icon: Icon(
-                              Icons.add,
-                              color: Color.fromRGBO(232, 140, 48, 1),
-                            ),
-                            tooltip: 'Add',
-                            onPressed: () => {
-                              setState(() {
-                                widget.quantity =
-                                    help.addQuantity(widget.quantity);
-                                print(widget.quantity);
-                              })
-                            },
-                          ),
-                          IconButton(
-                            icon: const Icon(
-                              Icons.remove,
-                              color: Color.fromRGBO(232, 140, 48, 1),
+                              Icons.remove_circle,
+                              color: Helper().button,
+                              size: totalHeight * 28 / 700,
                             ),
                             tooltip: 'Delete',
                             onPressed: () => {
                               setState(() {
                                 widget.quantity =
                                     help.delQuantity(widget.quantity);
+                                print(widget.quantity);
+                              })
+                            },
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.add_circle,
+                              color: Helper().button,
+                              size: totalHeight * 28 / 700,
+                            ),
+                            tooltip: 'Add',
+                            onPressed: () => {
+                              setState(() {
+                                widget.quantity =
+                                    help.addQuantity(widget.quantity);
                                 print(widget.quantity);
                               })
                             },
@@ -309,8 +332,8 @@ class _SingleCardState extends State<SingleCard> {
               ),
               Stack(children: [
                 Container(
-                  height: 100.0,
-                  width: 140.0,
+                  height: totalHeight * 1.5 / 7,
+                  width: totalWidth * 3 / 7,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
                     image: DecorationImage(
@@ -329,6 +352,9 @@ class _SingleCardState extends State<SingleCard> {
                         backgroundColor:
                             MaterialStateProperty.resolveWith<Color>(
                           (Set<MaterialState> states) {
+                            if (canAdd != 1) {
+                              return Colors.grey.withOpacity(0.8);
+                            }
                             if (!states.contains(MaterialState.pressed))
                               return help.button.withOpacity(0.8);
                             return null; // Use the component's default.
@@ -336,19 +362,21 @@ class _SingleCardState extends State<SingleCard> {
                         ),
                       ),
                       onPressed: () {
-                        CartData().addItem(
-                            Dishes(
-                                widget.id,
-                                widget.name,
-                                widget.rating,
-                                widget.dishName,
-                                widget.price,
-                                widget.image,
-                                widget.time,
-                                widget.dishName,
-                                widget.count),
-                            widget.quantity);
-                        print(widget.cartData);
+                        if (canAdd == 1) {
+                          CartData().addItem(
+                              Dishes(
+                                  widget.name,
+                                  widget.rating,
+                                  widget.dishName,
+                                  widget.price,
+                                  widget.image,
+                                  widget.time,
+                                  widget.dishName,
+                                  widget.count,
+                                  widget.chefId),
+                              widget.quantity);
+                          checkCart_add();
+                        }
                       },
                       label: Text(
                         "ADD",

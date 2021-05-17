@@ -65,7 +65,10 @@ class StartPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => MenuOptionSide(automatic: true),
+                        builder: (context) => MenuOptionSide(
+                          automatic: true,
+                          address: "Searching ..",
+                        ),
                       ),
                     );
                   },

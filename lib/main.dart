@@ -47,7 +47,10 @@ class FoodMain extends StatelessWidget {
         '/signin': (context) => SignIn(),
         '/start': (context) => StartPage(),
         '/user': (context) => StartPage(),
-        '/home': (context) => MenuOptionSide(automatic: true),
+        '/home': (context) => MenuOptionSide(
+              automatic: true,
+              address: "Searching ..",
+            ),
       },
       // home: FirebaseAuth.instance.currentUser == null
       //     ? SignIn()
@@ -59,7 +62,10 @@ class FoodMain extends StatelessWidget {
               return Loading();
             } else {
               if (snapshot.hasData) {
-                return MenuOptionSide(automatic: true);
+                return MenuOptionSide(
+                  automatic: true,
+                  address: "Searching ..",
+                );
                 // return SearchWidget();
               } else {
                 return SignIn();

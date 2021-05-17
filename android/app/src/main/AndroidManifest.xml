@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.food_delivery_app">
    <application
-        android:label="food_delivery_app"
+        android:label="food_app_customer"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
                   android:value="AIzaSyDAnPQQ-PyQclCknPnWCRdAEBEGhgGrpXk"/>
