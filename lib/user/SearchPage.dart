@@ -83,6 +83,7 @@ class _SearchPageState extends State<SearchPage> {
                         print(chef_detail);
                         if (chef_detail != null) {
                           Dishes dish = new Dishes(
+                              snapshot.data.docs[i]["chefId"],
                               chef_detail["fname"].toString(),
                               chef_detail["rating"].toDouble(),
                               dd["dishName"].toString(),
@@ -103,6 +104,7 @@ class _SearchPageState extends State<SearchPage> {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: SingleCard(
+                            data.id,
                             data.name,
                             data.rating,
                             data.getPrice(),
@@ -142,13 +144,13 @@ class _SearchPageState extends State<SearchPage> {
 }
 
 class SingleCard extends StatefulWidget {
-  String name, dishName, image, time;
+  String name, dishName, image, time, id;
   dynamic rating;
   int quantity, count;
   dynamic price;
   CartData cartData;
-  SingleCard(this.name, this.rating, this.price, this.dishName, this.image,
-      this.time, this.quantity, this.cartData);
+  SingleCard(this.id, this.name, this.rating, this.price, this.dishName,
+      this.image, this.time, this.quantity, this.cartData);
   @override
   _SingleCardState createState() => _SingleCardState();
 }
@@ -295,6 +297,7 @@ class _SingleCardState extends State<SingleCard> {
                       onPressed: () {
                         CartData().addItem(
                             Dishes(
+                                widget.id,
                                 widget.name,
                                 widget.rating,
                                 widget.dishName,

@@ -4,10 +4,12 @@ import 'package:food_delivery_app/user/Utils.dart';
 import '../user/Chefdata.dart';
 import 'dart:async';
 import 'package:intl/intl.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class EatNow extends StatefulWidget {
   CartData cartData;
-  EatNow({@required this.cartData});
+  Function refreshCartNumber;
+  EatNow({@required this.cartData, this.refreshCartNumber});
   @override
   _EatNowState createState() => _EatNowState();
 }
@@ -19,15 +21,43 @@ class _EatNowState extends State<EatNow> {
   Map ll;
   final db = FirebaseFirestore.instance;
   Map timetable = {7: "Breakfast", 12: "Lunch", 17: "Dinner"};
+  int page_refresher = 1;
+  Map chefs = {};
+  List<Dishes> dishes = [];
 
   String tellMeType(int p) {
     if (p >= 7 && p <= 12) {
       return "Breakfast";
-    } else if (p > 12 && p <= 17) {
+    } else if (p > 12 && p < 17) {
       return "Lunch";
     } else {
       return "Dinner";
     }
+  }
+
+  void refresher_funct() {
+    // (context as Element).reassemble();
+    print("ssssssssssssssssssssssssssssssssssssssssss");
+    // print()
+    if (CartData.dishes.isNotEmpty)
+      Fluttertoast.showToast(
+          msg: "Showing " + CartData.dishes[0].dish.name + "'s food only",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Helper().button,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    setState(() {
+      dishes = [];
+    });
+    // rebuildAllChildren(context);
+    // EatNow(cartData: new CartData());
+
+    // Navigator.push(context,
+    //     new MaterialPageRoute(builder: (context) => this.build(context)));
+    // Navigator.pushReplacement(context,
+    //     MaterialPageRoute(builder: (BuildContext context) => super.widget));
   }
 
   @override
@@ -51,14 +81,15 @@ class _EatNowState extends State<EatNow> {
                 stream: db.collection('Chef').snapshots(),
                 builder: (context, snapshot2) {
                   if (snapshot2.hasData) {
-                    Map chefs = {};
+                    chefs = {};
                     for (int i = 0; i < snapshot2.data.docs.length; i++) {
                       // print(snapshot2.data.docs[i].data());
                       chefs[snapshot2.data.docs[i].id] =
                           snapshot2.data.docs[i].data();
                     }
                     print(chefs);
-                    List<Dishes> dishes = [];
+                    dishes = [];
+
                     for (int i = 0; i < snapshot.data.docs.length; i++) {
                       final now = new DateTime.now();
 
@@ -97,52 +128,50 @@ class _EatNowState extends State<EatNow> {
                                 .parse(leftTime.toString())
                                 .minute;
 
-                        print(leftTime);
-                        print("\n");
-                        print(leftseconds);
+                        // if (chef_detail != null) {
 
-                        if (chef_detail != null) {
-                          // var toTime =
-                          //     new DateFormat("HH:mm").parse(dd["toTime"]);
-                          // print(toTime);
-                          // var fromTime =
-                          //     new DateFormat("HH:mm").parse(dd["fromTime"]);
-
-                          // int remaining_time = (toTime.hour) * 60 +
-                          //     toTime.minute -
-                          //     (now.hour * 60 + now.minute);
-
-                          // print(remaining_time.toString() + "ending");
-                          Dishes dish = new Dishes(
-                              chef_detail["fname"].toString(),
-                              chef_detail["rating"].toDouble(),
-                              dd["dishName"].toString(),
-                              dd["price"].toDouble(),
-                              dd["imageUrl"].toString(),
-                              leftseconds.toString(),
-                              dd["mealType"],
-                              dd["count"]);
-                          dishes.add(dish);
-                        }
+                        Dishes dish = new Dishes(
+                            snapshot.data.docs[i]["chefId"],
+                            chef_detail["fname"].toString(),
+                            chef_detail["rating"].toDouble(),
+                            dd["dishName"].toString(),
+                            dd["price"].toDouble(),
+                            dd["imageUrl"].toString(),
+                            leftseconds.toString(),
+                            dd["mealType"],
+                            dd["count"]);
+                        dishes.add(dish);
+                        // }
                       }
                     }
                     print(dishes);
 
                     return Column(
                         children: dishes.map((data) {
-                      print(ll);
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SingleCard(
-                            data.name,
-                            data.rating,
-                            data.getPrice(),
-                            data.getDishName(),
-                            data.getimage(),
-                            data.gettime(),
-                            1,
-                            this.cartdata),
-                      );
+                      if (CartData.dishes.length == 0 ||
+                          data.id == CartData.dishes[0].dish.id) {
+                        print(ll);
+
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SingleCard(
+                              data.id,
+                              data.name,
+                              data.rating,
+                              data.getPrice(),
+                              data.getDishName(),
+                              data.getimage(),
+                              data.gettime(),
+                              1,
+                              this.cartdata,
+                              () => {
+                                    widget.refreshCartNumber(),
+                                    refresher_funct()
+                                  }),
+                        );
+                      } else {
+                        return Container();
+                      }
                     }).toList());
                   } else {
                     return Container(
@@ -169,13 +198,14 @@ class _EatNowState extends State<EatNow> {
 }
 
 class SingleCard extends StatefulWidget {
-  String name, dishName, image, time;
+  String name, dishName, image, time, id;
   dynamic rating;
   int quantity, count;
   dynamic price;
   CartData cartData;
-  SingleCard(this.name, this.rating, this.price, this.dishName, this.image,
-      this.time, this.quantity, this.cartData);
+  Function refresh;
+  SingleCard(this.id, this.name, this.rating, this.price, this.dishName,
+      this.image, this.time, this.quantity, this.cartData, this.refresh);
   @override
   _SingleCardState createState() => _SingleCardState();
 }
@@ -211,6 +241,16 @@ class _SingleCardState extends State<SingleCard> {
 
   void checkCart_add() {
     for (int i = 0; i < CartData.dishes.length; i++) {
+      // if (CartData.dishes.length != 0) {
+      //   if ((CartData.dishes[i].dish.name != widget.name) ||
+      //       (CartData.dishes[i].dish.getDishName() == widget.dishName &&
+      //           CartData.dishes[i].dish.name == widget.name)) {
+      //     setState(() {
+      //       canAdd = 0;
+      //     });
+      //   }
+      // }
+
       if (CartData.dishes[i].dish.getDishName() == widget.dishName &&
           CartData.dishes[i].dish.name == widget.name) {
         setState(() {
@@ -403,6 +443,7 @@ class _SingleCardState extends State<SingleCard> {
                         if (canAdd == 1) {
                           widget.cartData.addItem(
                               Dishes(
+                                  widget.id,
                                   widget.name,
                                   widget.rating,
                                   widget.dishName,
@@ -412,6 +453,18 @@ class _SingleCardState extends State<SingleCard> {
                                   widget.dishName,
                                   widget.count),
                               widget.quantity);
+
+                          // setState(() {});
+                          // super.initState();
+                          Fluttertoast.showToast(
+                              msg: "Showing " + widget.name + "'s food only",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Helper().button,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
+                          widget.refresh();
                           checkCart_add();
                         }
                       },

@@ -5,6 +5,7 @@ import 'package:food_delivery_app/auth_screens/sign_in.dart';
 import 'package:food_delivery_app/user/SearchPage.dart';
 import 'package:food_delivery_app/user/Utils.dart';
 import 'UserHome.dart';
+import 'package:badges/badges.dart';
 
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/user/Chefdata.dart';
@@ -21,12 +22,19 @@ class MenuOptionSide extends StatefulWidget {
 class _MenuOptionSideState extends State<MenuOptionSide> {
   int _currentIndex = 0;
   List<Widget> _children = [];
+  int count = 0;
+
+  void refresh() {
+    setState(() {
+      count = CartData.dishes.length;
+    });
+  }
 
   @override
   void initState() {
     this._children = [
       HomePage(automatic: widget.automatic),
-      MyApp(),
+      MyApp(() => refresh()),
       FoodOrderPage(),
       MyAccount()
     ];
@@ -63,9 +71,11 @@ class _MenuOptionSideState extends State<MenuOptionSide> {
               icon: Icon(Icons.shopping_cart),
             ),
             BottomNavigationBarItem(
-              label: "Cart",
-              icon: Icon(Icons.delivery_dining),
-            ),
+                label: "Cart",
+                icon: Badge(
+                  badgeContent: Text(count.toString()),
+                  child: Icon(Icons.delivery_dining),
+                )),
             BottomNavigationBarItem(
               label: "My Account",
               icon: Icon(Icons.person_outline),

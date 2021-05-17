@@ -72,13 +72,13 @@ class BestFoodTitle extends StatelessWidget {
 }
 
 class BestFoodTiles extends StatefulWidget {
-  String name, dishName, image, time;
+  String name, dishName, image, time, id;
   dynamic rating;
   int quantity, count;
   dynamic price;
   CartData cartData;
-  BestFoodTiles(this.name, this.rating, this.price, this.dishName, this.image,
-      this.time, this.quantity, this.cartData);
+  BestFoodTiles(this.id, this.name, this.rating, this.price, this.dishName,
+      this.image, this.time, this.quantity, this.cartData);
   @override
   _BestFoodTilesState createState() => _BestFoodTilesState();
 }
@@ -235,6 +235,7 @@ class _BestFoodTilesState extends State<BestFoodTiles> {
                       onPressed: () {
                         CartData().addItem(
                             Dishes(
+                                widget.id,
                                 widget.name,
                                 widget.rating,
                                 widget.dishName,
@@ -350,6 +351,7 @@ class _BestFoodListState extends State<BestFoodList> {
                     var dd = snapshot.data.docs[i];
                     if (chef_detail != null) {
                       Dishes dish = new Dishes(
+                          snapshot.data.docs[i]["chefId"],
                           chef_detail["fname"].toString(),
                           dd["rating"],
                           dd["dishName"].toString(),
@@ -371,6 +373,7 @@ class _BestFoodListState extends State<BestFoodList> {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: BestFoodTiles(
+                          data.id,
                           data.name,
                           data.getRating(),
                           data.getPrice(),

@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 
 class EatTomorrow extends StatefulWidget {
   CartData cartData;
-  EatTomorrow({@required this.cartData});
+  EatTomorrow();
   @override
   _EatTomorrowState createState() => _EatTomorrowState();
 }
@@ -63,6 +63,7 @@ class _EatTomorrowState extends State<EatTomorrow> {
                       final now = new DateTime.now();
 
                       var tmprser = new DateFormat("dd-MM-yyyy HH:mm");
+                      var tmprser2 = new DateFormat("dd-MM-yyyy");
                       print("\t" +
                           tmprser
                               .parse(snapshot.data.docs[i]["fromDate"]
@@ -71,26 +72,18 @@ class _EatTomorrowState extends State<EatTomorrow> {
                                   snapshot.data.docs[i]["toTime"].toString())
                               .toString());
 
-                      var nextDate = tmprser.parse(
-                          snapshot.data.docs[i]["fromDate"].toString() +
-                              " " +
-                              snapshot.data.docs[i]["toTime"].toString());
+                      // var nextDate = tmprser.parse(
+                      //     snapshot.data.docs[i]["fromDate"].toString() +
+                      //         " " +
+                      //         snapshot.data.docs[i]["toTime"].toString());
 
-                      var checkTime = tmprser
-                          .parse(snapshot.data.docs[i]["fromDate"].toString() +
-                              " " +
-                              snapshot.data.docs[i]["toTime"]
-                                  .toString()
-                                  .toString())
-                          .compareTo(tmprser.parse(now.day.toString() +
+                      var checkTime = tmprser2
+                          .parse(snapshot.data.docs[i]["fromDate"].toString())
+                          .compareTo(tmprser2.parse(now.day.toString() +
                               "-" +
                               now.month.toString() +
                               "-" +
-                              now.year.toString() +
-                              " " +
-                              now.hour.toString() +
-                              ":" +
-                              now.minute.toString()));
+                              now.year.toString()));
                       print("\n" + checkTime.toString());
                       if (snapshot.data.docs[i]['mealType'].toLowerCase() ==
                               this.tellMeType(now.hour).toLowerCase() &&
@@ -148,6 +141,7 @@ class _EatTomorrowState extends State<EatTomorrow> {
 
                           // print(remaining_time.toString() + "ending");
                           Dishes dish = new Dishes(
+                              snapshot.data.docs[i]["chefId"],
                               chef_detail["fname"].toString(),
                               chef_detail["rating"].toDouble(),
                               dd["dishName"].toString(),
@@ -164,19 +158,25 @@ class _EatTomorrowState extends State<EatTomorrow> {
 
                     return Column(
                         children: dishes.map((data) {
-                      print(ll);
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SingleCard(
-                            data.name,
-                            data.rating,
-                            data.getPrice(),
-                            data.getDishName(),
-                            data.getimage(),
-                            data.gettime(),
-                            1,
-                            this.cartdata),
-                      );
+                      if (CartData.dishes.length == 0 ||
+                          data.id == CartData.dishes[0].dish.id) {
+                        print(ll);
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SingleCard(
+                              data.id,
+                              data.name,
+                              data.rating,
+                              data.getPrice(),
+                              data.getDishName(),
+                              data.getimage(),
+                              data.gettime(),
+                              1,
+                              this.cartdata),
+                        );
+                      } else {
+                        return Container();
+                      }
                     }).toList());
                   } else {
                     return Container(
@@ -203,13 +203,13 @@ class _EatTomorrowState extends State<EatTomorrow> {
 }
 
 class SingleCard extends StatefulWidget {
-  String name, dishName, image, time;
+  String name, dishName, image, time, id;
   dynamic rating;
   int quantity, count;
   dynamic price;
   CartData cartData;
-  SingleCard(this.name, this.rating, this.price, this.dishName, this.image,
-      this.time, this.quantity, this.cartData);
+  SingleCard(this.id, this.name, this.rating, this.price, this.dishName,
+      this.image, this.time, this.quantity, this.cartData);
   @override
   _SingleCardState createState() => _SingleCardState();
 }
@@ -245,6 +245,16 @@ class _SingleCardState extends State<SingleCard> {
 
   void checkCart_add() {
     for (int i = 0; i < CartData.dishes.length; i++) {
+      if (CartData.dishes.length != 0) {
+        if ((CartData.dishes[i].dish.name != widget.name) ||
+            (CartData.dishes[i].dish.getDishName() == widget.dishName &&
+                CartData.dishes[i].dish.name == widget.name)) {
+          setState(() {
+            canAdd = 0;
+          });
+        }
+      }
+
       if (CartData.dishes[i].dish.getDishName() == widget.dishName &&
           CartData.dishes[i].dish.name == widget.name) {
         setState(() {
@@ -437,6 +447,7 @@ class _SingleCardState extends State<SingleCard> {
                         if (canAdd == 1) {
                           CartData().addItem(
                               Dishes(
+                                  widget.id,
                                   widget.name,
                                   widget.rating,
                                   widget.dishName,

@@ -9,6 +9,8 @@ import 'package:food_delivery_app/user/Menucard.dart';
 import 'package:food_delivery_app/user/Utils.dart';
 
 class MyApp extends StatefulWidget {
+  Function refreshCartNumber;
+  MyApp(this.refreshCartNumber);
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -17,6 +19,12 @@ class _MyAppState extends State<MyApp> {
   CartData cartdata = new CartData();
 
   String flag = "";
+
+  // void refreshMe() {
+  //   print("sssssssssssssssssssssssssssssssssssssssssss");
+  //   Navigator.push(context,
+  //       new MaterialPageRoute(builder: (context) => this.build(context)));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +60,9 @@ class _MyAppState extends State<MyApp> {
           ),
           body: TabBarView(
             children: [
-              EatNow(cartData: cartdata),
+              EatNow(
+                  cartData: cartdata,
+                  refreshCartNumber: widget.refreshCartNumber),
               EatLater(),
               EatTomorrow(),
               flag == ""

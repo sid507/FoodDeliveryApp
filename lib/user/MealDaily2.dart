@@ -60,6 +60,7 @@ class _MealDaily2State extends State<MealDaily2> {
                           var dd = snapshot.data.docs[i];
                           if (chef_detail != null) {
                             Dishes dish = new Dishes(
+                                snapshot.data.docs[i]["chefId"],
                                 chef_detail["fname"].toString(),
                                 chef_detail["rating"].toDouble(),
                                 dd["dishName"].toString(),
@@ -107,19 +108,25 @@ class _MealDaily2State extends State<MealDaily2> {
                           Column(
                               children: dishes.map((data) {
                             print(ll);
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: SingleCard(
-                                  data.name,
-                                  data.rating,
-                                  data.getPrice(),
-                                  data.getDishName(),
-                                  data.getimage(),
-                                  data.gettime(),
-                                  1,
-                                  this.cartData,
-                                  data.getCount()),
-                            );
+                            if (CartData.dishes.length == 0 ||
+                                data.id == CartData.dishes[0].dish.id) {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: SingleCard(
+                                    data.id,
+                                    data.name,
+                                    data.rating,
+                                    data.getPrice(),
+                                    data.getDishName(),
+                                    data.getimage(),
+                                    data.gettime(),
+                                    1,
+                                    this.cartData,
+                                    data.getCount()),
+                              );
+                            } else {
+                              return Container();
+                            }
                           }).toList()),
                         ],
                       );
@@ -143,48 +150,48 @@ class _MealDaily2State extends State<MealDaily2> {
     );
   }
 
-  Widget Outline_button(String time, IconData icon) {
-    return OutlinedButton.icon(
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.resolveWith<Color>(
-          (Set<MaterialState> states) {
-            if (!states.contains(MaterialState.pressed))
-              return Helper().button.withOpacity(1);
-            return null; // Use the component's default.
-          },
-        ),
-      ),
-      onPressed: () {
-        // Respond to button press
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => FoodOrderPage(),
-          ),
-        );
-      },
-      label: Text(
-        time,
-        style: TextStyle(
-            color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16.0),
-      ),
-      icon: Icon(
-        icon,
-        size: 30,
-        color: Colors.white,
-      ),
-    );
-  }
+  // Widget Outline_button(String time, IconData icon) {
+  //   return OutlinedButton.icon(
+  //     style: ButtonStyle(
+  //       backgroundColor: MaterialStateProperty.resolveWith<Color>(
+  //         (Set<MaterialState> states) {
+  //           if (!states.contains(MaterialState.pressed))
+  //             return Helper().button.withOpacity(1);
+  //           return null; // Use the component's default.
+  //         },
+  //       ),
+  //     ),
+  //     onPressed: () {
+  //       // Respond to button press
+  //       Navigator.push(
+  //         context,
+  //         MaterialPageRoute(
+  //           builder: (context) => FoodOrderPage(),
+  //         ),
+  //       );
+  //     },
+  //     label: Text(
+  //       time,
+  //       style: TextStyle(
+  //           color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16.0),
+  //     ),
+  //     icon: Icon(
+  //       icon,
+  //       size: 30,
+  //       color: Colors.white,
+  //     ),
+  //   );
+  // }
 }
 
 class SingleCard extends StatefulWidget {
-  String name, dishName, image, time;
+  String name, dishName, image, time, id;
   dynamic rating;
   int quantity, count;
   dynamic price;
   CartData cartData;
-  SingleCard(this.name, this.rating, this.price, this.dishName, this.image,
-      this.time, this.quantity, this.cartData, this.count);
+  SingleCard(this.id, this.name, this.rating, this.price, this.dishName,
+      this.image, this.time, this.quantity, this.cartData, this.count);
   @override
   _SingleCardState createState() => _SingleCardState();
 }
@@ -331,6 +338,7 @@ class _SingleCardState extends State<SingleCard> {
                       onPressed: () {
                         CartData().addItem(
                             Dishes(
+                                widget.id,
                                 widget.name,
                                 widget.rating,
                                 widget.dishName,

@@ -3,6 +3,7 @@ import 'package:food_delivery_app/user/Utils.dart';
 import '../user/Chefdata.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class EatLater extends StatefulWidget {
   @override
@@ -14,6 +15,9 @@ class _EatLaterState extends State<EatLater> {
   List<Dishes> l;
   Map ll;
   final db = FirebaseFirestore.instance;
+
+  List<Dishes> dishes = [];
+  Map chef = {};
 
   Map timetable = {7: "Breakfast", 12: "Lunch", 17: "Dinner"};
 
@@ -34,6 +38,24 @@ class _EatLaterState extends State<EatLater> {
     }
   }
 
+  void refresher_funct() {
+    // (context as Element).reassemble();
+    print("ssssssssssssssssssssssssssssssssssssssssss");
+    // print()
+    if (CartData.dishes.isNotEmpty)
+      Fluttertoast.showToast(
+          msg: "Showing " + CartData.dishes[0].dish.name + "'s food only",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Helper().button,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    setState(() {
+      dishes = [];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,13 +69,13 @@ class _EatLaterState extends State<EatLater> {
                 stream: db.collection('Chef').snapshots(),
                 builder: (context, snapshot2) {
                   if (snapshot2.hasData) {
-                    Map chef = {};
+                    chef = {};
                     for (int i = 0; i < snapshot2.data.docs.length; i++) {
                       print(snapshot2.data.docs[i].data());
                       chef[snapshot2.data.docs[i].id] =
                           snapshot2.data.docs[i].data();
                     }
-                    List<Dishes> dishes = [];
+                    dishes = [];
                     for (int i = 0; i < snapshot.data.docs.length; i++) {
                       final now = new DateTime.now();
 
@@ -88,6 +110,7 @@ class _EatLaterState extends State<EatLater> {
                         var dd = snapshot.data.docs[i];
                         if (chef_detail != null) {
                           Dishes dish = new Dishes(
+                              snapshot.data.docs[i]["chefId"],
                               chef_detail["fname"].toString(),
                               chef_detail["rating"].toDouble(),
                               dd["dishName"].toString(),
@@ -104,17 +127,24 @@ class _EatLaterState extends State<EatLater> {
 
                     return Column(
                         children: dishes.map((data) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: SingleCard(
-                            data.name,
-                            data.rating,
-                            data.getPrice(),
-                            data.getDishName(),
-                            data.getimage(),
-                            "07:00",
-                            1),
-                      );
+                      if (CartData.dishes.length == 0 ||
+                          data.id == CartData.dishes[0].dish.id) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SingleCard(
+                              data.id,
+                              data.name,
+                              data.rating,
+                              data.getPrice(),
+                              data.getDishName(),
+                              data.getimage(),
+                              "07:00",
+                              1,
+                              () => refresher_funct()),
+                        );
+                      } else {
+                        return Container();
+                      }
                     }).toList());
                   } else {
                     return Container(
@@ -151,12 +181,13 @@ class _EatLaterState extends State<EatLater> {
 }
 
 class SingleCard extends StatefulWidget {
-  String name, dishName, image, time;
+  String name, dishName, image, time, id;
   dynamic rating;
   int quantity, count;
   dynamic price;
-  SingleCard(this.name, this.rating, this.price, this.dishName, this.image,
-      this.time, this.quantity);
+  Function refresh;
+  SingleCard(this.id, this.name, this.rating, this.price, this.dishName,
+      this.image, this.time, this.quantity, this.refresh);
   @override
   _SingleCardState createState() => _SingleCardState();
 }
@@ -180,10 +211,27 @@ class _SingleCardState extends State<SingleCard> {
     }
   }
 
+  @override
+  void initState() {
+    super.initState();
+    // var total_remaining_time = int.parse(widget.time);
+    checkCart_add();
+  }
+
   void checkCart_add() {
     for (int i = 0; i < CartData.dishes.length; i++) {
+      // if (CartData.dishes.length != 0) {
+      //   if ((CartData.dishes[i].dish.name != widget.name) ||
+      //       (CartData.dishes[i].dish.getDishName() == widget.dishName &&
+      //           CartData.dishes[i].dish.name == widget.name)) {
+      //     setState(() {
+      //       canAdd = 0;
+      //     });
+      //   }
+      // }
+
       if (CartData.dishes[i].dish.getDishName() == widget.dishName &&
-          CartData.dishes[i].dish.name == widget.name) {
+          CartData.dishes[i].dish.id == widget.id) {
         setState(() {
           canAdd = 0;
         });
@@ -361,6 +409,7 @@ class _SingleCardState extends State<SingleCard> {
                         if (canAdd == 1) {
                           CartData().addItem(
                               Dishes(
+                                  widget.id,
                                   widget.name,
                                   widget.rating,
                                   widget.dishName,
@@ -370,7 +419,16 @@ class _SingleCardState extends State<SingleCard> {
                                   widget.dishName,
                                   widget.count),
                               widget.quantity);
+                          Fluttertoast.showToast(
+                              msg: "Successfully Added",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Helper().button,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
                           checkCart_add();
+                          widget.refresh();
                         }
                       },
                       label: Text(
