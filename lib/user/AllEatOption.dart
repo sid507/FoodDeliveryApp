@@ -57,8 +57,8 @@ class _MyAppState extends State<MyApp> {
               EatNow(
                   cartData: cartdata,
                   refreshCartNumber: widget.refreshCartNumber),
-              EatLater(),
-              EatTomorrow(),
+              EatLater(refreshCartNumber: widget.refreshCartNumber),
+              EatTomorrow(refreshCartNumber: widget.refreshCartNumber),
               flag == ""
                   ? MealDaily((value) => {
                         setState(() {
@@ -71,7 +71,8 @@ class _MyAppState extends State<MyApp> {
                               flag = value;
                             })
                           },
-                      flag)
+                      flag,
+                      widget.refreshCartNumber)
             ],
           ),
         ),

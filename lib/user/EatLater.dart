@@ -6,6 +6,8 @@ import 'package:intl/intl.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class EatLater extends StatefulWidget {
+  Function refreshCartNumber;
+  EatLater({this.refreshCartNumber});
   @override
   _EatLaterState createState() => _EatLaterState();
 }
@@ -140,7 +142,10 @@ class _EatLaterState extends State<EatLater> {
                               "07:00",
                               1,
                               data.getChefId(),
-                              () => refresher_funct()),
+                              () => {
+                                    widget.refreshCartNumber(),
+                                    refresher_funct()
+                                  }),
                         );
                       } else {
                         return Container();

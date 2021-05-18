@@ -634,7 +634,7 @@ class _PopularFoodsWidgetState extends State<PopularFoodsWidget> {
   Widget build(BuildContext context) {
     double totalHeight = MediaQuery.of(context).size.height;
     return Container(
-      height: totalHeight * 210 / 700,
+      height: totalHeight * 230 / 700,
       width: double.infinity,
       child: Column(
         children: <Widget>[
@@ -1111,7 +1111,7 @@ class _BestFoodWidgetState extends State<BestFoodWidget> {
   Widget build(BuildContext context) {
     double totalHeight = MediaQuery.of(context).size.height;
     return Container(
-      height: totalHeight * 210 / 700,
+      height: totalHeight * 230 / 700,
       width: double.infinity,
       child: Column(
         children: <Widget>[

@@ -27,15 +27,25 @@ class _MenuOptionSideState extends State<MenuOptionSide> {
   void refresh() {
     setState(() {
       count = CartData.dishes.length;
+      print('llllllllllllllllllllllllllllllllll');
+    });
+  }
+
+  void refresh2(int c) {
+    setState(() {
+      count = c;
+      // print('llllllllllllllllllllllllllllllllll');
     });
   }
 
   @override
   void initState() {
+    refresh();
     this._children = [
       HomePage(automatic: widget.automatic),
       MyApp(() => refresh()),
-      FoodOrderPage(address: widget.address),
+      FoodOrderPage(
+          address: widget.address, refreshCartNumber: () => refresh()),
       AccountScreen()
     ];
     print(this._children);

@@ -10,7 +10,9 @@ import 'package:food_delivery_app/user/Utils.dart';
 
 class FoodOrderPage extends StatefulWidget {
   final String address;
-  FoodOrderPage({Key key, this.address}) : super(key: key);
+  Function refreshCartNumber;
+  FoodOrderPage({Key key, this.address, this.refreshCartNumber})
+      : super(key: key);
   @override
   _FoodOrderPageState createState() => _FoodOrderPageState();
 }
@@ -90,7 +92,9 @@ class _FoodOrderPageState extends State<FoodOrderPage> {
                                               data.dish.getDishName() &&
                                           element.dish.name == data.dish.name),
                                     });
+
                                 totalCost = CartData().calculateTotal(dishes);
+                                widget.refreshCartNumber();
                                 print(data.dish.getDishName());
                               },
                               deliveryTime: data.dish.gettime(),

@@ -3,6 +3,7 @@ import 'package:food_delivery_app/user/Cart.dart';
 import 'package:food_delivery_app/user/EatDaily.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../user/Chefdata.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'Utils.dart';
 
@@ -10,7 +11,8 @@ class MealDaily2 extends StatefulWidget {
   CartData cartData;
   Function type2;
   String type;
-  MealDaily2(this.type2, this.type);
+  Function refreshCartNumber;
+  MealDaily2(this.type2, this.type, this.refreshCartNumber);
   @override
   _MealDaily2State createState() => _MealDaily2State();
 }
@@ -21,6 +23,34 @@ class _MealDaily2State extends State<MealDaily2> {
   Map ll;
   final db = FirebaseFirestore.instance;
   CartData cartdata;
+  Map chef = {};
+  List<Dishes> dishes = [];
+
+  void refresher_funct() {
+    // (context as Element).reassemble();
+    print("ssssssssssssssssssssssssssssssssssssssssss");
+    // print()
+    if (CartData.dishes.isNotEmpty)
+      Fluttertoast.showToast(
+          msg: "Showing " + CartData.dishes[0].dish.name + "'s food only",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Helper().button,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    setState(() {
+      dishes = [];
+    });
+    // rebuildAllChildren(context);
+    // EatNow(cartData: new CartData());
+
+    // Navigator.push(context,
+    //     new MaterialPageRoute(builder: (context) => this.build(context)));
+    // Navigator.pushReplacement(context,
+    //     MaterialPageRoute(builder: (BuildContext context) => super.widget));
+  }
+
   @override
   void initState() {
     super.initState();
@@ -45,13 +75,13 @@ class _MealDaily2State extends State<MealDaily2> {
                   stream: db.collection('Chef').snapshots(),
                   builder: (context, snapshot2) {
                     if (snapshot2.hasData) {
-                      Map chef = {};
+                      chef = {};
                       for (int i = 0; i < snapshot2.data.docs.length; i++) {
                         print(snapshot2.data.docs[i].data());
                         chef[snapshot2.data.docs[i].id] =
                             snapshot2.data.docs[i].data();
                       }
-                      List<Dishes> dishes = [];
+                      dishes = [];
                       for (int i = 0; i < snapshot.data.docs.length; i++) {
                         if (snapshot.data.docs[i]["mealType"].toLowerCase() ==
                             widget.type.toLowerCase()) {
@@ -123,7 +153,11 @@ class _MealDaily2State extends State<MealDaily2> {
                                     1,
                                     this.cartData,
                                     data.getCount(),
-                                    data.getChefId()),
+                                    data.getChefId(),
+                                    () => {
+                                          widget.refreshCartNumber(),
+                                          refresher_funct()
+                                        }),
                               );
                             } else {
                               return Container();
@@ -191,8 +225,19 @@ class SingleCard extends StatefulWidget {
   int quantity, count;
   dynamic price;
   CartData cartData;
-  SingleCard(this.name, this.rating, this.price, this.dishName, this.image,
-      this.time, this.quantity, this.cartData, this.count, this.chefId);
+  Function refresh;
+  SingleCard(
+      this.name,
+      this.rating,
+      this.price,
+      this.dishName,
+      this.image,
+      this.time,
+      this.quantity,
+      this.cartData,
+      this.count,
+      this.chefId,
+      this.refresh);
   @override
   _SingleCardState createState() => _SingleCardState();
 }
@@ -375,6 +420,15 @@ class _SingleCardState extends State<SingleCard> {
                                   widget.count,
                                   widget.chefId),
                               widget.quantity);
+                          Fluttertoast.showToast(
+                              msg: "Showing " + widget.name + "'s food only",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Helper().button,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
+                          widget.refresh();
                           checkCart_add();
                         }
                       },
