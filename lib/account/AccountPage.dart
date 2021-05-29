@@ -269,6 +269,8 @@ class __PastOrderListViewState extends State<_PastOrderListView> {
       rated = [],
       l2 = [];
 
+  List<bool> isDeliveredOrder = [];
+
   Map chefs = {};
 
   @override
@@ -322,6 +324,8 @@ class __PastOrderListViewState extends State<_PastOrderListView> {
                       chefs[snapshot2.data.docs[i].id] =
                           snapshot2.data.docs[i].data();
                     }
+                    // for (int j = 0; j < snapshot.data.docs.length; j++) {}
+                    // print('isDeliveredOrder=$isDeliveredOrder');
                     dishNameOrder.clear();
                     quantityOrder.clear();
                     chefNameOrder.clear();
@@ -333,10 +337,24 @@ class __PastOrderListViewState extends State<_PastOrderListView> {
                     for (int i = 0; i < snapshot.data.docs.length; i++) {
                       var chef_detail = chefs[snapshot.data.docs[i]["chefId"]];
                       // print(chef_detail);
+                      bool isDelOrder = false;
                       var dd = snapshot.data.docs[i];
+                      bool flag = true;
+                      for (int j = 0; j < dd["isDelivered"].length; j++) {
+                        if (dd["isDelivered"][j] == false) {
+                          flag = false;
+                          break;
+                        }
+                      }
+                      if (flag == true) {
+                        isDelOrder = true;
+                      } else {
+                        isDelOrder = false;
+                        flag = true;
+                      }
 
                       if (user.uid == snapshot.data.docs[i]['userId']) {
-                        if (widget.ongoing != dd['isDelivered']) {
+                        if (widget.ongoing != isDelOrder) {
                           FirebaseFirestore.instance
                               .collection('Orders')
                               // .where(user.uid.toString(),
@@ -369,8 +387,8 @@ class __PastOrderListViewState extends State<_PastOrderListView> {
                         }
                       }
                       // print('onging = ${widget.ongoing}');
-                      // print('dno=$dishNameOrder');
-                      // print('qno=$quantityOrder');
+                      print('dno=$dishNameOrder');
+                      print('qno=$quantityOrder');
                       // print('chefno=$chefNameOrder');
                       // print('costno=$costOrder');
                       // print('tno=$timeOrder');
@@ -512,12 +530,18 @@ class __PastOrdersListItemViewState extends State<_PastOrdersListItemView> {
 
   @override
   Widget build(BuildContext context) {
-    // print('sent_food=${widget.foodItem}');
-    // List<String> temp = widget.foodItem.split(' x ');
-    // List<String> temp2 = [];
-    // List<String> temp3 = [];
+    print('sent_food=${widget.foodItem}');
+    String tempFood = widget.foodItem.split('] x [')[0].split('[')[1];
+    String tempQuantity = widget.foodItem.split('] x [')[1].split(']')[0];
+    List<String> foodList = tempFood.split(', ');
+    List<String> quantityList = tempQuantity.split(', ');
+    String food = '';
+    for (int i = 0; i < foodList.length; i++) {
+      food += '${foodList[i]} x ${quantityList[i]}';
+      food += '\n';
+    }
     // for (int i = 0; i < temp.length ~/ 2; i++) {
-    //   for (int i = 0; i < temp.length ~/ 2; i++) {
+    //   for (int j = 0; j < temp.length ~/ 2; j++) {
     //   temp[i][j];
     //   }
     // }
@@ -589,15 +613,23 @@ class __PastOrdersListItemViewState extends State<_PastOrdersListItemView> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Text(
+                    'Order Placed At: ',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text(widget.timeOrder)
+                ],
+              ),
               Text(
-                'Food Items:',
+                '\nFood Items Ordered:',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               UIHelper.verticalSpaceExtraSmall(),
-              Text(widget.foodItem),
+              Text(food),
               // Text(temp3.toString()),
               UIHelper.verticalSpaceExtraSmall(),
-              Text(widget.timeOrder),
               UIHelper.verticalSpaceSmall(),
               if (widget.ongoing == false && widget.rated == "false")
                 Center(

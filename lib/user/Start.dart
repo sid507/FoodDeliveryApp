@@ -1,14 +1,76 @@
 import 'package:flutter/material.dart';
+import 'package:location/location.dart';
+import 'package:geocoder/geocoder.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 // import 'package:food_delivery_app/user/UserHome.dart';
 
 import 'UserHome.dart';
 import 'Menucard.dart';
 
 class StartPage extends StatelessWidget {
+  String _address = "";
+  Location location = Location();
+  LocationData _currentPosition;
+  LatLng _initialcameraposition = LatLng(19.0473, 73.0699);
+
+  Future<List<Address>> _getAddress(double lat, double lang) async {
+    final coordinates = new Coordinates(lat, lang);
+    List<Address> add =
+        await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    return add;
+  }
+
+  getLoc() async {
+    bool _serviceEnabled;
+    PermissionStatus _permissionGranted;
+    locationSet = true;
+
+    _serviceEnabled = await location.serviceEnabled();
+    if (!_serviceEnabled) {
+      _serviceEnabled = await location.requestService();
+      if (!_serviceEnabled) {
+        return;
+      }
+    }
+
+    _permissionGranted = await location.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await location.requestPermission();
+      if (_permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    _currentPosition = await location.getLocation();
+    _initialcameraposition =
+        LatLng(_currentPosition.latitude, _currentPosition.longitude);
+    // location.onLocationChanged.listen((LocationData currentLocation) {
+    //   print("${currentLocation.longitude} : ${currentLocation.longitude}");
+    //   setState(() {
+    //     _currentPosition = currentLocation;
+    //     _initialcameraposition =
+    //         LatLng(_currentPosition.latitude, _currentPosition.longitude);
+    //     _getAddress(_currentPosition.latitude, _currentPosition.longitude)
+    //         .then((value) {
+    //       setState(() {
+    //         _address = "${value.first.addressLine}";
+    //       });
+    //     });
+    //   });
+    // });
+
+    _getAddress(_currentPosition.latitude, _currentPosition.longitude)
+        .then((value) {
+      _address = "${value.first.addressLine}";
+      print("Address2 = " + _address);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double totalWidth = MediaQuery.of(context).size.width;
     double totalHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -61,16 +123,16 @@ class StartPage extends StatelessWidget {
                   height: totalHeight * 30 / 700,
                 ),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MenuOptionSide(
-                          automatic: true,
-                          address: "Searching Location ...",
-                        ),
-                      ),
-                    );
+                  onPressed: () async {
+                    // await getLoc();
+                    await _showMyDialog(context);
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => MenuOptionSide(
+                    //         automatic: true, address: _address, reload: true),
+                    //   ),
+                    // );
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.red,
@@ -129,6 +191,51 @@ class StartPage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Future<void> _showMyDialog(BuildContext context) async {
+    await getLoc();
+    return showDialog<void>(
+      context: context,
+      // double totalHeight = MediaQuery.of(context).size.height;
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Complete Address', textAlign: TextAlign.center),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text(
+                  "In order to help us serve you better, kindly provide us your complete address by clicking the edit button present on the top right corner of the screen !",
+                  textAlign: TextAlign.justify,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 5,
+                  style: TextStyle(
+                    color: Colors.black,
+                    // fontSize: * 15 / 700,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Sure', textAlign: TextAlign.center),
+              onPressed: () async {
+                await getLoc();
+                // Navigator.of(context).pop();
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => new MenuOptionSide(
+                          automatic: false, address: _address),
+                    ));
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

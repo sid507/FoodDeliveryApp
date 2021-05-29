@@ -1,16 +1,12 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
-import 'dart:io';
 import 'package:flutter/services.dart';
 
 import 'package:food_delivery_app/account/AccountPage.dart';
 import 'package:food_delivery_app/user/AllEatOption.dart';
 import 'package:food_delivery_app/user/Cart.dart';
-import 'package:food_delivery_app/auth_screens/sign_in.dart';
-import 'package:food_delivery_app/user/SearchPage.dart';
 import 'package:food_delivery_app/user/Utils.dart';
-import 'package:geocoder/geocoder.dart';
 import 'UserHome.dart';
 import 'package:food_delivery_app/user/Chefdata.dart';
 
@@ -52,19 +48,19 @@ class _MenuOptionSideState extends State<MenuOptionSide> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          body: WillPopScope(
-            onWillPop: _onBackPressed,
-            child: DoubleBackToCloseApp(
-              child:
-                  MenuOptionSideNew(automatic: true, address: widget.address),
-              snackBar: const SnackBar(
-                content: Text('Tap back again to leave'),
-              ),
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: WillPopScope(
+          onWillPop: _onBackPressed,
+          child: DoubleBackToCloseApp(
+            child: MenuOptionSideNew(automatic: true, address: widget.address),
+            snackBar: const SnackBar(
+              content: Text('Tap back again to leave'),
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
 
@@ -100,7 +96,11 @@ class _MenuOptionSideNewState extends State<MenuOptionSideNew> {
   void initState() {
     refresh();
     this._children = [
-      HomePage(automatic: widget.automatic, refreshCartNumber: () => refresh()),
+      HomePage(
+        automatic: widget.automatic,
+        address: widget.address,
+        refreshCartNumber: () => refresh(),
+      ),
       MyApp(() => refresh()),
       FoodOrderPage(
           address: widget.address.toString(),

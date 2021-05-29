@@ -369,7 +369,7 @@ class _FoodOrderPageState extends State<FoodOrderPage> {
         fromTimeList = [],
         dateToBeDelivered = [];
 
-    List<bool> self_delivery = [];
+    List<bool> self_delivery = [], isDelivered = [];
 
     String chefId = "";
     String chefAddress = "";
@@ -385,6 +385,7 @@ class _FoodOrderPageState extends State<FoodOrderPage> {
       fromTimeList.add(data.dish.getFromTime());
       dateToBeDelivered.add(data.dish.getSelectedDate());
       self_delivery.add(data.dish.getSelfDelivery());
+      isDelivered.add(false);
       chefId = data.dish.getChefId();
       chefAddress = data.dish.chefAddress;
       totalCost = CartData().calculateGrandTotal();
@@ -402,7 +403,7 @@ class _FoodOrderPageState extends State<FoodOrderPage> {
           "pricePerServing": productPrice,
           "quantity": productCartQuantity,
           "totalCost": totalCost,
-          "isDelivered": false,
+          "isDelivered": isDelivered,
           "timeOrderPlaced": formattedDate,
           "address": widget.address,
           "toTime": toTimeList,

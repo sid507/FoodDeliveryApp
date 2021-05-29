@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/user/EatDaily.dart';
 import 'package:food_delivery_app/user/Utils.dart';
 import 'package:food_delivery_app/user/ScaleRoute.dart';
 import 'package:food_delivery_app/user/Menucard.dart';
@@ -190,6 +191,7 @@ class _ItemsFoundState extends State<ItemsFound> {
                     stream: db.collection('Chef').snapshots(),
                     builder: (context, snapshot2) {
                       if (snapshot2.hasData) {
+                        DateTime tomorrow;
                         chefs = {};
                         for (int i = 0; i < snapshot2.data.docs.length; i++) {
                           // print(snapshot2.data.docs[i].data());
@@ -206,6 +208,22 @@ class _ItemsFoundState extends State<ItemsFound> {
                                 chefs[snapshot.data.docs[i]["chefId"]];
                             // print(chef_detail);
                             var dd = snapshot.data.docs[i];
+                            TimeOfDay nowTime = TimeOfDay.now();
+                            double currentTime = toDouble(nowTime);
+
+                            double itemToTime1 =
+                                double.parse(dd["toTime"].split(':')[0]);
+                            double itemToTime2 =
+                                double.parse(dd["toTime"].split(':')[1]);
+                            double itemToTime =
+                                itemToTime1 + itemToTime2 / 60.0;
+
+                            if (currentTime <= itemToTime) {
+                              tomorrow = DateTime(now.year, now.month, now.day);
+                            } else {
+                              tomorrow =
+                                  DateTime(now.year, now.month, now.day + 1);
+                            }
                             Dishes dish = new Dishes(
                                 chef_detail["fname"].toString(),
                                 chef_detail["chefAddress"].toString(),
@@ -220,7 +238,9 @@ class _ItemsFoundState extends State<ItemsFound> {
                                 dd["chefId"],
                                 dd["toTime"],
                                 dd["fromTime"],
-                                DateFormat('dd MMM y').format(now).toString());
+                                DateFormat('dd MMM y')
+                                    .format(tomorrow)
+                                    .toString());
                             dishes.add(dish);
                           }
                         }
@@ -307,6 +327,8 @@ class _ItemsFoundState extends State<ItemsFound> {
       ),
     );
   }
+
+  double toDouble(TimeOfDay myTime) => myTime.hour + myTime.minute / 60.0;
 }
 
 class NoItemsFound extends StatefulWidget {
@@ -385,6 +407,8 @@ class _SingleCardState extends State<SingleCard> {
       }
     }
   }
+
+  double toDouble(TimeOfDay myTime) => myTime.hour + myTime.minute / 60.0;
 
   @override
   void dispose() {
@@ -537,6 +561,22 @@ class _SingleCardState extends State<SingleCard> {
                       ),
                       onPressed: () {
                         if (canAdd == 1) {
+                          DateTime tomorrow;
+                          TimeOfDay nowTime = TimeOfDay.now();
+                          double currentTime = toDouble(nowTime);
+
+                          double itemToTime1 =
+                              double.parse(widget.toTime.split(':')[0]);
+                          double itemToTime2 =
+                              double.parse(widget.toTime.split(':')[1]);
+                          double itemToTime = itemToTime1 + itemToTime2 / 60.0;
+
+                          if (currentTime <= itemToTime) {
+                            tomorrow = DateTime(now.year, now.month, now.day);
+                          } else {
+                            tomorrow =
+                                DateTime(now.year, now.month, now.day + 1);
+                          }
                           CartData().addItem(
                               Dishes(
                                   widget.name,
@@ -553,7 +593,7 @@ class _SingleCardState extends State<SingleCard> {
                                   widget.toTime,
                                   widget.fromTime,
                                   DateFormat('dd MMM y')
-                                      .format(now)
+                                      .format(tomorrow)
                                       .toString()),
                               widget.quantity);
                           Fluttertoast.showToast(

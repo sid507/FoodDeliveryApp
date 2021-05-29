@@ -40,6 +40,43 @@ class _MapHomePageState extends State<MapHomePage> {
     getLoc();
   }
 
+  Future<void> _showMyDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      // double totalHeight = MediaQuery.of(context).size.height;
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Complete Address', textAlign: TextAlign.center),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text(
+                  "In order to help us serve you better, kindly provide us your complete address by clicking the edit button present on the top right corner of the screen !",
+                  textAlign: TextAlign.justify,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 5,
+                  style: TextStyle(
+                    color: Colors.black,
+                    // fontSize: * 15 / 700,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Sure', textAlign: TextAlign.center),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,11 +94,13 @@ class _MapHomePageState extends State<MapHomePage> {
           Align(
             alignment: Alignment.bottomCenter,
             child: ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 setState(() {
                   getLoc();
+                  _address = _address;
                   locationSet = true;
                 });
+                await _showMyDialog(context);
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -159,8 +198,12 @@ class _MapHomePageState extends State<MapHomePage> {
 class HomePage extends StatefulWidget {
   bool automatic;
   Function refreshCartNumber;
+  String address;
   HomePage(
-      {Key key, @required this.automatic, @required this.refreshCartNumber})
+      {Key key,
+      @required this.automatic,
+      @required this.refreshCartNumber,
+      this.address})
       : super(key: key);
   @override
   _HomePageState createState() => _HomePageState();
@@ -193,21 +236,18 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    if (widget.automatic && !(locationSet)) {
+    if (widget.address != "Searching Location ...") {
+      locationSet = true;
+    }
+
+    if (widget.automatic &&
+        !(locationSet) &&
+        widget.address == "Searching Location ...") {
       getLoc();
     }
-    _editingController = TextEditingController(text: _address);
+    _address = widget.address;
+    _editingController = TextEditingController(text: widget.address);
     print(_address);
-
-    // refresh();
-    // Navigator.push(
-    //                 context,
-    //                 MaterialPageRoute(
-    //                   builder: (context) => new MenuOptionSide(
-    //                       automatic: false, address: _address),
-    //                 ));
-    // Navigator.pushReplacement(context,
-    //     MaterialPageRoute(builder: (BuildContext context) => this.widget));
   }
 
   @override
@@ -303,7 +343,7 @@ class _HomePageState extends State<HomePage> {
                           color: Colors.black12,
                         ),
                         SizedBox(
-                          height: totalHeight * 15 / 700,
+                          height: totalHeight * 5 / 700,
                         ),
                         Row(
                           children: <Widget>[
@@ -320,13 +360,13 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                         SizedBox(
-                          height: totalHeight * 5 / 700,
+                          height: totalHeight * 2 / 700,
                         ),
                         Center(
                           child: _editTitleTextField(context),
                         ),
                         SizedBox(
-                          height: totalHeight * 15 / 700,
+                          height: totalHeight * 5 / 700,
                         ),
                         Divider(
                           color: Colors.black12,
@@ -400,6 +440,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget build(BuildContext context) {
+    _address = widget.address;
     // double totalWidth = MediaQuery.of(context).size.width;
     double totalHeight = MediaQuery.of(context).size.height;
     MediaQueryData mediaQuery = MediaQuery.of(context);
@@ -425,7 +466,7 @@ class _HomePageState extends State<HomePage> {
                     fontWeight: FontWeight.bold),
               ),
               TextSpan(
-                text: _address,
+                text: widget.address,
                 style: TextStyle(
                   fontSize: mediaQuery.size.height * 13 / 700,
                   // maxLines: 3,
@@ -723,6 +764,8 @@ class _PopularFoodTilesState extends State<PopularFoodTiles> {
     }
   }
 
+  double toDouble(TimeOfDay myTime) => myTime.hour + myTime.minute / 60.0;
+
   @override
   void initState() {
     super.initState();
@@ -886,6 +929,22 @@ class _PopularFoodTilesState extends State<PopularFoodTiles> {
                         // var cartDishName = CartData().getItem().where((element) => element.dish.getDishName()[0]=true);
                         // if (cartDishName.contains(widget.name)) {
                         if (canAdd == 1) {
+                          DateTime tomorrow;
+                          TimeOfDay nowTime = TimeOfDay.now();
+                          double currentTime = toDouble(nowTime);
+
+                          double itemToTime1 =
+                              double.parse(widget.toTime.split(':')[0]);
+                          double itemToTime2 =
+                              double.parse(widget.toTime.split(':')[1]);
+                          double itemToTime = itemToTime1 + itemToTime2 / 60.0;
+
+                          if (currentTime <= itemToTime) {
+                            tomorrow = DateTime(now.year, now.month, now.day);
+                          } else {
+                            tomorrow =
+                                DateTime(now.year, now.month, now.day + 1);
+                          }
                           CartData().addItem(
                               Dishes(
                                   widget.name,
@@ -902,7 +961,7 @@ class _PopularFoodTilesState extends State<PopularFoodTiles> {
                                   widget.toTime,
                                   widget.fromTime,
                                   DateFormat('dd MMM y')
-                                      .format(now)
+                                      .format(tomorrow)
                                       .toString()),
                               widget.quantity);
                           checkCart_add();
@@ -1042,6 +1101,7 @@ class _PopularFoodItemsState extends State<PopularFoodItems> {
               stream: db.collection('Chef').snapshots(),
               builder: (context, snapshot2) {
                 if (snapshot2.hasData) {
+                  DateTime tomorrow;
                   chef = {};
                   for (int i = 0; i < snapshot2.data.docs.length; i++) {
                     // print(snapshot2.data.docs[i].data());
@@ -1053,6 +1113,22 @@ class _PopularFoodItemsState extends State<PopularFoodItems> {
                     for (int i = 0; i < snapshot.data.docs.length; i++) {
                       var chef_detail = chef[snapshot.data.docs[i]["chefId"]];
                       var dd = snapshot.data.docs[i];
+
+                      TimeOfDay nowTime = TimeOfDay.now();
+                      double currentTime = toDouble(nowTime);
+
+                      double itemToTime1 =
+                          double.parse(dd["toTime"].split(':')[0]);
+                      double itemToTime2 =
+                          double.parse(dd["toTime"].split(':')[1]);
+                      double itemToTime = itemToTime1 + itemToTime2 / 60.0;
+
+                      if (currentTime <= itemToTime) {
+                        tomorrow = DateTime(now.year, now.month, now.day);
+                      } else {
+                        tomorrow = DateTime(now.year, now.month, now.day + 1);
+                      }
+                      print('ct=$currentTime, toT=$itemToTime, tom=$tomorrow');
                       if (chef_detail != null) {
                         Dishes dish = new Dishes(
                             chef_detail["fname"].toString(),
@@ -1068,7 +1144,7 @@ class _PopularFoodItemsState extends State<PopularFoodItems> {
                             dd["chefId"],
                             dd["toTime"],
                             dd["fromTime"],
-                            DateFormat('dd MMM y').format(now).toString());
+                            DateFormat('dd MMM y').format(tomorrow).toString());
                         dishes.add(dish);
                       }
                     }
@@ -1076,6 +1152,20 @@ class _PopularFoodItemsState extends State<PopularFoodItems> {
                     for (int i = 0; i < snapshot.data.docs.length; i++) {
                       var chef_detail = chef[snapshot.data.docs[i]["chefId"]];
                       var dd = snapshot.data.docs[i];
+                      TimeOfDay nowTime = TimeOfDay.now();
+                      double currentTime = toDouble(nowTime);
+
+                      double itemToTime1 =
+                          double.parse(dd["toTime"].split(':')[0]);
+                      double itemToTime2 =
+                          double.parse(dd["toTime"].split(':')[1]);
+                      double itemToTime = itemToTime1 + itemToTime2 / 60.0;
+
+                      if (currentTime <= itemToTime) {
+                        tomorrow = DateTime(now.year, now.month, now.day);
+                      } else {
+                        tomorrow = DateTime(now.year, now.month, now.day + 1);
+                      }
                       if (chef_detail != null &&
                           dishType == dd["cuisineType"]) {
                         Dishes dish = new Dishes(
@@ -1092,7 +1182,7 @@ class _PopularFoodItemsState extends State<PopularFoodItems> {
                             dd["chefId"],
                             dd["toTime"],
                             dd["fromTime"],
-                            DateFormat('dd MMM y').format(now).toString());
+                            DateFormat('dd MMM y').format(tomorrow).toString());
                         dishes.add(dish);
                       }
                     }
@@ -1144,6 +1234,8 @@ class _PopularFoodItemsState extends State<PopularFoodItems> {
       )
     ]);
   }
+
+  double toDouble(TimeOfDay myTime) => myTime.hour + myTime.minute / 60.0;
 }
 
 class BestFoodWidget extends StatefulWidget {
@@ -1259,6 +1351,8 @@ class _BestFoodTilesState extends State<BestFoodTiles> {
     // var total_remaining_time = int.parse(widget.time);
     checkCart_add();
   }
+
+  double toDouble(TimeOfDay myTime) => myTime.hour + myTime.minute / 60.0;
 
   @override
   Widget build(BuildContext context) {
@@ -1414,6 +1508,22 @@ class _BestFoodTilesState extends State<BestFoodTiles> {
                       ),
                       onPressed: () {
                         if (canAdd == 1) {
+                          DateTime tomorrow;
+                          TimeOfDay nowTime = TimeOfDay.now();
+                          double currentTime = toDouble(nowTime);
+
+                          double itemToTime1 =
+                              double.parse(widget.toTime.split(':')[0]);
+                          double itemToTime2 =
+                              double.parse(widget.toTime.split(':')[1]);
+                          double itemToTime = itemToTime1 + itemToTime2 / 60.0;
+
+                          if (currentTime <= itemToTime) {
+                            tomorrow = DateTime(now.year, now.month, now.day);
+                          } else {
+                            tomorrow =
+                                DateTime(now.year, now.month, now.day + 1);
+                          }
                           CartData().addItem(
                               Dishes(
                                   widget.name,
@@ -1430,7 +1540,7 @@ class _BestFoodTilesState extends State<BestFoodTiles> {
                                   widget.toTime,
                                   widget.fromTime,
                                   DateFormat('dd MMM y')
-                                      .format(now)
+                                      .format(tomorrow)
                                       .toString()),
                               widget.quantity);
                           checkCart_add();
@@ -1549,6 +1659,7 @@ class _BestFoodListState extends State<BestFoodList> {
               stream: db.collection('Chef').snapshots(),
               builder: (context, snapshot2) {
                 if (snapshot2.hasData) {
+                  DateTime tomorrow;
                   chef = {};
                   for (int i = 0; i < snapshot2.data.docs.length; i++) {
                     // print(snapshot2.data.docs[i].data());
@@ -1560,6 +1671,20 @@ class _BestFoodListState extends State<BestFoodList> {
                     for (int i = 0; i < snapshot.data.docs.length; i++) {
                       var chef_detail = chef[snapshot.data.docs[i]["chefId"]];
                       var dd = snapshot.data.docs[i];
+                      TimeOfDay nowTime = TimeOfDay.now();
+                      double currentTime = toDouble(nowTime);
+
+                      double itemToTime1 =
+                          double.parse(dd["toTime"].split(':')[0]);
+                      double itemToTime2 =
+                          double.parse(dd["toTime"].split(':')[1]);
+                      double itemToTime = itemToTime1 + itemToTime2 / 60.0;
+
+                      if (currentTime <= itemToTime) {
+                        tomorrow = DateTime(now.year, now.month, now.day);
+                      } else {
+                        tomorrow = DateTime(now.year, now.month, now.day + 1);
+                      }
                       if (chef_detail != null) {
                         Dishes dish = new Dishes(
                             chef_detail["fname"].toString(),
@@ -1575,7 +1700,7 @@ class _BestFoodListState extends State<BestFoodList> {
                             dd["chefId"],
                             dd["toTime"],
                             dd["fromTime"],
-                            DateFormat('dd MMM y').format(now).toString());
+                            DateFormat('dd MMM y').format(tomorrow).toString());
                         dishes.add(dish);
                       }
                     }
@@ -1583,6 +1708,20 @@ class _BestFoodListState extends State<BestFoodList> {
                     for (int i = 0; i < snapshot.data.docs.length; i++) {
                       var chef_detail = chef[snapshot.data.docs[i]["chefId"]];
                       var dd = snapshot.data.docs[i];
+                      TimeOfDay nowTime = TimeOfDay.now();
+                      double currentTime = toDouble(nowTime);
+
+                      double itemToTime1 =
+                          double.parse(dd["toTime"].split(':')[0]);
+                      double itemToTime2 =
+                          double.parse(dd["toTime"].split(':')[1]);
+                      double itemToTime = itemToTime1 + itemToTime2 / 60.0;
+
+                      if (currentTime <= itemToTime) {
+                        tomorrow = DateTime(now.year, now.month, now.day);
+                      } else {
+                        tomorrow = DateTime(now.year, now.month, now.day + 1);
+                      }
                       if (chef_detail != null &&
                           dishType == dd["cuisineType"]) {
                         Dishes dish = new Dishes(
@@ -1599,7 +1738,7 @@ class _BestFoodListState extends State<BestFoodList> {
                             dd["chefId"],
                             dd["toTime"],
                             dd["fromTime"],
-                            DateFormat('dd MMM y').format(now).toString());
+                            DateFormat('dd MMM y').format(tomorrow).toString());
                         dishes.add(dish);
                       }
                     }
@@ -1656,4 +1795,6 @@ class _BestFoodListState extends State<BestFoodList> {
       )
     ]);
   }
+
+  double toDouble(TimeOfDay myTime) => myTime.hour + myTime.minute / 60.0;
 }
