@@ -6,6 +6,8 @@ import 'dart:async';
 import 'package:intl/intl.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+final now = new DateTime.now();
+
 class EatNow extends StatefulWidget {
   CartData cartData;
   Function refreshCartNumber;
@@ -103,13 +105,33 @@ class _EatNowState extends State<EatNow> {
                                   .minute) -
                           (now.hour * 60 + now.minute);
 
-                      if (snapshot.data.docs[i]['mealType'].toLowerCase() ==
-                              this.tellMeType(now.hour).toLowerCase() &&
-                          checkTime > 0) {
-                        var chef_detail =
-                            chefs[snapshot.data.docs[i]["chefId"]];
-                        // print(chef_detail);
-                        var dd = snapshot.data.docs[i];
+                      var chef_detail = chefs[snapshot.data.docs[i]["chefId"]];
+                      // print(chef_detail);
+                      var dd = snapshot.data.docs[i];
+
+                      TimeOfDay nowTime = TimeOfDay.now();
+                      double currentTime = toDouble(nowTime);
+
+                      double itemFromTime1 =
+                          double.parse(dd["fromTime"].split(':')[0]);
+                      double itemFromTime2 =
+                          double.parse(dd["fromTime"].split(':')[1]);
+                      double itemFromTime =
+                          itemFromTime1 + itemFromTime2 / 60.0;
+
+                      double itemToTime1 =
+                          double.parse(dd["toTime"].split(':')[0]);
+                      double itemToTime2 =
+                          double.parse(dd["toTime"].split(':')[1]);
+                      double itemToTime = itemToTime1 + itemToTime2 / 60.0;
+
+                      // if (true) {
+                      if (chef_detail != null &&
+                          currentTime >= itemFromTime &&
+                          currentTime <= itemToTime) {
+                        // if (snapshot.data.docs[i]['mealType'].toLowerCase() ==
+                        //         this.tellMeType(now.hour).toLowerCase() &&
+                        //     checkTime > 0) {
 
                         //Take the difference of the toTime of item from now
 
@@ -129,14 +151,19 @@ class _EatNowState extends State<EatNow> {
 
                         Dishes dish = new Dishes(
                             chef_detail["fname"].toString(),
+                            chef_detail["chefAddress"].toString(),
                             chef_detail["rating"].toDouble(),
                             dd["dishName"].toString(),
+                            dd["self_delivery"],
                             dd["price"].toDouble(),
                             dd["imageUrl"].toString(),
                             leftseconds.toString(),
                             dd["mealType"],
                             dd["count"],
-                            dd["chefId"]);
+                            dd["chefId"],
+                            dd["toTime"],
+                            dd["fromTime"],
+                            DateFormat('dd MMM y').format(now).toString());
                         dishes.add(dish);
                       }
                     }
@@ -153,14 +180,18 @@ class _EatNowState extends State<EatNow> {
                           padding: const EdgeInsets.all(8.0),
                           child: SingleCard(
                               data.name,
+                              data.chefAddress,
                               data.rating,
                               data.getPrice(),
                               data.getDishName(),
+                              data.getSelfDelivery(),
                               data.getimage(),
                               data.gettime(),
                               1,
                               this.cartdata,
                               data.getChefId().toString(),
+                              data.getToTime(),
+                              data.getFromTime(),
                               () => {
                                     widget.refreshCartNumber(),
                                     refresher_funct()
@@ -192,17 +223,33 @@ class _EatNowState extends State<EatNow> {
       ]),
     );
   }
+
+  double toDouble(TimeOfDay myTime) => myTime.hour + myTime.minute / 60.0;
 }
 
 class SingleCard extends StatefulWidget {
-  String name, dishName, image, time, chefId;
+  String name, chefAddress, dishName, image, time, chefId, toTime, fromTime;
+  bool self_delivery;
   dynamic rating;
   int quantity, count;
   dynamic price;
   CartData cartData;
   Function refresh;
-  SingleCard(this.name, this.rating, this.price, this.dishName, this.image,
-      this.time, this.quantity, this.cartData, this.chefId, this.refresh);
+  SingleCard(
+      this.name,
+      this.chefAddress,
+      this.rating,
+      this.price,
+      this.dishName,
+      this.self_delivery,
+      this.image,
+      this.time,
+      this.quantity,
+      this.cartData,
+      this.chefId,
+      this.toTime,
+      this.fromTime,
+      this.refresh);
   @override
   _SingleCardState createState() => _SingleCardState();
 }
@@ -369,21 +416,7 @@ class _SingleCardState extends State<SingleCard> {
                           //   },
                           // ),
                           // ),
-                          IconButton(
-                            icon: Icon(
-                              Icons.add_circle,
-                              color: Helper().button,
-                              size: totalHeight * 28 / 700,
-                            ),
-                            tooltip: 'Add',
-                            onPressed: () => {
-                              setState(() {
-                                widget.quantity =
-                                    help.addQuantity(widget.quantity);
-                                print(widget.quantity);
-                              })
-                            },
-                          ),
+
                           IconButton(
                             icon: Icon(
                               Icons.remove_circle,
@@ -395,6 +428,21 @@ class _SingleCardState extends State<SingleCard> {
                               setState(() {
                                 widget.quantity =
                                     help.delQuantity(widget.quantity);
+                                print(widget.quantity);
+                              })
+                            },
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.add_circle,
+                              color: Helper().button,
+                              size: totalHeight * 28 / 700,
+                            ),
+                            tooltip: 'Add',
+                            onPressed: () => {
+                              setState(() {
+                                widget.quantity =
+                                    help.addQuantity(widget.quantity);
                                 print(widget.quantity);
                               })
                             },
@@ -441,14 +489,21 @@ class _SingleCardState extends State<SingleCard> {
                           widget.cartData.addItem(
                               Dishes(
                                   widget.name,
+                                  widget.chefAddress,
                                   widget.rating,
                                   widget.dishName,
+                                  widget.self_delivery,
                                   widget.price,
                                   widget.image,
                                   widget.time,
                                   widget.dishName,
                                   widget.count,
-                                  widget.chefId.toString()),
+                                  widget.chefId.toString(),
+                                  widget.toTime,
+                                  widget.fromTime,
+                                  DateFormat('dd MMM y')
+                                      .format(now)
+                                      .toString()),
                               widget.quantity);
                           Fluttertoast.showToast(
                               msg: "Showing " + widget.name + "'s food only",

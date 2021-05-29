@@ -4,6 +4,7 @@ import 'package:food_delivery_app/user/EatDaily.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../user/Chefdata.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl/intl.dart';
 
 import 'Utils.dart';
 
@@ -91,14 +92,19 @@ class _MealDaily2State extends State<MealDaily2> {
                           if (chef_detail != null) {
                             Dishes dish = new Dishes(
                                 chef_detail["fname"].toString(),
+                                chef_detail["chefAddress"].toString(),
                                 chef_detail["rating"].toDouble(),
                                 dd["dishName"].toString(),
+                                dd["self_delivery"],
                                 dd["price"].toDouble(),
                                 dd["imageUrl"].toString(),
                                 "25 min",
                                 dd["mealType"],
                                 dd["count"],
-                                dd["chefId"]);
+                                dd["chefId"],
+                                dd["toTime"],
+                                dd["fromTime"],
+                                DateFormat('dd MMM y').format(now).toString());
                             dishes.add(dish);
                           }
                         }
@@ -145,15 +151,19 @@ class _MealDaily2State extends State<MealDaily2> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: SingleCard(
                                     data.name,
+                                    data.chefAddress,
                                     data.rating,
                                     data.getPrice(),
                                     data.getDishName(),
+                                    data.getSelfDelivery(),
                                     data.getimage(),
                                     data.gettime(),
                                     1,
                                     this.cartData,
                                     data.getCount(),
                                     data.getChefId(),
+                                    data.getToTime(),
+                                    data.getFromTime(),
                                     () => {
                                           widget.refreshCartNumber(),
                                           refresher_funct()
@@ -220,7 +230,8 @@ class _MealDaily2State extends State<MealDaily2> {
 }
 
 class SingleCard extends StatefulWidget {
-  String name, dishName, image, time, chefId;
+  String name, chefAddress, dishName, image, time, chefId, fromTime, toTime;
+  bool self_delivery;
   dynamic rating;
   int quantity, count;
   dynamic price;
@@ -228,15 +239,19 @@ class SingleCard extends StatefulWidget {
   Function refresh;
   SingleCard(
       this.name,
+      this.chefAddress,
       this.rating,
       this.price,
       this.dishName,
+      this.self_delivery,
       this.image,
       this.time,
       this.quantity,
       this.cartData,
       this.count,
       this.chefId,
+      this.fromTime,
+      this.toTime,
       this.refresh);
   @override
   _SingleCardState createState() => _SingleCardState();
@@ -411,14 +426,20 @@ class _SingleCardState extends State<SingleCard> {
                           CartData().addItem(
                               Dishes(
                                   widget.name,
+                                  widget.chefAddress,
                                   widget.rating,
                                   widget.dishName,
+                                  widget.self_delivery,
                                   widget.price,
                                   widget.image,
                                   widget.time,
                                   widget.dishName,
                                   widget.count,
-                                  widget.chefId),
+                                  widget.chefId,
+                                  widget.toTime,
+                                  widget.fromTime,
+                                  DateTime(now.year, now.month, now.day)
+                                      .toString()),
                               widget.quantity);
                           Fluttertoast.showToast(
                               msg: "Showing " + widget.name + "'s food only",

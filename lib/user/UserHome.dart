@@ -7,18 +7,18 @@ import 'package:geocoder/geocoder.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'dart:io';
+import 'package:intl/intl.dart';
 
 import 'Menucard.dart';
 import 'package:food_delivery_app/user/Chefdata.dart';
-// import 'package:food_delivery_app/widgets/BestFoodWidget.dart';
-// import 'package:food_delivery_app/widgets/PopularFoodsWidget.dart';
 import 'package:food_delivery_app/widgets/SearchWidget.dart';
-// import 'package:food_delivery_app/widgets/TopMenus.dart';
 
 String _address = "Searching Location ...";
 List<Marker> myMarker = [];
 bool locationSet = false;
 String dishType = "All";
+final now = new DateTime.now();
 
 class MapHomePage extends StatefulWidget {
   @override
@@ -60,13 +60,16 @@ class _MapHomePageState extends State<MapHomePage> {
               onPressed: () {
                 setState(() {
                   getLoc();
+                  locationSet = true;
                 });
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => new MenuOptionSide(
                           automatic: false, address: _address),
-                    ));
+                    )).then((value) {
+                  setState(() {});
+                });
               },
               child: Text("DONE"),
             ),
@@ -107,7 +110,7 @@ class _MapHomePageState extends State<MapHomePage> {
   //   });
   // }
 
-  getLoc() async {
+  Future<void> getLoc() async {
     bool _serviceEnabled;
     PermissionStatus _permissionGranted;
 
@@ -130,12 +133,14 @@ class _MapHomePageState extends State<MapHomePage> {
     // _currentPosition = await location.getLocation();
     _initialcameraposition =
         LatLng(tappedPoint.latitude, tappedPoint.longitude);
-    _getAddress(tappedPoint.latitude, tappedPoint.longitude).then(
+    // print("Address = " + _address);
+    print("Random = " + _address);
+    await _getAddress(tappedPoint.latitude, tappedPoint.longitude).then(
       (value) {
         setState(
           () {
             _address = "${value.first.addressLine}";
-            print("Address = " + _address);
+            print("Address1 = " + _address);
           },
         );
       },
@@ -146,13 +151,17 @@ class _MapHomePageState extends State<MapHomePage> {
     final coordinates = new Coordinates(lat, lang);
     List<Address> add =
         await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    print("randim get add");
     return add;
   }
 }
 
 class HomePage extends StatefulWidget {
   bool automatic;
-  HomePage({Key key, @required this.automatic}) : super(key: key);
+  Function refreshCartNumber;
+  HomePage(
+      {Key key, @required this.automatic, @required this.refreshCartNumber})
+      : super(key: key);
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -166,9 +175,20 @@ class _HomePageState extends State<HomePage> {
   GoogleMapController mapController;
   Marker marker;
   Location location = Location();
+  Function refreshCartNumber;
 
   GoogleMapController _controller;
   LatLng _initialcameraposition = LatLng(19.0473, 73.0699);
+
+  void refresh() {
+    setState(() {
+      refresh2();
+    });
+  }
+
+  void refresh2() {
+    setState(() {});
+  }
 
   @override
   void initState() {
@@ -178,8 +198,16 @@ class _HomePageState extends State<HomePage> {
     }
     _editingController = TextEditingController(text: _address);
     print(_address);
-    // Navigator.pop(context);
-    // Navigator.pushNamed(context, "home");
+
+    // refresh();
+    // Navigator.push(
+    //                 context,
+    //                 MaterialPageRoute(
+    //                   builder: (context) => new MenuOptionSide(
+    //                       automatic: false, address: _address),
+    //                 ));
+    // Navigator.pushReplacement(context,
+    //     MaterialPageRoute(builder: (BuildContext context) => this.widget));
   }
 
   @override
@@ -191,17 +219,27 @@ class _HomePageState extends State<HomePage> {
   Widget _editTitleTextField(context) {
     double totalWidth = MediaQuery.of(context).size.width;
     double totalHeight = MediaQuery.of(context).size.height;
+    _editingController.selection = TextSelection.collapsed(offset: 0);
     if (_isEditingText)
       return Container(
         width: totalWidth * 0.8,
         child: Center(
           child: TextField(
             onSubmitted: (newValue) {
-              setState(() {
-                _address = newValue;
-                _isEditingText = false;
-                locationSet = true;
-              });
+              setState(
+                () {
+                  _address = newValue;
+                  _isEditingText = false;
+                  locationSet = true;
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => new MenuOptionSide(
+                          automatic: false, address: _address),
+                    ),
+                  );
+                },
+              );
             },
             autofocus: true,
             controller: _editingController,
@@ -226,7 +264,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  _showModalBottomSheet(context) {
+  Future<void> _showModalBottomSheet(context) {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
@@ -241,15 +279,7 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
-                    // color: Colors.grey,
                     height: totalHeight / 3,
-                    // decoration: BoxDecoration(
-                    //   color: Color(0xffdee8ff),
-                    //   borderRadius: BorderRadius.only(
-                    //     topLeft: Radius.circular(20),
-                    //     topRight: Radius.circular(20),
-                    //   ),
-                    // ),
                     decoration: BoxDecoration(
                         color: Color(0xffdee8ff),
                         border: Border.all(
@@ -277,6 +307,9 @@ class _HomePageState extends State<HomePage> {
                         ),
                         Row(
                           children: <Widget>[
+                            SizedBox(
+                              width: totalWidth * 1 / 10,
+                            ),
                             Icon(Icons.home),
                             SizedBox(width: totalWidth * 0.01),
                             Text("HOME",
@@ -289,15 +322,9 @@ class _HomePageState extends State<HomePage> {
                         SizedBox(
                           height: totalHeight * 5 / 700,
                         ),
-                        // Row(
-                        //   children: <Widget>[
-                        //     Icon(Icons.home),
-                        //     SizedBox(width: totalWidth * 0.1),
                         Center(
                           child: _editTitleTextField(context),
                         ),
-                        //   ],
-                        // ),
                         SizedBox(
                           height: totalHeight * 15 / 700,
                         ),
@@ -341,24 +368,6 @@ class _HomePageState extends State<HomePage> {
                         Divider(
                           color: Colors.black12,
                         ),
-                        // ElevatedButton(
-                        //   onPressed: () {
-                        //     setState(() {});
-                        //   },
-                        //   style: ElevatedButton.styleFrom(
-                        //     primary: Colors.white,
-                        //     shape: RoundedRectangleBorder(
-                        //         borderRadius:
-                        //             BorderRadius.circular(totalHeight * 10 / 700)),
-                        //   ),
-                        //   child: Text(
-                        //     "SELECT & PROCEED",
-                        //     style: TextStyle(
-                        //         color: Color(0xFF002140),
-                        //         fontSize: totalHeight * 22 / 700,
-                        //         fontWeight: FontWeight.normal),
-                        //   ),
-                        // ),
                       ],
                     ),
                   )
@@ -371,11 +380,31 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  Future<void> refresher_funct() async {
+    await Fluttertoast.showToast(
+        msg: "Updated Address Successfully",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Helper().button,
+        textColor: Colors.white,
+        fontSize: 16.0);
+    setState(() {});
+    // rebuildAllChildren(context);
+    // EatNow(cartData: new CartData());
+
+    // Navigator.push(context,
+    //     new MaterialPageRoute(builder: (context) => this.build(context)));
+    // Navigator.pushReplacement(context,
+    //     MaterialPageRoute(builder: (BuildContext context) => super.widget));
+  }
+
   Widget build(BuildContext context) {
     // double totalWidth = MediaQuery.of(context).size.width;
     double totalHeight = MediaQuery.of(context).size.height;
     MediaQueryData mediaQuery = MediaQuery.of(context);
     CartData cartdata = new CartData();
+    int page_refresher = 1;
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -409,93 +438,106 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             icon: Icon(Icons.edit),
-            onPressed: () {
-              _showModalBottomSheet(context);
-              setState(() {});
+            onPressed: () async {
+              await _showModalBottomSheet(context);
               // Navigator.push(
               //   context,
               //   MaterialPageRoute(
-              //     builder: (context) => MapHomePage(),
+              //     builder: (context) =>
+              //         MenuOptionSide(automatic: false, address: _address),
               //   ),
               // );
+              // await refresher_funct();
             },
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            SizedBox(
-              height: mediaQuery.size.height * 5 / 700,
-            ),
-            SearchWidget(),
-            SizedBox(
-              height: mediaQuery.size.height * 15 / 700,
-            ),
-            // Top Menu
-            Container(
-              height: totalHeight * 1.5 / 7,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  TopMenuTiles(context, "North Indian", "north_indian.jpg"),
-                  TopMenuTiles(context, "West Indian", "west_indian.png"),
-                  TopMenuTiles(context, "Maharashtrian", "maharashtrian.jpg"),
-                  TopMenuTiles(context, "South Indian", "south_indian.jpeg"),
-                  TopMenuTiles(
-                      context, "North East Indian", "north_east_indian.jpg"),
-                  TopMenuTiles(context, "Bengali", "bengali.jpg"),
-                  TopMenuTiles(context, "All", "all.jpg"),
-                  Divider(
-                    height: totalHeight * 1 / 700,
-                    color: Colors.grey,
-                  ),
-                ],
+      body: WillPopScope(
+        onWillPop: _onBackPressed,
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: mediaQuery.size.height * 5 / 700,
               ),
-            ),
-            PopularFoodsWidget(cartData: cartdata),
-            SizedBox(
-              height: mediaQuery.size.height * 15 / 700,
-            ),
-            BestFoodWidget(cartData: cartdata),
-          ],
+              SearchWidget(refreshCartNumber, _address),
+              SizedBox(
+                height: mediaQuery.size.height * 15 / 700,
+              ),
+              // Top Menu
+              Container(
+                height: totalHeight * 1.5 / 7,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: <Widget>[
+                    TopMenuTiles(context, "North Indian", "north_indian.jpg"),
+                    TopMenuTiles(context, "West Indian", "west_indian.png"),
+                    TopMenuTiles(context, "Maharashtrian", "maharashtrian.jpg"),
+                    TopMenuTiles(context, "South Indian", "south_indian.jpeg"),
+                    TopMenuTiles(
+                        context, "North East Indian", "north_east_indian.jpg"),
+                    TopMenuTiles(context, "Bengali", "bengali.jpg"),
+                    TopMenuTiles(context, "All", "all.jpg"),
+                    Divider(
+                      height: totalHeight * 1 / 700,
+                      color: Colors.grey,
+                    ),
+                  ],
+                ),
+              ),
+              PopularFoodsWidget(cartData: cartdata),
+              SizedBox(
+                height: mediaQuery.size.height * 15 / 700,
+              ),
+              BestFoodWidget(cartData: cartdata),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  // class TopMenuTiles extends StatelessWidget {
-  // String name;
-  // String imageUrl;
-  // String slug;
+  Future<bool> _onBackPressed() {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Are your sure?"),
+          content: Text('You are going to exit the application !'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                exit(0);
+              },
+              child: Text('No'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(true);
+              },
+              child: Text('Yes'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
-  // TopMenuTiles(
-  //     {Key key,
-  //     @required this.name,
-  //     @required this.imageUrl,
-  //     @required this.slug})
-  //     : super(key: key);
-
-  // @override
   Widget TopMenuTiles(context, String name, String imageUrl) {
     double totalWidth = MediaQuery.of(context).size.width;
     double totalHeight = MediaQuery.of(context).size.height;
-    // Color topMenuColor = Color(0xffdee8ff);
-    // if (dishType == name) {}
     return InkWell(
       onTap: () {
         setState(() {
           dishType = name;
           print(dishType);
-          // topMenuColor = Color(0xFFFF785B);
-          // _hasBeenPressed = !_hasBeenPressed;
         });
         Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) =>
-                MenuOptionSide(automatic: false, address: _address),
-          ),
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    MenuOptionSide(automatic: false, address: _address))).then(
+          (value) => setState(() {}),
         );
       },
       child: Column(
@@ -509,19 +551,10 @@ class _HomePageState extends State<HomePage> {
             decoration: new BoxDecoration(boxShadow: [
               new BoxShadow(
                 color: _hasBeenPressed ? Color(0xFFFF785B) : Color(0xffdee8ff),
-                // color: topMenuColor,
                 blurRadius: 25.0,
                 offset: Offset(0.0, 0.75),
               ),
             ]),
-            // child: Card(
-            //   color: Colors.orangeAccent[200],
-            //   elevation: 0,
-            //   shape: RoundedRectangleBorder(
-            //     borderRadius: const BorderRadius.all(
-            //       Radius.circular(10.0),
-            //     ),
-            //   ),
             child: Container(
               decoration: BoxDecoration(
                 color: Helper().button,
@@ -530,7 +563,6 @@ class _HomePageState extends State<HomePage> {
                   color: Helper().button,
                 ),
                 borderRadius: BorderRadius.circular(totalHeight * 0.1),
-                // shape: BoxShape.circle
               ),
               width: totalWidth * 100 / 420,
               height: totalHeight * 1 / 9,
@@ -556,6 +588,7 @@ class _HomePageState extends State<HomePage> {
   getLoc() async {
     bool _serviceEnabled;
     PermissionStatus _permissionGranted;
+    locationSet = true;
 
     _serviceEnabled = await location.serviceEnabled();
     if (!_serviceEnabled) {
@@ -595,7 +628,7 @@ class _HomePageState extends State<HomePage> {
         setState(
           () {
             _address = "${value.first.addressLine}";
-            print("Address = " + _address);
+            print("Address2 = " + _address);
           },
         );
       },
@@ -649,7 +682,8 @@ class _PopularFoodsWidgetState extends State<PopularFoodsWidget> {
 }
 
 class PopularFoodTiles extends StatefulWidget {
-  String name, dishName, image, time, chefId;
+  String name, chefAddress, dishName, image, time, chefId, toTime, fromTime;
+  bool self_delivery;
   dynamic rating;
   int quantity, count;
   dynamic price;
@@ -657,14 +691,18 @@ class PopularFoodTiles extends StatefulWidget {
   Function refresh;
   PopularFoodTiles(
       this.name,
+      this.chefAddress,
       this.rating,
       this.price,
       this.dishName,
+      this.self_delivery,
       this.image,
       this.time,
       this.quantity,
       this.cartData,
       this.chefId,
+      this.toTime,
+      this.fromTime,
       this.refresh);
   @override
   _PopularFoodTilesState createState() => _PopularFoodTilesState();
@@ -851,14 +889,21 @@ class _PopularFoodTilesState extends State<PopularFoodTiles> {
                           CartData().addItem(
                               Dishes(
                                   widget.name,
+                                  widget.chefAddress,
                                   widget.rating,
                                   widget.dishName,
+                                  widget.self_delivery,
                                   widget.price,
                                   widget.image,
                                   widget.time,
                                   widget.dishName,
                                   widget.count,
-                                  widget.chefId),
+                                  widget.chefId,
+                                  widget.toTime,
+                                  widget.fromTime,
+                                  DateFormat('dd MMM y')
+                                      .format(now)
+                                      .toString()),
                               widget.quantity);
                           checkCart_add();
                           setState(() {
@@ -1011,14 +1056,19 @@ class _PopularFoodItemsState extends State<PopularFoodItems> {
                       if (chef_detail != null) {
                         Dishes dish = new Dishes(
                             chef_detail["fname"].toString(),
+                            chef_detail["chefAddress"].toString(),
                             dd["rating"],
                             dd["dishName"].toString(),
+                            dd["self_delivery"],
                             dd["price"].toDouble(),
                             dd["imageUrl"].toString(),
                             "25 min",
                             dd["mealType"],
                             dd["count"],
-                            dd["chefId"]);
+                            dd["chefId"],
+                            dd["toTime"],
+                            dd["fromTime"],
+                            DateFormat('dd MMM y').format(now).toString());
                         dishes.add(dish);
                       }
                     }
@@ -1030,20 +1080,25 @@ class _PopularFoodItemsState extends State<PopularFoodItems> {
                           dishType == dd["cuisineType"]) {
                         Dishes dish = new Dishes(
                             chef_detail["fname"].toString(),
+                            chef_detail["chefAddress"].toString(),
                             dd["rating"],
                             dd["dishName"].toString(),
+                            dd["self_delivery"],
                             dd["price"].toDouble(),
                             dd["imageUrl"].toString(),
                             "25 min",
                             dd["mealType"],
                             dd["count"],
-                            dd["chefId"]);
+                            dd["chefId"],
+                            dd["toTime"],
+                            dd["fromTime"],
+                            DateFormat('dd MMM y').format(now).toString());
                         dishes.add(dish);
                       }
                     }
                   }
                   dishes.sort((a, b) => b.getCount().compareTo(a.getCount()));
-                  if (dishes.length > 10) dishes = dishes.take(10).toList();
+                  // if (dishes.length > 20) dishes = dishes.take(20).toList();
                   // print(dishes);
 
                   return Row(
@@ -1056,14 +1111,18 @@ class _PopularFoodItemsState extends State<PopularFoodItems> {
                         padding: const EdgeInsets.all(8.0),
                         child: PopularFoodTiles(
                             data.name,
+                            data.chefAddress,
                             data.getRating(),
                             data.getPrice(),
                             data.getDishName(),
+                            data.getSelfDelivery(),
                             data.getimage(),
                             data.gettime(),
                             1,
                             this.cartdata,
                             data.getChefId(),
+                            data.getToTime(),
+                            data.getFromTime(),
                             () => {
                                   widget.refreshCartNumber(),
                                   refresher_funct()
@@ -1153,14 +1212,28 @@ class BestFoodTitle extends StatelessWidget {
 }
 
 class BestFoodTiles extends StatefulWidget {
-  String name, dishName, image, time, chefId;
+  String name, chefAddress, dishName, image, time, chefId, toTime, fromTime;
+  bool self_delivery;
   dynamic rating;
   int quantity, count;
   dynamic price;
   CartData cartData;
   Function refresh;
-  BestFoodTiles(this.name, this.rating, this.price, this.dishName, this.image,
-      this.time, this.quantity, this.cartData, this.chefId, this.refresh);
+  BestFoodTiles(
+      this.name,
+      this.chefAddress,
+      this.rating,
+      this.price,
+      this.dishName,
+      this.self_delivery,
+      this.image,
+      this.time,
+      this.quantity,
+      this.cartData,
+      this.chefId,
+      this.toTime,
+      this.fromTime,
+      this.refresh);
   @override
   _BestFoodTilesState createState() => _BestFoodTilesState();
 }
@@ -1344,14 +1417,21 @@ class _BestFoodTilesState extends State<BestFoodTiles> {
                           CartData().addItem(
                               Dishes(
                                   widget.name,
+                                  widget.chefAddress,
                                   widget.rating,
                                   widget.dishName,
+                                  widget.self_delivery,
                                   widget.price,
                                   widget.image,
                                   widget.time,
                                   widget.dishName,
                                   widget.count,
-                                  widget.chefId),
+                                  widget.chefId,
+                                  widget.toTime,
+                                  widget.fromTime,
+                                  DateFormat('dd MMM y')
+                                      .format(now)
+                                      .toString()),
                               widget.quantity);
                           checkCart_add();
                           setState(() {
@@ -1483,14 +1563,19 @@ class _BestFoodListState extends State<BestFoodList> {
                       if (chef_detail != null) {
                         Dishes dish = new Dishes(
                             chef_detail["fname"].toString(),
+                            chef_detail["chefAddress"].toString(),
                             dd["rating"],
                             dd["dishName"].toString(),
+                            dd["self_delivery"],
                             dd["price"].toDouble(),
                             dd["imageUrl"].toString(),
                             "25 min",
                             dd["mealType"],
                             dd["count"],
-                            dd["chefId"]);
+                            dd["chefId"],
+                            dd["toTime"],
+                            dd["fromTime"],
+                            DateFormat('dd MMM y').format(now).toString());
                         dishes.add(dish);
                       }
                     }
@@ -1502,20 +1587,25 @@ class _BestFoodListState extends State<BestFoodList> {
                           dishType == dd["cuisineType"]) {
                         Dishes dish = new Dishes(
                             chef_detail["fname"].toString(),
+                            chef_detail["chefAddress"].toString(),
                             dd["rating"],
                             dd["dishName"].toString(),
+                            dd["self_delivery"],
                             dd["price"].toDouble(),
                             dd["imageUrl"].toString(),
                             "25 min",
                             dd["mealType"],
                             dd["count"],
-                            dd["chefId"]);
+                            dd["chefId"],
+                            dd["toTime"],
+                            dd["fromTime"],
+                            DateFormat('dd MMM y').format(now).toString());
                         dishes.add(dish);
                       }
                     }
                   }
                   dishes.sort((a, b) => b.getRating().compareTo(a.getRating()));
-                  if (dishes.length > 10) dishes = dishes.take(10).toList();
+                  // if (dishes.length > 20) dishes = dishes.take(20).toList();
                   // print(dishes);
 
                   return Row(
@@ -1528,14 +1618,18 @@ class _BestFoodListState extends State<BestFoodList> {
                         padding: const EdgeInsets.all(8.0),
                         child: BestFoodTiles(
                             data.name,
+                            data.chefAddress,
                             data.getRating(),
                             data.getPrice(),
                             data.getDishName(),
+                            data.getSelfDelivery(),
                             data.getimage(),
                             data.gettime(),
                             1,
                             this.cartdata,
                             data.getChefId(),
+                            data.getToTime(),
+                            data.getFromTime(),
                             () => {
                                   widget.refreshCartNumber(),
                                   refresher_funct()

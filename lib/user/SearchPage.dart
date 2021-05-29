@@ -1,18 +1,25 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_colored_progress_indicators/flutter_colored_progress_indicators.dart';
-
 import 'package:food_delivery_app/user/Utils.dart';
+import 'package:food_delivery_app/user/ScaleRoute.dart';
+import 'package:food_delivery_app/user/Menucard.dart';
 import '../user/Chefdata.dart';
+import 'dart:async';
+import 'package:intl/intl.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-bool found = true;
+final now = new DateTime.now();
 
 class SearchPage extends StatefulWidget {
-  final String searchText;
+  CartData cartData;
+  String address;
+  String searchText;
   Function refreshCartNumber;
-  SearchPage({Key key, @required this.searchText, this.refreshCartNumber})
-      : super(key: key);
+  SearchPage(
+      {this.cartData,
+      @required this.searchText,
+      @required this.address,
+      @required this.refreshCartNumber});
   @override
   _SearchPageState createState() => _SearchPageState();
 }
@@ -28,101 +35,73 @@ class _SearchPageState extends State<SearchPage> {
   void initState() {
     super.initState();
     this.l = items.getData();
-    // StreamBuilder<QuerySnapshot>(
-    //   stream: db.collection('Food_items').snapshots(),
-    //   builder: (context, snapshot) {
-    //     if (snapshot.hasData) {
-    //       for (int i = 0; i < snapshot.data.docs.length; i++) {
-    //         if (snapshot.data.docs[i]['dishName']
-    //             .toLowerCase()
-    //             .contains(widget.searchText.toLowerCase())) {
-    //           found = true;
-    //           print("found = $found");
-    //           break;
-    //         }
-    //       }
-    //       return ColoredCircularProgressIndicator();
-    //     } else {
-    //       return ColoredCircularProgressIndicator();
-    //     }
-    //   },
-    // );
-    // print("found = $found");
   }
 
   @override
   Widget build(BuildContext context) {
     double totalWidth = MediaQuery.of(context).size.width;
     double totalHeight = MediaQuery.of(context).size.height;
+    int flag = 1;
     return Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              color: Colors.black,
-              onPressed: () {
-                Navigator.pop(context);
-              }),
-          backgroundColor: Helper().background,
-          automaticallyImplyLeading: false,
-          title: Text(
-            "Search",
-            style:
-                TextStyle(color: Helper().heading, fontWeight: FontWeight.bold),
-          ),
+      appBar: AppBar(
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            color: Colors.black,
+            onPressed: () {
+              Navigator.pop(context);
+            }),
+        backgroundColor: Helper().background,
+        automaticallyImplyLeading: false,
+        title: Text(
+          "Search",
+          style:
+              TextStyle(color: Helper().heading, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Color.fromRGBO(247, 247, 248, 1),
-        body: StreamBuilder<QuerySnapshot>(
-            stream: db.collection('Food_items').snapshots(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                for (int i = 0; i < snapshot.data.docs.length; i++) {
-                  if (snapshot.data.docs[i]['dishName']
-                      .toLowerCase()
-                      .contains(widget.searchText.toLowerCase())) {
-                    return ItemsFound(
-                      searchText: widget.searchText,
-                      cartData: cartdata,
-                    );
-                  }
-                }
+      ),
+      backgroundColor: Color.fromRGBO(247, 247, 248, 1),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: db.collection('Food_items').snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            for (int i = 0; i < snapshot.data.docs.length; i++) {
+              if (!snapshot.data.docs[i]['dishName']
+                  .toLowerCase()
+                  .contains(widget.searchText.toLowerCase())) {
+                flag = 0;
+                break;
               }
-              return NoItemsFound();
-            })
-        // for (int i = 0; i <elem; i++) {
-        //   tp.add(snapshot.data.docs[i]);
-        // }
-        // print(tp);
-
-        // } else {
-        //   return NoItemsFound();
-        // }
-        // : Container(
-        //     width: totalWidth,
-        //     height: totalHeight,
-        //     decoration: BoxDecoration(
-        //       image: DecorationImage(
-        //           image: AssetImage("assets/images/search_not_found.PNG"),
-        //           fit: BoxFit.fitWidth),
-        //     ),
-        //   ),
-        );
+            }
+          }
+          // if (flag == 1)
+          //   return NoItemsFound();
+          // else
+          return ItemsFound(
+            address: widget.address,
+            refreshCartNumber: widget.refreshCartNumber,
+            searchText: widget.searchText,
+            cartData: cartdata,
+          );
+        },
+      ),
+    );
   }
 }
 
 class ItemsFound extends StatefulWidget {
+  final CartData cartData;
+  final String address;
   final String searchText;
-  CartData cartData;
-  Function refreshCartNumber;
+  final Function refreshCartNumber;
   ItemsFound(
-      {@required this.cartData,
+      {this.cartData,
       @required this.searchText,
-      this.refreshCartNumber});
+      @required this.address,
+      @required this.refreshCartNumber});
   @override
   _ItemsFoundState createState() => _ItemsFoundState();
 }
 
 class _ItemsFoundState extends State<ItemsFound> {
-  EatNowData items = new EatNowData();
   List<Dishes> l;
   CartData cartdata;
   Map ll;
@@ -130,6 +109,13 @@ class _ItemsFoundState extends State<ItemsFound> {
   int page_refresher = 1;
   Map chefs = {};
   List<Dishes> dishes = [];
+
+  @override
+  void initState() {
+    super.initState();
+    this.cartdata = widget.cartData;
+    refresher_funct();
+  }
 
   void refresher_funct() {
     // (context as Element).reassemble();
@@ -147,112 +133,179 @@ class _ItemsFoundState extends State<ItemsFound> {
     setState(() {
       dishes = [];
     });
-    // rebuildAllChildren(context);
-    // EatNow(cartData: new CartData());
-
-    // Navigator.push(context,
-    //     new MaterialPageRoute(builder: (context) => this.build(context)));
-    // Navigator.pushReplacement(context,
-    //     MaterialPageRoute(builder: (BuildContext context) => super.widget));
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    this.l = items.getData();
-    this.cartdata = widget.cartData;
   }
 
   @override
   Widget build(BuildContext context) {
+    double totalHeight = MediaQuery.of(context).size.height;
+    double totalWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-        backgroundColor: Color.fromRGBO(247, 247, 248, 1),
-        body: ListView(children: [
-          StreamBuilder<QuerySnapshot>(
-            stream: db.collection('Food_items').snapshots(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                // print("found = $found");
-                return StreamBuilder<QuerySnapshot>(
-                  stream: db.collection('Chef').snapshots(),
-                  builder: (context, snapshot2) {
-                    if (snapshot2.hasData) {
-                      Map chefs = {};
-                      for (int i = 0; i < snapshot2.data.docs.length; i++) {
-                        // print(snapshot2.data.docs[i].data());
-                        chefs[snapshot2.data.docs[i].id] =
-                            snapshot2.data.docs[i].data();
-                      }
-                      print(chefs);
-                      List<Dishes> dishes = [];
-                      for (int i = 0; i < snapshot.data.docs.length; i++) {
+      backgroundColor: Color.fromRGBO(247, 247, 248, 1),
+      body: Container(
+        width: totalWidth,
+        height: totalHeight,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("assets/images/not_f.png"),
+              fit: BoxFit.fitWidth),
+        ),
+        child: ListView(
+          children: [
+            Center(
+              child: OutlinedButton.icon(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                    (Set<MaterialState> states) {
+                      if (!states.contains(MaterialState.pressed))
+                        return Helper().button.withOpacity(0.8);
+                      return null; // Use the component's default.
+                    },
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => new MenuOptionSide(
+                            automatic: false, address: widget.address),
+                      ));
+                },
+                label: Text(
+                  "BACK",
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+                icon: Icon(
+                  Icons.arrow_left,
+                  size: totalHeight * 30 / 700,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            StreamBuilder<QuerySnapshot>(
+              stream: db.collection('Food_items').snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return StreamBuilder<QuerySnapshot>(
+                    stream: db.collection('Chef').snapshots(),
+                    builder: (context, snapshot2) {
+                      if (snapshot2.hasData) {
+                        chefs = {};
+                        for (int i = 0; i < snapshot2.data.docs.length; i++) {
+                          // print(snapshot2.data.docs[i].data());
+                          chefs[snapshot2.data.docs[i].id] =
+                              snapshot2.data.docs[i].data();
+                        }
                         print(chefs);
-                        if (snapshot.data.docs[i]['dishName']
-                            .toLowerCase()
-                            .contains(widget.searchText.toLowerCase())) {
-                          var chef_detail =
-                              chefs[snapshot.data.docs[i]["chefId"]];
-                          // print(chef_detail);
-                          var dd = snapshot.data.docs[i];
-                          print(chef_detail);
-                          if (chef_detail != null) {
+                        dishes = [];
+                        for (int i = 0; i < snapshot.data.docs.length; i++) {
+                          if (snapshot.data.docs[i]['dishName']
+                              .toLowerCase()
+                              .contains(widget.searchText.toLowerCase())) {
+                            var chef_detail =
+                                chefs[snapshot.data.docs[i]["chefId"]];
+                            // print(chef_detail);
+                            var dd = snapshot.data.docs[i];
                             Dishes dish = new Dishes(
                                 chef_detail["fname"].toString(),
+                                chef_detail["chefAddress"].toString(),
                                 chef_detail["rating"].toDouble(),
                                 dd["dishName"].toString(),
+                                dd["self_delivery"],
                                 dd["price"].toDouble(),
                                 dd["imageUrl"].toString(),
-                                "25 min",
+                                '25 mins',
                                 dd["mealType"],
                                 dd["count"],
-                                dd["chefId"]);
+                                dd["chefId"],
+                                dd["toTime"],
+                                dd["fromTime"],
+                                DateFormat('dd MMM y').format(now).toString());
                             dishes.add(dish);
                           }
                         }
+                        print(dishes);
+
+                        return Column(
+                            children: dishes.map((data) {
+                          if (CartData.dishes.length == 0 ||
+                              data.getChefId().toString() ==
+                                  CartData.dishes[0].dish
+                                      .getChefId()
+                                      .toString()) {
+                            print(ll);
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SingleCard(
+                                  data.name,
+                                  data.chefAddress,
+                                  data.rating,
+                                  data.getPrice(),
+                                  data.getDishName(),
+                                  data.getSelfDelivery(),
+                                  data.getimage(),
+                                  data.gettime(),
+                                  1,
+                                  this.cartdata,
+                                  data.getChefId().toString(),
+                                  data.getToTime(),
+                                  data.getFromTime(),
+                                  () => {
+                                        widget.refreshCartNumber(),
+                                        refresher_funct()
+                                      },
+                                  widget.searchText,
+                                  widget.address,
+                                  widget.refreshCartNumber),
+                            );
+                          } else {
+                            return Container();
+                          }
+                        }).toList());
+                      } else {
+                        return Container();
                       }
-                      print(dishes);
-
-                      return Column(
-                          children: dishes.map((data) {
-                        if (CartData.dishes.length == 0 ||
-                            data.getChefId().toString() ==
-                                CartData.dishes[0].dish
-                                    .getChefId()
-                                    .toString()) {
-                          print(ll);
-
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: SingleCard(
-                                data.name,
-                                data.rating,
-                                data.getPrice(),
-                                data.getDishName(),
-                                data.getimage(),
-                                data.gettime(),
-                                1,
-                                this.cartdata,
-                                data.getChefId().toString(),
-                                () => {
-                                      widget.refreshCartNumber(),
-                                      refresher_funct()
-                                    }),
-                          );
-                        } else {
-                          return Container();
-                        }
-                      }).toList());
-                    } else {
-                      return Container();
-                    }
-                  },
-                );
-              } else {
-                return Container();
-              }
-            },
-          )
-        ]));
+                    },
+                  );
+                } else {
+                  return Container();
+                }
+              },
+            ),
+            // Center(
+            //   child: OutlinedButton.icon(
+            //     style: ButtonStyle(
+            //       backgroundColor: MaterialStateProperty.resolveWith<Color>(
+            //         (Set<MaterialState> states) {
+            //           if (!states.contains(MaterialState.pressed))
+            //             return Helper().button.withOpacity(0.8);
+            //           return null; // Use the component's default.
+            //         },
+            //       ),
+            //     ),
+            //     onPressed: () {
+            //       Navigator.push(
+            //           context,
+            //           MaterialPageRoute(
+            //             builder: (context) => new MenuOptionSide(),
+            //           ));
+            //     },
+            //     label: Text(
+            //       "BACK",
+            //       style: TextStyle(
+            //           color: Colors.white, fontWeight: FontWeight.bold),
+            //     ),
+            //     icon: Icon(
+            //       Icons.arrow_left,
+            //       size: totalHeight * 30 / 700,
+            //       color: Colors.white,
+            //     ),
+            //   ),
+            // ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -279,14 +332,34 @@ class _NoItemsFoundState extends State<NoItemsFound> {
 }
 
 class SingleCard extends StatefulWidget {
-  String name, dishName, image, time, chefId;
+  String name, chefAddress, dishName, image, time, chefId, toTime, fromTime;
+  bool self_delivery;
   dynamic rating;
   int quantity, count;
   dynamic price;
   CartData cartData;
   Function refresh;
-  SingleCard(this.name, this.rating, this.price, this.dishName, this.image,
-      this.time, this.quantity, this.cartData, this.chefId, this.refresh);
+  String searchText;
+  String address;
+  Function refreshCartNumber;
+  SingleCard(
+      this.name,
+      this.chefAddress,
+      this.rating,
+      this.price,
+      this.dishName,
+      this.self_delivery,
+      this.image,
+      this.time,
+      this.quantity,
+      this.cartData,
+      this.chefId,
+      this.toTime,
+      this.fromTime,
+      this.refresh,
+      this.searchText,
+      this.address,
+      this.refreshCartNumber);
   @override
   _SingleCardState createState() => _SingleCardState();
 }
@@ -314,9 +387,16 @@ class _SingleCardState extends State<SingleCard> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    // canAdd=0;
+  }
+
+  @override
   Widget build(BuildContext context) {
     double totalWidth = MediaQuery.of(context).size.width;
     double totalHeight = MediaQuery.of(context).size.height;
+
     return Card(
       color: help.card,
       shape: RoundedRectangleBorder(
@@ -392,7 +472,7 @@ class _SingleCardState extends State<SingleCard> {
                             icon: Icon(
                               Icons.remove_circle,
                               color: Helper().button,
-                              size: 30,
+                              size: totalHeight * 28 / 700,
                             ),
                             tooltip: 'Delete',
                             onPressed: () => {
@@ -407,7 +487,7 @@ class _SingleCardState extends State<SingleCard> {
                             icon: Icon(
                               Icons.add_circle,
                               color: Helper().button,
-                              size: 30,
+                              size: totalHeight * 28 / 700,
                             ),
                             tooltip: 'Add',
                             onPressed: () => {
@@ -426,8 +506,8 @@ class _SingleCardState extends State<SingleCard> {
               ),
               Stack(children: [
                 Container(
-                  height: 100.0,
-                  width: 140.0,
+                  height: totalHeight * 1.5 / 7,
+                  width: totalWidth * 3 / 7,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
                     image: DecorationImage(
@@ -457,17 +537,24 @@ class _SingleCardState extends State<SingleCard> {
                       ),
                       onPressed: () {
                         if (canAdd == 1) {
-                          widget.cartData.addItem(
+                          CartData().addItem(
                               Dishes(
                                   widget.name,
+                                  widget.chefAddress,
                                   widget.rating,
                                   widget.dishName,
+                                  widget.self_delivery,
                                   widget.price,
                                   widget.image,
                                   widget.time,
                                   widget.dishName,
                                   widget.count,
-                                  widget.chefId.toString()),
+                                  widget.chefId.toString(),
+                                  widget.toTime,
+                                  widget.fromTime,
+                                  DateFormat('dd MMM y')
+                                      .format(now)
+                                      .toString()),
                               widget.quantity);
                           Fluttertoast.showToast(
                               msg: "Showing " + widget.name + "'s food only",
@@ -477,8 +564,16 @@ class _SingleCardState extends State<SingleCard> {
                               backgroundColor: Helper().button,
                               textColor: Colors.white,
                               fontSize: 16.0);
-                          widget.refresh();
-                          checkCart_add();
+                          // widget.refresh();
+                          // checkCart_add();
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => new SearchPage(
+                                      address: widget.address,
+                                      refreshCartNumber:
+                                          widget.refreshCartNumber,
+                                      searchText: widget.searchText)));
                         }
                       },
                       label: Text(
@@ -497,16 +592,10 @@ class _SingleCardState extends State<SingleCard> {
                   top: 3,
                   child: Container(
                     decoration: new BoxDecoration(
-                      color: Colors.white.withOpacity(0.6),
+                      color: Colors.red.withOpacity(0.6),
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    child: Text(
-                      widget.time,
-                      style: TextStyle(
-                          fontSize: totalHeight * 12 / 700,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
-                    ),
+                    child: Text("25 mins"),
                     padding: EdgeInsets.all(4.0),
                   ),
                 )

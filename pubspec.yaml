@@ -50,6 +50,8 @@ dependencies:
   dio: ^4.0.0
   badges: ^2.0.1
   fluttertoast: ^8.0.6
+  double_back_to_close_app: ^2.0.1
+  flutter_rating_bar: ^4.0.0
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +77,7 @@ flutter:
     - assets/images/start_page.jpeg
     - assets/images/empty_shopping_cart.png
     - assets/images/search_not_found.PNG
+    - assets/images/not_f.png
     - assets/images/drawer_header_background.png
     - assets/images/dp.png
 

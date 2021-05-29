@@ -1,28 +1,47 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class Chef {
   String name;
+  String chefAddress;
   dynamic rating;
-  Chef(String name, dynamic rating) {
+  Chef(String name, String chefAddress, dynamic rating) {
     this.name = name;
+    this.chefAddress = chefAddress;
     this.rating = rating;
   }
 }
 
 class Dishes extends Chef {
   String _dishname;
+  bool _self_delivery;
   String _chefId;
   dynamic _price;
   dynamic _rating;
   String _image;
   String _time;
+  String _toTime;
+  String _fromTime;
+  String _selectedDate;
   String _mealType;
   int _count;
-  Dishes(String name, dynamic rating, String dishname, dynamic price,
-      String image, String time, String mealType, int count, String chefId)
-      : super(name, rating) {
+  Dishes(
+      String name,
+      String chefAddress,
+      dynamic rating,
+      String dishname,
+      bool self_delivery,
+      dynamic price,
+      String image,
+      String time,
+      String mealType,
+      int count,
+      String chefId,
+      String toTime,
+      String fromTime,
+      String selectedDate)
+      : super(name, chefAddress, rating) {
     this._dishname = dishname;
+    this._self_delivery = self_delivery;
     this._price = price;
     this._rating = rating;
     this._image = image;
@@ -30,9 +49,16 @@ class Dishes extends Chef {
     this._mealType = mealType;
     this._count = count;
     this._chefId = chefId;
+    this._toTime = toTime;
+    this._fromTime = fromTime;
+    this._selectedDate = selectedDate;
   }
   String getDishName() {
     return this._dishname;
+  }
+
+  bool getSelfDelivery() {
+    return this._self_delivery;
   }
 
   String getChefId() {
@@ -41,6 +67,18 @@ class Dishes extends Chef {
 
   String getMealType() {
     return this._mealType;
+  }
+
+  String getToTime() {
+    return this._toTime;
+  }
+
+  String getFromTime() {
+    return this._fromTime;
+  }
+
+  String getSelectedDate() {
+    return this._selectedDate;
   }
 
   dynamic getPrice() {
@@ -105,27 +143,15 @@ class EatNowData {
   List<Dishes> data = [];
   List<String> d = [];
   EatNowData() {
-    Dishes d1 = new Dishes("Siddharth Mishra", 4.5, "Paneer Tikka", 250,
-        "panner_tikka.JPG", "25 min", "Lunch", 5, "c1");
-    Dishes d2 = new Dishes("Nishant Pal", 4.7, "Dosa", 250, "dosa.jpg",
-        "30 mins", "Breakfast", 10, "c2");
-    this.data.add(d1);
-    this.data.add(d2);
-    this.data.add(d2);
-
     final db = FirebaseFirestore.instance;
     var chef = new Map();
     CollectionReference collectionReference = db.collection('Chef');
     collectionReference.snapshots().listen((snapshot) {
       for (int i = 0; i < snapshot.docs.length; i++) {
         chef[snapshot.docs[i].id] = snapshot.docs[i].data();
-        // print(snapshot.docs[i].id);
-        // this.d.add(snapshot.docs[i].id);
       }
     });
     print(this.d);
-
-    // print(this.data.toString() + 'sid');
   }
   List<Dishes> getData() {
     return this.data;

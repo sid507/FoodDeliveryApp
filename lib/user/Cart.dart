@@ -3,10 +3,16 @@ import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:food_delivery_app/user/Chefdata.dart';
 import 'package:food_delivery_app/user/EmptyCart.dart';
 import 'package:food_delivery_app/user/Utils.dart';
+import 'package:food_delivery_app/user/Menucard.dart';
+
+final FirebaseAuth auth = FirebaseAuth.instance;
+final User user = auth.currentUser;
+String userName;
 
 class FoodOrderPage extends StatefulWidget {
   final String address;
@@ -22,6 +28,8 @@ class _FoodOrderPageState extends State<FoodOrderPage> {
   List<SingleCartItem> dishes;
   Helper help = new Helper();
   dynamic totalCost = 0;
+  int count = 0;
+  // int page_refresher = 1;
 
   @override
   void initState() {
@@ -61,16 +69,109 @@ class _FoodOrderPageState extends State<FoodOrderPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Container(
-                      padding: EdgeInsets.only(left: 5),
-                      child: Text(
-                        "Your Food Cart",
-                        style: TextStyle(
-                            fontSize: totalHeight * 20 / 700,
-                            color: Helper().heading,
-                            fontWeight: FontWeight.w600),
-                        textAlign: TextAlign.left,
-                      ),
+                    StreamBuilder(
+                      stream: FirebaseFirestore.instance
+                          .collection('User')
+                          .snapshots(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (snapshot.hasData) {
+                          for (int i = 0; i < snapshot.data.docs.length; i++) {
+                            if (user.phoneNumber ==
+                                snapshot.data.docs[i]['phoneNum']) {
+                              String fname = snapshot.data.docs[i]['fname'];
+                              String lname = snapshot.data.docs[i]['lname'];
+                              userName = fname + " " + lname;
+                              print("name = $userName");
+                              break;
+                            }
+                          }
+                        }
+                        return Container();
+                      },
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.only(left: 5),
+                          child: Text(
+                            "Your Food Cart",
+                            style: TextStyle(
+                                fontSize: totalHeight * 20 / 700,
+                                color: Helper().heading,
+                                fontWeight: FontWeight.w600),
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                        SizedBox(
+                          width: totalWidth * 100 / 420,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            CartData.dishes.clear();
+                            Fluttertoast.showToast(
+                                msg: "Emptied Cart Successfully",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.BOTTOM,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: Helper().button,
+                                textColor: Colors.white,
+                                fontSize: 16.0);
+                            setState(() {
+                              dishes = [];
+                              count = CartData.dishes.length;
+                              widget.refreshCartNumber();
+                              refresher_funct();
+                            });
+                          },
+                          child: Container(
+                            width: totalWidth * 100 / 420,
+                            height: totalHeight * 35 / 700,
+                            decoration: BoxDecoration(
+                              color: Helper().button,
+                              // border: Border.all(color: Colors.white, width: 2.0),
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'Empty Cart',
+                                style: new TextStyle(
+                                    fontSize: totalHeight * 12 / 700,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        ),
+                        // TextButton(
+                        //   style: ButtonStyle(
+                        //     overlayColor:
+                        //         MaterialStateProperty.resolveWith<Color>(
+                        //             (Set<MaterialState> states) {
+                        //       if (states.contains(MaterialState.focused))
+                        //         return Colors.red;
+                        //       return null; // Defer to the widget's default.
+                        //     }),
+                        //   ),
+                        //   onPressed: () {
+                        //     CartData.dishes.clear();
+                        //     Fluttertoast.showToast(
+                        //         msg: "Emptied Cart Successfully",
+                        //         toastLength: Toast.LENGTH_SHORT,
+                        //         gravity: ToastGravity.BOTTOM,
+                        //         timeInSecForIosWeb: 1,
+                        //         backgroundColor: Helper().button,
+                        //         textColor: Colors.white,
+                        //         fontSize: 16.0);
+                        //     // setState(() {
+                        //     //   dishes = [];
+                        //     // });
+                        //   },
+                        //   child: Text('Empty Cart'),
+                        // )
+                      ],
                     ),
                     SizedBox(
                       height: totalHeight * 10 / 700,
@@ -85,6 +186,9 @@ class _FoodOrderPageState extends State<FoodOrderPage> {
                               productPrice: data.dish.getPrice().toString(),
                               productImage: data.dish.getimage(),
                               productCartQuantity: data.quantity.toString(),
+                              toTime: data.dish.getToTime(),
+                              fromTime: data.dish.getFromTime(),
+                              selectedDate: data.dish.getSelectedDate(),
                               delItem: () {
                                 setState(() => {
                                       dishes.removeWhere((element) =>
@@ -144,6 +248,10 @@ class _FoodOrderPageState extends State<FoodOrderPage> {
                     SizedBox(
                       height: totalHeight * 5 / 700,
                     ),
+                    addressWidget(totalWidth, totalHeight, widget.address),
+                    SizedBox(
+                      height: totalHeight * 5 / 700,
+                    ),
                     Center(
                       child: Padding(
                         padding: EdgeInsets.fromLTRB(
@@ -154,7 +262,9 @@ class _FoodOrderPageState extends State<FoodOrderPage> {
                         child: Center(
                           child: ElevatedButton(
                             onPressed: () {
-                              uploadOrderToFirebase(dishes);
+                              uploadOrderToFirebase(dishes, widget.address);
+                              CartData.dishes.clear();
+                              refresher_funct();
                             },
                             child: Text(
                               'Place Order',
@@ -179,9 +289,34 @@ class _FoodOrderPageState extends State<FoodOrderPage> {
     );
   }
 
+  Widget addressWidget(double totalWidth, double totalHeight, String address) {
+    return Column(children: <Widget>[
+      Row(
+        children: <Widget>[
+          Icon(Icons.home),
+          SizedBox(width: totalWidth * 0.01),
+          Text("Delivery Location:",
+              style: TextStyle(
+                  fontSize: totalHeight * 18 / 700,
+                  fontFamily: "Robonto",
+                  fontWeight: FontWeight.bold)),
+        ],
+      ),
+      Text(
+        address,
+        overflow: TextOverflow.ellipsis,
+        maxLines: 3,
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: totalHeight * 15 / 700,
+        ),
+      ),
+    ]);
+  }
+
   final orders = FirebaseFirestore.instance.collection('Orders');
 
-  void uploadOrderToFirebase(List<SingleCartItem> dishes) {
+  void uploadOrderToFirebase(List<SingleCartItem> dishes, String address) {
     addOrder(dishes);
     showDialog(
       context: context,
@@ -189,17 +324,55 @@ class _FoodOrderPageState extends State<FoodOrderPage> {
         title: "Success",
         description: "Order Placed Successfully ! Delicious Food en route",
         buttonText: "Okay",
+        address: address,
       ),
     );
   }
 
+  void refresher_funct() {
+    // (context as Element).reassemble();
+    print("ssssssssssssssssssssssssssssssssssssssssss");
+    // print()
+    if (CartData.dishes.isNotEmpty)
+      Fluttertoast.showToast(
+          msg: "Emptying Cart",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Helper().button,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    setState(() {
+      dishes = [];
+    });
+    // rebuildAllChildren(context);
+    // EatNow(cartData: new CartData());
+
+    // Navigator.push(context,
+    //     new MaterialPageRoute(builder: (context) => this.build(context)));
+    // Navigator.pushReplacement(context,
+    //     MaterialPageRoute(builder: (BuildContext context) => super.widget));
+  }
+
   Future<void> addOrder(List<SingleCartItem> dishes) {
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat('d MMM y kk:mm').format(now);
+    // DateTime selectedDate = new DateTime(now.year, now.month, now.day);
+    // String dateToBeDelivered =
+    //     DateFormat('dd MMM y').format(widget.selectedDate).toString();
+    String phone = user.phoneNumber;
     List<String> productName = [],
         deliveryTime = [],
         productPrice = [],
-        productCartQuantity = [];
+        productCartQuantity = [],
+        toTimeList = [],
+        fromTimeList = [],
+        dateToBeDelivered = [];
+
+    List<bool> self_delivery = [];
 
     String chefId = "";
+    String chefAddress = "";
     double totalCost;
     print("dishes = $dishes");
 
@@ -208,19 +381,20 @@ class _FoodOrderPageState extends State<FoodOrderPage> {
       productPrice.add(data.dish.getPrice().toString());
       productCartQuantity.add(data.quantity.toString());
       deliveryTime.add(data.dish.gettime());
+      toTimeList.add(data.dish.getToTime());
+      fromTimeList.add(data.dish.getFromTime());
+      dateToBeDelivered.add(data.dish.getSelectedDate());
+      self_delivery.add(data.dish.getSelfDelivery());
       chefId = data.dish.getChefId();
+      chefAddress = data.dish.chefAddress;
       totalCost = CartData().calculateGrandTotal();
     }).toList();
 
     // for (int i = 0; i < dishes.length; i++)
     // print(
     //     "Order = $productName $productPrice $productCartQuantity $deliveryTime $totalCost\n");
-    DateTime now = DateTime.now();
-    String formattedDate = DateFormat('kk:mm d MMM').format(now);
-    final FirebaseAuth auth = FirebaseAuth.instance;
-    final User user = auth.currentUser;
-    String userId = user.uid;
-    String phone = user.phoneNumber;
+    // Future<String> userName;
+    // userName = getUserName(phone);
 
     return orders
         .add({
@@ -231,11 +405,17 @@ class _FoodOrderPageState extends State<FoodOrderPage> {
           "isDelivered": false,
           "timeOrderPlaced": formattedDate,
           "address": widget.address,
+          "toTime": toTimeList,
+          "fromTime": fromTimeList,
+          "dateToBeDelivered": dateToBeDelivered,
           "chefId": chefId,
-          "userId": userId,
+          "chefAddress": chefAddress,
+          "self_delivery": self_delivery,
+          "userId": user.uid,
+          "userName": userName,
           "userPhone": phone,
-          "rating": "",
-          "feedback": ""
+          "rating": 0.0,
+          "feedback": "".toString()
         })
         .then(
           (value) => print("Order Uploaded on Firestore"),
@@ -250,12 +430,14 @@ class CustomDialog extends StatelessWidget {
   static const double padding = 4.0;
   static const double avatarRadius = 11.0;
   final String title, description, buttonText;
+  String address;
   final Image image;
 
   CustomDialog({
     @required this.title,
     @required this.description,
     @required this.buttonText,
+    @required this.address,
     this.image,
   });
 
@@ -267,11 +449,11 @@ class CustomDialog extends StatelessWidget {
       ),
       elevation: 0.0,
       backgroundColor: Colors.transparent,
-      child: dialogContent(context),
+      child: dialogContent(context, address),
     );
   }
 
-  dialogContent(BuildContext context) {
+  dialogContent(BuildContext context, String address) {
     double totalWidth = MediaQuery.of(context).size.width;
     double totalHeight = MediaQuery.of(context).size.height;
     return Stack(
@@ -320,8 +502,15 @@ class CustomDialog extends StatelessWidget {
                 child: TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            MenuOptionSide(automatic: false, address: address),
+                      ),
+                    );
                   },
-                  child: Text(buttonText),
+                  child: Text(buttonText.toString()),
                 ),
               ),
             ],
@@ -567,6 +756,9 @@ class CartItem extends StatefulWidget {
   String productImage;
   String productCartQuantity;
   String deliveryTime;
+  String toTime;
+  String fromTime;
+  String selectedDate;
   Function delItem;
   Function updateCost, addItem, removeItem;
   CartItem(
@@ -577,6 +769,9 @@ class CartItem extends StatefulWidget {
       @required this.productCartQuantity,
       @required this.delItem,
       @required this.deliveryTime,
+      @required this.toTime,
+      @required this.fromTime,
+      @required this.selectedDate,
       @required this.updateCost,
       @required this.addItem,
       @required this.removeItem})
@@ -591,6 +786,7 @@ class _CartItemState extends State<CartItem> {
   Widget build(BuildContext context) {
     double totalWidth = MediaQuery.of(context).size.width;
     double totalHeight = MediaQuery.of(context).size.height;
+    print('selectedDate = ${widget.selectedDate}');
     return Card(
         color: Helper().card,
         // color: Colors.white,
@@ -663,16 +859,24 @@ class _CartItemState extends State<CartItem> {
                                   fontWeight: FontWeight.w400),
                               textAlign: TextAlign.left,
                             ),
-                            widget.deliveryTime != '0'
-                                ? Text(
-                                    "Delivery :${widget.deliveryTime}",
-                                    style: TextStyle(
-                                        fontSize: totalHeight * 12 / 700,
-                                        color: Helper().normalText,
-                                        fontWeight: FontWeight.w400),
-                                    textAlign: TextAlign.left,
-                                  )
-                                : new Container(width: 0.0, height: 0.0),
+                            // widget.deliveryTime != '0'
+                            //     ? Text(
+                            //         "Delivery :${widget.toTime}",
+                            //         style: TextStyle(
+                            //             fontSize: totalHeight * 12 / 700,
+                            //             color: Helper().normalText,
+                            //             fontWeight: FontWeight.w400),
+                            //         textAlign: TextAlign.left,
+                            //       )
+                            //     : new Container(width: 0.0, height: 0.0),
+                            Text(
+                              "Delivered On ${widget.selectedDate.split(' 20')[0]}\nBetween ${widget.fromTime}-${widget.toTime}",
+                              style: TextStyle(
+                                  fontSize: totalHeight * 12 / 700,
+                                  color: Helper().normalText,
+                                  fontWeight: FontWeight.w400),
+                              textAlign: TextAlign.left,
+                            ),
                           ],
                         ),
                         SizedBox(

@@ -5,6 +5,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+final now = new DateTime.now();
+
 class EatLater extends StatefulWidget {
   Function refreshCartNumber;
   EatLater({this.refreshCartNumber});
@@ -78,7 +80,9 @@ class _EatLaterState extends State<EatLater> {
                     }
                     dishes = [];
                     for (int i = 0; i < snapshot.data.docs.length; i++) {
-                      final now = new DateTime.now();
+                      var chef_detail = chef[snapshot.data.docs[i]["chefId"]];
+                      // print(chef_detail);
+                      var dd = snapshot.data.docs[i];
 
                       // var fmt = DateFormat("HH:mm");
                       // print(fmt.format(now));
@@ -104,22 +108,32 @@ class _EatLaterState extends State<EatLater> {
                       // now.hour >= tempDate.hour &&
                       // now.hour <= tempDate2.hour &&
 
-                      if (snapshot.data.docs[i]['mealType'].toLowerCase() ==
-                          this.tellMeType(now.hour).toLowerCase()) {
-                        var chef_detail = chef[snapshot.data.docs[i]["chefId"]];
-                        // print(chef_detail);
-                        var dd = snapshot.data.docs[i];
-                        if (chef_detail != null) {
+                      // if (snapshot.data.docs[i]['mealType'].toLowerCase() ==
+                      //     this.tellMeType(now.hour).toLowerCase()) {
+                      TimeOfDay nowTime = TimeOfDay.now();
+                      double currentTime = toDouble(nowTime);
+                      double itemToTime1 =
+                          double.parse(dd["toTime"].split(':')[0]);
+                      double itemToTime2 =
+                          double.parse(dd["toTime"].split(':')[1]);
+                      double itemToTime = itemToTime1 + itemToTime2 / 60.0;
+                      if (true) {
+                        if (chef_detail != null && currentTime <= itemToTime) {
                           Dishes dish = new Dishes(
                               chef_detail["fname"].toString(),
+                              chef_detail["chefAddress"].toString(),
                               chef_detail["rating"].toDouble(),
                               dd["dishName"].toString(),
+                              dd["self_delivery"],
                               dd["price"].toDouble(),
                               dd["imageUrl"].toString(),
                               "25 min",
                               dd["mealType"],
                               dd["count"],
-                              dd["chefId"]);
+                              dd["chefId"],
+                              dd["toTime"],
+                              dd["fromTime"],
+                              DateFormat('dd MMM y').format(now).toString());
                           dishes.add(dish);
                         }
                       }
@@ -135,13 +149,17 @@ class _EatLaterState extends State<EatLater> {
                           padding: const EdgeInsets.all(8.0),
                           child: SingleCard(
                               data.name,
+                              data.chefAddress,
                               data.rating,
                               data.getPrice(),
                               data.getDishName(),
+                              data.getSelfDelivery(),
                               data.getimage(),
                               "07:00",
                               1,
                               data.getChefId(),
+                              data.getToTime(),
+                              data.getFromTime(),
                               () => {
                                     widget.refreshCartNumber(),
                                     refresher_funct()
@@ -183,16 +201,31 @@ class _EatLaterState extends State<EatLater> {
       // ),
     );
   }
+
+  double toDouble(TimeOfDay myTime) => myTime.hour + myTime.minute / 60.0;
 }
 
 class SingleCard extends StatefulWidget {
-  String name, dishName, image, time, chefId;
+  String name, chefAddress, dishName, image, time, chefId, toTime, fromTime;
+  bool self_delivery;
   dynamic rating;
   int quantity, count;
   dynamic price;
   Function refresh;
-  SingleCard(this.name, this.rating, this.price, this.dishName, this.image,
-      this.time, this.quantity, this.chefId, this.refresh);
+  SingleCard(
+      this.name,
+      this.chefAddress,
+      this.rating,
+      this.price,
+      this.dishName,
+      this.self_delivery,
+      this.image,
+      this.time,
+      this.quantity,
+      this.chefId,
+      this.toTime,
+      this.fromTime,
+      this.refresh);
   @override
   _SingleCardState createState() => _SingleCardState();
 }
@@ -415,14 +448,21 @@ class _SingleCardState extends State<SingleCard> {
                           CartData().addItem(
                               Dishes(
                                   widget.name,
+                                  widget.chefAddress,
                                   widget.rating,
                                   widget.dishName,
+                                  widget.self_delivery,
                                   widget.price,
                                   widget.image,
                                   widget.time,
                                   widget.dishName,
                                   widget.count,
-                                  widget.chefId),
+                                  widget.chefId,
+                                  widget.toTime,
+                                  widget.fromTime,
+                                  DateFormat('dd MMM y')
+                                      .format(now)
+                                      .toString()),
                               widget.quantity);
                           Fluttertoast.showToast(
                               msg: "Successfully Added",

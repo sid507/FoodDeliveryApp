@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/user/Chefdata.dart';
 import '../user/ScaleRoute.dart';
 import '../user/SearchPage.dart';
 
 class SearchWidget extends StatelessWidget {
+  String address;
+  Function refreshCartNumber;
+  SearchWidget(this.refreshCartNumber, this.address);
   @override
   Widget build(BuildContext context) {
     double totalWidth = MediaQuery.of(context).size.width;
@@ -42,8 +46,13 @@ class SearchWidget extends StatelessWidget {
                   searchText = searchController.text;
                   searchText.isEmpty ? _validate = true : _validate = false;
                   if (_validate == false)
-                    Navigator.push(context,
-                        ScaleRoute(page: SearchPage(searchText: searchText)));
+                    Navigator.push(
+                        context,
+                        ScaleRoute(
+                            page: SearchPage(
+                                address: address,
+                                refreshCartNumber: refreshCartNumber,
+                                searchText: searchText)));
                 },
               ),
               hintStyle: new TextStyle(
@@ -53,8 +62,13 @@ class SearchWidget extends StatelessWidget {
             if (searchText == "") {
               _validate = true;
             } else
-              Navigator.push(context,
-                  ScaleRoute(page: SearchPage(searchText: searchText)));
+              Navigator.push(
+                  context,
+                  ScaleRoute(
+                      page: SearchPage(
+                          address: address,
+                          refreshCartNumber: refreshCartNumber,
+                          searchText: searchText)));
           }),
     );
   }

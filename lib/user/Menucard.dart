@@ -1,25 +1,83 @@
+import 'package:badges/badges.dart';
+import 'package:flutter/material.dart';
+import 'package:double_back_to_close_app/double_back_to_close_app.dart';
+import 'dart:io';
+import 'package:flutter/services.dart';
+
 import 'package:food_delivery_app/account/AccountPage.dart';
 import 'package:food_delivery_app/user/AllEatOption.dart';
 import 'package:food_delivery_app/user/Cart.dart';
 import 'package:food_delivery_app/auth_screens/sign_in.dart';
 import 'package:food_delivery_app/user/SearchPage.dart';
 import 'package:food_delivery_app/user/Utils.dart';
+import 'package:geocoder/geocoder.dart';
 import 'UserHome.dart';
-import 'package:badges/badges.dart';
-
-import 'package:flutter/material.dart';
 import 'package:food_delivery_app/user/Chefdata.dart';
 
 class MenuOptionSide extends StatefulWidget {
   bool automatic;
   String address;
-  MenuOptionSide({Key key, @required this.automatic, @required this.address})
-      : super(key: key);
+  MenuOptionSide({Key key, this.automatic, this.address}) : super(key: key);
   @override
   _MenuOptionSideState createState() => _MenuOptionSideState();
 }
 
 class _MenuOptionSideState extends State<MenuOptionSide> {
+  Future<bool> _onBackPressed() {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Are your sure?"),
+            content: Text('You are going to exit the application !'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  SystemNavigator.pop(animated: null);
+                  // exit(0);
+                },
+                child: Text('No'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(true);
+                },
+                child: Text('Yes'),
+              ),
+            ],
+          );
+        });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          body: WillPopScope(
+            onWillPop: _onBackPressed,
+            child: DoubleBackToCloseApp(
+              child:
+                  MenuOptionSideNew(automatic: true, address: widget.address),
+              snackBar: const SnackBar(
+                content: Text('Tap back again to leave'),
+              ),
+            ),
+          ),
+        ));
+  }
+}
+
+class MenuOptionSideNew extends StatefulWidget {
+  bool automatic;
+  String address;
+  MenuOptionSideNew({Key key, @required this.automatic, this.address})
+      : super(key: key);
+  @override
+  _MenuOptionSideNewState createState() => _MenuOptionSideNewState();
+}
+
+class _MenuOptionSideNewState extends State<MenuOptionSideNew> {
   int _currentIndex = 0;
   List<Widget> _children = [];
   int count = 0;
@@ -42,10 +100,11 @@ class _MenuOptionSideState extends State<MenuOptionSide> {
   void initState() {
     refresh();
     this._children = [
-      HomePage(automatic: widget.automatic),
+      HomePage(automatic: widget.automatic, refreshCartNumber: () => refresh()),
       MyApp(() => refresh()),
       FoodOrderPage(
-          address: widget.address, refreshCartNumber: () => refresh()),
+          address: widget.address.toString(),
+          refreshCartNumber: () => refresh()),
       AccountScreen()
     ];
     print(this._children);

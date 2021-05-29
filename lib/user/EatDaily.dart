@@ -6,6 +6,9 @@ import 'dart:async';
 import 'package:intl/intl.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+final now = new DateTime.now();
+final tomorrow = DateTime(now.year, now.month, now.day + 1);
+
 class EatTomorrow extends StatefulWidget {
   CartData cartData;
   Function refreshCartNumber;
@@ -89,36 +92,35 @@ class _EatTomorrowState extends State<EatTomorrow> {
                     // print(chefs);
                     dishes = [];
                     for (int i = 0; i < snapshot.data.docs.length; i++) {
-                      final now = new DateTime.now();
+                      // var tmprser = new DateFormat("dd-MM-yyyy HH:mm");
+                      // var tmprser2 = new DateFormat("dd-MM-yyyy");
+                      // print("\t" +
+                      //     tmprser
+                      //         .parse(snapshot.data.docs[i]["fromDate"]
+                      //                 .toString() +
+                      //             " " +
+                      //             snapshot.data.docs[i]["toTime"].toString())
+                      //         .toString());
 
-                      var tmprser = new DateFormat("dd-MM-yyyy HH:mm");
-                      var tmprser2 = new DateFormat("dd-MM-yyyy");
-                      print("\t" +
-                          tmprser
-                              .parse(snapshot.data.docs[i]["fromDate"]
-                                      .toString() +
-                                  " " +
-                                  snapshot.data.docs[i]["toTime"].toString())
-                              .toString());
+                      // // var nextDate = tmprser.parse(
+                      // //     snapshot.data.docs[i]["fromDate"].toString() +
+                      // //         " " +
+                      // //         snapshot.data.docs[i]["toTime"].toString());
 
-                      // var nextDate = tmprser.parse(
-                      //     snapshot.data.docs[i]["fromDate"].toString() +
-                      //         " " +
-                      //         snapshot.data.docs[i]["toTime"].toString());
-
-                      var checkTime = tmprser2
-                          .parse(snapshot.data.docs[i]["fromDate"].toString())
-                          .compareTo(tmprser2.parse(now.day.toString() +
-                              "-" +
-                              now.month.toString() +
-                              "-" +
-                              now.year.toString()));
+                      // var checkTime = tmprser2
+                      //     .parse(snapshot.data.docs[i]["fromDate"].toString())
+                      //     .compareTo(tmprser2.parse(now.day.toString() +
+                      //         "-" +
+                      //         now.month.toString() +
+                      //         "-" +
+                      //         now.year.toString()));
                       // " " +
                       // now.hour.toString() +
                       // ":" +
                       // now.minute.toString()));
-                      print("\n" + checkTime.toString());
-                      if (checkTime > 0) {
+                      // print("\n" + checkTime.toString());
+                      // if (checkTime > 0) {
+                      if (true) {
                         // print("\n" + checkTime.toString());
 
                         var chef_detail =
@@ -128,36 +130,36 @@ class _EatTomorrowState extends State<EatTomorrow> {
 
                         //Take the difference of the toTime of item from now
 
-                        var leftTime = tmprser
-                            .parse(
-                                (snapshot.data.docs[i]["fromDate"].toString() +
-                                    " " +
-                                    snapshot.data.docs[i]["toTime"]
-                                        .toString()
-                                        .toString()))
-                            .difference(tmprser.parse(now.day.toString() +
-                                "-" +
-                                now.month.toString() +
-                                "-" +
-                                now.year.toString() +
-                                " " +
-                                now.hour.toString() +
-                                ":" +
-                                now.minute.toString().toString()));
+                        // var leftTime = tmprser
+                        //     .parse(
+                        //         (snapshot.data.docs[i]["fromDate"].toString() +
+                        //             " " +
+                        //             snapshot.data.docs[i]["toTime"]
+                        //                 .toString()
+                        //                 .toString()))
+                        //     .difference(tmprser.parse(now.day.toString() +
+                        //         "-" +
+                        //         now.month.toString() +
+                        //         "-" +
+                        //         now.year.toString() +
+                        //         " " +
+                        //         now.hour.toString() +
+                        //         ":" +
+                        //         now.minute.toString().toString()));
 
-                        print("LeftTime" + leftTime.inMinutes.toString());
+                        // print("LeftTime" + leftTime.inMinutes.toString());
 
-                        // var leftsecond_format =
-                        //     new DateFormat("dd-MM-yyyy HH:mm")
-                        //         .parse(leftTime.inHours.toString());
+                        // // var leftsecond_format =
+                        // //     new DateFormat("dd-MM-yyyy HH:mm")
+                        // //         .parse(leftTime.inHours.toString());
 
-                        // var leftseconds = leftsecond_format.day * 24 * 60 +
-                        //     leftsecond_format.hour * 60 +
-                        //     leftsecond_format.minute;
-                        var leftseconds = leftTime.inMinutes.toString();
-                        // print(leftTime);
-                        print("\n");
-                        print(leftseconds);
+                        // // var leftseconds = leftsecond_format.day * 24 * 60 +
+                        // //     leftsecond_format.hour * 60 +
+                        // //     leftsecond_format.minute;
+                        // var leftseconds = leftTime.inMinutes.toString();
+                        // // print(leftTime);
+                        // print("\n");
+                        // print(leftseconds);
 
                         if (chef_detail != null) {
                           // var toTime =
@@ -171,16 +173,24 @@ class _EatTomorrowState extends State<EatTomorrow> {
                           //     (now.hour * 60 + now.minute);
 
                           // print(remaining_time.toString() + "ending");
+
                           Dishes dish = new Dishes(
                               chef_detail["fname"].toString(),
+                              chef_detail["chefAddress"].toString(),
                               chef_detail["rating"].toDouble(),
                               dd["dishName"].toString(),
+                              dd["self_delivery"],
                               dd["price"].toDouble(),
                               dd["imageUrl"].toString(),
-                              leftseconds.toString(),
+                              "leftseconds".toString(),
                               dd["mealType"],
                               dd["count"],
-                              dd["chefId"]);
+                              dd["chefId"],
+                              dd["toTime"],
+                              dd["fromTime"],
+                              DateFormat('dd MMM y')
+                                  .format(tomorrow)
+                                  .toString());
                           dishes.add(dish);
                         }
                       }
@@ -198,14 +208,18 @@ class _EatTomorrowState extends State<EatTomorrow> {
                           padding: const EdgeInsets.all(8.0),
                           child: SingleCard(
                               data.name,
+                              data.chefAddress,
                               data.rating,
                               data.getPrice(),
                               data.getDishName(),
+                              data.getSelfDelivery(),
                               data.getimage(),
                               data.gettime(),
                               1,
                               this.cartdata,
                               data.getChefId(),
+                              data.getToTime(),
+                              data.getFromTime(),
                               () => {
                                     widget.refreshCartNumber(),
                                     refresher_funct()
@@ -240,14 +254,28 @@ class _EatTomorrowState extends State<EatTomorrow> {
 }
 
 class SingleCard extends StatefulWidget {
-  String name, dishName, image, time, chefId;
+  String name, chefAddress, dishName, image, time, chefId, toTime, fromTime;
+  bool self_delivery;
   dynamic rating;
   int quantity, count;
   dynamic price;
   CartData cartData;
   Function refresh;
-  SingleCard(this.name, this.rating, this.price, this.dishName, this.image,
-      this.time, this.quantity, this.cartData, this.chefId, this.refresh);
+  SingleCard(
+      this.name,
+      this.chefAddress,
+      this.rating,
+      this.price,
+      this.dishName,
+      this.self_delivery,
+      this.image,
+      this.time,
+      this.quantity,
+      this.cartData,
+      this.chefId,
+      this.toTime,
+      this.fromTime,
+      this.refresh);
   @override
   _SingleCardState createState() => _SingleCardState();
 }
@@ -259,27 +287,27 @@ class _SingleCardState extends State<SingleCard> {
   Timer _timer;
   var canAdd = 1;
 
-  int hour = 0, minute = 0, sec = 0;
+  // int hour = 0, minute = 0, sec = 0;
 
-  void _startTimer(int time) {
-    _counter = time;
-    if (_timer != null) {
-      _timer.cancel();
-    }
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      setState(() {
-        if (_counter > 0) {
-          _counter--;
-          // hour=_counter/
-        } else {
-          _timer.cancel();
-          setState(() {
-            canAdd = 0;
-          });
-        }
-      });
-    });
-  }
+  // void _startTimer(int time) {
+  //   _counter = time;
+  //   if (_timer != null) {
+  //     _timer.cancel();
+  //   }
+  //   _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+  //     setState(() {
+  //       if (_counter > 0) {
+  //         _counter--;
+  //         // hour=_counter/
+  //       } else {
+  //         _timer.cancel();
+  //         setState(() {
+  //           canAdd = 0;
+  //         });
+  //       }
+  //     });
+  //   });
+  // }
 
   void checkCart_add() {
     for (int i = 0; i < CartData.dishes.length; i++) {
@@ -307,7 +335,7 @@ class _SingleCardState extends State<SingleCard> {
     super.initState();
     // var total_remaining_time = int.parse(widget.time);
     checkCart_add();
-    _startTimer(int.parse(widget.time) * 60);
+    // _startTimer(int.parse(widget.time) * 60);
   }
 
   @override
@@ -486,14 +514,21 @@ class _SingleCardState extends State<SingleCard> {
                           CartData().addItem(
                               Dishes(
                                   widget.name,
+                                  widget.chefAddress,
                                   widget.rating,
                                   widget.dishName,
+                                  widget.self_delivery,
                                   widget.price,
                                   widget.image,
                                   widget.time,
                                   widget.dishName,
                                   widget.count,
-                                  widget.chefId),
+                                  widget.chefId,
+                                  widget.toTime,
+                                  widget.fromTime,
+                                  DateFormat('dd MMM y')
+                                      .format(tomorrow)
+                                      .toString()),
                               widget.quantity);
                           Fluttertoast.showToast(
                               msg: "Showing " + widget.name + "'s food only",
@@ -526,17 +561,17 @@ class _SingleCardState extends State<SingleCard> {
                       color: Colors.red.withOpacity(0.6),
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    child: Text(
-                      (_counter ~/ 3600).toString() +
-                          ":" +
-                          ((_counter % 3600) ~/ 60).toString() +
-                          ":" +
-                          ((_counter % 60)).toString(),
-                      style: TextStyle(
-                          fontSize: totalHeight * 12 / 700,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
+                    child: Text(""),
+                    // (_counter ~/ 3600).toString() +
+                    //     ":" +
+                    //     ((_counter % 3600) ~/ 60).toString() +
+                    //     ":" +
+                    //     ((_counter % 60)).toString(),
+                    // style: TextStyle(
+                    //     fontSize: totalHeight * 12 / 700,
+                    //     color: Colors.white,
+                    //     fontWeight: FontWeight.bold),
+                    // ),
                     padding: EdgeInsets.all(4.0),
                   ),
                 )

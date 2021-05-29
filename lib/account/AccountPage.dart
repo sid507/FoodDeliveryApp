@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:food_delivery_app/user/Utils.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:food_delivery_app/account/app_colors.dart';
 import 'package:food_delivery_app/account/ui_helper.dart';
@@ -28,6 +31,7 @@ class AccountScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double totalHeight = MediaQuery.of(context).size.height;
     String name = "";
     return Scaffold(
       body: SafeArea(
@@ -46,7 +50,7 @@ class AccountScreen extends StatelessWidget {
                         String fname = snapshot.data.docs[i]['fname'];
                         String lname = snapshot.data.docs[i]['lname'];
                         name = fname + " " + lname;
-                        print("name = $name");
+                        // print("name = $name");
                         break;
                       }
                     }
@@ -67,31 +71,46 @@ class AccountScreen extends StatelessWidget {
               Container(
                 alignment: Alignment.centerLeft,
                 padding: const EdgeInsets.only(left: 15.0),
-                height: 50.0,
+                height: totalHeight * 50.0 / 820,
+                color: Colors.grey[200],
+                child: Text(
+                  'ONGOING ORDERS',
+                  style: Theme.of(context).textTheme.subtitle2.copyWith(
+                      color: Colors.grey[700],
+                      fontSize: totalHeight * 14.0 / 820,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              _PastOrderListView(ongoing: true),
+              Container(
+                alignment: Alignment.centerLeft,
+                padding: const EdgeInsets.only(top: 10, left: 15.0),
+                height: totalHeight * 50.0 / 820,
                 color: Colors.grey[200],
                 child: Text(
                   'PAST ORDERS',
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle2
-                      .copyWith(color: Colors.grey[700], fontSize: 12.0),
+                  style: Theme.of(context).textTheme.subtitle2.copyWith(
+                      color: Colors.grey[700],
+                      fontSize: totalHeight * 14.0 / 820,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
+
               // SizedBox(height: 10),
-              Container(
-                alignment: Alignment.centerLeft,
-                padding: const EdgeInsets.only(left: 15.0),
-                height: 30.0,
-                color: Colors.grey[200],
-                child: Text(
-                  'No Orders Yet !',
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle2
-                      .copyWith(color: Colors.grey[700], fontSize: 12.0),
-                ),
-              ),
-              _PastOrderListView(),
+              // Container(
+              //   alignment: Alignment.centerLeft,
+              //   padding: const EdgeInsets.only(left: 15.0),
+              //   height: 30.0,
+              //   color: Colors.grey[200],
+              //   child: Text(
+              //     'No Orders Yet !',
+              //     style: Theme.of(context)
+              //         .textTheme
+              //         .subtitle2
+              //         .copyWith(color: Colors.grey[700], fontSize: 12.0),
+              //   ),
+              // ),
+              _PastOrderListView(ongoing: false),
             ],
           ),
         ),
@@ -111,6 +130,7 @@ class _AppBar extends StatefulWidget {
 class __AppBarState extends State<_AppBar> {
   @override
   Widget build(BuildContext context) {
+    double totalHeight = MediaQuery.of(context).size.height;
     final subtitleStyle = Theme.of(context).textTheme.bodyText1;
     return Container(
       padding: const EdgeInsets.all(15.0),
@@ -121,10 +141,10 @@ class __AppBarState extends State<_AppBar> {
             children: <Widget>[
               Text(
                 widget.name,
-                style: Theme.of(context)
-                    .textTheme
-                    .headline6
-                    .copyWith(fontWeight: FontWeight.bold, fontSize: 18.0),
+                style: Theme.of(context).textTheme.headline6.copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontSize: totalHeight * 18.0 / 820,
+                    ),
               ),
               // InkWell(
               //   child: Text(
@@ -145,8 +165,8 @@ class __AppBarState extends State<_AppBar> {
               UIHelper.horizontalSpaceSmall(),
               ClipOval(
                 child: Container(
-                  height: 3.0,
-                  width: 3.0,
+                  height: totalHeight * 3.0 / 820,
+                  width: totalHeight * 3.0 / 820,
                   color: Colors.grey[700],
                 ),
               ),
@@ -156,7 +176,7 @@ class __AppBarState extends State<_AppBar> {
           ),
           UIHelper.verticalSpaceLarge(),
           CustomDividerView(
-            dividerHeight: 1.8,
+            dividerHeight: totalHeight * 1.8 / 820,
             color: Colors.black,
           )
         ],
@@ -180,6 +200,7 @@ class _ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double totalHeight = MediaQuery.of(context).size.height;
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
       child: Column(
@@ -199,15 +220,14 @@ class _ListItem extends StatelessWidget {
                       style: Theme.of(context)
                           .textTheme
                           .headline6
-                          .copyWith(fontSize: 15.0),
+                          .copyWith(fontSize: totalHeight * 15.0 / 820),
                     ),
                     UIHelper.verticalSpaceExtraSmall(),
                     Text(
                       body,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyText1
-                          .copyWith(fontSize: 13.0, color: Colors.black),
+                      style: Theme.of(context).textTheme.bodyText1.copyWith(
+                          fontSize: totalHeight * 13.0 / 820,
+                          color: Colors.black),
                     ),
                   ],
                 ),
@@ -221,7 +241,7 @@ class _ListItem extends StatelessWidget {
           isLastItem
               ? SizedBox()
               : CustomDividerView(
-                  dividerHeight: 0.8,
+                  dividerHeight: totalHeight * 0.8 / 820,
                   color: Colors.black26,
                 ),
         ],
@@ -230,228 +250,548 @@ class _ListItem extends StatelessWidget {
   }
 }
 
-class _PastOrderListView extends StatelessWidget {
-  final List<String> restaurants = [
-    'Sea Emperor',
-    'Fireflies Restaurant',
-    'Chai Truck',
-  ];
+class _PastOrderListView extends StatefulWidget {
+  bool ongoing;
+  _PastOrderListView({@required this.ongoing});
+  @override
+  __PastOrderListViewState createState() => __PastOrderListViewState();
+}
 
-  final List<String> foods = [
-    'Pepper BBQ x 1',
-    'Chicken Noodles x 1',
-    'Milk Tea x 1',
-  ];
+class __PastOrderListViewState extends State<_PastOrderListView> {
+  final db = FirebaseFirestore.instance;
+  List<String> dishNameOrder = [],
+      quantityOrder = [],
+      chefNameOrder = [],
+      costOrder = [],
+      timeOrder = [],
+      foods = [],
+      docIdOrder = [],
+      rated = [],
+      l2 = [];
+
+  Map chefs = {};
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {});
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  String getChefName(String chefId) {
+    String cname = '';
+    var b = StreamBuilder(
+      stream: FirebaseFirestore.instance.collection('Chef').snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasData) {
+          for (int i = 0; i < snapshot.data.docs.length; i++) {
+            if (chefId == snapshot.data.docs[i]['chefId']) {
+              cname = snapshot.data.docs[i]['fname' + ' ' + 'lname'];
+            }
+          }
+        }
+        return Container();
+      },
+    );
+    return cname;
+  }
 
   @override
   Widget build(BuildContext context) {
+    double totalHeight = MediaQuery.of(context).size.height;
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        // ListView.builder(
-        //   shrinkWrap: true,
-        //   itemCount: restaurants.length,
-        //   physics: NeverScrollableScrollPhysics(),
-        //   itemBuilder: (context, index) => _PastOrdersListItemView(
-        //     restaurant: restaurants[index],
-        //     foodItem: foods[index],
-        //   ),
-        // ),
-        // TextButton(
-        //   child: Text(
-        //     'VIEW MORE ORDERS',
-        //     style: Theme.of(context)
-        //         .textTheme
-        //         .subtitle2
-        //         .copyWith(color: darkOrange),
-        //   ),
-        //   onPressed: () {},
-        // ),
-        UIHelper.verticalSpaceSmall(),
-        CustomDividerView(),
-        InkWell(
-          onTap: () {
-            FirebaseAuth.instance.signOut();
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => SignIn()),
-                (Route<dynamic> route) => false);
+        StreamBuilder(
+          stream: FirebaseFirestore.instance.collection('Orders').snapshots(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.hasData) {
+              return StreamBuilder<QuerySnapshot>(
+                stream: db.collection('Chef').snapshots(),
+                builder: (context, snapshot2) {
+                  if (snapshot2.hasData) {
+                    chefs = {};
+                    for (int i = 0; i < snapshot2.data.docs.length; i++) {
+                      // print(snapshot2.data.docs[i].data());
+                      chefs[snapshot2.data.docs[i].id] =
+                          snapshot2.data.docs[i].data();
+                    }
+                    dishNameOrder.clear();
+                    quantityOrder.clear();
+                    chefNameOrder.clear();
+                    costOrder.clear();
+                    timeOrder.clear();
+                    foods.clear();
+                    // docIdOrder.clear();
+
+                    for (int i = 0; i < snapshot.data.docs.length; i++) {
+                      var chef_detail = chefs[snapshot.data.docs[i]["chefId"]];
+                      // print(chef_detail);
+                      var dd = snapshot.data.docs[i];
+
+                      if (user.uid == snapshot.data.docs[i]['userId']) {
+                        if (widget.ongoing != dd['isDelivered']) {
+                          FirebaseFirestore.instance
+                              .collection('Orders')
+                              // .where(user.uid.toString(),
+                              //     isEqualTo: snapshot.data.docs[i]['userId']
+                              //         .toString())
+                              .get()
+                              .then(
+                                (QuerySnapshot snapshot) => {
+                                  snapshot.docs.forEach(
+                                    (f) {
+                                      docIdOrder.add(f.reference.id.toString());
+                                    },
+                                  ),
+                                },
+                              );
+                          if (dd['rating'] == 0.0 || dd['rating'] == null) {
+                            rated.add("false");
+                          } else {
+                            rated.add("true");
+                          }
+                          dishNameOrder.add(dd['dishName'].toString());
+                          quantityOrder.add(dd['quantity'].toString());
+                          chefNameOrder.add(
+                            chef_detail["fname"].toString(),
+                          );
+                          costOrder.add(dd['totalCost'].toString());
+                          timeOrder.add(dd['timeOrderPlaced'].toString());
+                          foods.add(
+                              '${dishNameOrder[dishNameOrder.length - 1]} x ${quantityOrder[quantityOrder.length - 1]}');
+                        }
+                      }
+                      // print('onging = ${widget.ongoing}');
+                      // print('dno=$dishNameOrder');
+                      // print('qno=$quantityOrder');
+                      // print('chefno=$chefNameOrder');
+                      // print('costno=$costOrder');
+                      // print('tno=$timeOrder');
+                      Set<String> set = new Set<String>.from(docIdOrder);
+                      l2 = new List<String>.from(set);
+                      // List<int> toRemove = [];
+                      // for (int i = 0; i < l2.length; i++) {
+                      //   if (snapshot.data.docs[i]["userId"] != user.uid) {
+                      //     toRemove.add(i);
+                      //   }
+                      // }
+                      // // print('toR=$toRemove');
+                      // for (int i = l2.length - 1; i >= 0; i--) {
+                      //   if (toRemove.contains(i)) {
+                      //     l2.removeAt(i);
+                      //   }
+                      // }
+                      // print('docIdOrder=$l2');
+                    }
+                  }
+                  return Container();
+                },
+              );
+            }
+            return Container();
           },
-          child: Row(
-            children: <Widget>[
-              Container(
-                alignment: Alignment.centerLeft,
-                padding: const EdgeInsets.only(left: 10.0),
-                height: 50.0,
-                child: Text(
-                  'LOGOUT',
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle2
-                      .copyWith(fontSize: 16.0),
-                ),
-              ),
-              Spacer(),
-              new IconButton(
-                icon: Icon(Icons.power_settings_new),
-                color: Colors.black,
-                onPressed: () {},
-              ),
-              // Icon(Icons.power_settings_new),
-              UIHelper.horizontalSpaceSmall(),
-            ],
-          ),
         ),
-        Container(
-          alignment: Alignment.topCenter,
-          padding: const EdgeInsets.only(top: 20.0),
-          height: 130.0,
-          color: Colors.grey[200],
+        ListView.builder(
+          shrinkWrap: true,
+          itemCount: timeOrder.length,
+          physics: NeverScrollableScrollPhysics(),
+          itemBuilder: (context, index) => _PastOrdersListItemView(
+              docIdOrder: l2,
+              ongoing: widget.ongoing,
+              chefNameOrder: chefNameOrder[index],
+              costOrder: costOrder[index],
+              timeOrder: timeOrder[index],
+              foodItem: foods[index],
+              rated: rated[index]),
+        ),
+        TextButton(
           child: Text(
-            'Food App Version v1.0.0',
+            'VIEW MY ORDERS',
             style: Theme.of(context)
                 .textTheme
-                .bodyText1
-                .copyWith(color: Colors.grey[700], fontSize: 13.0),
+                .subtitle2
+                .copyWith(color: darkOrange),
           ),
-        )
+          onPressed: () {
+            setState(() {});
+          },
+        ),
+        UIHelper.verticalSpaceSmall(),
+        CustomDividerView(),
+        if (widget.ongoing == false)
+          InkWell(
+            onTap: () {
+              FirebaseAuth.instance.signOut();
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => SignIn()),
+                  (Route<dynamic> route) => false);
+            },
+            child: Row(
+              children: <Widget>[
+                Container(
+                  alignment: Alignment.centerLeft,
+                  padding: const EdgeInsets.only(left: 10.0),
+                  height: totalHeight * 50.0 / 820,
+                  child: Text(
+                    'LOGOUT',
+                    style: Theme.of(context)
+                        .textTheme
+                        .subtitle2
+                        .copyWith(fontSize: totalHeight * 16.0 / 820),
+                  ),
+                ),
+                Spacer(),
+                new IconButton(
+                  icon: Icon(Icons.power_settings_new),
+                  color: Colors.black,
+                  onPressed: () {},
+                ),
+                // Icon(Icons.power_settings_new),
+                UIHelper.horizontalSpaceSmall(),
+              ],
+            ),
+          ),
+        if (widget.ongoing == false)
+          Container(
+            alignment: Alignment.topCenter,
+            padding: const EdgeInsets.only(top: 20.0),
+            height: totalHeight * 130.0 / 820,
+            color: Colors.grey[200],
+            child: Text(
+              'Food App Version v1.0.0',
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyText1
+                  .copyWith(color: Colors.grey[700], fontSize: 13.0),
+            ),
+          )
       ],
     );
   }
 }
 
-// class _PastOrdersListItemView extends StatelessWidget {
-//   const _PastOrdersListItemView({
-//     Key key,
-//     @required this.restaurant,
-//     @required this.foodItem,
-//   })  : assert(restaurant != '', foodItem != ''),
-//         super(key: key);
+class _PastOrdersListItemView extends StatefulWidget {
+  const _PastOrdersListItemView({
+    Key key,
+    @required this.docIdOrder,
+    @required this.ongoing,
+    @required this.rated,
+    @required this.chefNameOrder,
+    @required this.foodItem,
+    @required this.timeOrder,
+    @required this.costOrder,
+  })  : assert(foodItem != ''),
+        super(key: key);
+  final String foodItem;
+  final chefNameOrder;
+  final costOrder;
+  final timeOrder;
+  final ongoing;
+  final rated;
+  final docIdOrder;
 
-//   final String restaurant;
-//   final String foodItem;
+  @override
+  __PastOrdersListItemViewState createState() =>
+      __PastOrdersListItemViewState();
+}
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
-//       child: Column(
-//         mainAxisAlignment: MainAxisAlignment.start,
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: <Widget>[
-//           Container(
-//             padding: const EdgeInsets.symmetric(vertical: 10.0),
-//             child: Row(
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//               children: <Widget>[
-//                 Column(
-//                   crossAxisAlignment: CrossAxisAlignment.start,
-//                   children: <Widget>[
-//                     Text(
-//                       restaurant,
-//                       style: Theme.of(context).textTheme.subtitle2,
-//                     ),
-//                     UIHelper.verticalSpaceExtraSmall(),
-//                     Text(
-//                       'Medavakkam',
-//                       style: Theme.of(context)
-//                           .textTheme
-//                           .bodyText1
-//                           .copyWith(fontSize: 12.0),
-//                     ),
-//                     UIHelper.verticalSpaceSmall(),
-//                     Row(
-//                       children: <Widget>[
-//                         Text('Rs112'),
-//                         UIHelper.horizontalSpaceExtraSmall(),
-//                         Icon(Icons.keyboard_arrow_right,
-//                             color: Colors.grey[600])
-//                       ],
-//                     )
-//                   ],
-//                 ),
-//                 Spacer(),
-//                 Text('Delivered', style: Theme.of(context).textTheme.subtitle2),
-//                 UIHelper.horizontalSpaceSmall(),
-//                 ClipOval(
-//                   child: Container(
-//                     padding: const EdgeInsets.all(2.2),
-//                     color: Colors.green,
-//                     child: Icon(Icons.check, color: Colors.white, size: 14.0),
-//                   ),
-//                 )
-//               ],
-//             ),
-//           ),
-//           UIHelper.verticalSpaceSmall(),
-//           DottedSeperatorView(),
-//           UIHelper.verticalSpaceMedium(),
-//           Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: <Widget>[
-//               Text(foodItem),
-//               UIHelper.verticalSpaceExtraSmall(),
-//               Text('July 14, 2:11 AM'),
-//               UIHelper.verticalSpaceSmall(),
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                 children: <Widget>[
-//                   Expanded(
-//                     child: Column(
-//                       crossAxisAlignment: CrossAxisAlignment.stretch,
-//                       children: <Widget>[
-//                         OutlinedButton(
-//                           style: OutlinedButton.styleFrom(
-//                             side: BorderSide(width: 1.5, color: darkOrange),
-//                           ),
-//                           child: Text(
-//                             'REORDER',
-//                             style: Theme.of(context)
-//                                 .textTheme
-//                                 .subtitle2
-//                                 .copyWith(color: darkOrange),
-//                           ),
-//                           onPressed: () {},
-//                         ),
-//                         UIHelper.verticalSpaceMedium(),
-//                         Text('Delivery rating not\napplicable for this order',
-//                             maxLines: 2)
-//                       ],
-//                     ),
-//                   ),
-//                   UIHelper.horizontalSpaceMedium(),
-//                   Expanded(
-//                     child: Column(
-//                       crossAxisAlignment: CrossAxisAlignment.stretch,
-//                       children: <Widget>[
-//                         OutlinedButton(
-//                           style: OutlinedButton.styleFrom(
-//                             side: BorderSide(width: 1.5, color: Colors.black),
-//                           ),
-//                           child: Text(
-//                             'RATE FOOD',
-//                             style: Theme.of(context)
-//                                 .textTheme
-//                                 .subtitle2
-//                                 .copyWith(color: Colors.black),
-//                           ),
-//                           onPressed: () {},
-//                         ),
-//                         UIHelper.verticalSpaceMedium(),
-//                         Text("You haven't rated\nthis food yet")
-//                       ],
-//                     ),
-//                   )
-//                 ],
-//               ),
-//               UIHelper.verticalSpaceMedium(),
-//               CustomDividerView(dividerHeight: 1.5, color: Colors.black)
-//             ],
-//           )
-//         ],
-//       ),
-//     );
-//   }
-// }
+class __PastOrdersListItemViewState extends State<_PastOrdersListItemView> {
+  @override
+  void initState() {
+    super.initState();
+    setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // print('sent_food=${widget.foodItem}');
+    // List<String> temp = widget.foodItem.split(' x ');
+    // List<String> temp2 = [];
+    // List<String> temp3 = [];
+    // for (int i = 0; i < temp.length ~/ 2; i++) {
+    //   for (int i = 0; i < temp.length ~/ 2; i++) {
+    //   temp[i][j];
+    //   }
+    // }
+    // temp.forEach((t) {
+    //   temp2.add(t.split(', ').toString());
+    // });
+    // for (int i = 0; i < temp2.length ~/ 2; i++) {
+    //   temp3.add('${temp2[i]}x${temp2[i + temp2.length ~/ 2]}\n');
+    // }
+    // print('temp=$temp');
+    // print('temp2=$temp2');
+    // print('temp3=$temp3');
+    double totalWidth = MediaQuery.of(context).size.width;
+    double totalHeight = MediaQuery.of(context).size.height;
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      'Chef ${widget.chefNameOrder}',
+                      style: Theme.of(context).textTheme.subtitle2,
+                    ),
+                    UIHelper.verticalSpaceSmall(),
+                    Row(
+                      children: <Widget>[
+                        Text('Rs. ${widget.costOrder}'),
+                        UIHelper.horizontalSpaceExtraSmall(),
+                        Icon(Icons.keyboard_arrow_right,
+                            color: Colors.grey[600])
+                      ],
+                    )
+                  ],
+                ),
+                Spacer(),
+                if (!widget.ongoing)
+                  Text('Delivered',
+                      style: Theme.of(context).textTheme.subtitle2),
+                if (!widget.ongoing) UIHelper.horizontalSpaceSmall(),
+                if (!widget.ongoing)
+                  ClipOval(
+                    child: Container(
+                      padding: const EdgeInsets.all(2.2),
+                      color: Colors.green,
+                      child: Icon(Icons.check,
+                          color: Colors.white, size: totalHeight * 14.0 / 820),
+                    ),
+                  ),
+                if (widget.ongoing)
+                  Text('On the way',
+                      style: Theme.of(context).textTheme.subtitle2),
+                if (widget.ongoing) Icon(Icons.delivery_dining)
+              ],
+            ),
+          ),
+          UIHelper.verticalSpaceSmall(),
+          DottedSeperatorView(),
+          UIHelper.verticalSpaceMedium(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                'Food Items:',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              UIHelper.verticalSpaceExtraSmall(),
+              Text(widget.foodItem),
+              // Text(temp3.toString()),
+              UIHelper.verticalSpaceExtraSmall(),
+              Text(widget.timeOrder),
+              UIHelper.verticalSpaceSmall(),
+              if (widget.ongoing == false && widget.rated == "false")
+                Center(
+                  child: RatingPage(
+                      docIdOrder: widget.docIdOrder,
+                      costOrder: widget.costOrder,
+                      timeOrder: widget.timeOrder),
+                ),
+              if (widget.ongoing == false && widget.rated == "true")
+                Center(
+                  child: AlreadyRatedPage(),
+                ),
+              UIHelper.verticalSpaceMedium(),
+              CustomDividerView(
+                  dividerHeight: totalHeight * 1.5 / 820, color: Colors.black)
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class AlreadyRatedPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    double totalWidth = MediaQuery.of(context).size.width;
+    double totalHeight = MediaQuery.of(context).size.height;
+    return OutlinedButton(
+      style: OutlinedButton.styleFrom(
+        side:
+            BorderSide(width: totalWidth * 1.5 / 320, color: Colors.deepOrange),
+      ),
+      child: Text(
+        'You have already rated this order',
+        style:
+            Theme.of(context).textTheme.subtitle2.copyWith(color: Colors.black),
+      ),
+      onPressed: () {},
+    );
+  }
+}
+
+class RatingPage extends StatefulWidget {
+  final docIdOrder;
+  final costOrder, timeOrder;
+  RatingPage(
+      {@required this.docIdOrder,
+      @required this.costOrder,
+      @required this.timeOrder});
+  @override
+  _RatingPageState createState() => _RatingPageState();
+}
+
+class _RatingPageState extends State<RatingPage> {
+  @override
+  void initState() {
+    super.initState();
+    print('doc=${widget.docIdOrder}');
+    print('costdoc=${widget.costOrder}');
+    print('timedoc=${widget.timeOrder}');
+    setState(() {});
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  double _rating;
+  String selectedId;
+  TextEditingController feedbackController = new TextEditingController();
+  String feedbackOut;
+  @override
+  Widget build(BuildContext context) {
+    double totalWidth = MediaQuery.of(context).size.width;
+    double totalHeight = MediaQuery.of(context).size.height;
+    return Column(children: <Widget>[
+      RatingBar.builder(
+        initialRating: 5,
+        direction: Axis.horizontal,
+        itemCount: 5,
+        itemPadding: EdgeInsets.symmetric(horizontal: totalWidth * 4.0 / 320),
+        itemBuilder: (context, index) {
+          switch (index) {
+            case 0:
+              return Icon(
+                Icons.sentiment_very_dissatisfied,
+                color: Colors.red,
+              );
+            case 1:
+              return Icon(
+                Icons.sentiment_dissatisfied,
+                color: Colors.redAccent,
+              );
+            case 2:
+              return Icon(
+                Icons.sentiment_neutral,
+                color: Colors.amber,
+              );
+            case 3:
+              return Icon(
+                Icons.sentiment_satisfied,
+                color: Colors.lightGreen,
+              );
+            case 4:
+              return Icon(
+                Icons.sentiment_very_satisfied,
+                color: Colors.green,
+              );
+            default:
+              return Container();
+          }
+        },
+        onRatingUpdate: (rating) {
+          setState(() {
+            _rating = rating;
+          });
+        },
+        updateOnDrag: true,
+      ),
+      TextFormField(
+          controller: feedbackController,
+          autovalidateMode: AutovalidateMode.always,
+          decoration: const InputDecoration(
+            icon: Icon(Icons.person),
+            hintText: 'What did you like/dislike about the food?',
+            labelText: 'Feedback',
+          ),
+          onFieldSubmitted: (feedback) {
+            feedback = feedbackController.text;
+            print("feedback=$feedback");
+            print("ratings=$_rating");
+            Fluttertoast.showToast(
+                msg: "Thank you for your feedback 😃",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                timeInSecForIosWeb: 1,
+                backgroundColor: Helper().button,
+                textColor: Colors.white,
+                fontSize: totalHeight * 16.0 / 820);
+            setState(() {
+              feedbackOut = feedback;
+            });
+          }
+          // validator: (String value) {
+          //   return value.contains('@') ? 'Do not use the @ char.' : null;
+          // },
+          ),
+      StreamBuilder(
+        stream: FirebaseFirestore.instance.collection('Orders').snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasData) {
+            print("here");
+            for (int i = 0; i < snapshot.data.docs.length; i++) {
+              if (widget.costOrder.toString() ==
+                      snapshot.data.docs[i]['totalCost'].toString() &&
+                  widget.timeOrder.toString() ==
+                      snapshot.data.docs[i]['timeOrderPlaced'] &&
+                  user.uid == snapshot.data.docs[i]['userId'].toString()) {
+                print('updated');
+                // for (int j = 0; j < widget.docIdOrder.length; j++) {
+                // var dd = snapshot.data.docs[i];
+                // if (dd["timeOrderPlaced"] == widget.timeOrder &&
+                //     dd["totalCost"] == widget.costOrder) {
+                selectedId = widget.docIdOrder[i];
+                // uploadRating(selectedId, feedbackOut);
+                if (_rating == null) {
+                  _rating = 0.0;
+                }
+                if (feedbackOut == "null") {
+                  feedbackOut = "No Feedback Given";
+                }
+                FirebaseFirestore.instance
+                    .collection('Orders')
+                    .doc(selectedId)
+                    .update({
+                  "rating": _rating.toDouble(),
+                  "feedback": feedbackOut.toString()
+                }).then((result) {
+                  print("Updated Rating");
+                }).catchError((onError) {
+                  print("error");
+                });
+              }
+            }
+          }
+          return Container();
+        },
+      )
+    ]);
+  }
+
+  // Future<void> uploadRating(String selectedId, String feedback) async {
+  //   print('inUpdate');
+  // }
+}
