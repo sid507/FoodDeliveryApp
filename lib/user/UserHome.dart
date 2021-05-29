@@ -945,6 +945,20 @@ class _PopularFoodTilesState extends State<PopularFoodTiles> {
                             tomorrow =
                                 DateTime(now.year, now.month, now.day + 1);
                           }
+                          String msg;
+                          if (CartData.dishes.length < 1) {
+                            msg = "Showing " + widget.name + "'s food only";
+                          } else {
+                            msg = "Successfully Added";
+                          }
+                          Fluttertoast.showToast(
+                              msg: msg,
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Helper().button,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
                           CartData().addItem(
                               Dishes(
                                   widget.name,
@@ -974,14 +988,14 @@ class _PopularFoodTilesState extends State<PopularFoodTiles> {
                               ),
                             );
                           });
-                          Fluttertoast.showToast(
-                              msg: "Showing " + widget.name + "'s food only",
-                              toastLength: Toast.LENGTH_SHORT,
-                              gravity: ToastGravity.BOTTOM,
-                              timeInSecForIosWeb: 1,
-                              backgroundColor: Helper().button,
-                              textColor: Colors.white,
-                              fontSize: 16.0);
+                          // Fluttertoast.showToast(
+                          //     msg: "Showing " + widget.name + "'s food only",
+                          //     toastLength: Toast.LENGTH_SHORT,
+                          //     gravity: ToastGravity.BOTTOM,
+                          //     timeInSecForIosWeb: 1,
+                          //     backgroundColor: Helper().button,
+                          //     textColor: Colors.white,
+                          //     fontSize: 16.0);
                           widget.refresh();
                         }
                       },
@@ -1524,6 +1538,20 @@ class _BestFoodTilesState extends State<BestFoodTiles> {
                             tomorrow =
                                 DateTime(now.year, now.month, now.day + 1);
                           }
+                          String msg;
+                          if (CartData.dishes.length < 2) {
+                            msg = "Showing " + widget.name + "'s food only";
+                          } else {
+                            msg = "Successfully Added";
+                          }
+                          Fluttertoast.showToast(
+                              msg: msg,
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Helper().button,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
                           CartData().addItem(
                               Dishes(
                                   widget.name,
@@ -1553,14 +1581,14 @@ class _BestFoodTilesState extends State<BestFoodTiles> {
                               ),
                             );
                           });
-                          Fluttertoast.showToast(
-                              msg: "Showing " + widget.name + "'s food only",
-                              toastLength: Toast.LENGTH_SHORT,
-                              gravity: ToastGravity.BOTTOM,
-                              timeInSecForIosWeb: 1,
-                              backgroundColor: Helper().button,
-                              textColor: Colors.white,
-                              fontSize: 16.0);
+                          // Fluttertoast.showToast(
+                          //     msg: "Showing " + widget.name + "'s food only",
+                          //     toastLength: Toast.LENGTH_SHORT,
+                          //     gravity: ToastGravity.BOTTOM,
+                          //     timeInSecForIosWeb: 1,
+                          //     backgroundColor: Helper().button,
+                          //     textColor: Colors.white,
+                          //     fontSize: 16.0);
                           widget.refresh();
                         }
                       },

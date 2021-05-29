@@ -8,6 +8,8 @@ import 'package:intl/intl.dart';
 
 import 'Utils.dart';
 
+final now = new DateTime.now();
+
 class MealDaily2 extends StatefulWidget {
   CartData cartData;
   Function type2;
@@ -60,6 +62,8 @@ class _MealDaily2State extends State<MealDaily2> {
     // this.data();
   }
 
+  double toDouble(TimeOfDay myTime) => myTime.hour + myTime.minute / 60.0;
+
   @override
   Widget build(BuildContext context) {
     double totalWidth = MediaQuery.of(context).size.width;
@@ -89,6 +93,22 @@ class _MealDaily2State extends State<MealDaily2> {
                           var chef_detail =
                               chef[snapshot.data.docs[i]["chefId"]];
                           var dd = snapshot.data.docs[i];
+                          DateTime tomorrow;
+                          TimeOfDay nowTime = TimeOfDay.now();
+                          double currentTime = toDouble(nowTime);
+
+                          double itemToTime1 =
+                              double.parse(dd["toTime"].split(':')[0]);
+                          double itemToTime2 =
+                              double.parse(dd["toTime"].split(':')[1]);
+                          double itemToTime = itemToTime1 + itemToTime2 / 60.0;
+
+                          if (currentTime <= itemToTime) {
+                            tomorrow = DateTime(now.year, now.month, now.day);
+                          } else {
+                            tomorrow =
+                                DateTime(now.year, now.month, now.day + 1);
+                          }
                           if (chef_detail != null) {
                             Dishes dish = new Dishes(
                                 chef_detail["fname"].toString(),
@@ -104,7 +124,9 @@ class _MealDaily2State extends State<MealDaily2> {
                                 dd["chefId"],
                                 dd["toTime"],
                                 dd["fromTime"],
-                                DateFormat('dd MMM y').format(now).toString());
+                                DateFormat('dd MMM y')
+                                    .format(tomorrow)
+                                    .toString());
                             dishes.add(dish);
                           }
                         }
@@ -423,6 +445,36 @@ class _SingleCardState extends State<SingleCard> {
                       ),
                       onPressed: () {
                         if (canAdd == 1) {
+                          DateTime tomorrow;
+                          TimeOfDay nowTime = TimeOfDay.now();
+                          double currentTime = toDouble(nowTime);
+
+                          double itemToTime1 =
+                              double.parse(widget.toTime.split(':')[0]);
+                          double itemToTime2 =
+                              double.parse(widget.toTime.split(':')[1]);
+                          double itemToTime = itemToTime1 + itemToTime2 / 60.0;
+
+                          if (currentTime <= itemToTime) {
+                            tomorrow = DateTime(now.year, now.month, now.day);
+                          } else {
+                            tomorrow =
+                                DateTime(now.year, now.month, now.day + 1);
+                          }
+                          String msg;
+                          if (CartData.dishes.length < 1) {
+                            msg = "Showing " + widget.name + "'s food only";
+                          } else {
+                            msg = "Successfully Added";
+                          }
+                          Fluttertoast.showToast(
+                              msg: msg,
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Helper().button,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
                           CartData().addItem(
                               Dishes(
                                   widget.name,
@@ -438,7 +490,8 @@ class _SingleCardState extends State<SingleCard> {
                                   widget.chefId,
                                   widget.toTime,
                                   widget.fromTime,
-                                  DateTime(now.year, now.month, now.day)
+                                  DateFormat('dd MMM y')
+                                      .format(tomorrow)
                                       .toString()),
                               widget.quantity);
                           Fluttertoast.showToast(
@@ -577,4 +630,6 @@ class _SingleCardState extends State<SingleCard> {
       // ),
     );
   }
+
+  double toDouble(TimeOfDay myTime) => myTime.hour + myTime.minute / 60.0;
 }

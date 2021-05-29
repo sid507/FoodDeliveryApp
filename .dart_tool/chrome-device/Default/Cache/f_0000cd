@@ -1,0 +1,2110 @@
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/food_delivery_app/user/Chefdata.dart', 'packages/cloud_firestore/cloud_firestore.dart', 'packages/fluttertoast/fluttertoast.dart', 'packages/food_delivery_app/user/Utils.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/widgets/scroll_view.dart', 'packages/flutter/src/widgets/async.dart', 'packages/intl/src/intl/date_format.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/material/card.dart', 'packages/flutter/src/painting/rounded_rectangle_border.dart', 'packages/flutter/src/painting/border_radius.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/flutter/src/widgets/icon.dart', 'packages/flutter/src/material/icons.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/flutter/src/painting/box_decoration.dart', 'packages/flutter/src/painting/decoration_image.dart', 'packages/flutter/src/painting/_network_image_web.dart', 'packages/flutter/src/painting/box_fit.dart', 'packages/flutter/src/material/outlined_button.dart', 'packages/flutter/src/material/material_state.dart'], (function load__packages__food_delivery_app__user__EatNow_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__food_delivery_app__user__Chefdata$46dart, packages__cloud_firestore__cloud_firestore$46dart, packages__fluttertoast__fluttertoast$46dart, packages__food_delivery_app__user__Utils$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__widgets__scroll_view$46dart, packages__flutter__src__widgets__async$46dart, packages__intl__src__intl__date_format$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__material__card$46dart, packages__flutter__src__painting__rounded_rectangle_border$46dart, packages__flutter__src__painting__border_radius$46dart, packages__flutter__src__rendering__flex$46dart, packages__flutter__src__widgets__icon$46dart, packages__flutter__src__material__icons$46dart, packages__flutter__src__painting__strut_style$46dart, packages__flutter__src__painting__box_decoration$46dart, packages__flutter__src__painting__decoration_image$46dart, packages__flutter__src__painting___network_image_web$46dart, packages__flutter__src__painting__box_fit$46dart, packages__flutter__src__material__outlined_button$46dart, packages__flutter__src__material__material_state$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const _js_helper = dart_sdk._js_helper;
+  const _interceptors = dart_sdk._interceptors;
+  const ui = dart_sdk.ui;
+  const collection = dart_sdk.collection;
+  const async = dart_sdk.async;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
+  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
+  const Chefdata = packages__food_delivery_app__user__Chefdata$46dart.user__Chefdata;
+  const cloud_firestore = packages__cloud_firestore__cloud_firestore$46dart.cloud_firestore;
+  const fluttertoast = packages__fluttertoast__fluttertoast$46dart.fluttertoast;
+  const Utils = packages__food_delivery_app__user__Utils$46dart.user__Utils;
+  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
+  const scaffold = packages__flutter__src__material__icon_button$46dart.src__material__scaffold;
+  const time = packages__flutter__src__material__icon_button$46dart.src__material__time;
+  const icon_button = packages__flutter__src__material__icon_button$46dart.src__material__icon_button;
+  const button_style = packages__flutter__src__material__icon_button$46dart.src__material__button_style;
+  const scroll_view = packages__flutter__src__widgets__scroll_view$46dart.src__widgets__scroll_view;
+  const async$ = packages__flutter__src__widgets__async$46dart.src__widgets__async;
+  const date_format = packages__intl__src__intl__date_format$46dart.src__intl__date_format;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  const card = packages__flutter__src__material__card$46dart.src__material__card;
+  const rounded_rectangle_border = packages__flutter__src__painting__rounded_rectangle_border$46dart.src__painting__rounded_rectangle_border;
+  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
+  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
+  const icon = packages__flutter__src__widgets__icon$46dart.src__widgets__icon;
+  const icons = packages__flutter__src__material__icons$46dart.src__material__icons;
+  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
+  const box_decoration = packages__flutter__src__painting__box_decoration$46dart.src__painting__box_decoration;
+  const decoration_image = packages__flutter__src__painting__decoration_image$46dart.src__painting__decoration_image;
+  const _network_image_web = packages__flutter__src__painting___network_image_web$46dart.src__painting___network_image_web;
+  const box_fit = packages__flutter__src__painting__box_fit$46dart.src__painting__box_fit;
+  const outlined_button = packages__flutter__src__material__outlined_button$46dart.src__material__outlined_button;
+  const material_state = packages__flutter__src__material__material_state$46dart.src__material__material_state;
+  var EatNow = Object.create(dart.library);
+  var $isNotEmpty = dartx.isNotEmpty;
+  var $_get = dartx._get;
+  var $length = dartx.length;
+  var $_set = dartx._set;
+  var $toString = dartx.toString;
+  var $add = dartx.add;
+  var $map = dartx.map;
+  var $toList = dartx.toList;
+  var $truncate = dartx.truncate;
+  var $modulo = dartx['%'];
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    DishesL: () => (T.DishesL = dart.constFn(dart.legacy(Chefdata.Dishes)))(),
+    JSArrayOfDishesL: () => (T.JSArrayOfDishesL = dart.constFn(_interceptors.JSArray$(T.DishesL())))(),
+    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    QuerySnapshotL: () => (T.QuerySnapshotL = dart.constFn(dart.legacy(cloud_firestore.QuerySnapshot)))(),
+    StreamBuilderOfQuerySnapshotL: () => (T.StreamBuilderOfQuerySnapshotL = dart.constFn(async$.StreamBuilder$(T.QuerySnapshotL())))(),
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    boolL: () => (T.boolL = dart.constFn(dart.legacy(core.bool)))(),
+    intL: () => (T.intL = dart.constFn(dart.legacy(core.int)))(),
+    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
+    LinkedHashSetOfvoid: () => (T.LinkedHashSetOfvoid = dart.constFn(collection.LinkedHashSet$(dart.void)))(),
+    SetOfvoid: () => (T.SetOfvoid = dart.constFn(core.Set$(dart.void)))(),
+    SetLOfvoid: () => (T.SetLOfvoid = dart.constFn(dart.legacy(T.SetOfvoid())))(),
+    VoidToSetLOfvoid: () => (T.VoidToSetLOfvoid = dart.constFn(dart.fnType(T.SetLOfvoid(), [])))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    DishesLToWidgetL: () => (T.DishesLToWidgetL = dart.constFn(dart.fnType(T.WidgetL(), [T.DishesL()])))(),
+    BuildContextL: () => (T.BuildContextL = dart.constFn(dart.legacy(framework.BuildContext)))(),
+    AsyncSnapshotOfQuerySnapshotL: () => (T.AsyncSnapshotOfQuerySnapshotL = dart.constFn(async$.AsyncSnapshot$(T.QuerySnapshotL())))(),
+    AsyncSnapshotLOfQuerySnapshotL: () => (T.AsyncSnapshotLOfQuerySnapshotL = dart.constFn(dart.legacy(T.AsyncSnapshotOfQuerySnapshotL())))(),
+    BuildContextLAndAsyncSnapshotLOfQuerySnapshotLToWidgetL: () => (T.BuildContextLAndAsyncSnapshotLOfQuerySnapshotLToWidgetL = dart.constFn(dart.fnType(T.WidgetL(), [T.BuildContextL(), T.AsyncSnapshotLOfQuerySnapshotL()])))(),
+    JSArrayOfWidgetL: () => (T.JSArrayOfWidgetL = dart.constFn(_interceptors.JSArray$(T.WidgetL())))(),
+    TimerL: () => (T.TimerL = dart.constFn(dart.legacy(async.Timer)))(),
+    TimerLToNull: () => (T.TimerLToNull = dart.constFn(dart.fnType(core.Null, [T.TimerL()])))(),
+    ColorL: () => (T.ColorL = dart.constFn(dart.legacy(ui.Color)))(),
+    MaterialStateL: () => (T.MaterialStateL = dart.constFn(dart.legacy(material_state.MaterialState)))(),
+    SetOfMaterialStateL: () => (T.SetOfMaterialStateL = dart.constFn(core.Set$(T.MaterialStateL())))(),
+    SetLOfMaterialStateL: () => (T.SetLOfMaterialStateL = dart.constFn(dart.legacy(T.SetOfMaterialStateL())))(),
+    SetLOfMaterialStateLToColorL: () => (T.SetLOfMaterialStateLToColorL = dart.constFn(dart.fnType(T.ColorL(), [T.SetLOfMaterialStateL()])))()
+  };
+  var T$Eval = Object.assign({
+    _: () => T$Eval
+  }, T);
+  var S = {
+    _: () => S
+  };
+  var S$Eval = Object.assign({
+    _: () => S$Eval
+  }, S);
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 8,
+        [EdgeInsets_right]: 8,
+        [EdgeInsets_top]: 8,
+        [EdgeInsets_left]: 8
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "name",
+        [_Location_column]: 36,
+        [_Location_line]: 182,
+        [_Location_file]: null
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "chefAddress",
+        [_Location_column]: 36,
+        [_Location_line]: 183,
+        [_Location_file]: null
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "rating",
+        [_Location_column]: 36,
+        [_Location_line]: 184,
+        [_Location_file]: null
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "price",
+        [_Location_column]: 36,
+        [_Location_line]: 185,
+        [_Location_file]: null
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "dishName",
+        [_Location_column]: 36,
+        [_Location_line]: 186,
+        [_Location_file]: null
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "self_delivery",
+        [_Location_column]: 36,
+        [_Location_line]: 187,
+        [_Location_file]: null
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "image",
+        [_Location_column]: 36,
+        [_Location_line]: 188,
+        [_Location_file]: null
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "time",
+        [_Location_column]: 36,
+        [_Location_line]: 189,
+        [_Location_file]: null
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "quantity",
+        [_Location_column]: 31,
+        [_Location_line]: 190,
+        [_Location_file]: null
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "cartData",
+        [_Location_column]: 36,
+        [_Location_line]: 191,
+        [_Location_file]: null
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "chefId",
+        [_Location_column]: 48,
+        [_Location_line]: 192,
+        [_Location_file]: null
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "toTime",
+        [_Location_column]: 36,
+        [_Location_line]: 193,
+        [_Location_file]: null
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "fromTime",
+        [_Location_column]: 36,
+        [_Location_line]: 194,
+        [_Location_file]: null
+      });
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "refresh",
+        [_Location_column]: 31,
+        [_Location_line]: 195,
+        [_Location_file]: null
+      });
+    },
+    get C2() {
+      return C[2] = dart.constList([C[3] || CT.C3, C[4] || CT.C4, C[5] || CT.C5, C[6] || CT.C6, C[7] || CT.C7, C[8] || CT.C8, C[9] || CT.C9, C[10] || CT.C10, C[11] || CT.C11, C[12] || CT.C12, C[13] || CT.C13, C[14] || CT.C14, C[15] || CT.C15, C[16] || CT.C16], T._LocationL());
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[2] || CT.C2,
+        [_Location_name]: null,
+        [_Location_column]: 34,
+        [_Location_line]: 181,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 27,
+        [_Location_line]: 180,
+        [_Location_file]: null
+      });
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 27,
+        [_Location_line]: 181,
+        [_Location_file]: null
+      });
+    },
+    get C18() {
+      return C[18] = dart.constList([C[19] || CT.C19, C[20] || CT.C20], T._LocationL());
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[18] || CT.C18,
+        [_Location_name]: null,
+        [_Location_column]: 32,
+        [_Location_line]: 179,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C22() {
+      return C[22] = dart.constList([], T._LocationL());
+    },
+    get C21() {
+      return C[21] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[22] || CT.C22,
+        [_Location_name]: null,
+        [_Location_column]: 32,
+        [_Location_line]: 201,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 25,
+        [_Location_line]: 173,
+        [_Location_file]: null
+      });
+    },
+    get C24() {
+      return C[24] = dart.constList([C[25] || CT.C25], T._LocationL());
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[24] || CT.C24,
+        [_Location_name]: null,
+        [_Location_column]: 28,
+        [_Location_line]: 172,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 37,
+        [_Location_line]: 207,
+        [_Location_file]: null
+      });
+    },
+    get C27() {
+      return C[27] = dart.constList([C[28] || CT.C28], T._LocationL());
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[27] || CT.C27,
+        [_Location_name]: null,
+        [_Location_column]: 32,
+        [_Location_line]: 207,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 25,
+        [_Location_line]: 207,
+        [_Location_file]: null
+      });
+    },
+    get C30() {
+      return C[30] = dart.constList([C[31] || CT.C31], T._LocationL());
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[30] || CT.C30,
+        [_Location_name]: null,
+        [_Location_column]: 30,
+        [_Location_line]: 206,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 23,
+        [_Location_line]: 206,
+        [_Location_file]: null
+      });
+    },
+    get C33() {
+      return C[33] = dart.constList([C[34] || CT.C34], T._LocationL());
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[33] || CT.C33,
+        [_Location_name]: null,
+        [_Location_column]: 28,
+        [_Location_line]: 205,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "stream",
+        [_Location_column]: 17,
+        [_Location_line]: 83,
+        [_Location_file]: null
+      });
+    },
+    get C38() {
+      return C[38] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 17,
+        [_Location_line]: 84,
+        [_Location_file]: null
+      });
+    },
+    get C36() {
+      return C[36] = dart.constList([C[37] || CT.C37, C[38] || CT.C38], T._LocationL());
+    },
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[36] || CT.C36,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 82,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C39() {
+      return C[39] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[22] || CT.C22,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 219,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C42() {
+      return C[42] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "stream",
+        [_Location_column]: 11,
+        [_Location_line]: 79,
+        [_Location_file]: null
+      });
+    },
+    get C43() {
+      return C[43] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 11,
+        [_Location_line]: 80,
+        [_Location_file]: null
+      });
+    },
+    get C41() {
+      return C[41] = dart.constList([C[42] || CT.C42, C[43] || CT.C43], T._LocationL());
+    },
+    get C40() {
+      return C[40] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[41] || CT.C41,
+        [_Location_name]: null,
+        [_Location_column]: 9,
+        [_Location_line]: 78,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C46() {
+      return C[46] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 22,
+        [_Location_line]: 77,
+        [_Location_file]: null
+      });
+    },
+    get C45() {
+      return C[45] = dart.constList([C[46] || CT.C46], T._LocationL());
+    },
+    get C44() {
+      return C[44] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[45] || CT.C45,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 77,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C49() {
+      return C[49] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "backgroundColor",
+        [_Location_column]: 7,
+        [_Location_line]: 76,
+        [_Location_file]: null
+      });
+    },
+    get C50() {
+      return C[50] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "body",
+        [_Location_column]: 7,
+        [_Location_line]: 77,
+        [_Location_file]: null
+      });
+    },
+    get C48() {
+      return C[48] = dart.constList([C[49] || CT.C49, C[50] || CT.C50], T._LocationL());
+    },
+    get C47() {
+      return C[47] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[48] || CT.C48,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 75,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C51() {
+      return C[51] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 4,
+        [EdgeInsets_right]: 4,
+        [EdgeInsets_top]: 4,
+        [EdgeInsets_left]: 4
+      });
+    },
+    get C54() {
+      return C[54] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 43,
+        [_Location_line]: 348,
+        [_Location_file]: null
+      });
+    },
+    get C53() {
+      return C[53] = dart.constList([C[54] || CT.C54], T._LocationL());
+    },
+    get C52() {
+      return C[52] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[53] || CT.C53,
+        [_Location_name]: null,
+        [_Location_column]: 32,
+        [_Location_line]: 348,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C57() {
+      return C[57] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 25,
+        [_Location_line]: 347,
+        [_Location_file]: null
+      });
+    },
+    get C58() {
+      return C[58] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 25,
+        [_Location_line]: 348,
+        [_Location_file]: null
+      });
+    },
+    get C56() {
+      return C[56] = dart.constList([C[57] || CT.C57, C[58] || CT.C58], T._LocationL());
+    },
+    get C55() {
+      return C[55] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[56] || CT.C56,
+        [_Location_name]: null,
+        [_Location_column]: 23,
+        [_Location_line]: 346,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C61() {
+      return C[61] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 41,
+        [_Location_line]: 353,
+        [_Location_file]: null
+      });
+    },
+    get C62() {
+      return C[62] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 33,
+        [_Location_line]: 354,
+        [_Location_file]: null
+      });
+    },
+    get C60() {
+      return C[60] = dart.constList([C[61] || CT.C61, C[62] || CT.C62], T._LocationL());
+    },
+    get C59() {
+      return C[59] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[60] || CT.C60,
+        [_Location_name]: null,
+        [_Location_column]: 29,
+        [_Location_line]: 353,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C65() {
+      return C[65] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 71,
+        [_Location_line]: 356,
+        [_Location_file]: null
+      });
+    },
+    get C66() {
+      return C[66] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 33,
+        [_Location_line]: 357,
+        [_Location_file]: null
+      });
+    },
+    get C64() {
+      return C[64] = dart.constList([C[65] || CT.C65, C[66] || CT.C66], T._LocationL());
+    },
+    get C63() {
+      return C[63] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[64] || CT.C64,
+        [_Location_name]: null,
+        [_Location_column]: 29,
+        [_Location_line]: 356,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C69() {
+      return C[69] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "crossAxisAlignment",
+        [_Location_column]: 27,
+        [_Location_line]: 351,
+        [_Location_file]: null
+      });
+    },
+    get C70() {
+      return C[70] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 27,
+        [_Location_line]: 352,
+        [_Location_file]: null
+      });
+    },
+    get C68() {
+      return C[68] = dart.constList([C[69] || CT.C69, C[70] || CT.C70], T._LocationL());
+    },
+    get C67() {
+      return C[67] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[68] || CT.C68,
+        [_Location_name]: null,
+        [_Location_column]: 23,
+        [_Location_line]: 350,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C73() {
+      return C[73] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 21,
+        [_Location_line]: 345,
+        [_Location_file]: null
+      });
+    },
+    get C72() {
+      return C[72] = dart.constList([C[73] || CT.C73], T._LocationL());
+    },
+    get C71() {
+      return C[71] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[72] || CT.C72,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 344,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C76() {
+      return C[76] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 30,
+        [_Location_line]: 366,
+        [_Location_file]: null
+      });
+    },
+    get C77() {
+      return C[77] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 23,
+        [_Location_line]: 367,
+        [_Location_file]: null
+      });
+    },
+    get C75() {
+      return C[75] = dart.constList([C[76] || CT.C76, C[77] || CT.C77], T._LocationL());
+    },
+    get C74() {
+      return C[74] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[75] || CT.C75,
+        [_Location_name]: null,
+        [_Location_column]: 28,
+        [_Location_line]: 365,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C80() {
+      return C[80] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 21,
+        [_Location_line]: 364,
+        [_Location_file]: null
+      });
+    },
+    get C81() {
+      return C[81] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 21,
+        [_Location_line]: 365,
+        [_Location_file]: null
+      });
+    },
+    get C79() {
+      return C[79] = dart.constList([C[80] || CT.C80, C[81] || CT.C81], T._LocationL());
+    },
+    get C78() {
+      return C[78] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[79] || CT.C79,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 363,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C84() {
+      return C[84] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 47,
+        [_Location_line]: 374,
+        [_Location_file]: null
+      });
+    },
+    get C85() {
+      return C[85] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 23,
+        [_Location_line]: 375,
+        [_Location_file]: null
+      });
+    },
+    get C83() {
+      return C[83] = dart.constList([C[84] || CT.C84, C[85] || CT.C85], T._LocationL());
+    },
+    get C82() {
+      return C[82] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[83] || CT.C83,
+        [_Location_name]: null,
+        [_Location_column]: 28,
+        [_Location_line]: 373,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C88() {
+      return C[88] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 21,
+        [_Location_line]: 372,
+        [_Location_file]: null
+      });
+    },
+    get C89() {
+      return C[89] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 21,
+        [_Location_line]: 373,
+        [_Location_file]: null
+      });
+    },
+    get C87() {
+      return C[87] = dart.constList([C[88] || CT.C88, C[89] || CT.C89], T._LocationL());
+    },
+    get C86() {
+      return C[86] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[87] || CT.C87,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 371,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C92() {
+      return C[92] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 57,
+        [_Location_line]: 388,
+        [_Location_file]: null
+      });
+    },
+    get C93() {
+      return C[93] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 33,
+        [_Location_line]: 389,
+        [_Location_file]: null
+      });
+    },
+    get C91() {
+      return C[91] = dart.constList([C[92] || CT.C92, C[93] || CT.C93], T._LocationL());
+    },
+    get C90() {
+      return C[90] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[91] || CT.C91,
+        [_Location_name]: null,
+        [_Location_column]: 36,
+        [_Location_line]: 388,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C96() {
+      return C[96] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 29,
+        [_Location_line]: 388,
+        [_Location_file]: null
+      });
+    },
+    get C97() {
+      return C[97] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 29,
+        [_Location_line]: 392,
+        [_Location_file]: null
+      });
+    },
+    get C98() {
+      return C[98] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 29,
+        [_Location_line]: 396,
+        [_Location_file]: null
+      });
+    },
+    get C95() {
+      return C[95] = dart.constList([C[96] || CT.C96, C[97] || CT.C97, C[98] || CT.C98], T._LocationL());
+    },
+    get C94() {
+      return C[94] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[95] || CT.C95,
+        [_Location_name]: null,
+        [_Location_column]: 27,
+        [_Location_line]: 387,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C101() {
+      return C[101] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 37,
+        [_Location_line]: 422,
+        [_Location_file]: null
+      });
+    },
+    get C102() {
+      return C[102] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 31,
+        [_Location_line]: 423,
+        [_Location_file]: null
+      });
+    },
+    get C103() {
+      return C[103] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "size",
+        [_Location_column]: 31,
+        [_Location_line]: 424,
+        [_Location_file]: null
+      });
+    },
+    get C100() {
+      return C[100] = dart.constList([C[101] || CT.C101, C[102] || CT.C102, C[103] || CT.C103], T._LocationL());
+    },
+    get C99() {
+      return C[99] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[100] || CT.C100,
+        [_Location_name]: null,
+        [_Location_column]: 35,
+        [_Location_line]: 421,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C106() {
+      return C[106] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 29,
+        [_Location_line]: 421,
+        [_Location_file]: null
+      });
+    },
+    get C107() {
+      return C[107] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "tooltip",
+        [_Location_column]: 29,
+        [_Location_line]: 426,
+        [_Location_file]: null
+      });
+    },
+    get C108() {
+      return C[108] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPressed",
+        [_Location_column]: 29,
+        [_Location_line]: 427,
+        [_Location_file]: null
+      });
+    },
+    get C105() {
+      return C[105] = dart.constList([C[106] || CT.C106, C[107] || CT.C107, C[108] || CT.C108], T._LocationL());
+    },
+    get C104() {
+      return C[104] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[105] || CT.C105,
+        [_Location_name]: null,
+        [_Location_column]: 27,
+        [_Location_line]: 420,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C111() {
+      return C[111] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 37,
+        [_Location_line]: 437,
+        [_Location_file]: null
+      });
+    },
+    get C112() {
+      return C[112] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 31,
+        [_Location_line]: 438,
+        [_Location_file]: null
+      });
+    },
+    get C113() {
+      return C[113] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "size",
+        [_Location_column]: 31,
+        [_Location_line]: 439,
+        [_Location_file]: null
+      });
+    },
+    get C110() {
+      return C[110] = dart.constList([C[111] || CT.C111, C[112] || CT.C112, C[113] || CT.C113], T._LocationL());
+    },
+    get C109() {
+      return C[109] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[110] || CT.C110,
+        [_Location_name]: null,
+        [_Location_column]: 35,
+        [_Location_line]: 436,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C116() {
+      return C[116] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 29,
+        [_Location_line]: 436,
+        [_Location_file]: null
+      });
+    },
+    get C117() {
+      return C[117] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "tooltip",
+        [_Location_column]: 29,
+        [_Location_line]: 441,
+        [_Location_file]: null
+      });
+    },
+    get C118() {
+      return C[118] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPressed",
+        [_Location_column]: 29,
+        [_Location_line]: 442,
+        [_Location_file]: null
+      });
+    },
+    get C115() {
+      return C[115] = dart.constList([C[116] || CT.C116, C[117] || CT.C117, C[118] || CT.C118], T._LocationL());
+    },
+    get C114() {
+      return C[114] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[115] || CT.C115,
+        [_Location_name]: null,
+        [_Location_column]: 27,
+        [_Location_line]: 435,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C121() {
+      return C[121] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 25,
+        [_Location_line]: 386,
+        [_Location_file]: null
+      });
+    },
+    get C120() {
+      return C[120] = dart.constList([C[121] || CT.C121], T._LocationL());
+    },
+    get C119() {
+      return C[119] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[120] || CT.C120,
+        [_Location_name]: null,
+        [_Location_column]: 23,
+        [_Location_line]: 383,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C124() {
+      return C[124] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 21,
+        [_Location_line]: 382,
+        [_Location_file]: null
+      });
+    },
+    get C123() {
+      return C[123] = dart.constList([C[124] || CT.C124], T._LocationL());
+    },
+    get C122() {
+      return C[122] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[123] || CT.C123,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 379,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C127() {
+      return C[127] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 17,
+        [_Location_line]: 341,
+        [_Location_file]: null
+      });
+    },
+    get C128() {
+      return C[128] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "crossAxisAlignment",
+        [_Location_column]: 17,
+        [_Location_line]: 342,
+        [_Location_file]: null
+      });
+    },
+    get C129() {
+      return C[129] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 17,
+        [_Location_line]: 343,
+        [_Location_file]: null
+      });
+    },
+    get C126() {
+      return C[126] = dart.constList([C[127] || CT.C127, C[128] || CT.C128, C[129] || CT.C129], T._LocationL());
+    },
+    get C125() {
+      return C[125] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[126] || CT.C126,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 340,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C132() {
+      return C[132] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 19,
+        [_Location_line]: 458,
+        [_Location_file]: null
+      });
+    },
+    get C133() {
+      return C[133] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 19,
+        [_Location_line]: 459,
+        [_Location_file]: null
+      });
+    },
+    get C134() {
+      return C[134] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 19,
+        [_Location_line]: 460,
+        [_Location_file]: null
+      });
+    },
+    get C131() {
+      return C[131] = dart.constList([C[132] || CT.C132, C[133] || CT.C133, C[134] || CT.C134], T._LocationL());
+    },
+    get C130() {
+      return C[130] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[131] || CT.C131,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 457,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C137() {
+      return C[137] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 25,
+        [_Location_line]: 521,
+        [_Location_file]: null
+      });
+    },
+    get C138() {
+      return C[138] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 25,
+        [_Location_line]: 522,
+        [_Location_file]: null
+      });
+    },
+    get C136() {
+      return C[136] = dart.constList([C[137] || CT.C137, C[138] || CT.C138], T._LocationL());
+    },
+    get C135() {
+      return C[135] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[136] || CT.C136,
+        [_Location_name]: null,
+        [_Location_column]: 30,
+        [_Location_line]: 520,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C141() {
+      return C[141] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 31,
+        [_Location_line]: 526,
+        [_Location_file]: null
+      });
+    },
+    get C142() {
+      return C[142] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "size",
+        [_Location_column]: 25,
+        [_Location_line]: 527,
+        [_Location_file]: null
+      });
+    },
+    get C143() {
+      return C[143] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 25,
+        [_Location_line]: 528,
+        [_Location_file]: null
+      });
+    },
+    get C140() {
+      return C[140] = dart.constList([C[141] || CT.C141, C[142] || CT.C142, C[143] || CT.C143], T._LocationL());
+    },
+    get C139() {
+      return C[139] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[140] || CT.C140,
+        [_Location_name]: null,
+        [_Location_column]: 29,
+        [_Location_line]: 525,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C146() {
+      return C[146] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 23,
+        [_Location_line]: 474,
+        [_Location_file]: null
+      });
+    },
+    get C147() {
+      return C[147] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPressed",
+        [_Location_column]: 23,
+        [_Location_line]: 487,
+        [_Location_file]: null
+      });
+    },
+    get C148() {
+      return C[148] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "label",
+        [_Location_column]: 23,
+        [_Location_line]: 520,
+        [_Location_file]: null
+      });
+    },
+    get C149() {
+      return C[149] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 23,
+        [_Location_line]: 525,
+        [_Location_file]: null
+      });
+    },
+    get C145() {
+      return C[145] = dart.constList([C[146] || CT.C146, C[147] || CT.C147, C[148] || CT.C148, C[149] || CT.C149], T._LocationL());
+    },
+    get C144() {
+      return C[144] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[145] || CT.C145,
+        [_Location_name]: null,
+        [_Location_column]: 43,
+        [_Location_line]: 473,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C152() {
+      return C[152] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "right",
+        [_Location_column]: 21,
+        [_Location_line]: 470,
+        [_Location_file]: null
+      });
+    },
+    get C153() {
+      return C[153] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "bottom",
+        [_Location_column]: 21,
+        [_Location_line]: 471,
+        [_Location_file]: null
+      });
+    },
+    get C154() {
+      return C[154] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "left",
+        [_Location_column]: 21,
+        [_Location_line]: 472,
+        [_Location_file]: null
+      });
+    },
+    get C155() {
+      return C[155] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 21,
+        [_Location_line]: 473,
+        [_Location_file]: null
+      });
+    },
+    get C151() {
+      return C[151] = dart.constList([C[152] || CT.C152, C[153] || CT.C153, C[154] || CT.C154, C[155] || CT.C155], T._LocationL());
+    },
+    get C150() {
+      return C[150] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[151] || CT.C151,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 469,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C158() {
+      return C[158] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 31,
+        [_Location_line]: 543,
+        [_Location_file]: null
+      });
+    },
+    get C159() {
+      return C[159] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 23,
+        [_Location_line]: 545,
+        [_Location_file]: null
+      });
+    },
+    get C157() {
+      return C[157] = dart.constList([C[158] || CT.C158, C[159] || CT.C159], T._LocationL());
+    },
+    get C156() {
+      return C[156] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[157] || CT.C157,
+        [_Location_name]: null,
+        [_Location_column]: 28,
+        [_Location_line]: 539,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C162() {
+      return C[162] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 21,
+        [_Location_line]: 535,
+        [_Location_file]: null
+      });
+    },
+    get C163() {
+      return C[163] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 21,
+        [_Location_line]: 539,
+        [_Location_file]: null
+      });
+    },
+    get C164() {
+      return C[164] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 21,
+        [_Location_line]: 550,
+        [_Location_file]: null
+      });
+    },
+    get C161() {
+      return C[161] = dart.constList([C[162] || CT.C162, C[163] || CT.C163, C[164] || CT.C164], T._LocationL());
+    },
+    get C160() {
+      return C[160] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[161] || CT.C161,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 534,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C167() {
+      return C[167] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "right",
+        [_Location_column]: 19,
+        [_Location_line]: 532,
+        [_Location_file]: null
+      });
+    },
+    get C168() {
+      return C[168] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "top",
+        [_Location_column]: 19,
+        [_Location_line]: 533,
+        [_Location_file]: null
+      });
+    },
+    get C169() {
+      return C[169] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 534,
+        [_Location_file]: null
+      });
+    },
+    get C166() {
+      return C[166] = dart.constList([C[167] || CT.C167, C[168] || CT.C168, C[169] || CT.C169], T._LocationL());
+    },
+    get C165() {
+      return C[165] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[166] || CT.C166,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 531,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C172() {
+      return C[172] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 21,
+        [_Location_line]: 456,
+        [_Location_file]: null
+      });
+    },
+    get C171() {
+      return C[171] = dart.constList([C[172] || CT.C172], T._LocationL());
+    },
+    get C170() {
+      return C[170] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[171] || CT.C171,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 456,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C175() {
+      return C[175] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "crossAxisAlignment",
+        [_Location_column]: 13,
+        [_Location_line]: 337,
+        [_Location_file]: null
+      });
+    },
+    get C176() {
+      return C[176] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 13,
+        [_Location_line]: 338,
+        [_Location_file]: null
+      });
+    },
+    get C177() {
+      return C[177] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 13,
+        [_Location_line]: 339,
+        [_Location_file]: null
+      });
+    },
+    get C174() {
+      return C[174] = dart.constList([C[175] || CT.C175, C[176] || CT.C176, C[177] || CT.C177], T._LocationL());
+    },
+    get C173() {
+      return C[173] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[174] || CT.C174,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 336,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C180() {
+      return C[180] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 9,
+        [_Location_line]: 335,
+        [_Location_file]: null
+      });
+    },
+    get C181() {
+      return C[181] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 336,
+        [_Location_file]: null
+      });
+    },
+    get C179() {
+      return C[179] = dart.constList([C[180] || CT.C180, C[181] || CT.C181], T._LocationL());
+    },
+    get C178() {
+      return C[178] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[179] || CT.C179,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 334,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    },
+    get C184() {
+      return C[184] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 7,
+        [_Location_line]: 329,
+        [_Location_file]: null
+      });
+    },
+    get C185() {
+      return C[185] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "shape",
+        [_Location_column]: 7,
+        [_Location_line]: 330,
+        [_Location_file]: null
+      });
+    },
+    get C186() {
+      return C[186] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "clipBehavior",
+        [_Location_column]: 7,
+        [_Location_line]: 333,
+        [_Location_file]: null
+      });
+    },
+    get C187() {
+      return C[187] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 334,
+        [_Location_file]: null
+      });
+    },
+    get C183() {
+      return C[183] = dart.constList([C[184] || CT.C184, C[185] || CT.C185, C[186] || CT.C186, C[187] || CT.C187], T._LocationL());
+    },
+    get C182() {
+      return C[182] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[183] || CT.C183,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 328,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/EatNow.dart"
+      });
+    }
+  }, false);
+  var C = Array(188).fill(void 0);
+  var I = ["package:food_delivery_app/user/EatNow.dart"];
+  var cartData$ = dart.privateName(EatNow, "EatNow.cartData");
+  var refreshCartNumber$ = dart.privateName(EatNow, "EatNow.refreshCartNumber");
+  EatNow.EatNow = class EatNow$ extends framework.StatefulWidget {
+    get cartData() {
+      return this[cartData$];
+    }
+    set cartData(value) {
+      this[cartData$] = value;
+    }
+    get refreshCartNumber() {
+      return this[refreshCartNumber$];
+    }
+    set refreshCartNumber(value) {
+      this[refreshCartNumber$] = value;
+    }
+    createState() {
+      return new EatNow._EatNowState.new();
+    }
+  };
+  (EatNow.EatNow.new = function(opts) {
+    let cartData = opts && 'cartData' in opts ? opts.cartData : null;
+    let refreshCartNumber = opts && 'refreshCartNumber' in opts ? opts.refreshCartNumber : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[cartData$] = cartData;
+    this[refreshCartNumber$] = refreshCartNumber;
+    EatNow.EatNow.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = EatNow.EatNow.prototype;
+  dart.addTypeTests(EatNow.EatNow);
+  dart.addTypeCaches(EatNow.EatNow);
+  dart.setMethodSignature(EatNow.EatNow, () => ({
+    __proto__: dart.getMethods(EatNow.EatNow.__proto__),
+    createState: dart.fnType(dart.legacy(EatNow._EatNowState), [])
+  }));
+  dart.setLibraryUri(EatNow.EatNow, I[0]);
+  dart.setFieldSignature(EatNow.EatNow, () => ({
+    __proto__: dart.getFields(EatNow.EatNow.__proto__),
+    cartData: dart.fieldType(dart.legacy(Chefdata.CartData)),
+    refreshCartNumber: dart.fieldType(dart.legacy(core.Function))
+  }));
+  var EdgeInsets_bottom = dart.privateName(edge_insets, "EdgeInsets.bottom");
+  var EdgeInsets_right = dart.privateName(edge_insets, "EdgeInsets.right");
+  var EdgeInsets_top = dart.privateName(edge_insets, "EdgeInsets.top");
+  var EdgeInsets_left = dart.privateName(edge_insets, "EdgeInsets.left");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  EatNow._EatNowState = class _EatNowState extends framework.State$(dart.legacy(EatNow.EatNow)) {
+    tellMeType(p) {
+      if (dart.notNull(p) >= 7 && dart.notNull(p) <= 12) {
+        return "Breakfast";
+      } else if (dart.notNull(p) > 12 && dart.notNull(p) <= 17) {
+        return "Lunch";
+      } else {
+        return "Dinner";
+      }
+    }
+    refresher_funct() {
+      core.print("ssssssssssssssssssssssssssssssssssssssssss");
+      if (dart.test(Chefdata.CartData.dishes[$isNotEmpty])) fluttertoast.Fluttertoast.showToast({msg: "Showing " + dart.notNull(Chefdata.CartData.dishes[$_get](0).dish.name) + "'s food only", toastLength: fluttertoast.Toast.LENGTH_SHORT, gravity: fluttertoast.ToastGravity.BOTTOM, timeInSecForIosWeb: 1, backgroundColor: new Utils.Helper.new().button, textColor: colors.Colors.white, fontSize: 16.0});
+      this.setState(dart.fn(() => {
+        this.dishes = T.JSArrayOfDishesL().of([]);
+      }, T.VoidToNull()));
+    }
+    initState() {
+      super.initState();
+      this.l = this.items.getData();
+      this.cartdata = this.widget.cartData;
+    }
+    build(context) {
+      let count_dish = null;
+      return new scaffold.Scaffold.new({backgroundColor: new ui.Color.fromRGBO(247, 247, 248, 1.0), body: new scroll_view.ListView.new({children: T.JSArrayOfWidgetL().of([new (T.StreamBuilderOfQuerySnapshotL()).new({stream: this.db.collection("Food_items").snapshots(), builder: dart.fn((context, snapshot) => {
+                if (dart.test(snapshot.hasData)) {
+                  return new (T.StreamBuilderOfQuerySnapshotL()).new({stream: this.db.collection("Chef").snapshots(), builder: dart.fn((context, snapshot2) => {
+                      if (dart.test(snapshot2.hasData)) {
+                        this.chefs = new _js_helper.LinkedMap.new();
+                        for (let i = 0; i < dart.notNull(snapshot2.data.docs[$length]); i = i + 1) {
+                          this.chefs[$_set](snapshot2.data.docs[$_get](i).id, snapshot2.data.docs[$_get](i).data());
+                        }
+                        core.print(this.chefs);
+                        this.dishes = T.JSArrayOfDishesL().of([]);
+                        for (let i = 0; i < dart.notNull(snapshot.data.docs[$length]); i = i + 1) {
+                          let now = new core.DateTime.now();
+                          let timeparser = new date_format.DateFormat.new("HH:mm");
+                          let checkTime = dart.notNull(timeparser.parse(T.StringL().as(snapshot.data.docs[$_get](i)._get("toTime"))).hour) * 60 + dart.notNull(timeparser.parse(T.StringL().as(snapshot.data.docs[$_get](i)._get("toTime"))).minute) - (dart.notNull(now.hour) * 60 + dart.notNull(now.minute));
+                          let chef_detail = this.chefs[$_get](snapshot.data.docs[$_get](i)._get("chefId"));
+                          let dd = snapshot.data.docs[$_get](i);
+                          let nowTime = time.TimeOfDay.now();
+                          let currentTime = this.toDouble(nowTime);
+                          let itemFromTime1 = core.double.parse(core.String.as(dart.dsend(dart.dsend(dd._get("fromTime"), 'split', [":"]), '_get', [0])));
+                          let itemFromTime2 = core.double.parse(core.String.as(dart.dsend(dart.dsend(dd._get("fromTime"), 'split', [":"]), '_get', [1])));
+                          let itemFromTime = dart.notNull(itemFromTime1) + dart.notNull(itemFromTime2) / 60.0;
+                          let itemToTime1 = core.double.parse(core.String.as(dart.dsend(dart.dsend(dd._get("toTime"), 'split', [":"]), '_get', [0])));
+                          let itemToTime2 = core.double.parse(core.String.as(dart.dsend(dart.dsend(dd._get("toTime"), 'split', [":"]), '_get', [1])));
+                          let itemToTime = dart.notNull(itemToTime1) + dart.notNull(itemToTime2) / 60.0;
+                          if (chef_detail != null && dart.notNull(currentTime) >= itemFromTime && dart.notNull(currentTime) <= itemToTime) {
+                            let leftTime = timeparser.parse(T.StringL().as(snapshot.data.docs[$_get](i)._get("toTime"))).difference(timeparser.parse(dart.toString(now.hour) + ":" + dart.toString(now.minute)));
+                            let leftseconds = dart.notNull(new date_format.DateFormat.new("HH:mm:ss").parse(dart.toString(leftTime)).hour) * 60 + dart.notNull(new date_format.DateFormat.new("HH:mm:ss").parse(dart.toString(leftTime)).minute);
+                            let dish = new Chefdata.Dishes.new(dart.toString(dart.dsend(chef_detail, '_get', ["fname"])), dart.toString(dart.dsend(chef_detail, '_get', ["chefAddress"])), dart.dsend(dart.dsend(chef_detail, '_get', ["rating"]), 'toDouble', []), dart.toString(dd._get("dishName")), T.boolL().as(dd._get("self_delivery")), dart.dsend(dd._get("price"), 'toDouble', []), dart.toString(dd._get("imageUrl")), leftseconds[$toString](), T.StringL().as(dd._get("mealType")), T.intL().as(dd._get("count")), T.StringL().as(dd._get("chefId")), T.StringL().as(dd._get("toTime")), T.StringL().as(dd._get("fromTime")), dart.toString(new date_format.DateFormat.new("dd MMM y").format(now)));
+                            this.dishes[$add](dish);
+                          }
+                        }
+                        core.print(this.dishes);
+                        return new basic.Column.new({children: this.dishes[$map](T.WidgetL(), dart.fn(data => {
+                            if (Chefdata.CartData.dishes[$length] === 0 || dart.toString(data.getChefId()) === dart.toString(Chefdata.CartData.dishes[$_get](0).dish.getChefId())) {
+                              core.print(this.ll);
+                              return new basic.Padding.new({padding: C[0] || CT.C0, child: new EatNow.SingleCard.new(data.name, data.chefAddress, data.rating, data.getPrice(), data.getDishName(), data.getSelfDelivery(), data.getimage(), data.gettime(), 1, this.cartdata, dart.toString(data.getChefId()), data.getToTime(), data.getFromTime(), dart.fn(() => T.LinkedHashSetOfvoid().from([dart.dsend(this.widget, 'refreshCartNumber', []), this.refresher_funct()]), T.VoidToSetLOfvoid()), {$creationLocationd_0dea112b090073317d4: C[1] || CT.C1}), $creationLocationd_0dea112b090073317d4: C[17] || CT.C17});
+                            } else {
+                              return new container.Container.new({$creationLocationd_0dea112b090073317d4: C[21] || CT.C21});
+                            }
+                          }, T.DishesLToWidgetL()))[$toList](), $creationLocationd_0dea112b090073317d4: C[23] || CT.C23});
+                      } else {
+                        return new container.Container.new({child: new basic.Center.new({child: new text.Text.new("Sorry....No Items are availble", {$creationLocationd_0dea112b090073317d4: C[26] || CT.C26}), $creationLocationd_0dea112b090073317d4: C[29] || CT.C29}), $creationLocationd_0dea112b090073317d4: C[32] || CT.C32});
+                      }
+                    }, T.BuildContextLAndAsyncSnapshotLOfQuerySnapshotLToWidgetL()), $creationLocationd_0dea112b090073317d4: C[35] || CT.C35});
+                } else {
+                  return new container.Container.new({$creationLocationd_0dea112b090073317d4: C[39] || CT.C39});
+                }
+              }, T.BuildContextLAndAsyncSnapshotLOfQuerySnapshotLToWidgetL()), $creationLocationd_0dea112b090073317d4: C[40] || CT.C40})]), $creationLocationd_0dea112b090073317d4: C[44] || CT.C44}), $creationLocationd_0dea112b090073317d4: C[47] || CT.C47});
+    }
+    toDouble(myTime) {
+      return dart.notNull(myTime.hour) + dart.notNull(myTime.minute) / 60.0;
+    }
+  };
+  (EatNow._EatNowState.new = function() {
+    this.items = new Chefdata.EatNowData.new();
+    this.l = null;
+    this.cartdata = null;
+    this.ll = null;
+    this.db = cloud_firestore.FirebaseFirestore.instance;
+    this.timetable = new _js_helper.LinkedMap.from([7, "Breakfast", 12, "Lunch", 17, "Dinner"]);
+    this.page_refresher = 1;
+    this.chefs = new _js_helper.LinkedMap.new();
+    this.dishes = T.JSArrayOfDishesL().of([]);
+    EatNow._EatNowState.__proto__.new.call(this);
+    ;
+  }).prototype = EatNow._EatNowState.prototype;
+  dart.addTypeTests(EatNow._EatNowState);
+  dart.addTypeCaches(EatNow._EatNowState);
+  dart.setMethodSignature(EatNow._EatNowState, () => ({
+    __proto__: dart.getMethods(EatNow._EatNowState.__proto__),
+    tellMeType: dart.fnType(dart.legacy(core.String), [dart.legacy(core.int)]),
+    refresher_funct: dart.fnType(dart.void, []),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)]),
+    toDouble: dart.fnType(dart.legacy(core.double), [dart.legacy(time.TimeOfDay)])
+  }));
+  dart.setLibraryUri(EatNow._EatNowState, I[0]);
+  dart.setFieldSignature(EatNow._EatNowState, () => ({
+    __proto__: dart.getFields(EatNow._EatNowState.__proto__),
+    items: dart.fieldType(dart.legacy(Chefdata.EatNowData)),
+    l: dart.fieldType(dart.legacy(core.List$(dart.legacy(Chefdata.Dishes)))),
+    cartdata: dart.fieldType(dart.legacy(Chefdata.CartData)),
+    ll: dart.fieldType(dart.legacy(core.Map)),
+    db: dart.finalFieldType(dart.legacy(cloud_firestore.FirebaseFirestore)),
+    timetable: dart.fieldType(dart.legacy(core.Map)),
+    page_refresher: dart.fieldType(dart.legacy(core.int)),
+    chefs: dart.fieldType(dart.legacy(core.Map)),
+    dishes: dart.fieldType(dart.legacy(core.List$(dart.legacy(Chefdata.Dishes))))
+  }));
+  var name$ = dart.privateName(EatNow, "SingleCard.name");
+  var chefAddress$ = dart.privateName(EatNow, "SingleCard.chefAddress");
+  var dishName$ = dart.privateName(EatNow, "SingleCard.dishName");
+  var image$ = dart.privateName(EatNow, "SingleCard.image");
+  var time$ = dart.privateName(EatNow, "SingleCard.time");
+  var chefId$ = dart.privateName(EatNow, "SingleCard.chefId");
+  var toTime$ = dart.privateName(EatNow, "SingleCard.toTime");
+  var fromTime$ = dart.privateName(EatNow, "SingleCard.fromTime");
+  var self_delivery$ = dart.privateName(EatNow, "SingleCard.self_delivery");
+  var rating$ = dart.privateName(EatNow, "SingleCard.rating");
+  var quantity$ = dart.privateName(EatNow, "SingleCard.quantity");
+  var count = dart.privateName(EatNow, "SingleCard.count");
+  var price$ = dart.privateName(EatNow, "SingleCard.price");
+  var cartData$0 = dart.privateName(EatNow, "SingleCard.cartData");
+  var refresh$ = dart.privateName(EatNow, "SingleCard.refresh");
+  EatNow.SingleCard = class SingleCard extends framework.StatefulWidget {
+    get name() {
+      return this[name$];
+    }
+    set name(value) {
+      this[name$] = value;
+    }
+    get chefAddress() {
+      return this[chefAddress$];
+    }
+    set chefAddress(value) {
+      this[chefAddress$] = value;
+    }
+    get dishName() {
+      return this[dishName$];
+    }
+    set dishName(value) {
+      this[dishName$] = value;
+    }
+    get image() {
+      return this[image$];
+    }
+    set image(value) {
+      this[image$] = value;
+    }
+    get time() {
+      return this[time$];
+    }
+    set time(value) {
+      this[time$] = value;
+    }
+    get chefId() {
+      return this[chefId$];
+    }
+    set chefId(value) {
+      this[chefId$] = value;
+    }
+    get toTime() {
+      return this[toTime$];
+    }
+    set toTime(value) {
+      this[toTime$] = value;
+    }
+    get fromTime() {
+      return this[fromTime$];
+    }
+    set fromTime(value) {
+      this[fromTime$] = value;
+    }
+    get self_delivery() {
+      return this[self_delivery$];
+    }
+    set self_delivery(value) {
+      this[self_delivery$] = value;
+    }
+    get rating() {
+      return this[rating$];
+    }
+    set rating(value) {
+      this[rating$] = value;
+    }
+    get quantity() {
+      return this[quantity$];
+    }
+    set quantity(value) {
+      this[quantity$] = value;
+    }
+    get count() {
+      return this[count];
+    }
+    set count(value) {
+      this[count] = value;
+    }
+    get price() {
+      return this[price$];
+    }
+    set price(value) {
+      this[price$] = value;
+    }
+    get cartData() {
+      return this[cartData$0];
+    }
+    set cartData(value) {
+      this[cartData$0] = value;
+    }
+    get refresh() {
+      return this[refresh$];
+    }
+    set refresh(value) {
+      this[refresh$] = value;
+    }
+    createState() {
+      return new EatNow._SingleCardState.new();
+    }
+  };
+  (EatNow.SingleCard.new = function(name, chefAddress, rating, price, dishName, self_delivery, image, time, quantity, cartData, chefId, toTime, fromTime, refresh, opts) {
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[count] = null;
+    this[name$] = name;
+    this[chefAddress$] = chefAddress;
+    this[rating$] = rating;
+    this[price$] = price;
+    this[dishName$] = dishName;
+    this[self_delivery$] = self_delivery;
+    this[image$] = image;
+    this[time$] = time;
+    this[quantity$] = quantity;
+    this[cartData$0] = cartData;
+    this[chefId$] = chefId;
+    this[toTime$] = toTime;
+    this[fromTime$] = fromTime;
+    this[refresh$] = refresh;
+    EatNow.SingleCard.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = EatNow.SingleCard.prototype;
+  dart.addTypeTests(EatNow.SingleCard);
+  dart.addTypeCaches(EatNow.SingleCard);
+  dart.setMethodSignature(EatNow.SingleCard, () => ({
+    __proto__: dart.getMethods(EatNow.SingleCard.__proto__),
+    createState: dart.fnType(dart.legacy(EatNow._SingleCardState), [])
+  }));
+  dart.setLibraryUri(EatNow.SingleCard, I[0]);
+  dart.setFieldSignature(EatNow.SingleCard, () => ({
+    __proto__: dart.getFields(EatNow.SingleCard.__proto__),
+    name: dart.fieldType(dart.legacy(core.String)),
+    chefAddress: dart.fieldType(dart.legacy(core.String)),
+    dishName: dart.fieldType(dart.legacy(core.String)),
+    image: dart.fieldType(dart.legacy(core.String)),
+    time: dart.fieldType(dart.legacy(core.String)),
+    chefId: dart.fieldType(dart.legacy(core.String)),
+    toTime: dart.fieldType(dart.legacy(core.String)),
+    fromTime: dart.fieldType(dart.legacy(core.String)),
+    self_delivery: dart.fieldType(dart.legacy(core.bool)),
+    rating: dart.fieldType(dart.dynamic),
+    quantity: dart.fieldType(dart.legacy(core.int)),
+    count: dart.fieldType(dart.legacy(core.int)),
+    price: dart.fieldType(dart.dynamic),
+    cartData: dart.fieldType(dart.legacy(Chefdata.CartData)),
+    refresh: dart.fieldType(dart.legacy(core.Function))
+  }));
+  var _counter = dart.privateName(EatNow, "_counter");
+  var _timer = dart.privateName(EatNow, "_timer");
+  var _startTimer = dart.privateName(EatNow, "_startTimer");
+  EatNow._SingleCardState = class _SingleCardState extends framework.State$(dart.legacy(EatNow.SingleCard)) {
+    [_startTimer](time) {
+      this[_counter] = time;
+      if (this[_timer] != null) {
+        this[_timer].cancel();
+      }
+      this[_timer] = async.Timer.periodic(new core.Duration.new({seconds: 1}), dart.fn(timer => {
+        this.setState(dart.fn(() => {
+          if (dart.notNull(this[_counter]) > 0) {
+            this[_counter] = dart.notNull(this[_counter]) - 1;
+          } else {
+            this[_timer].cancel();
+            this.setState(dart.fn(() => {
+              this.canAdd = 0;
+            }, T.VoidToNull()));
+          }
+        }, T.VoidToNull()));
+      }, T.TimerLToNull()));
+    }
+    checkCart_add() {
+      for (let i = 0; i < dart.notNull(Chefdata.CartData.dishes[$length]); i = i + 1) {
+        if (Chefdata.CartData.dishes[$_get](i).dish.getDishName() == this.widget.dishName && Chefdata.CartData.dishes[$_get](i).dish.name == this.widget.name) {
+          this.setState(dart.fn(() => {
+            this.canAdd = 0;
+          }, T.VoidToNull()));
+        }
+      }
+    }
+    initState() {
+      super.initState();
+      this.checkCart_add();
+      this[_startTimer](dart.notNull(core.int.parse(this.widget.time)) * 60);
+    }
+    dispose() {
+      super.dispose();
+      this[_timer].cancel();
+    }
+    build(context) {
+      let totalWidth = media_query.MediaQuery.of(context).size.width;
+      let totalHeight = media_query.MediaQuery.of(context).size.height;
+      return new card.Card.new({color: this.help.card, shape: new rounded_rectangle_border.RoundedRectangleBorder.new({borderRadius: new border_radius.BorderRadius.circular(20.0)}), clipBehavior: ui.Clip.antiAlias, child: new basic.Padding.new({padding: C[0] || CT.C0, child: new basic.Row.new({crossAxisAlignment: flex.CrossAxisAlignment.center, mainAxisAlignment: flex.MainAxisAlignment.spaceBetween, children: T.JSArrayOfWidgetL().of([new basic.Column.new({mainAxisAlignment: flex.MainAxisAlignment.spaceBetween, crossAxisAlignment: flex.CrossAxisAlignment.start, children: T.JSArrayOfWidgetL().of([new basic.Row.new({children: T.JSArrayOfWidgetL().of([new basic.Padding.new({padding: C[51] || CT.C51, child: new icon.Icon.new(icons.Icons.person, {$creationLocationd_0dea112b090073317d4: C[52] || CT.C52}), $creationLocationd_0dea112b090073317d4: C[55] || CT.C55}), new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: T.JSArrayOfWidgetL().of([new text.Text.new(this.widget.name, {style: new text_style.TextStyle.new({fontSize: 16.0, color: this.help.heading}), $creationLocationd_0dea112b090073317d4: C[59] || CT.C59}), new text.Text.new("Rating " + dart.notNull(dart.toString(this.widget.rating)) + " ⭐", {style: new text_style.TextStyle.new({fontSize: 10.0, fontWeight: ui.FontWeight.w300}), $creationLocationd_0dea112b090073317d4: C[63] || CT.C63})]), $creationLocationd_0dea112b090073317d4: C[67] || CT.C67})]), $creationLocationd_0dea112b090073317d4: C[71] || CT.C71}), new basic.Padding.new({padding: C[0] || CT.C0, child: new text.Text.new(this.widget.dishName, {style: new text_style.TextStyle.new({color: this.help.heading, fontWeight: ui.FontWeight.bold}), $creationLocationd_0dea112b090073317d4: C[74] || CT.C74}), $creationLocationd_0dea112b090073317d4: C[78] || CT.C78}), new basic.Padding.new({padding: C[0] || CT.C0, child: new text.Text.new(dart.notNull(dart.toString(this.widget.price)) + "₹ (per serve)", {style: new text_style.TextStyle.new({color: this.help.normalText, fontWeight: ui.FontWeight.w100}), $creationLocationd_0dea112b090073317d4: C[82] || CT.C82}), $creationLocationd_0dea112b090073317d4: C[86] || CT.C86}), new basic.Row.new({children: T.JSArrayOfWidgetL().of([new basic.Row.new({children: T.JSArrayOfWidgetL().of([new container.Container.new({child: new text.Text.new(dart.toString(this.widget.quantity), {style: new text_style.TextStyle.new({color: colors.Colors.white, fontWeight: ui.FontWeight.w900}), $creationLocationd_0dea112b090073317d4: C[90] || CT.C90}), decoration: new box_decoration.BoxDecoration.new({borderRadius: new border_radius.BorderRadius.all(new ui.Radius.circular(10.0)), color: this.help.button}), padding: new edge_insets.EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0), $creationLocationd_0dea112b090073317d4: C[94] || CT.C94}), new icon_button.IconButton.new({icon: new icon.Icon.new(icons.Icons.remove_circle, {color: new Utils.Helper.new().button, size: dart.notNull(totalHeight) * 28 / 700, $creationLocationd_0dea112b090073317d4: C[99] || CT.C99}), tooltip: "Delete", onPressed: dart.fn(() => T.LinkedHashSetOfvoid().from([this.setState(dart.fn(() => {
+                                this.widget.quantity = this.help.delQuantity(this.widget.quantity);
+                                core.print(this.widget.quantity);
+                              }, T.VoidToNull()))]), T.VoidToSetLOfvoid()), $creationLocationd_0dea112b090073317d4: C[104] || CT.C104}), new icon_button.IconButton.new({icon: new icon.Icon.new(icons.Icons.add_circle, {color: new Utils.Helper.new().button, size: dart.notNull(totalHeight) * 28 / 700, $creationLocationd_0dea112b090073317d4: C[109] || CT.C109}), tooltip: "Add", onPressed: dart.fn(() => T.LinkedHashSetOfvoid().from([this.setState(dart.fn(() => {
+                                this.widget.quantity = this.help.addQuantity(this.widget.quantity);
+                                core.print(this.widget.quantity);
+                              }, T.VoidToNull()))]), T.VoidToSetLOfvoid()), $creationLocationd_0dea112b090073317d4: C[114] || CT.C114})]), $creationLocationd_0dea112b090073317d4: C[119] || CT.C119})]), $creationLocationd_0dea112b090073317d4: C[122] || CT.C122})]), $creationLocationd_0dea112b090073317d4: C[125] || CT.C125}), new basic.Stack.new({children: T.JSArrayOfWidgetL().of([new container.Container.new({height: dart.notNull(totalHeight) * 1.5 / 7, width: dart.notNull(totalWidth) * 3 / 7, decoration: new box_decoration.BoxDecoration.new({borderRadius: new border_radius.BorderRadius.all(new ui.Radius.circular(8.0)), image: new decoration_image.DecorationImage.new({image: new _network_image_web.NetworkImage.new(this.widget.image), fit: box_fit.BoxFit.cover})}), $creationLocationd_0dea112b090073317d4: C[130] || CT.C130}), new basic.Positioned.new({right: 5.0, bottom: -5.0, left: 5.0, child: new outlined_button._OutlinedButtonWithIcon.new({style: new button_style.ButtonStyle.new({backgroundColor: material_state.MaterialStateProperty.resolveWith(T.ColorL(), dart.fn(states => {
+                          if (this.canAdd !== 1) {
+                            return colors.Colors.grey.withOpacity(0.8);
+                          }
+                          if (!dart.test(states.contains(material_state.MaterialState.pressed))) return this.help.button.withOpacity(0.8);
+                          return null;
+                        }, T.SetLOfMaterialStateLToColorL()))}), onPressed: dart.fn(() => {
+                        if (this.canAdd === 1) {
+                          this.widget.cartData.addItem(new Chefdata.Dishes.new(this.widget.name, this.widget.chefAddress, this.widget.rating, this.widget.dishName, this.widget.self_delivery, this.widget.price, this.widget.image, this.widget.time, this.widget.dishName, this.widget.count, dart.toString(this.widget.chefId), this.widget.toTime, this.widget.fromTime, dart.toString(new date_format.DateFormat.new("dd MMM y").format(EatNow.now))), this.widget.quantity);
+                          fluttertoast.Fluttertoast.showToast({msg: "Showing " + dart.notNull(this.widget.name) + "'s food only", toastLength: fluttertoast.Toast.LENGTH_SHORT, gravity: fluttertoast.ToastGravity.BOTTOM, timeInSecForIosWeb: 1, backgroundColor: new Utils.Helper.new().button, textColor: colors.Colors.white, fontSize: 16.0});
+                          dart.dsend(this.widget, 'refresh', []);
+                          this.checkCart_add();
+                        }
+                      }, T.VoidToNull()), label: new text.Text.new("ADD", {style: new text_style.TextStyle.new({color: colors.Colors.white, fontWeight: ui.FontWeight.bold}), $creationLocationd_0dea112b090073317d4: C[135] || CT.C135}), icon: new icon.Icon.new(icons.Icons.delivery_dining, {size: dart.notNull(totalHeight) * 30 / 700, color: colors.Colors.white, $creationLocationd_0dea112b090073317d4: C[139] || CT.C139}), $creationLocationd_0dea112b090073317d4: C[144] || CT.C144}), $creationLocationd_0dea112b090073317d4: C[150] || CT.C150}), new basic.Positioned.new({right: 3.0, top: 3.0, child: new container.Container.new({decoration: new box_decoration.BoxDecoration.new({color: colors.Colors.red.withOpacity(0.6), borderRadius: new border_radius.BorderRadius.all(new ui.Radius.circular(10.0))}), child: new text.Text.new((dart.notNull(this[_counter]) / 3600)[$truncate]()[$toString]() + ":" + (this[_counter][$modulo](3600) / 60)[$truncate]()[$toString]() + ":" + this[_counter][$modulo](60)[$toString](), {style: new text_style.TextStyle.new({fontSize: dart.notNull(totalHeight) * 12 / 700, color: colors.Colors.white, fontWeight: ui.FontWeight.bold}), $creationLocationd_0dea112b090073317d4: C[156] || CT.C156}), padding: new edge_insets.EdgeInsets.all(4.0), $creationLocationd_0dea112b090073317d4: C[160] || CT.C160}), $creationLocationd_0dea112b090073317d4: C[165] || CT.C165})]), $creationLocationd_0dea112b090073317d4: C[170] || CT.C170})]), $creationLocationd_0dea112b090073317d4: C[173] || CT.C173}), $creationLocationd_0dea112b090073317d4: C[178] || CT.C178}), $creationLocationd_0dea112b090073317d4: C[182] || CT.C182});
+    }
+  };
+  (EatNow._SingleCardState.new = function() {
+    this.help = new Utils.Helper.new();
+    this[_counter] = null;
+    this[_timer] = null;
+    this.canAdd = 1;
+    this.hour = 0;
+    this.minute = 0;
+    this.sec = 0;
+    EatNow._SingleCardState.__proto__.new.call(this);
+    ;
+  }).prototype = EatNow._SingleCardState.prototype;
+  dart.addTypeTests(EatNow._SingleCardState);
+  dart.addTypeCaches(EatNow._SingleCardState);
+  dart.setMethodSignature(EatNow._SingleCardState, () => ({
+    __proto__: dart.getMethods(EatNow._SingleCardState.__proto__),
+    [_startTimer]: dart.fnType(dart.void, [dart.legacy(core.int)]),
+    checkCart_add: dart.fnType(dart.void, []),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
+  }));
+  dart.setLibraryUri(EatNow._SingleCardState, I[0]);
+  dart.setFieldSignature(EatNow._SingleCardState, () => ({
+    __proto__: dart.getFields(EatNow._SingleCardState.__proto__),
+    help: dart.fieldType(dart.legacy(Utils.Helper)),
+    [_counter]: dart.fieldType(dart.legacy(core.int)),
+    [_timer]: dart.fieldType(dart.legacy(async.Timer)),
+    canAdd: dart.fieldType(dart.legacy(core.int)),
+    hour: dart.fieldType(dart.legacy(core.int)),
+    minute: dart.fieldType(dart.legacy(core.int)),
+    sec: dart.fieldType(dart.legacy(core.int))
+  }));
+  dart.defineLazy(EatNow, {
+    /*EatNow.now*/get now() {
+      return new core.DateTime.now();
+    }
+  }, true);
+  dart.trackLibraries("packages/food_delivery_app/user/EatNow.dart", {
+    "package:food_delivery_app/user/EatNow.dart": EatNow
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["EatNow.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;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","file":"../../../../../../../packages/food_delivery_app/user/EatNow.dart.lib.js"}');
+  // Exports:
+  return {
+    user__EatNow: EatNow
+  };
+}));
+
+//# sourceMappingURL=EatNow.dart.lib.js.map

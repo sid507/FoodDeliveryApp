@@ -1,0 +1,4067 @@
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/widgets/safe_area.dart', 'packages/flutter/src/widgets/single_child_scroll_view.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/flutter/src/widgets/async.dart', 'packages/cloud_firestore/cloud_firestore.dart', 'packages/flutter/src/widgets/scroll_view.dart', 'packages/flutter/src/painting/alignment.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/material/colors.dart', 'packages/food_delivery_app/account/ui_helper.dart', 'packages/food_delivery_app/account/custom_divider_view.dart', 'packages/flutter/src/widgets/spacer.dart', 'packages/flutter/src/widgets/icon.dart', 'packages/flutter/src/material/icons.dart', 'packages/food_delivery_app/account/app_colors.dart', 'packages/firebase_auth/firebase_auth.dart', 'packages/flutter/src/material/page.dart', 'packages/food_delivery_app/widgets/alert.dart', 'packages/food_delivery_app/account/dotted_seperator_view.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/flutter/src/material/outlined_button.dart', 'packages/flutter/src/painting/borders.dart', 'packages/flutter_rating_bar/src/rating_bar.dart', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/material/text_form_field.dart', 'packages/flutter/src/widgets/form.dart', 'packages/flutter/src/widgets/icon_data.dart', 'packages/fluttertoast/fluttertoast.dart', 'packages/food_delivery_app/user/Utils.dart'], (function load__packages__food_delivery_app__account__AccountPage_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__widgets__safe_area$46dart, packages__flutter__src__widgets__single_child_scroll_view$46dart, packages__flutter__src__rendering__flex$46dart, packages__flutter__src__widgets__async$46dart, packages__cloud_firestore__cloud_firestore$46dart, packages__flutter__src__widgets__scroll_view$46dart, packages__flutter__src__painting__alignment$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__material__colors$46dart, packages__food_delivery_app__account__ui_helper$46dart, packages__food_delivery_app__account__custom_divider_view$46dart, packages__flutter__src__widgets__spacer$46dart, packages__flutter__src__widgets__icon$46dart, packages__flutter__src__material__icons$46dart, packages__food_delivery_app__account__app_colors$46dart, packages__firebase_auth__firebase_auth$46dart, packages__flutter__src__material__page$46dart, packages__food_delivery_app__widgets__alert$46dart, packages__food_delivery_app__account__dotted_seperator_view$46dart, packages__flutter__src__painting__strut_style$46dart, packages__flutter__src__material__outlined_button$46dart, packages__flutter__src__painting__borders$46dart, packages__flutter_rating_bar__src__rating_bar$46dart, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__material__text_form_field$46dart, packages__flutter__src__widgets__form$46dart, packages__flutter__src__widgets__icon_data$46dart, packages__fluttertoast__fluttertoast$46dart, packages__food_delivery_app__user__Utils$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const _interceptors = dart_sdk._interceptors;
+  const ui = dart_sdk.ui;
+  const _js_helper = dart_sdk._js_helper;
+  const collection = dart_sdk.collection;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const scroll_physics = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scroll_physics;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
+  const navigator = packages__flutter__src__widgets__widget_span$46dart.src__widgets__navigator;
+  const editable_text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__editable_text;
+  const scaffold = packages__flutter__src__material__icon_button$46dart.src__material__scaffold;
+  const theme = packages__flutter__src__material__icon_button$46dart.src__material__theme;
+  const text_button = packages__flutter__src__material__icon_button$46dart.src__material__text_button;
+  const ink_well = packages__flutter__src__material__icon_button$46dart.src__material__ink_well;
+  const icon_button = packages__flutter__src__material__icon_button$46dart.src__material__icon_button;
+  const input_decorator = packages__flutter__src__material__icon_button$46dart.src__material__input_decorator;
+  const safe_area = packages__flutter__src__widgets__safe_area$46dart.src__widgets__safe_area;
+  const single_child_scroll_view = packages__flutter__src__widgets__single_child_scroll_view$46dart.src__widgets__single_child_scroll_view;
+  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
+  const async = packages__flutter__src__widgets__async$46dart.src__widgets__async;
+  const cloud_firestore = packages__cloud_firestore__cloud_firestore$46dart.cloud_firestore;
+  const scroll_view = packages__flutter__src__widgets__scroll_view$46dart.src__widgets__scroll_view;
+  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
+  const ui_helper = packages__food_delivery_app__account__ui_helper$46dart.account__ui_helper;
+  const custom_divider_view = packages__food_delivery_app__account__custom_divider_view$46dart.account__custom_divider_view;
+  const spacer = packages__flutter__src__widgets__spacer$46dart.src__widgets__spacer;
+  const icon = packages__flutter__src__widgets__icon$46dart.src__widgets__icon;
+  const icons = packages__flutter__src__material__icons$46dart.src__material__icons;
+  const app_colors = packages__food_delivery_app__account__app_colors$46dart.account__app_colors;
+  const firebase_auth = packages__firebase_auth__firebase_auth$46dart.firebase_auth;
+  const page = packages__flutter__src__material__page$46dart.src__material__page;
+  const sign_in = packages__food_delivery_app__widgets__alert$46dart.auth_screens__sign_in;
+  const dotted_seperator_view = packages__food_delivery_app__account__dotted_seperator_view$46dart.account__dotted_seperator_view;
+  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
+  const outlined_button = packages__flutter__src__material__outlined_button$46dart.src__material__outlined_button;
+  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
+  const rating_bar = packages__flutter_rating_bar__src__rating_bar$46dart.src__rating_bar;
+  const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
+  const text_form_field = packages__flutter__src__material__text_form_field$46dart.src__material__text_form_field;
+  const form = packages__flutter__src__widgets__form$46dart.src__widgets__form;
+  const icon_data = packages__flutter__src__widgets__icon_data$46dart.src__widgets__icon_data;
+  const fluttertoast = packages__fluttertoast__fluttertoast$46dart.fluttertoast;
+  const Utils = packages__food_delivery_app__user__Utils$46dart.user__Utils;
+  var AccountPage = Object.create(dart.library);
+  var $length = dartx.length;
+  var $_get = dartx._get;
+  var $toUpperCase = dartx.toUpperCase;
+  var $_set = dartx._set;
+  var $clear = dartx.clear;
+  var $toString = dartx.toString;
+  var $add = dartx.add;
+  var $forEach = dartx.forEach;
+  var $split = dartx.split;
+  var $toDouble = dartx.toDouble;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    JSArrayOfStringL: () => (T.JSArrayOfStringL = dart.constFn(_interceptors.JSArray$(T.StringL())))(),
+    QuerySnapshotL: () => (T.QuerySnapshotL = dart.constFn(dart.legacy(cloud_firestore.QuerySnapshot)))(),
+    StreamBuilderOfQuerySnapshotL: () => (T.StreamBuilderOfQuerySnapshotL = dart.constFn(async.StreamBuilder$(T.QuerySnapshotL())))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    _AppBarL: () => (T._AppBarL = dart.constFn(dart.legacy(AccountPage._AppBar)))(),
+    BuildContextL: () => (T.BuildContextL = dart.constFn(dart.legacy(framework.BuildContext)))(),
+    AsyncSnapshotOfQuerySnapshotL: () => (T.AsyncSnapshotOfQuerySnapshotL = dart.constFn(async.AsyncSnapshot$(T.QuerySnapshotL())))(),
+    AsyncSnapshotLOfQuerySnapshotL: () => (T.AsyncSnapshotLOfQuerySnapshotL = dart.constFn(dart.legacy(T.AsyncSnapshotOfQuerySnapshotL())))(),
+    BuildContextLAndAsyncSnapshotLOfQuerySnapshotLTo_AppBarL: () => (T.BuildContextLAndAsyncSnapshotLOfQuerySnapshotLTo_AppBarL = dart.constFn(dart.fnType(T._AppBarL(), [T.BuildContextL(), T.AsyncSnapshotLOfQuerySnapshotL()])))(),
+    _ListItemL: () => (T._ListItemL = dart.constFn(dart.legacy(AccountPage._ListItem)))(),
+    intL: () => (T.intL = dart.constFn(dart.legacy(core.int)))(),
+    BuildContextLAndintLTo_ListItemL: () => (T.BuildContextLAndintLTo_ListItemL = dart.constFn(dart.fnType(T._ListItemL(), [T.BuildContextL(), T.intL()])))(),
+    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
+    JSArrayOfWidgetL: () => (T.JSArrayOfWidgetL = dart.constFn(_interceptors.JSArray$(T.WidgetL())))(),
+    boolL: () => (T.boolL = dart.constFn(dart.legacy(core.bool)))(),
+    JSArrayOfboolL: () => (T.JSArrayOfboolL = dart.constFn(_interceptors.JSArray$(T.boolL())))(),
+    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    ContainerL: () => (T.ContainerL = dart.constFn(dart.legacy(container.Container)))(),
+    BuildContextLAndAsyncSnapshotLOfQuerySnapshotLToContainerL: () => (T.BuildContextLAndAsyncSnapshotLOfQuerySnapshotLToContainerL = dart.constFn(dart.fnType(T.ContainerL(), [T.BuildContextL(), T.AsyncSnapshotLOfQuerySnapshotL()])))(),
+    numL: () => (T.numL = dart.constFn(dart.legacy(core.num)))(),
+    SetOfvoid: () => (T.SetOfvoid = dart.constFn(core.Set$(dart.void)))(),
+    SetLOfvoid: () => (T.SetLOfvoid = dart.constFn(dart.legacy(T.SetOfvoid())))(),
+    LinkedHashSetOfvoid: () => (T.LinkedHashSetOfvoid = dart.constFn(collection.LinkedHashSet$(dart.void)))(),
+    QueryDocumentSnapshotL: () => (T.QueryDocumentSnapshotL = dart.constFn(dart.legacy(cloud_firestore.QueryDocumentSnapshot)))(),
+    QueryDocumentSnapshotLToNull: () => (T.QueryDocumentSnapshotLToNull = dart.constFn(dart.fnType(core.Null, [T.QueryDocumentSnapshotL()])))(),
+    QuerySnapshotLToSetLOfvoid: () => (T.QuerySnapshotLToSetLOfvoid = dart.constFn(dart.fnType(T.SetLOfvoid(), [T.QuerySnapshotL()])))(),
+    LinkedHashSetOfStringL: () => (T.LinkedHashSetOfStringL = dart.constFn(collection.LinkedHashSet$(T.StringL())))(),
+    ListOfStringL: () => (T.ListOfStringL = dart.constFn(core.List$(T.StringL())))(),
+    BuildContextLAndAsyncSnapshotLOfQuerySnapshotLToWidgetL: () => (T.BuildContextLAndAsyncSnapshotLOfQuerySnapshotLToWidgetL = dart.constFn(dart.fnType(T.WidgetL(), [T.BuildContextL(), T.AsyncSnapshotLOfQuerySnapshotL()])))(),
+    _PastOrdersListItemViewL: () => (T._PastOrdersListItemViewL = dart.constFn(dart.legacy(AccountPage._PastOrdersListItemView)))(),
+    BuildContextLAndintLTo_PastOrdersListItemViewL: () => (T.BuildContextLAndintLTo_PastOrdersListItemViewL = dart.constFn(dart.fnType(T._PastOrdersListItemViewL(), [T.BuildContextL(), T.intL()])))(),
+    SignInL: () => (T.SignInL = dart.constFn(dart.legacy(sign_in.SignIn)))(),
+    BuildContextLToSignInL: () => (T.BuildContextLToSignInL = dart.constFn(dart.fnType(T.SignInL(), [T.BuildContextL()])))(),
+    RouteL: () => (T.RouteL = dart.constFn(dart.legacy(navigator.Route)))(),
+    RouteLToboolL: () => (T.RouteLToboolL = dart.constFn(dart.fnType(T.boolL(), [T.RouteL()])))(),
+    StatelessWidgetL: () => (T.StatelessWidgetL = dart.constFn(dart.legacy(framework.StatelessWidget)))(),
+    BuildContextLAndintLToStatelessWidgetL: () => (T.BuildContextLAndintLToStatelessWidgetL = dart.constFn(dart.fnType(T.StatelessWidgetL(), [T.BuildContextL(), T.intL()])))(),
+    doubleL: () => (T.doubleL = dart.constFn(dart.legacy(core.double)))(),
+    doubleLToNull: () => (T.doubleLToNull = dart.constFn(dart.fnType(core.Null, [T.doubleL()])))(),
+    StringLToNull: () => (T.StringLToNull = dart.constFn(dart.fnType(core.Null, [T.StringL()])))(),
+    IdentityMapOfStringL$dynamic: () => (T.IdentityMapOfStringL$dynamic = dart.constFn(_js_helper.IdentityMap$(T.StringL(), dart.dynamic)))(),
+    voidToNull: () => (T.voidToNull = dart.constFn(dart.fnType(core.Null, [dart.void])))(),
+    dynamicToNull: () => (T.dynamicToNull = dart.constFn(dart.fnType(core.Null, [dart.dynamic])))()
+  };
+  var T$Eval = Object.assign({
+    _: () => T$Eval
+  }, T);
+  var S = {
+    _: () => S
+  };
+  var S$Eval = Object.assign({
+    _: () => S$Eval
+  }, S);
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "name",
+        [_Location_column]: 34,
+        [_Location_line]: 58,
+        [_Location_file]: null
+      });
+    },
+    get C1() {
+      return C[1] = dart.constList([C[2] || CT.C2], T._LocationL());
+    },
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 58,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "stream",
+        [_Location_column]: 17,
+        [_Location_line]: 43,
+        [_Location_file]: null
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 17,
+        [_Location_line]: 45,
+        [_Location_file]: null
+      });
+    },
+    get C4() {
+      return C[4] = dart.constList([C[5] || CT.C5, C[6] || CT.C6], T._LocationL());
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[4] || CT.C4,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 42,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "title",
+        [_Location_column]: 19,
+        [_Location_line]: 66,
+        [_Location_file]: null
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "body",
+        [_Location_column]: 19,
+        [_Location_line]: 67,
+        [_Location_file]: null
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "isLastItem",
+        [_Location_column]: 19,
+        [_Location_line]: 68,
+        [_Location_file]: null
+      });
+    },
+    get C8() {
+      return C[8] = dart.constList([C[9] || CT.C9, C[10] || CT.C10, C[11] || CT.C11], T._LocationL());
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[8] || CT.C8,
+        [_Location_name]: null,
+        [_Location_column]: 50,
+        [_Location_line]: 65,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "shrinkWrap",
+        [_Location_column]: 17,
+        [_Location_line]: 62,
+        [_Location_file]: null
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "itemCount",
+        [_Location_column]: 17,
+        [_Location_line]: 63,
+        [_Location_file]: null
+      });
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "physics",
+        [_Location_column]: 17,
+        [_Location_line]: 64,
+        [_Location_file]: null
+      });
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "itemBuilder",
+        [_Location_column]: 17,
+        [_Location_line]: 65,
+        [_Location_file]: null
+      });
+    },
+    get C13() {
+      return C[13] = dart.constList([C[14] || CT.C14, C[15] || CT.C15, C[16] || CT.C16, C[17] || CT.C17], T._LocationL());
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[13] || CT.C13,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 61,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 0,
+        [EdgeInsets_right]: 0,
+        [EdgeInsets_top]: 0,
+        [EdgeInsets_left]: 15
+      });
+    },
+    get C21() {
+      return C[21] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 19,
+        [_Location_line]: 77,
+        [_Location_file]: null
+      });
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 19,
+        [_Location_line]: 78,
+        [_Location_file]: null
+      });
+    },
+    get C20() {
+      return C[20] = dart.constList([C[21] || CT.C21, C[22] || CT.C22], T._LocationL());
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[20] || CT.C20,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 76,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "alignment",
+        [_Location_column]: 17,
+        [_Location_line]: 72,
+        [_Location_file]: null
+      });
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 17,
+        [_Location_line]: 73,
+        [_Location_file]: null
+      });
+    },
+    get C27() {
+      return C[27] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 17,
+        [_Location_line]: 74,
+        [_Location_file]: null
+      });
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 17,
+        [_Location_line]: 75,
+        [_Location_file]: null
+      });
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 17,
+        [_Location_line]: 76,
+        [_Location_file]: null
+      });
+    },
+    get C24() {
+      return C[24] = dart.constList([C[25] || CT.C25, C[26] || CT.C26, C[27] || CT.C27, C[28] || CT.C28, C[29] || CT.C29], T._LocationL());
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[24] || CT.C24,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 71,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "ongoing",
+        [_Location_column]: 34,
+        [_Location_line]: 84,
+        [_Location_file]: null
+      });
+    },
+    get C31() {
+      return C[31] = dart.constList([C[32] || CT.C32], T._LocationL());
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[31] || CT.C31,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 84,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C33() {
+      return C[33] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 0,
+        [EdgeInsets_right]: 0,
+        [EdgeInsets_top]: 10,
+        [EdgeInsets_left]: 15
+      });
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 19,
+        [_Location_line]: 91,
+        [_Location_file]: null
+      });
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 19,
+        [_Location_line]: 92,
+        [_Location_file]: null
+      });
+    },
+    get C35() {
+      return C[35] = dart.constList([C[36] || CT.C36, C[37] || CT.C37], T._LocationL());
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[35] || CT.C35,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 90,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C40() {
+      return C[40] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "alignment",
+        [_Location_column]: 17,
+        [_Location_line]: 86,
+        [_Location_file]: null
+      });
+    },
+    get C41() {
+      return C[41] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 17,
+        [_Location_line]: 87,
+        [_Location_file]: null
+      });
+    },
+    get C42() {
+      return C[42] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 17,
+        [_Location_line]: 88,
+        [_Location_file]: null
+      });
+    },
+    get C43() {
+      return C[43] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 17,
+        [_Location_line]: 89,
+        [_Location_file]: null
+      });
+    },
+    get C44() {
+      return C[44] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 17,
+        [_Location_line]: 90,
+        [_Location_file]: null
+      });
+    },
+    get C39() {
+      return C[39] = dart.constList([C[40] || CT.C40, C[41] || CT.C41, C[42] || CT.C42, C[43] || CT.C43, C[44] || CT.C44], T._LocationL());
+    },
+    get C38() {
+      return C[38] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[39] || CT.C39,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 85,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C47() {
+      return C[47] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "ongoing",
+        [_Location_column]: 34,
+        [_Location_line]: 113,
+        [_Location_file]: null
+      });
+    },
+    get C46() {
+      return C[46] = dart.constList([C[47] || CT.C47], T._LocationL());
+    },
+    get C45() {
+      return C[45] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[46] || CT.C46,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 113,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C50() {
+      return C[50] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "crossAxisAlignment",
+        [_Location_column]: 13,
+        [_Location_line]: 40,
+        [_Location_file]: null
+      });
+    },
+    get C51() {
+      return C[51] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 13,
+        [_Location_line]: 41,
+        [_Location_file]: null
+      });
+    },
+    get C49() {
+      return C[49] = dart.constList([C[50] || CT.C50, C[51] || CT.C51], T._LocationL());
+    },
+    get C48() {
+      return C[48] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[49] || CT.C49,
+        [_Location_name]: null,
+        [_Location_column]: 18,
+        [_Location_line]: 39,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C54() {
+      return C[54] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 39,
+        [_Location_file]: null
+      });
+    },
+    get C53() {
+      return C[53] = dart.constList([C[54] || CT.C54], T._LocationL());
+    },
+    get C52() {
+      return C[52] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[53] || CT.C53,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 38,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C57() {
+      return C[57] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 38,
+        [_Location_file]: null
+      });
+    },
+    get C56() {
+      return C[56] = dart.constList([C[57] || CT.C57], T._LocationL());
+    },
+    get C55() {
+      return C[55] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[56] || CT.C56,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 37,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C60() {
+      return C[60] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "body",
+        [_Location_column]: 7,
+        [_Location_line]: 37,
+        [_Location_file]: null
+      });
+    },
+    get C59() {
+      return C[59] = dart.constList([C[60] || CT.C60], T._LocationL());
+    },
+    get C58() {
+      return C[58] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[59] || CT.C59,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 36,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C61() {
+      return C[61] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 15,
+        [EdgeInsets_right]: 15,
+        [EdgeInsets_top]: 15,
+        [EdgeInsets_left]: 15
+      });
+    },
+    get C64() {
+      return C[64] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 24,
+        [_Location_line]: 143,
+        [_Location_file]: null
+      });
+    },
+    get C65() {
+      return C[65] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 17,
+        [_Location_line]: 144,
+        [_Location_file]: null
+      });
+    },
+    get C63() {
+      return C[63] = dart.constList([C[64] || CT.C64, C[65] || CT.C65], T._LocationL());
+    },
+    get C62() {
+      return C[62] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[63] || CT.C63,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 142,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C68() {
+      return C[68] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 13,
+        [_Location_line]: 140,
+        [_Location_file]: null
+      });
+    },
+    get C69() {
+      return C[69] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 13,
+        [_Location_line]: 141,
+        [_Location_file]: null
+      });
+    },
+    get C67() {
+      return C[67] = dart.constList([C[68] || CT.C68, C[69] || CT.C69], T._LocationL());
+    },
+    get C66() {
+      return C[66] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[67] || CT.C67,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 139,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C72() {
+      return C[72] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 20,
+        [_Location_line]: 164,
+        [_Location_file]: null
+      });
+    },
+    get C73() {
+      return C[73] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 27,
+        [_Location_line]: 164,
+        [_Location_file]: null
+      });
+    },
+    get C71() {
+      return C[71] = dart.constList([C[72] || CT.C72, C[73] || CT.C73], T._LocationL());
+    },
+    get C70() {
+      return C[70] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[71] || CT.C71,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 164,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C76() {
+      return C[76] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 19,
+        [_Location_line]: 168,
+        [_Location_file]: null
+      });
+    },
+    get C77() {
+      return C[77] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 19,
+        [_Location_line]: 169,
+        [_Location_file]: null
+      });
+    },
+    get C78() {
+      return C[78] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 19,
+        [_Location_line]: 170,
+        [_Location_file]: null
+      });
+    },
+    get C75() {
+      return C[75] = dart.constList([C[76] || CT.C76, C[77] || CT.C77, C[78] || CT.C78], T._LocationL());
+    },
+    get C74() {
+      return C[74] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[75] || CT.C75,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 167,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C81() {
+      return C[81] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 17,
+        [_Location_line]: 167,
+        [_Location_file]: null
+      });
+    },
+    get C80() {
+      return C[80] = dart.constList([C[81] || CT.C81], T._LocationL());
+    },
+    get C79() {
+      return C[79] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[80] || CT.C80,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 166,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C84() {
+      return C[84] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 13,
+        [_Location_line]: 163,
+        [_Location_file]: null
+      });
+    },
+    get C83() {
+      return C[83] = dart.constList([C[84] || CT.C84], T._LocationL());
+    },
+    get C82() {
+      return C[82] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[83] || CT.C83,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 162,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C87() {
+      return C[87] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "dividerHeight",
+        [_Location_column]: 13,
+        [_Location_line]: 179,
+        [_Location_file]: null
+      });
+    },
+    get C88() {
+      return C[88] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 13,
+        [_Location_line]: 180,
+        [_Location_file]: null
+      });
+    },
+    get C86() {
+      return C[86] = dart.constList([C[87] || CT.C87, C[88] || CT.C88], T._LocationL());
+    },
+    get C85() {
+      return C[85] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[86] || CT.C86,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 178,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C91() {
+      return C[91] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 9,
+        [_Location_line]: 138,
+        [_Location_file]: null
+      });
+    },
+    get C90() {
+      return C[90] = dart.constList([C[91] || CT.C91], T._LocationL());
+    },
+    get C89() {
+      return C[89] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[90] || CT.C90,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 137,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C94() {
+      return C[94] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 7,
+        [_Location_line]: 136,
+        [_Location_file]: null
+      });
+    },
+    get C95() {
+      return C[95] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 137,
+        [_Location_file]: null
+      });
+    },
+    get C93() {
+      return C[93] = dart.constList([C[94] || CT.C94, C[95] || CT.C95], T._LocationL());
+    },
+    get C92() {
+      return C[92] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[93] || CT.C93,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 135,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C96() {
+      return C[96] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 10,
+        [EdgeInsets_right]: 15,
+        [EdgeInsets_top]: 10,
+        [EdgeInsets_left]: 15
+      });
+    },
+    get C99() {
+      return C[99] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 23,
+        [_Location_line]: 219,
+        [_Location_file]: null
+      });
+    },
+    get C100() {
+      return C[100] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 23,
+        [_Location_line]: 220,
+        [_Location_file]: null
+      });
+    },
+    get C98() {
+      return C[98] = dart.constList([C[99] || CT.C99, C[100] || CT.C100], T._LocationL());
+    },
+    get C97() {
+      return C[97] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[98] || CT.C98,
+        [_Location_name]: null,
+        [_Location_column]: 21,
+        [_Location_line]: 218,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C103() {
+      return C[103] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 23,
+        [_Location_line]: 227,
+        [_Location_file]: null
+      });
+    },
+    get C104() {
+      return C[104] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 23,
+        [_Location_line]: 228,
+        [_Location_file]: null
+      });
+    },
+    get C102() {
+      return C[102] = dart.constList([C[103] || CT.C103, C[104] || CT.C104], T._LocationL());
+    },
+    get C101() {
+      return C[101] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[102] || CT.C102,
+        [_Location_name]: null,
+        [_Location_column]: 21,
+        [_Location_line]: 226,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C107() {
+      return C[107] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisSize",
+        [_Location_column]: 19,
+        [_Location_line]: 215,
+        [_Location_file]: null
+      });
+    },
+    get C108() {
+      return C[108] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "crossAxisAlignment",
+        [_Location_column]: 19,
+        [_Location_line]: 216,
+        [_Location_file]: null
+      });
+    },
+    get C109() {
+      return C[109] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 19,
+        [_Location_line]: 217,
+        [_Location_file]: null
+      });
+    },
+    get C106() {
+      return C[106] = dart.constList([C[107] || CT.C107, C[108] || CT.C108, C[109] || CT.C109], T._LocationL());
+    },
+    get C105() {
+      return C[105] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[106] || CT.C106,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 214,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C112() {
+      return C[112] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 17,
+        [_Location_line]: 214,
+        [_Location_file]: null
+      });
+    },
+    get C111() {
+      return C[111] = dart.constList([C[112] || CT.C112], T._LocationL());
+    },
+    get C110() {
+      return C[110] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[111] || CT.C111,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 213,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C114() {
+      return C[114] = dart.constList([], T._LocationL());
+    },
+    get C113() {
+      return C[113] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[114] || CT.C114,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 235,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C117() {
+      return C[117] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 26,
+        [_Location_line]: 237,
+        [_Location_file]: null
+      });
+    },
+    get C116() {
+      return C[116] = dart.constList([C[117] || CT.C117], T._LocationL());
+    },
+    get C115() {
+      return C[115] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[116] || CT.C116,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 237,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C120() {
+      return C[120] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "crossAxisAlignment",
+        [_Location_column]: 13,
+        [_Location_line]: 211,
+        [_Location_file]: null
+      });
+    },
+    get C121() {
+      return C[121] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 13,
+        [_Location_line]: 212,
+        [_Location_file]: null
+      });
+    },
+    get C119() {
+      return C[119] = dart.constList([C[120] || CT.C120, C[121] || CT.C121], T._LocationL());
+    },
+    get C118() {
+      return C[118] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[119] || CT.C119,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 210,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C122() {
+      return C[122] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[114] || CT.C114,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 242,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C125() {
+      return C[125] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "dividerHeight",
+        [_Location_column]: 19,
+        [_Location_line]: 244,
+        [_Location_file]: null
+      });
+    },
+    get C126() {
+      return C[126] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 19,
+        [_Location_line]: 245,
+        [_Location_file]: null
+      });
+    },
+    get C124() {
+      return C[124] = dart.constList([C[125] || CT.C125, C[126] || CT.C126], T._LocationL());
+    },
+    get C123() {
+      return C[123] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[124] || CT.C124,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 243,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C129() {
+      return C[129] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisSize",
+        [_Location_column]: 9,
+        [_Location_line]: 207,
+        [_Location_file]: null
+      });
+    },
+    get C130() {
+      return C[130] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 9,
+        [_Location_line]: 208,
+        [_Location_file]: null
+      });
+    },
+    get C131() {
+      return C[131] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 9,
+        [_Location_line]: 209,
+        [_Location_file]: null
+      });
+    },
+    get C128() {
+      return C[128] = dart.constList([C[129] || CT.C129, C[130] || CT.C130, C[131] || CT.C131], T._LocationL());
+    },
+    get C127() {
+      return C[127] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[128] || CT.C128,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 206,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C134() {
+      return C[134] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 7,
+        [_Location_line]: 205,
+        [_Location_file]: null
+      });
+    },
+    get C135() {
+      return C[135] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 206,
+        [_Location_file]: null
+      });
+    },
+    get C133() {
+      return C[133] = dart.constList([C[134] || CT.C134, C[135] || CT.C135], T._LocationL());
+    },
+    get C132() {
+      return C[132] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[133] || CT.C133,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 204,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C136() {
+      return C[136] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[114] || CT.C114,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 299,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C139() {
+      return C[139] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "stream",
+        [_Location_column]: 7,
+        [_Location_line]: 290,
+        [_Location_file]: null
+      });
+    },
+    get C140() {
+      return C[140] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 7,
+        [_Location_line]: 291,
+        [_Location_file]: null
+      });
+    },
+    get C138() {
+      return C[138] = dart.constList([C[139] || CT.C139, C[140] || CT.C140], T._LocationL());
+    },
+    get C137() {
+      return C[137] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[138] || CT.C138,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 289,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C141() {
+      return C[141] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[114] || CT.C114,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 412,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C144() {
+      return C[144] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "stream",
+        [_Location_column]: 17,
+        [_Location_line]: 318,
+        [_Location_file]: null
+      });
+    },
+    get C145() {
+      return C[145] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 17,
+        [_Location_line]: 319,
+        [_Location_file]: null
+      });
+    },
+    get C143() {
+      return C[143] = dart.constList([C[144] || CT.C144, C[145] || CT.C145], T._LocationL());
+    },
+    get C142() {
+      return C[142] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[143] || CT.C143,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 317,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C146() {
+      return C[146] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[114] || CT.C114,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 416,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C149() {
+      return C[149] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "stream",
+        [_Location_column]: 11,
+        [_Location_line]: 313,
+        [_Location_file]: null
+      });
+    },
+    get C150() {
+      return C[150] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 11,
+        [_Location_line]: 314,
+        [_Location_file]: null
+      });
+    },
+    get C148() {
+      return C[148] = dart.constList([C[149] || CT.C149, C[150] || CT.C150], T._LocationL());
+    },
+    get C147() {
+      return C[147] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[148] || CT.C148,
+        [_Location_name]: null,
+        [_Location_column]: 9,
+        [_Location_line]: 312,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C153() {
+      return C[153] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "docIdOrder",
+        [_Location_column]: 15,
+        [_Location_line]: 424,
+        [_Location_file]: null
+      });
+    },
+    get C154() {
+      return C[154] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "ongoing",
+        [_Location_column]: 15,
+        [_Location_line]: 425,
+        [_Location_file]: null
+      });
+    },
+    get C155() {
+      return C[155] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "chefNameOrder",
+        [_Location_column]: 15,
+        [_Location_line]: 426,
+        [_Location_file]: null
+      });
+    },
+    get C156() {
+      return C[156] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "costOrder",
+        [_Location_column]: 15,
+        [_Location_line]: 427,
+        [_Location_file]: null
+      });
+    },
+    get C157() {
+      return C[157] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "timeOrder",
+        [_Location_column]: 15,
+        [_Location_line]: 428,
+        [_Location_file]: null
+      });
+    },
+    get C158() {
+      return C[158] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "foodItem",
+        [_Location_column]: 15,
+        [_Location_line]: 429,
+        [_Location_file]: null
+      });
+    },
+    get C159() {
+      return C[159] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "rated",
+        [_Location_column]: 15,
+        [_Location_line]: 430,
+        [_Location_file]: null
+      });
+    },
+    get C152() {
+      return C[152] = dart.constList([C[153] || CT.C153, C[154] || CT.C154, C[155] || CT.C155, C[156] || CT.C156, C[157] || CT.C157, C[158] || CT.C158, C[159] || CT.C159], T._LocationL());
+    },
+    get C151() {
+      return C[151] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[152] || CT.C152,
+        [_Location_name]: null,
+        [_Location_column]: 44,
+        [_Location_line]: 423,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C162() {
+      return C[162] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "shrinkWrap",
+        [_Location_column]: 11,
+        [_Location_line]: 420,
+        [_Location_file]: null
+      });
+    },
+    get C163() {
+      return C[163] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "itemCount",
+        [_Location_column]: 11,
+        [_Location_line]: 421,
+        [_Location_file]: null
+      });
+    },
+    get C164() {
+      return C[164] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "physics",
+        [_Location_column]: 11,
+        [_Location_line]: 422,
+        [_Location_file]: null
+      });
+    },
+    get C165() {
+      return C[165] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "itemBuilder",
+        [_Location_column]: 11,
+        [_Location_line]: 423,
+        [_Location_file]: null
+      });
+    },
+    get C161() {
+      return C[161] = dart.constList([C[162] || CT.C162, C[163] || CT.C163, C[164] || CT.C164, C[165] || CT.C165], T._LocationL());
+    },
+    get C160() {
+      return C[160] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[161] || CT.C161,
+        [_Location_name]: null,
+        [_Location_column]: 18,
+        [_Location_line]: 419,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C168() {
+      return C[168] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 13,
+        [_Location_line]: 434,
+        [_Location_file]: null
+      });
+    },
+    get C169() {
+      return C[169] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 13,
+        [_Location_line]: 435,
+        [_Location_file]: null
+      });
+    },
+    get C167() {
+      return C[167] = dart.constList([C[168] || CT.C168, C[169] || CT.C169], T._LocationL());
+    },
+    get C166() {
+      return C[166] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[167] || CT.C167,
+        [_Location_name]: null,
+        [_Location_column]: 18,
+        [_Location_line]: 433,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C172() {
+      return C[172] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 433,
+        [_Location_file]: null
+      });
+    },
+    get C173() {
+      return C[173] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPressed",
+        [_Location_column]: 11,
+        [_Location_line]: 440,
+        [_Location_file]: null
+      });
+    },
+    get C171() {
+      return C[171] = dart.constList([C[172] || CT.C172, C[173] || CT.C173], T._LocationL());
+    },
+    get C170() {
+      return C[170] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[171] || CT.C171,
+        [_Location_name]: null,
+        [_Location_column]: 9,
+        [_Location_line]: 432,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C174() {
+      return C[174] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[114] || CT.C114,
+        [_Location_name]: null,
+        [_Location_column]: 9,
+        [_Location_line]: 445,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C175() {
+      return C[175] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[114] || CT.C114,
+        [_Location_name]: null,
+        [_Location_column]: 59,
+        [_Location_line]: 452,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C176() {
+      return C[176] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 0,
+        [EdgeInsets_right]: 0,
+        [EdgeInsets_top]: 0,
+        [EdgeInsets_left]: 10
+      });
+    },
+    get C179() {
+      return C[179] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 21,
+        [_Location_line]: 462,
+        [_Location_file]: null
+      });
+    },
+    get C180() {
+      return C[180] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 21,
+        [_Location_line]: 463,
+        [_Location_file]: null
+      });
+    },
+    get C178() {
+      return C[178] = dart.constList([C[179] || CT.C179, C[180] || CT.C180], T._LocationL());
+    },
+    get C177() {
+      return C[177] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[178] || CT.C178,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 461,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C183() {
+      return C[183] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "alignment",
+        [_Location_column]: 19,
+        [_Location_line]: 458,
+        [_Location_file]: null
+      });
+    },
+    get C184() {
+      return C[184] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 19,
+        [_Location_line]: 459,
+        [_Location_file]: null
+      });
+    },
+    get C185() {
+      return C[185] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 19,
+        [_Location_line]: 460,
+        [_Location_file]: null
+      });
+    },
+    get C186() {
+      return C[186] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 461,
+        [_Location_file]: null
+      });
+    },
+    get C182() {
+      return C[182] = dart.constList([C[183] || CT.C183, C[184] || CT.C184, C[185] || CT.C185, C[186] || CT.C186], T._LocationL());
+    },
+    get C181() {
+      return C[181] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[182] || CT.C182,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 457,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C187() {
+      return C[187] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[114] || CT.C114,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 469,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C190() {
+      return C[190] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 36,
+        [_Location_line]: 471,
+        [_Location_file]: null
+      });
+    },
+    get C189() {
+      return C[189] = dart.constList([C[190] || CT.C190], T._LocationL());
+    },
+    get C188() {
+      return C[188] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[189] || CT.C189,
+        [_Location_name]: null,
+        [_Location_column]: 25,
+        [_Location_line]: 471,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C193() {
+      return C[193] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 19,
+        [_Location_line]: 471,
+        [_Location_file]: null
+      });
+    },
+    get C194() {
+      return C[194] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 19,
+        [_Location_line]: 472,
+        [_Location_file]: null
+      });
+    },
+    get C195() {
+      return C[195] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPressed",
+        [_Location_column]: 19,
+        [_Location_line]: 473,
+        [_Location_file]: null
+      });
+    },
+    get C192() {
+      return C[192] = dart.constList([C[193] || CT.C193, C[194] || CT.C194, C[195] || CT.C195], T._LocationL());
+    },
+    get C191() {
+      return C[191] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[192] || CT.C192,
+        [_Location_name]: null,
+        [_Location_column]: 21,
+        [_Location_line]: 470,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C198() {
+      return C[198] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 15,
+        [_Location_line]: 456,
+        [_Location_file]: null
+      });
+    },
+    get C197() {
+      return C[197] = dart.constList([C[198] || CT.C198], T._LocationL());
+    },
+    get C196() {
+      return C[196] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[197] || CT.C197,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 455,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C201() {
+      return C[201] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onTap",
+        [_Location_column]: 13,
+        [_Location_line]: 448,
+        [_Location_file]: null
+      });
+    },
+    get C202() {
+      return C[202] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 455,
+        [_Location_file]: null
+      });
+    },
+    get C200() {
+      return C[200] = dart.constList([C[201] || CT.C201, C[202] || CT.C202], T._LocationL());
+    },
+    get C199() {
+      return C[199] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[200] || CT.C200,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 447,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C203() {
+      return C[203] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 0,
+        [EdgeInsets_right]: 0,
+        [EdgeInsets_top]: 20,
+        [EdgeInsets_left]: 0
+      });
+    },
+    get C206() {
+      return C[206] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 15,
+        [_Location_line]: 487,
+        [_Location_file]: null
+      });
+    },
+    get C207() {
+      return C[207] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 15,
+        [_Location_line]: 488,
+        [_Location_file]: null
+      });
+    },
+    get C205() {
+      return C[205] = dart.constList([C[206] || CT.C206, C[207] || CT.C207], T._LocationL());
+    },
+    get C204() {
+      return C[204] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[205] || CT.C205,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 486,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C210() {
+      return C[210] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "alignment",
+        [_Location_column]: 13,
+        [_Location_line]: 482,
+        [_Location_file]: null
+      });
+    },
+    get C211() {
+      return C[211] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 13,
+        [_Location_line]: 483,
+        [_Location_file]: null
+      });
+    },
+    get C212() {
+      return C[212] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 13,
+        [_Location_line]: 484,
+        [_Location_file]: null
+      });
+    },
+    get C213() {
+      return C[213] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 13,
+        [_Location_line]: 485,
+        [_Location_file]: null
+      });
+    },
+    get C214() {
+      return C[214] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 486,
+        [_Location_file]: null
+      });
+    },
+    get C209() {
+      return C[209] = dart.constList([C[210] || CT.C210, C[211] || CT.C211, C[212] || CT.C212, C[213] || CT.C213, C[214] || CT.C214], T._LocationL());
+    },
+    get C208() {
+      return C[208] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[209] || CT.C209,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 481,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C217() {
+      return C[217] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisSize",
+        [_Location_column]: 7,
+        [_Location_line]: 309,
+        [_Location_file]: null
+      });
+    },
+    get C218() {
+      return C[218] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "crossAxisAlignment",
+        [_Location_column]: 7,
+        [_Location_line]: 310,
+        [_Location_file]: null
+      });
+    },
+    get C219() {
+      return C[219] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 7,
+        [_Location_line]: 311,
+        [_Location_file]: null
+      });
+    },
+    get C216() {
+      return C[216] = dart.constList([C[217] || CT.C217, C[218] || CT.C218, C[219] || CT.C219], T._LocationL());
+    },
+    get C215() {
+      return C[215] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[216] || CT.C216,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 308,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C220() {
+      return C[220] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 10,
+        [EdgeInsets_right]: 0,
+        [EdgeInsets_top]: 10,
+        [EdgeInsets_left]: 0
+      });
+    },
+    get C223() {
+      return C[223] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 53,
+        [_Location_line]: 575,
+        [_Location_file]: null
+      });
+    },
+    get C224() {
+      return C[224] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 23,
+        [_Location_line]: 576,
+        [_Location_file]: null
+      });
+    },
+    get C222() {
+      return C[222] = dart.constList([C[223] || CT.C223, C[224] || CT.C224], T._LocationL());
+    },
+    get C221() {
+      return C[221] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[222] || CT.C222,
+        [_Location_name]: null,
+        [_Location_column]: 21,
+        [_Location_line]: 574,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C227() {
+      return C[227] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 55,
+        [_Location_line]: 581,
+        [_Location_file]: null
+      });
+    },
+    get C226() {
+      return C[226] = dart.constList([C[227] || CT.C227], T._LocationL());
+    },
+    get C225() {
+      return C[225] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[226] || CT.C226,
+        [_Location_name]: null,
+        [_Location_column]: 25,
+        [_Location_line]: 581,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C230() {
+      return C[230] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 36,
+        [_Location_line]: 583,
+        [_Location_file]: null
+      });
+    },
+    get C231() {
+      return C[231] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 29,
+        [_Location_line]: 584,
+        [_Location_file]: null
+      });
+    },
+    get C229() {
+      return C[229] = dart.constList([C[230] || CT.C230, C[231] || CT.C231], T._LocationL());
+    },
+    get C228() {
+      return C[228] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[229] || CT.C229,
+        [_Location_name]: null,
+        [_Location_column]: 25,
+        [_Location_line]: 583,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C234() {
+      return C[234] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 23,
+        [_Location_line]: 580,
+        [_Location_file]: null
+      });
+    },
+    get C233() {
+      return C[233] = dart.constList([C[234] || CT.C234], T._LocationL());
+    },
+    get C232() {
+      return C[232] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[233] || CT.C233,
+        [_Location_name]: null,
+        [_Location_column]: 21,
+        [_Location_line]: 579,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C237() {
+      return C[237] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "crossAxisAlignment",
+        [_Location_column]: 19,
+        [_Location_line]: 572,
+        [_Location_file]: null
+      });
+    },
+    get C238() {
+      return C[238] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 19,
+        [_Location_line]: 573,
+        [_Location_file]: null
+      });
+    },
+    get C236() {
+      return C[236] = dart.constList([C[237] || CT.C237, C[238] || CT.C238], T._LocationL());
+    },
+    get C235() {
+      return C[235] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[236] || CT.C236,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 571,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C239() {
+      return C[239] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[114] || CT.C114,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 589,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C242() {
+      return C[242] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 24,
+        [_Location_line]: 591,
+        [_Location_file]: null
+      });
+    },
+    get C243() {
+      return C[243] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 23,
+        [_Location_line]: 592,
+        [_Location_file]: null
+      });
+    },
+    get C241() {
+      return C[241] = dart.constList([C[242] || CT.C242, C[243] || CT.C243], T._LocationL());
+    },
+    get C240() {
+      return C[240] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[241] || CT.C241,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 591,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C244() {
+      return C[244] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 2.2,
+        [EdgeInsets_right]: 2.2,
+        [EdgeInsets_top]: 2.2,
+        [EdgeInsets_left]: 2.2
+      });
+    },
+    get C247() {
+      return C[247] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 41,
+        [_Location_line]: 599,
+        [_Location_file]: null
+      });
+    },
+    get C248() {
+      return C[248] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 27,
+        [_Location_line]: 600,
+        [_Location_file]: null
+      });
+    },
+    get C249() {
+      return C[249] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "size",
+        [_Location_column]: 48,
+        [_Location_line]: 600,
+        [_Location_file]: null
+      });
+    },
+    get C246() {
+      return C[246] = dart.constList([C[247] || CT.C247, C[248] || CT.C248, C[249] || CT.C249], T._LocationL());
+    },
+    get C245() {
+      return C[245] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[246] || CT.C246,
+        [_Location_name]: null,
+        [_Location_column]: 30,
+        [_Location_line]: 599,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C252() {
+      return C[252] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 23,
+        [_Location_line]: 597,
+        [_Location_file]: null
+      });
+    },
+    get C253() {
+      return C[253] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 23,
+        [_Location_line]: 598,
+        [_Location_file]: null
+      });
+    },
+    get C254() {
+      return C[254] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 23,
+        [_Location_line]: 599,
+        [_Location_file]: null
+      });
+    },
+    get C251() {
+      return C[251] = dart.constList([C[252] || CT.C252, C[253] || CT.C253, C[254] || CT.C254], T._LocationL());
+    },
+    get C250() {
+      return C[250] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[251] || CT.C251,
+        [_Location_name]: null,
+        [_Location_column]: 28,
+        [_Location_line]: 596,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C257() {
+      return C[257] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 21,
+        [_Location_line]: 596,
+        [_Location_file]: null
+      });
+    },
+    get C256() {
+      return C[256] = dart.constList([C[257] || CT.C257], T._LocationL());
+    },
+    get C255() {
+      return C[255] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[256] || CT.C256,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 595,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C260() {
+      return C[260] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 24,
+        [_Location_line]: 604,
+        [_Location_file]: null
+      });
+    },
+    get C261() {
+      return C[261] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 23,
+        [_Location_line]: 605,
+        [_Location_file]: null
+      });
+    },
+    get C259() {
+      return C[259] = dart.constList([C[260] || CT.C260, C[261] || CT.C261], T._LocationL());
+    },
+    get C258() {
+      return C[258] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[259] || CT.C259,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 604,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C264() {
+      return C[264] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 48,
+        [_Location_line]: 606,
+        [_Location_file]: null
+      });
+    },
+    get C263() {
+      return C[263] = dart.constList([C[264] || CT.C264], T._LocationL());
+    },
+    get C262() {
+      return C[262] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[263] || CT.C263,
+        [_Location_name]: null,
+        [_Location_column]: 37,
+        [_Location_line]: 606,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C267() {
+      return C[267] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "crossAxisAlignment",
+        [_Location_column]: 15,
+        [_Location_line]: 568,
+        [_Location_file]: null
+      });
+    },
+    get C268() {
+      return C[268] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 15,
+        [_Location_line]: 569,
+        [_Location_file]: null
+      });
+    },
+    get C269() {
+      return C[269] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 15,
+        [_Location_line]: 570,
+        [_Location_file]: null
+      });
+    },
+    get C266() {
+      return C[266] = dart.constList([C[267] || CT.C267, C[268] || CT.C268, C[269] || CT.C269], T._LocationL());
+    },
+    get C265() {
+      return C[265] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[266] || CT.C266,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 567,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C272() {
+      return C[272] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 13,
+        [_Location_line]: 566,
+        [_Location_file]: null
+      });
+    },
+    get C273() {
+      return C[273] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 567,
+        [_Location_file]: null
+      });
+    },
+    get C271() {
+      return C[271] = dart.constList([C[272] || CT.C272, C[273] || CT.C273], T._LocationL());
+    },
+    get C270() {
+      return C[270] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[271] || CT.C271,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 565,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C274() {
+      return C[274] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[114] || CT.C114,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 611,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C277() {
+      return C[277] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 21,
+        [_Location_line]: 619,
+        [_Location_file]: null
+      });
+    },
+    get C278() {
+      return C[278] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 21,
+        [_Location_line]: 620,
+        [_Location_file]: null
+      });
+    },
+    get C276() {
+      return C[276] = dart.constList([C[277] || CT.C277, C[278] || CT.C278], T._LocationL());
+    },
+    get C275() {
+      return C[275] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[276] || CT.C276,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 618,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C281() {
+      return C[281] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 31,
+        [_Location_line]: 622,
+        [_Location_file]: null
+      });
+    },
+    get C280() {
+      return C[280] = dart.constList([C[281] || CT.C281], T._LocationL());
+    },
+    get C279() {
+      return C[279] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[280] || CT.C280,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 622,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C284() {
+      return C[284] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 17,
+        [_Location_line]: 617,
+        [_Location_file]: null
+      });
+    },
+    get C283() {
+      return C[283] = dart.constList([C[284] || CT.C284], T._LocationL());
+    },
+    get C282() {
+      return C[282] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[283] || CT.C283,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 616,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C287() {
+      return C[287] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 17,
+        [_Location_line]: 626,
+        [_Location_file]: null
+      });
+    },
+    get C288() {
+      return C[288] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 17,
+        [_Location_line]: 627,
+        [_Location_file]: null
+      });
+    },
+    get C286() {
+      return C[286] = dart.constList([C[287] || CT.C287, C[288] || CT.C288], T._LocationL());
+    },
+    get C285() {
+      return C[285] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[286] || CT.C286,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 625,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C291() {
+      return C[291] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 20,
+        [_Location_line]: 630,
+        [_Location_file]: null
+      });
+    },
+    get C290() {
+      return C[290] = dart.constList([C[291] || CT.C291], T._LocationL());
+    },
+    get C289() {
+      return C[289] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[290] || CT.C290,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 630,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C294() {
+      return C[294] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "docIdOrder",
+        [_Location_column]: 23,
+        [_Location_line]: 637,
+        [_Location_file]: null
+      });
+    },
+    get C295() {
+      return C[295] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "costOrder",
+        [_Location_column]: 23,
+        [_Location_line]: 638,
+        [_Location_file]: null
+      });
+    },
+    get C296() {
+      return C[296] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "timeOrder",
+        [_Location_column]: 23,
+        [_Location_line]: 639,
+        [_Location_file]: null
+      });
+    },
+    get C293() {
+      return C[293] = dart.constList([C[294] || CT.C294, C[295] || CT.C295, C[296] || CT.C296], T._LocationL());
+    },
+    get C292() {
+      return C[292] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[293] || CT.C293,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 636,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C299() {
+      return C[299] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 636,
+        [_Location_file]: null
+      });
+    },
+    get C298() {
+      return C[298] = dart.constList([C[299] || CT.C299], T._LocationL());
+    },
+    get C297() {
+      return C[297] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[298] || CT.C298,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 635,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C300() {
+      return C[300] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[114] || CT.C114,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 643,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C303() {
+      return C[303] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 643,
+        [_Location_file]: null
+      });
+    },
+    get C302() {
+      return C[302] = dart.constList([C[303] || CT.C303], T._LocationL());
+    },
+    get C301() {
+      return C[301] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[302] || CT.C302,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 642,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C306() {
+      return C[306] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "dividerHeight",
+        [_Location_column]: 19,
+        [_Location_line]: 647,
+        [_Location_file]: null
+      });
+    },
+    get C307() {
+      return C[307] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 59,
+        [_Location_line]: 647,
+        [_Location_file]: null
+      });
+    },
+    get C305() {
+      return C[305] = dart.constList([C[306] || CT.C306, C[307] || CT.C307], T._LocationL());
+    },
+    get C304() {
+      return C[304] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[305] || CT.C305,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 646,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C310() {
+      return C[310] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "crossAxisAlignment",
+        [_Location_column]: 13,
+        [_Location_line]: 614,
+        [_Location_file]: null
+      });
+    },
+    get C311() {
+      return C[311] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 13,
+        [_Location_line]: 615,
+        [_Location_file]: null
+      });
+    },
+    get C309() {
+      return C[309] = dart.constList([C[310] || CT.C310, C[311] || CT.C311], T._LocationL());
+    },
+    get C308() {
+      return C[308] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[309] || CT.C309,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 613,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C314() {
+      return C[314] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 9,
+        [_Location_line]: 562,
+        [_Location_file]: null
+      });
+    },
+    get C315() {
+      return C[315] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "crossAxisAlignment",
+        [_Location_column]: 9,
+        [_Location_line]: 563,
+        [_Location_file]: null
+      });
+    },
+    get C316() {
+      return C[316] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 9,
+        [_Location_line]: 564,
+        [_Location_file]: null
+      });
+    },
+    get C313() {
+      return C[313] = dart.constList([C[314] || CT.C314, C[315] || CT.C315, C[316] || CT.C316], T._LocationL());
+    },
+    get C312() {
+      return C[312] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[313] || CT.C313,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 561,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C319() {
+      return C[319] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 7,
+        [_Location_line]: 560,
+        [_Location_file]: null
+      });
+    },
+    get C320() {
+      return C[320] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 561,
+        [_Location_file]: null
+      });
+    },
+    get C318() {
+      return C[318] = dart.constList([C[319] || CT.C319, C[320] || CT.C320], T._LocationL());
+    },
+    get C317() {
+      return C[317] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[318] || CT.C318,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 559,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C323() {
+      return C[323] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 9,
+        [_Location_line]: 667,
+        [_Location_file]: null
+      });
+    },
+    get C324() {
+      return C[324] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 9,
+        [_Location_line]: 668,
+        [_Location_file]: null
+      });
+    },
+    get C322() {
+      return C[322] = dart.constList([C[323] || CT.C323, C[324] || CT.C324], T._LocationL());
+    },
+    get C321() {
+      return C[321] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[322] || CT.C322,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 666,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C327() {
+      return C[327] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 7,
+        [_Location_line]: 662,
+        [_Location_file]: null
+      });
+    },
+    get C328() {
+      return C[328] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 666,
+        [_Location_file]: null
+      });
+    },
+    get C329() {
+      return C[329] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPressed",
+        [_Location_column]: 7,
+        [_Location_line]: 671,
+        [_Location_file]: null
+      });
+    },
+    get C326() {
+      return C[326] = dart.constList([C[327] || CT.C327, C[328] || CT.C328, C[329] || CT.C329], T._LocationL());
+    },
+    get C325() {
+      return C[325] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[326] || CT.C326,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 661,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C332() {
+      return C[332] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 23,
+        [_Location_line]: 720,
+        [_Location_file]: null
+      });
+    },
+    get C333() {
+      return C[333] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 17,
+        [_Location_line]: 721,
+        [_Location_file]: null
+      });
+    },
+    get C331() {
+      return C[331] = dart.constList([C[332] || CT.C332, C[333] || CT.C333], T._LocationL());
+    },
+    get C330() {
+      return C[330] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[331] || CT.C331,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 719,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C336() {
+      return C[336] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 23,
+        [_Location_line]: 725,
+        [_Location_file]: null
+      });
+    },
+    get C337() {
+      return C[337] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 17,
+        [_Location_line]: 726,
+        [_Location_file]: null
+      });
+    },
+    get C335() {
+      return C[335] = dart.constList([C[336] || CT.C336, C[337] || CT.C337], T._LocationL());
+    },
+    get C334() {
+      return C[334] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[335] || CT.C335,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 724,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C340() {
+      return C[340] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 23,
+        [_Location_line]: 730,
+        [_Location_file]: null
+      });
+    },
+    get C341() {
+      return C[341] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 17,
+        [_Location_line]: 731,
+        [_Location_file]: null
+      });
+    },
+    get C339() {
+      return C[339] = dart.constList([C[340] || CT.C340, C[341] || CT.C341], T._LocationL());
+    },
+    get C338() {
+      return C[338] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[339] || CT.C339,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 729,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C344() {
+      return C[344] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 23,
+        [_Location_line]: 735,
+        [_Location_file]: null
+      });
+    },
+    get C345() {
+      return C[345] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 17,
+        [_Location_line]: 736,
+        [_Location_file]: null
+      });
+    },
+    get C343() {
+      return C[343] = dart.constList([C[344] || CT.C344, C[345] || CT.C345], T._LocationL());
+    },
+    get C342() {
+      return C[342] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[343] || CT.C343,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 734,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C348() {
+      return C[348] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 23,
+        [_Location_line]: 740,
+        [_Location_file]: null
+      });
+    },
+    get C349() {
+      return C[349] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 17,
+        [_Location_line]: 741,
+        [_Location_file]: null
+      });
+    },
+    get C347() {
+      return C[347] = dart.constList([C[348] || CT.C348, C[349] || CT.C349], T._LocationL());
+    },
+    get C346() {
+      return C[346] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[347] || CT.C347,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 739,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C350() {
+      return C[350] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[114] || CT.C114,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 744,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C353() {
+      return C[353] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "initialRating",
+        [_Location_column]: 9,
+        [_Location_line]: 712,
+        [_Location_file]: null
+      });
+    },
+    get C354() {
+      return C[354] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "direction",
+        [_Location_column]: 9,
+        [_Location_line]: 713,
+        [_Location_file]: null
+      });
+    },
+    get C355() {
+      return C[355] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "itemCount",
+        [_Location_column]: 9,
+        [_Location_line]: 714,
+        [_Location_file]: null
+      });
+    },
+    get C356() {
+      return C[356] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "itemPadding",
+        [_Location_column]: 9,
+        [_Location_line]: 715,
+        [_Location_file]: null
+      });
+    },
+    get C357() {
+      return C[357] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "itemBuilder",
+        [_Location_column]: 9,
+        [_Location_line]: 716,
+        [_Location_file]: null
+      });
+    },
+    get C358() {
+      return C[358] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onRatingUpdate",
+        [_Location_column]: 9,
+        [_Location_line]: 747,
+        [_Location_file]: null
+      });
+    },
+    get C359() {
+      return C[359] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "updateOnDrag",
+        [_Location_column]: 9,
+        [_Location_line]: 752,
+        [_Location_file]: null
+      });
+    },
+    get C352() {
+      return C[352] = dart.constList([C[353] || CT.C353, C[354] || CT.C354, C[355] || CT.C355, C[356] || CT.C356, C[357] || CT.C357, C[358] || CT.C358, C[359] || CT.C359], T._LocationL());
+    },
+    get C351() {
+      return C[351] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[352] || CT.C352,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 711,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C364() {
+      return C[364] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 30,
+        [_Location_line]: 758,
+        [_Location_file]: null
+      });
+    },
+    get C363() {
+      return C[363] = dart.constList([C[364] || CT.C364], T._LocationL());
+    },
+    get C362() {
+      return C[362] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[363] || CT.C363,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 758,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C365() {
+      return C[365] = dart.const({
+        __proto__: icon_data.IconData.prototype,
+        [IconData_matchTextDirection]: false,
+        [IconData_fontPackage]: null,
+        [IconData_fontFamily]: "MaterialIcons",
+        [IconData_codePoint]: 59648
+      });
+    },
+    get C361() {
+      return C[361] = dart.const({
+        __proto__: icon.Icon.prototype,
+        [Widget__location]: C[362] || CT.C362,
+        [Widget_key]: null,
+        [Icon_textDirection]: null,
+        [Icon_semanticLabel]: null,
+        [Icon_color]: null,
+        [Icon_size]: null,
+        [Icon_icon]: C[365] || CT.C365
+      });
+    },
+    get C360() {
+      return C[360] = dart.const({
+        __proto__: input_decorator.InputDecoration.prototype,
+        [InputDecoration_alignLabelWithHint]: null,
+        [InputDecoration_semanticCounterText]: null,
+        [InputDecoration_enabled]: true,
+        [InputDecoration_border]: null,
+        [InputDecoration_enabledBorder]: null,
+        [InputDecoration_disabledBorder]: null,
+        [InputDecoration_focusedErrorBorder]: null,
+        [InputDecoration_focusedBorder]: null,
+        [InputDecoration_errorBorder]: null,
+        [InputDecoration_hoverColor]: null,
+        [InputDecoration_focusColor]: null,
+        [InputDecoration_fillColor]: null,
+        [InputDecoration_filled]: null,
+        [InputDecoration_counterStyle]: null,
+        [InputDecoration_counter]: null,
+        [InputDecoration_counterText]: null,
+        [InputDecoration_suffixIconConstraints]: null,
+        [InputDecoration_suffixStyle]: null,
+        [InputDecoration_suffixText]: null,
+        [InputDecoration_suffix]: null,
+        [InputDecoration_suffixIcon]: null,
+        [InputDecoration_prefixStyle]: null,
+        [InputDecoration_prefixText]: null,
+        [InputDecoration_prefix]: null,
+        [InputDecoration_prefixIconConstraints]: null,
+        [InputDecoration_prefixIcon]: null,
+        [InputDecoration_isCollapsed]: false,
+        [InputDecoration_contentPadding]: null,
+        [InputDecoration_isDense]: null,
+        [InputDecoration_floatingLabelBehavior]: null,
+        [InputDecoration_hasFloatingPlaceholder]: true,
+        [InputDecoration_errorMaxLines]: null,
+        [InputDecoration_errorStyle]: null,
+        [InputDecoration_errorText]: null,
+        [InputDecoration_hintMaxLines]: null,
+        [InputDecoration_hintTextDirection]: null,
+        [InputDecoration_hintStyle]: null,
+        [InputDecoration_hintText]: "What did you like/dislike about the food?",
+        [InputDecoration_helperMaxLines]: null,
+        [InputDecoration_helperStyle]: null,
+        [InputDecoration_helperText]: null,
+        [InputDecoration_labelStyle]: null,
+        [InputDecoration_labelText]: "Feedback",
+        [InputDecoration_icon]: C[361] || CT.C361
+      });
+    },
+    get C368() {
+      return C[368] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "controller",
+        [_Location_column]: 11,
+        [_Location_line]: 755,
+        [_Location_file]: null
+      });
+    },
+    get C369() {
+      return C[369] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "autovalidateMode",
+        [_Location_column]: 11,
+        [_Location_line]: 756,
+        [_Location_file]: null
+      });
+    },
+    get C370() {
+      return C[370] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 11,
+        [_Location_line]: 757,
+        [_Location_file]: null
+      });
+    },
+    get C371() {
+      return C[371] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onFieldSubmitted",
+        [_Location_column]: 11,
+        [_Location_line]: 762,
+        [_Location_file]: null
+      });
+    },
+    get C367() {
+      return C[367] = dart.constList([C[368] || CT.C368, C[369] || CT.C369, C[370] || CT.C370, C[371] || CT.C371], T._LocationL());
+    },
+    get C366() {
+      return C[366] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[367] || CT.C367,
+        [_Location_name]: null,
+        [_Location_column]: 7,
+        [_Location_line]: 754,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C372() {
+      return C[372] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[114] || CT.C114,
+        [_Location_name]: null,
+        [_Location_column]: 18,
+        [_Location_line]: 820,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C375() {
+      return C[375] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "stream",
+        [_Location_column]: 9,
+        [_Location_line]: 783,
+        [_Location_file]: null
+      });
+    },
+    get C376() {
+      return C[376] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 9,
+        [_Location_line]: 784,
+        [_Location_file]: null
+      });
+    },
+    get C374() {
+      return C[374] = dart.constList([C[375] || CT.C375, C[376] || CT.C376], T._LocationL());
+    },
+    get C373() {
+      return C[373] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[374] || CT.C374,
+        [_Location_name]: null,
+        [_Location_column]: 7,
+        [_Location_line]: 782,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    },
+    get C379() {
+      return C[379] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 19,
+        [_Location_line]: 710,
+        [_Location_file]: null
+      });
+    },
+    get C378() {
+      return C[378] = dart.constList([C[379] || CT.C379], T._LocationL());
+    },
+    get C377() {
+      return C[377] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[378] || CT.C378,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 710,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+      });
+    }
+  }, false);
+  var C = Array(380).fill(void 0);
+  var I = [
+    "package:food_delivery_app/account/AccountPage.dart",
+    "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/account/AccountPage.dart"
+  ];
+  var titles = dart.privateName(AccountPage, "AccountScreen.titles");
+  var body = dart.privateName(AccountPage, "AccountScreen.body");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  var EdgeInsets_bottom = dart.privateName(edge_insets, "EdgeInsets.bottom");
+  var EdgeInsets_right = dart.privateName(edge_insets, "EdgeInsets.right");
+  var EdgeInsets_top = dart.privateName(edge_insets, "EdgeInsets.top");
+  var EdgeInsets_left = dart.privateName(edge_insets, "EdgeInsets.left");
+  AccountPage.AccountScreen = class AccountScreen extends framework.StatelessWidget {
+    get titles() {
+      return this[titles];
+    }
+    set titles(value) {
+      super.titles = value;
+    }
+    get body() {
+      return this[body];
+    }
+    set body(value) {
+      super.body = value;
+    }
+    build(context) {
+      let totalHeight = media_query.MediaQuery.of(context).size.height;
+      let name = "";
+      return new scaffold.Scaffold.new({body: new safe_area.SafeArea.new({child: new single_child_scroll_view.SingleChildScrollView.new({child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.stretch, children: T.JSArrayOfWidgetL().of([new (T.StreamBuilderOfQuerySnapshotL()).new({stream: cloud_firestore.FirebaseFirestore.instance.collection("User").snapshots(), builder: dart.fn((context, snapshot) => {
+                    if (dart.test(snapshot.hasData)) {
+                      for (let i = 0; i < dart.notNull(snapshot.data.docs[$length]); i = i + 1) {
+                        if (core.identical(AccountPage.phone, snapshot.data.docs[$_get](i)._get("phoneNum"))) {
+                          let fname = T.StringL().as(snapshot.data.docs[$_get](i)._get("fname"));
+                          let lname = T.StringL().as(snapshot.data.docs[$_get](i)._get("lname"));
+                          name = dart.notNull(fname) + " " + dart.notNull(lname);
+                          break;
+                        }
+                      }
+                    }
+                    return new AccountPage._AppBar.new({name: name[$toUpperCase](), $creationLocationd_0dea112b090073317d4: C[0] || CT.C0});
+                  }, T.BuildContextLAndAsyncSnapshotLOfQuerySnapshotLTo_AppBarL()), $creationLocationd_0dea112b090073317d4: C[3] || CT.C3}), new scroll_view.ListView.builder({shrinkWrap: true, itemCount: this.titles[$length], physics: new scroll_physics.NeverScrollableScrollPhysics.new(), itemBuilder: dart.fn((context, index) => new AccountPage._ListItem.new({title: this.titles[$_get](index), body: this.body[$_get](index), isLastItem: dart.notNull(this.titles[$length]) - 1 === index, $creationLocationd_0dea112b090073317d4: C[7] || CT.C7}), T.BuildContextLAndintLTo_ListItemL()), $creationLocationd_0dea112b090073317d4: C[12] || CT.C12}), new container.Container.new({alignment: alignment.Alignment.centerLeft, padding: C[18] || CT.C18, height: dart.notNull(totalHeight) * 50.0 / 820, color: colors.Colors.grey._get(200), child: new text.Text.new("ONGOING ORDERS", {style: theme.Theme.of(context).textTheme.subtitle2.copyWith({color: colors.Colors.grey._get(700), fontSize: dart.notNull(totalHeight) * 14.0 / 820, fontWeight: ui.FontWeight.bold}), $creationLocationd_0dea112b090073317d4: C[19] || CT.C19}), $creationLocationd_0dea112b090073317d4: C[23] || CT.C23}), new AccountPage._PastOrderListView.new({ongoing: true, $creationLocationd_0dea112b090073317d4: C[30] || CT.C30}), new container.Container.new({alignment: alignment.Alignment.centerLeft, padding: C[33] || CT.C33, height: dart.notNull(totalHeight) * 50.0 / 820, color: colors.Colors.grey._get(200), child: new text.Text.new("PAST ORDERS", {style: theme.Theme.of(context).textTheme.subtitle2.copyWith({color: colors.Colors.grey._get(700), fontSize: dart.notNull(totalHeight) * 14.0 / 820, fontWeight: ui.FontWeight.bold}), $creationLocationd_0dea112b090073317d4: C[34] || CT.C34}), $creationLocationd_0dea112b090073317d4: C[38] || CT.C38}), new AccountPage._PastOrderListView.new({ongoing: false, $creationLocationd_0dea112b090073317d4: C[45] || CT.C45})]), $creationLocationd_0dea112b090073317d4: C[48] || CT.C48}), $creationLocationd_0dea112b090073317d4: C[52] || CT.C52}), $creationLocationd_0dea112b090073317d4: C[55] || CT.C55}), $creationLocationd_0dea112b090073317d4: C[58] || CT.C58});
+    }
+  };
+  (AccountPage.AccountScreen.new = function(opts) {
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[titles] = T.JSArrayOfStringL().of(["My Account", "Food App SUPER", "Food App Money", "Help"]);
+    this[body] = T.JSArrayOfStringL().of(["Address, Payments, Favourties, Referrals & Offers", "You had a great savings run. Get SUPER again", "Balance & Transactions", "FAQ & Links"]);
+    AccountPage.AccountScreen.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = AccountPage.AccountScreen.prototype;
+  dart.addTypeTests(AccountPage.AccountScreen);
+  dart.addTypeCaches(AccountPage.AccountScreen);
+  dart.setMethodSignature(AccountPage.AccountScreen, () => ({
+    __proto__: dart.getMethods(AccountPage.AccountScreen.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
+  }));
+  dart.setLibraryUri(AccountPage.AccountScreen, I[0]);
+  dart.setFieldSignature(AccountPage.AccountScreen, () => ({
+    __proto__: dart.getFields(AccountPage.AccountScreen.__proto__),
+    titles: dart.finalFieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    body: dart.finalFieldType(dart.legacy(core.List$(dart.legacy(core.String))))
+  }));
+  AccountPage._AppBar = class _AppBar extends framework.StatefulWidget {
+    createState() {
+      return new AccountPage.__AppBarState.new();
+    }
+  };
+  (AccountPage._AppBar.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let name = opts && 'name' in opts ? opts.name : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this.name = name;
+    AccountPage._AppBar.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = AccountPage._AppBar.prototype;
+  dart.addTypeTests(AccountPage._AppBar);
+  dart.addTypeCaches(AccountPage._AppBar);
+  dart.setMethodSignature(AccountPage._AppBar, () => ({
+    __proto__: dart.getMethods(AccountPage._AppBar.__proto__),
+    createState: dart.fnType(dart.legacy(AccountPage.__AppBarState), [])
+  }));
+  dart.setLibraryUri(AccountPage._AppBar, I[0]);
+  dart.setFieldSignature(AccountPage._AppBar, () => ({
+    __proto__: dart.getFields(AccountPage._AppBar.__proto__),
+    name: dart.finalFieldType(dart.legacy(core.String))
+  }));
+  AccountPage.__AppBarState = class __AppBarState extends framework.State$(dart.legacy(AccountPage._AppBar)) {
+    build(context) {
+      let totalHeight = media_query.MediaQuery.of(context).size.height;
+      let subtitleStyle = theme.Theme.of(context).textTheme.bodyText1;
+      return new container.Container.new({padding: C[61] || CT.C61, child: new basic.Column.new({children: T.JSArrayOfWidgetL().of([new basic.Row.new({mainAxisAlignment: flex.MainAxisAlignment.spaceBetween, children: T.JSArrayOfWidgetL().of([new text.Text.new(this.widget.name, {style: theme.Theme.of(context).textTheme.headline6.copyWith({fontWeight: ui.FontWeight.bold, fontSize: dart.notNull(totalHeight) * 18.0 / 820}), $creationLocationd_0dea112b090073317d4: C[62] || CT.C62})]), $creationLocationd_0dea112b090073317d4: C[66] || CT.C66}), ui_helper.UIHelper.verticalSpaceSmall(), new basic.Row.new({children: T.JSArrayOfWidgetL().of([new text.Text.new(AccountPage.phone, {style: subtitleStyle, $creationLocationd_0dea112b090073317d4: C[70] || CT.C70}), ui_helper.UIHelper.horizontalSpaceSmall(), new basic.ClipOval.new({child: new container.Container.new({height: dart.notNull(totalHeight) * 3.0 / 820, width: dart.notNull(totalHeight) * 3.0 / 820, color: colors.Colors.grey._get(700), $creationLocationd_0dea112b090073317d4: C[74] || CT.C74}), $creationLocationd_0dea112b090073317d4: C[79] || CT.C79}), ui_helper.UIHelper.horizontalSpaceSmall()]), $creationLocationd_0dea112b090073317d4: C[82] || CT.C82}), ui_helper.UIHelper.verticalSpaceLarge(), new custom_divider_view.CustomDividerView.new({dividerHeight: dart.notNull(totalHeight) * 1.8 / 820, color: colors.Colors.black, $creationLocationd_0dea112b090073317d4: C[85] || CT.C85})]), $creationLocationd_0dea112b090073317d4: C[89] || CT.C89}), $creationLocationd_0dea112b090073317d4: C[92] || CT.C92});
+    }
+  };
+  (AccountPage.__AppBarState.new = function() {
+    AccountPage.__AppBarState.__proto__.new.call(this);
+    ;
+  }).prototype = AccountPage.__AppBarState.prototype;
+  dart.addTypeTests(AccountPage.__AppBarState);
+  dart.addTypeCaches(AccountPage.__AppBarState);
+  dart.setMethodSignature(AccountPage.__AppBarState, () => ({
+    __proto__: dart.getMethods(AccountPage.__AppBarState.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
+  }));
+  dart.setLibraryUri(AccountPage.__AppBarState, I[0]);
+  var title$ = dart.privateName(AccountPage, "_ListItem.title");
+  var body$ = dart.privateName(AccountPage, "_ListItem.body");
+  var isLastItem$ = dart.privateName(AccountPage, "_ListItem.isLastItem");
+  AccountPage._ListItem = class _ListItem extends framework.StatelessWidget {
+    get title() {
+      return this[title$];
+    }
+    set title(value) {
+      super.title = value;
+    }
+    get body() {
+      return this[body$];
+    }
+    set body(value) {
+      super.body = value;
+    }
+    get isLastItem() {
+      return this[isLastItem$];
+    }
+    set isLastItem(value) {
+      super.isLastItem = value;
+    }
+    build(context) {
+      let totalHeight = media_query.MediaQuery.of(context).size.height;
+      return new container.Container.new({padding: C[96] || CT.C96, child: new basic.Column.new({mainAxisSize: flex.MainAxisSize.min, mainAxisAlignment: flex.MainAxisAlignment.center, children: T.JSArrayOfWidgetL().of([new basic.Row.new({crossAxisAlignment: flex.CrossAxisAlignment.center, children: T.JSArrayOfWidgetL().of([new basic.Expanded.new({child: new basic.Column.new({mainAxisSize: flex.MainAxisSize.min, crossAxisAlignment: flex.CrossAxisAlignment.start, children: T.JSArrayOfWidgetL().of([new text.Text.new(this.title, {style: theme.Theme.of(context).textTheme.headline6.copyWith({fontSize: dart.notNull(totalHeight) * 15.0 / 820}), $creationLocationd_0dea112b090073317d4: C[97] || CT.C97}), ui_helper.UIHelper.verticalSpaceExtraSmall(), new text.Text.new(this.body, {style: theme.Theme.of(context).textTheme.bodyText1.copyWith({fontSize: dart.notNull(totalHeight) * 13.0 / 820, color: colors.Colors.black}), $creationLocationd_0dea112b090073317d4: C[101] || CT.C101})]), $creationLocationd_0dea112b090073317d4: C[105] || CT.C105}), $creationLocationd_0dea112b090073317d4: C[110] || CT.C110}), new spacer.Spacer.new({$creationLocationd_0dea112b090073317d4: C[113] || CT.C113}), ui_helper.UIHelper.horizontalSpaceSmall(), new icon.Icon.new(icons.Icons.keyboard_arrow_right, {$creationLocationd_0dea112b090073317d4: C[115] || CT.C115})]), $creationLocationd_0dea112b090073317d4: C[118] || CT.C118}), ui_helper.UIHelper.verticalSpaceLarge(), dart.test(this.isLastItem) ? new basic.SizedBox.new({$creationLocationd_0dea112b090073317d4: C[122] || CT.C122}) : new custom_divider_view.CustomDividerView.new({dividerHeight: dart.notNull(totalHeight) * 0.8 / 820, color: colors.Colors.black26, $creationLocationd_0dea112b090073317d4: C[123] || CT.C123})]), $creationLocationd_0dea112b090073317d4: C[127] || CT.C127}), $creationLocationd_0dea112b090073317d4: C[132] || CT.C132});
+    }
+  };
+  (AccountPage._ListItem.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let title = opts && 'title' in opts ? opts.title : null;
+    let body = opts && 'body' in opts ? opts.body : null;
+    let isLastItem = opts && 'isLastItem' in opts ? opts.isLastItem : false;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[title$] = title;
+    this[body$] = body;
+    this[isLastItem$] = isLastItem;
+    if (!(title !== "")) dart.assertFailed(body !== "", I[1], 194, 16, "title != ''");
+    AccountPage._ListItem.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = AccountPage._ListItem.prototype;
+  dart.addTypeTests(AccountPage._ListItem);
+  dart.addTypeCaches(AccountPage._ListItem);
+  dart.setMethodSignature(AccountPage._ListItem, () => ({
+    __proto__: dart.getMethods(AccountPage._ListItem.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
+  }));
+  dart.setLibraryUri(AccountPage._ListItem, I[0]);
+  dart.setFieldSignature(AccountPage._ListItem, () => ({
+    __proto__: dart.getFields(AccountPage._ListItem.__proto__),
+    title: dart.finalFieldType(dart.legacy(core.String)),
+    body: dart.finalFieldType(dart.legacy(core.String)),
+    isLastItem: dart.finalFieldType(dart.legacy(core.bool))
+  }));
+  AccountPage._PastOrderListView = class _PastOrderListView extends framework.StatefulWidget {
+    createState() {
+      return new AccountPage.__PastOrderListViewState.new();
+    }
+  };
+  (AccountPage._PastOrderListView.new = function(opts) {
+    let ongoing = opts && 'ongoing' in opts ? opts.ongoing : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this.ongoing = ongoing;
+    AccountPage._PastOrderListView.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = AccountPage._PastOrderListView.prototype;
+  dart.addTypeTests(AccountPage._PastOrderListView);
+  dart.addTypeCaches(AccountPage._PastOrderListView);
+  dart.setMethodSignature(AccountPage._PastOrderListView, () => ({
+    __proto__: dart.getMethods(AccountPage._PastOrderListView.__proto__),
+    createState: dart.fnType(dart.legacy(AccountPage.__PastOrderListViewState), [])
+  }));
+  dart.setLibraryUri(AccountPage._PastOrderListView, I[0]);
+  dart.setFieldSignature(AccountPage._PastOrderListView, () => ({
+    __proto__: dart.getFields(AccountPage._PastOrderListView.__proto__),
+    ongoing: dart.fieldType(dart.legacy(core.bool))
+  }));
+  AccountPage.__PastOrderListViewState = class __PastOrderListViewState extends framework.State$(dart.legacy(AccountPage._PastOrderListView)) {
+    initState() {
+      super.initState();
+      this.setState(dart.fn(() => {
+      }, T.VoidToNull()));
+    }
+    dispose() {
+      super.dispose();
+    }
+    getChefName(chefId) {
+      let cname = "";
+      let b = new (T.StreamBuilderOfQuerySnapshotL()).new({stream: cloud_firestore.FirebaseFirestore.instance.collection("Chef").snapshots(), builder: dart.fn((context, snapshot) => {
+          if (dart.test(snapshot.hasData)) {
+            for (let i = 0; i < dart.notNull(snapshot.data.docs[$length]); i = i + 1) {
+              if (core.identical(chefId, snapshot.data.docs[$_get](i)._get("chefId"))) {
+                cname = T.StringL().as(snapshot.data.docs[$_get](i)._get("fname" + " " + "lname"));
+              }
+            }
+          }
+          return new container.Container.new({$creationLocationd_0dea112b090073317d4: C[136] || CT.C136});
+        }, T.BuildContextLAndAsyncSnapshotLOfQuerySnapshotLToContainerL()), $creationLocationd_0dea112b090073317d4: C[137] || CT.C137});
+      return cname;
+    }
+    build(context) {
+      let totalHeight = media_query.MediaQuery.of(context).size.height;
+      return new basic.Column.new({mainAxisSize: flex.MainAxisSize.min, crossAxisAlignment: flex.CrossAxisAlignment.start, children: (() => {
+          let t0 = T.JSArrayOfWidgetL().of([new (T.StreamBuilderOfQuerySnapshotL()).new({stream: cloud_firestore.FirebaseFirestore.instance.collection("Orders").snapshots(), builder: dart.fn((context, snapshot) => {
+                if (dart.test(snapshot.hasData)) {
+                  return new (T.StreamBuilderOfQuerySnapshotL()).new({stream: this.db.collection("Chef").snapshots(), builder: dart.fn((context, snapshot2) => {
+                      if (dart.test(snapshot2.hasData)) {
+                        this.chefs = new _js_helper.LinkedMap.new();
+                        for (let i = 0; i < dart.notNull(snapshot2.data.docs[$length]); i = i + 1) {
+                          this.chefs[$_set](snapshot2.data.docs[$_get](i).id, snapshot2.data.docs[$_get](i).data());
+                        }
+                        this.dishNameOrder[$clear]();
+                        this.quantityOrder[$clear]();
+                        this.chefNameOrder[$clear]();
+                        this.costOrder[$clear]();
+                        this.timeOrder[$clear]();
+                        this.foods[$clear]();
+                        for (let i = 0; i < dart.notNull(snapshot.data.docs[$length]); i = i + 1) {
+                          let chef_detail = this.chefs[$_get](snapshot.data.docs[$_get](i)._get("chefId"));
+                          let isDelOrder = false;
+                          let dd = snapshot.data.docs[$_get](i);
+                          let flag = true;
+                          for (let j = 0; j < dart.notNull(T.numL().as(dart.dload(dd._get("isDelivered"), 'length'))); j = j + 1) {
+                            if (dart.equals(dart.dsend(dd._get("isDelivered"), '_get', [j]), false)) {
+                              flag = false;
+                              break;
+                            }
+                          }
+                          if (flag === true) {
+                            isDelOrder = true;
+                          } else {
+                            isDelOrder = false;
+                            flag = true;
+                          }
+                          if (core.identical(AccountPage.user.uid, snapshot.data.docs[$_get](i)._get("userId"))) {
+                            if (this.widget.ongoing !== isDelOrder) {
+                              cloud_firestore.FirebaseFirestore.instance.collection("Orders").get().then(T.SetLOfvoid(), dart.fn(snapshot => T.LinkedHashSetOfvoid().from([snapshot.docs[$forEach](dart.fn(f => {
+                                  this.docIdOrder[$add](dart.toString(f.reference.id));
+                                }, T.QueryDocumentSnapshotLToNull()))]), T.QuerySnapshotLToSetLOfvoid()));
+                              if (dart.equals(dd._get("rating"), 0.0) || dd._get("rating") == null) {
+                                this.rated[$add]("false");
+                              } else {
+                                this.rated[$add]("true");
+                              }
+                              this.dishNameOrder[$add](dart.toString(dd._get("dishName")));
+                              this.quantityOrder[$add](dart.toString(dd._get("quantity")));
+                              this.chefNameOrder[$add](dart.toString(dart.dsend(chef_detail, '_get', ["fname"])));
+                              this.costOrder[$add](dart.toString(dd._get("totalCost")));
+                              this.timeOrder[$add](dart.toString(dd._get("timeOrderPlaced")));
+                              this.foods[$add](dart.str(this.dishNameOrder[$_get](dart.notNull(this.dishNameOrder[$length]) - 1)) + " x " + dart.str(this.quantityOrder[$_get](dart.notNull(this.quantityOrder[$length]) - 1)));
+                            }
+                          }
+                          core.print("dno=" + dart.str(this.dishNameOrder));
+                          core.print("qno=" + dart.str(this.quantityOrder));
+                          let set = T.LinkedHashSetOfStringL().from(this.docIdOrder);
+                          this.l2 = T.ListOfStringL().from(set);
+                        }
+                      }
+                      return new container.Container.new({$creationLocationd_0dea112b090073317d4: C[141] || CT.C141});
+                    }, T.BuildContextLAndAsyncSnapshotLOfQuerySnapshotLToContainerL()), $creationLocationd_0dea112b090073317d4: C[142] || CT.C142});
+                }
+                return new container.Container.new({$creationLocationd_0dea112b090073317d4: C[146] || CT.C146});
+              }, T.BuildContextLAndAsyncSnapshotLOfQuerySnapshotLToWidgetL()), $creationLocationd_0dea112b090073317d4: C[147] || CT.C147}), new scroll_view.ListView.builder({shrinkWrap: true, itemCount: this.timeOrder[$length], physics: new scroll_physics.NeverScrollableScrollPhysics.new(), itemBuilder: dart.fn((context, index) => new AccountPage._PastOrdersListItemView.new({docIdOrder: this.l2, ongoing: this.widget.ongoing, chefNameOrder: this.chefNameOrder[$_get](index), costOrder: this.costOrder[$_get](index), timeOrder: this.timeOrder[$_get](index), foodItem: this.foods[$_get](index), rated: this.rated[$_get](index), $creationLocationd_0dea112b090073317d4: C[151] || CT.C151}), T.BuildContextLAndintLTo_PastOrdersListItemViewL()), $creationLocationd_0dea112b090073317d4: C[160] || CT.C160}), new text_button.TextButton.new({child: new text.Text.new("VIEW MY ORDERS", {style: theme.Theme.of(context).textTheme.subtitle2.copyWith({color: app_colors.darkOrange}), $creationLocationd_0dea112b090073317d4: C[166] || CT.C166}), onPressed: dart.fn(() => {
+                this.setState(dart.fn(() => {
+                }, T.VoidToNull()));
+              }, T.VoidToNull()), $creationLocationd_0dea112b090073317d4: C[170] || CT.C170}), ui_helper.UIHelper.verticalSpaceSmall(), new custom_divider_view.CustomDividerView.new({$creationLocationd_0dea112b090073317d4: C[174] || CT.C174})]);
+          if (this.widget.ongoing === false) t0[$add](new ink_well.InkWell.new({onTap: dart.fn(() => {
+              firebase_auth.FirebaseAuth.instance.signOut();
+              navigator.Navigator.pushAndRemoveUntil(dart.dynamic, context, new page.MaterialPageRoute.new({builder: dart.fn(context => new sign_in.SignIn.new({$creationLocationd_0dea112b090073317d4: C[175] || CT.C175}), T.BuildContextLToSignInL())}), dart.fn(route => false, T.RouteLToboolL()));
+            }, T.VoidToNull()), child: new basic.Row.new({children: T.JSArrayOfWidgetL().of([new container.Container.new({alignment: alignment.Alignment.centerLeft, padding: C[176] || CT.C176, height: dart.notNull(totalHeight) * 50.0 / 820, child: new text.Text.new("LOGOUT", {style: theme.Theme.of(context).textTheme.subtitle2.copyWith({fontSize: dart.notNull(totalHeight) * 16.0 / 820}), $creationLocationd_0dea112b090073317d4: C[177] || CT.C177}), $creationLocationd_0dea112b090073317d4: C[181] || CT.C181}), new spacer.Spacer.new({$creationLocationd_0dea112b090073317d4: C[187] || CT.C187}), new icon_button.IconButton.new({icon: new icon.Icon.new(icons.Icons.power_settings_new, {$creationLocationd_0dea112b090073317d4: C[188] || CT.C188}), color: colors.Colors.black, onPressed: dart.fn(() => {
+                  }, T.VoidToNull()), $creationLocationd_0dea112b090073317d4: C[191] || CT.C191}), ui_helper.UIHelper.horizontalSpaceSmall()]), $creationLocationd_0dea112b090073317d4: C[196] || CT.C196}), $creationLocationd_0dea112b090073317d4: C[199] || CT.C199}));
+          if (this.widget.ongoing === false) t0[$add](new container.Container.new({alignment: alignment.Alignment.topCenter, padding: C[203] || CT.C203, height: dart.notNull(totalHeight) * 130.0 / 820, color: colors.Colors.grey._get(200), child: new text.Text.new("Food App Version v1.0.0", {style: theme.Theme.of(context).textTheme.bodyText1.copyWith({color: colors.Colors.grey._get(700), fontSize: 13.0}), $creationLocationd_0dea112b090073317d4: C[204] || CT.C204}), $creationLocationd_0dea112b090073317d4: C[208] || CT.C208}));
+          return t0;
+        })(), $creationLocationd_0dea112b090073317d4: C[215] || CT.C215});
+    }
+  };
+  (AccountPage.__PastOrderListViewState.new = function() {
+    this.db = cloud_firestore.FirebaseFirestore.instance;
+    this.dishNameOrder = T.JSArrayOfStringL().of([]);
+    this.quantityOrder = T.JSArrayOfStringL().of([]);
+    this.chefNameOrder = T.JSArrayOfStringL().of([]);
+    this.costOrder = T.JSArrayOfStringL().of([]);
+    this.timeOrder = T.JSArrayOfStringL().of([]);
+    this.foods = T.JSArrayOfStringL().of([]);
+    this.docIdOrder = T.JSArrayOfStringL().of([]);
+    this.rated = T.JSArrayOfStringL().of([]);
+    this.l2 = T.JSArrayOfStringL().of([]);
+    this.isDeliveredOrder = T.JSArrayOfboolL().of([]);
+    this.chefs = new _js_helper.LinkedMap.new();
+    AccountPage.__PastOrderListViewState.__proto__.new.call(this);
+    ;
+  }).prototype = AccountPage.__PastOrderListViewState.prototype;
+  dart.addTypeTests(AccountPage.__PastOrderListViewState);
+  dart.addTypeCaches(AccountPage.__PastOrderListViewState);
+  dart.setMethodSignature(AccountPage.__PastOrderListViewState, () => ({
+    __proto__: dart.getMethods(AccountPage.__PastOrderListViewState.__proto__),
+    getChefName: dart.fnType(dart.legacy(core.String), [dart.legacy(core.String)]),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
+  }));
+  dart.setLibraryUri(AccountPage.__PastOrderListViewState, I[0]);
+  dart.setFieldSignature(AccountPage.__PastOrderListViewState, () => ({
+    __proto__: dart.getFields(AccountPage.__PastOrderListViewState.__proto__),
+    db: dart.finalFieldType(dart.legacy(cloud_firestore.FirebaseFirestore)),
+    dishNameOrder: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    quantityOrder: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    chefNameOrder: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    costOrder: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    timeOrder: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    foods: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    docIdOrder: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    rated: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    l2: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    isDeliveredOrder: dart.fieldType(dart.legacy(core.List$(dart.legacy(core.bool)))),
+    chefs: dart.fieldType(dart.legacy(core.Map))
+  }));
+  var foodItem$ = dart.privateName(AccountPage, "_PastOrdersListItemView.foodItem");
+  var chefNameOrder$ = dart.privateName(AccountPage, "_PastOrdersListItemView.chefNameOrder");
+  var costOrder$ = dart.privateName(AccountPage, "_PastOrdersListItemView.costOrder");
+  var timeOrder$ = dart.privateName(AccountPage, "_PastOrdersListItemView.timeOrder");
+  var ongoing$ = dart.privateName(AccountPage, "_PastOrdersListItemView.ongoing");
+  var rated$ = dart.privateName(AccountPage, "_PastOrdersListItemView.rated");
+  var docIdOrder$ = dart.privateName(AccountPage, "_PastOrdersListItemView.docIdOrder");
+  AccountPage._PastOrdersListItemView = class _PastOrdersListItemView extends framework.StatefulWidget {
+    get foodItem() {
+      return this[foodItem$];
+    }
+    set foodItem(value) {
+      super.foodItem = value;
+    }
+    get chefNameOrder() {
+      return this[chefNameOrder$];
+    }
+    set chefNameOrder(value) {
+      super.chefNameOrder = value;
+    }
+    get costOrder() {
+      return this[costOrder$];
+    }
+    set costOrder(value) {
+      super.costOrder = value;
+    }
+    get timeOrder() {
+      return this[timeOrder$];
+    }
+    set timeOrder(value) {
+      super.timeOrder = value;
+    }
+    get ongoing() {
+      return this[ongoing$];
+    }
+    set ongoing(value) {
+      super.ongoing = value;
+    }
+    get rated() {
+      return this[rated$];
+    }
+    set rated(value) {
+      super.rated = value;
+    }
+    get docIdOrder() {
+      return this[docIdOrder$];
+    }
+    set docIdOrder(value) {
+      super.docIdOrder = value;
+    }
+    createState() {
+      return new AccountPage.__PastOrdersListItemViewState.new();
+    }
+  };
+  (AccountPage._PastOrdersListItemView.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let docIdOrder = opts && 'docIdOrder' in opts ? opts.docIdOrder : null;
+    let ongoing = opts && 'ongoing' in opts ? opts.ongoing : null;
+    let rated = opts && 'rated' in opts ? opts.rated : null;
+    let chefNameOrder = opts && 'chefNameOrder' in opts ? opts.chefNameOrder : null;
+    let foodItem = opts && 'foodItem' in opts ? opts.foodItem : null;
+    let timeOrder = opts && 'timeOrder' in opts ? opts.timeOrder : null;
+    let costOrder = opts && 'costOrder' in opts ? opts.costOrder : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[docIdOrder$] = docIdOrder;
+    this[ongoing$] = ongoing;
+    this[rated$] = rated;
+    this[chefNameOrder$] = chefNameOrder;
+    this[foodItem$] = foodItem;
+    this[timeOrder$] = timeOrder;
+    this[costOrder$] = costOrder;
+    if (!(foodItem !== "")) dart.assertFailed(null, I[1], 509, 16, "foodItem != ''");
+    AccountPage._PastOrdersListItemView.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = AccountPage._PastOrdersListItemView.prototype;
+  dart.addTypeTests(AccountPage._PastOrdersListItemView);
+  dart.addTypeCaches(AccountPage._PastOrdersListItemView);
+  dart.setMethodSignature(AccountPage._PastOrdersListItemView, () => ({
+    __proto__: dart.getMethods(AccountPage._PastOrdersListItemView.__proto__),
+    createState: dart.fnType(dart.legacy(AccountPage.__PastOrdersListItemViewState), [])
+  }));
+  dart.setLibraryUri(AccountPage._PastOrdersListItemView, I[0]);
+  dart.setFieldSignature(AccountPage._PastOrdersListItemView, () => ({
+    __proto__: dart.getFields(AccountPage._PastOrdersListItemView.__proto__),
+    foodItem: dart.finalFieldType(dart.legacy(core.String)),
+    chefNameOrder: dart.finalFieldType(dart.dynamic),
+    costOrder: dart.finalFieldType(dart.dynamic),
+    timeOrder: dart.finalFieldType(dart.dynamic),
+    ongoing: dart.finalFieldType(dart.dynamic),
+    rated: dart.finalFieldType(dart.dynamic),
+    docIdOrder: dart.finalFieldType(dart.dynamic)
+  }));
+  AccountPage.__PastOrdersListItemViewState = class __PastOrdersListItemViewState extends framework.State$(dart.legacy(AccountPage._PastOrdersListItemView)) {
+    initState() {
+      super.initState();
+      this.setState(dart.fn(() => {
+      }, T.VoidToNull()));
+    }
+    build(context) {
+      core.print("sent_food=" + dart.str(this.widget.foodItem));
+      let tempFood = this.widget.foodItem[$split]("] x [")[$_get](0)[$split]("[")[$_get](1);
+      let tempQuantity = this.widget.foodItem[$split]("] x [")[$_get](1)[$split]("]")[$_get](0);
+      let foodList = tempFood[$split](", ");
+      let quantityList = tempQuantity[$split](", ");
+      let food = "";
+      for (let i = 0; i < dart.notNull(foodList[$length]); i = i + 1) {
+        food = food + (dart.str(foodList[$_get](i)) + " x " + dart.str(quantityList[$_get](i)));
+        food = food + "\n";
+      }
+      let totalWidth = media_query.MediaQuery.of(context).size.width;
+      let totalHeight = media_query.MediaQuery.of(context).size.height;
+      return new container.Container.new({padding: C[96] || CT.C96, child: new basic.Column.new({mainAxisAlignment: flex.MainAxisAlignment.start, crossAxisAlignment: flex.CrossAxisAlignment.start, children: T.JSArrayOfWidgetL().of([new container.Container.new({padding: C[220] || CT.C220, child: new basic.Row.new({crossAxisAlignment: flex.CrossAxisAlignment.start, mainAxisAlignment: flex.MainAxisAlignment.spaceBetween, children: (() => {
+                  let t1 = T.JSArrayOfWidgetL().of([new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: T.JSArrayOfWidgetL().of([new text.Text.new("Chef " + dart.str(this.widget.chefNameOrder), {style: theme.Theme.of(context).textTheme.subtitle2, $creationLocationd_0dea112b090073317d4: C[221] || CT.C221}), ui_helper.UIHelper.verticalSpaceSmall(), new basic.Row.new({children: T.JSArrayOfWidgetL().of([new text.Text.new("Rs. " + dart.str(this.widget.costOrder), {$creationLocationd_0dea112b090073317d4: C[225] || CT.C225}), ui_helper.UIHelper.horizontalSpaceExtraSmall(), new icon.Icon.new(icons.Icons.keyboard_arrow_right, {color: colors.Colors.grey._get(600), $creationLocationd_0dea112b090073317d4: C[228] || CT.C228})]), $creationLocationd_0dea112b090073317d4: C[232] || CT.C232})]), $creationLocationd_0dea112b090073317d4: C[235] || CT.C235}), new spacer.Spacer.new({$creationLocationd_0dea112b090073317d4: C[239] || CT.C239})]);
+                  if (!dart.dtest(this.widget.ongoing)) t1[$add](new text.Text.new("Delivered", {style: theme.Theme.of(context).textTheme.subtitle2, $creationLocationd_0dea112b090073317d4: C[240] || CT.C240}));
+                  if (!dart.dtest(this.widget.ongoing)) t1[$add](ui_helper.UIHelper.horizontalSpaceSmall());
+                  if (!dart.dtest(this.widget.ongoing)) t1[$add](new basic.ClipOval.new({child: new container.Container.new({padding: C[244] || CT.C244, color: colors.Colors.green, child: new icon.Icon.new(icons.Icons.check, {color: colors.Colors.white, size: dart.notNull(totalHeight) * 14.0 / 820, $creationLocationd_0dea112b090073317d4: C[245] || CT.C245}), $creationLocationd_0dea112b090073317d4: C[250] || CT.C250}), $creationLocationd_0dea112b090073317d4: C[255] || CT.C255}));
+                  if (dart.dtest(this.widget.ongoing)) t1[$add](new text.Text.new("On the way", {style: theme.Theme.of(context).textTheme.subtitle2, $creationLocationd_0dea112b090073317d4: C[258] || CT.C258}));
+                  if (dart.dtest(this.widget.ongoing)) t1[$add](new icon.Icon.new(icons.Icons.delivery_dining, {$creationLocationd_0dea112b090073317d4: C[262] || CT.C262}));
+                  return t1;
+                })(), $creationLocationd_0dea112b090073317d4: C[265] || CT.C265}), $creationLocationd_0dea112b090073317d4: C[270] || CT.C270}), ui_helper.UIHelper.verticalSpaceSmall(), new dotted_seperator_view.DottedSeperatorView.new({$creationLocationd_0dea112b090073317d4: C[274] || CT.C274}), ui_helper.UIHelper.verticalSpaceMedium(), new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.start, children: (() => {
+                let t2 = T.JSArrayOfWidgetL().of([new basic.Row.new({children: T.JSArrayOfWidgetL().of([new text.Text.new("Order Placed At: ", {style: new text_style.TextStyle.new({fontWeight: ui.FontWeight.bold}), $creationLocationd_0dea112b090073317d4: C[275] || CT.C275}), new text.Text.new(core.String.as(this.widget.timeOrder), {$creationLocationd_0dea112b090073317d4: C[279] || CT.C279})]), $creationLocationd_0dea112b090073317d4: C[282] || CT.C282}), new text.Text.new("\nFood Items Ordered:", {style: new text_style.TextStyle.new({fontWeight: ui.FontWeight.bold}), $creationLocationd_0dea112b090073317d4: C[285] || CT.C285}), ui_helper.UIHelper.verticalSpaceExtraSmall(), new text.Text.new(food, {$creationLocationd_0dea112b090073317d4: C[289] || CT.C289}), ui_helper.UIHelper.verticalSpaceExtraSmall(), ui_helper.UIHelper.verticalSpaceSmall()]);
+                if (dart.equals(this.widget.ongoing, false) && dart.equals(this.widget.rated, "false")) t2[$add](new basic.Center.new({child: new AccountPage.RatingPage.new({docIdOrder: this.widget.docIdOrder, costOrder: this.widget.costOrder, timeOrder: this.widget.timeOrder, $creationLocationd_0dea112b090073317d4: C[292] || CT.C292}), $creationLocationd_0dea112b090073317d4: C[297] || CT.C297}));
+                if (dart.equals(this.widget.ongoing, false) && dart.equals(this.widget.rated, "true")) t2[$add](new basic.Center.new({child: new AccountPage.AlreadyRatedPage.new({$creationLocationd_0dea112b090073317d4: C[300] || CT.C300}), $creationLocationd_0dea112b090073317d4: C[301] || CT.C301}));
+                t2[$add](ui_helper.UIHelper.verticalSpaceMedium());
+                t2[$add](new custom_divider_view.CustomDividerView.new({dividerHeight: dart.notNull(totalHeight) * 1.5 / 820, color: colors.Colors.black, $creationLocationd_0dea112b090073317d4: C[304] || CT.C304}));
+                return t2;
+              })(), $creationLocationd_0dea112b090073317d4: C[308] || CT.C308})]), $creationLocationd_0dea112b090073317d4: C[312] || CT.C312}), $creationLocationd_0dea112b090073317d4: C[317] || CT.C317});
+    }
+  };
+  (AccountPage.__PastOrdersListItemViewState.new = function() {
+    AccountPage.__PastOrdersListItemViewState.__proto__.new.call(this);
+    ;
+  }).prototype = AccountPage.__PastOrdersListItemViewState.prototype;
+  dart.addTypeTests(AccountPage.__PastOrdersListItemViewState);
+  dart.addTypeCaches(AccountPage.__PastOrdersListItemViewState);
+  dart.setMethodSignature(AccountPage.__PastOrdersListItemViewState, () => ({
+    __proto__: dart.getMethods(AccountPage.__PastOrdersListItemViewState.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
+  }));
+  dart.setLibraryUri(AccountPage.__PastOrdersListItemViewState, I[0]);
+  AccountPage.AlreadyRatedPage = class AlreadyRatedPage extends framework.StatelessWidget {
+    build(context) {
+      let totalWidth = media_query.MediaQuery.of(context).size.width;
+      let totalHeight = media_query.MediaQuery.of(context).size.height;
+      return new outlined_button.OutlinedButton.new({style: outlined_button.OutlinedButton.styleFrom({side: new borders.BorderSide.new({width: dart.notNull(totalWidth) * 1.5 / 320, color: colors.Colors.deepOrange})}), child: new text.Text.new("You have already rated this order", {style: theme.Theme.of(context).textTheme.subtitle2.copyWith({color: colors.Colors.black}), $creationLocationd_0dea112b090073317d4: C[321] || CT.C321}), onPressed: dart.fn(() => {
+        }, T.VoidToNull()), $creationLocationd_0dea112b090073317d4: C[325] || CT.C325});
+    }
+  };
+  (AccountPage.AlreadyRatedPage.new = function(opts) {
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    AccountPage.AlreadyRatedPage.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = AccountPage.AlreadyRatedPage.prototype;
+  dart.addTypeTests(AccountPage.AlreadyRatedPage);
+  dart.addTypeCaches(AccountPage.AlreadyRatedPage);
+  dart.setMethodSignature(AccountPage.AlreadyRatedPage, () => ({
+    __proto__: dart.getMethods(AccountPage.AlreadyRatedPage.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
+  }));
+  dart.setLibraryUri(AccountPage.AlreadyRatedPage, I[0]);
+  var docIdOrder$0 = dart.privateName(AccountPage, "RatingPage.docIdOrder");
+  var costOrder$0 = dart.privateName(AccountPage, "RatingPage.costOrder");
+  var timeOrder$0 = dart.privateName(AccountPage, "RatingPage.timeOrder");
+  AccountPage.RatingPage = class RatingPage extends framework.StatefulWidget {
+    get docIdOrder() {
+      return this[docIdOrder$0];
+    }
+    set docIdOrder(value) {
+      super.docIdOrder = value;
+    }
+    get costOrder() {
+      return this[costOrder$0];
+    }
+    set costOrder(value) {
+      super.costOrder = value;
+    }
+    get timeOrder() {
+      return this[timeOrder$0];
+    }
+    set timeOrder(value) {
+      super.timeOrder = value;
+    }
+    createState() {
+      return new AccountPage._RatingPageState.new();
+    }
+  };
+  (AccountPage.RatingPage.new = function(opts) {
+    let docIdOrder = opts && 'docIdOrder' in opts ? opts.docIdOrder : null;
+    let costOrder = opts && 'costOrder' in opts ? opts.costOrder : null;
+    let timeOrder = opts && 'timeOrder' in opts ? opts.timeOrder : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[docIdOrder$0] = docIdOrder;
+    this[costOrder$0] = costOrder;
+    this[timeOrder$0] = timeOrder;
+    AccountPage.RatingPage.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = AccountPage.RatingPage.prototype;
+  dart.addTypeTests(AccountPage.RatingPage);
+  dart.addTypeCaches(AccountPage.RatingPage);
+  dart.setMethodSignature(AccountPage.RatingPage, () => ({
+    __proto__: dart.getMethods(AccountPage.RatingPage.__proto__),
+    createState: dart.fnType(dart.legacy(AccountPage._RatingPageState), [])
+  }));
+  dart.setLibraryUri(AccountPage.RatingPage, I[0]);
+  dart.setFieldSignature(AccountPage.RatingPage, () => ({
+    __proto__: dart.getFields(AccountPage.RatingPage.__proto__),
+    docIdOrder: dart.finalFieldType(dart.dynamic),
+    costOrder: dart.finalFieldType(dart.dynamic),
+    timeOrder: dart.finalFieldType(dart.dynamic)
+  }));
+  var _rating = dart.privateName(AccountPage, "_rating");
+  var InputDecoration_alignLabelWithHint = dart.privateName(input_decorator, "InputDecoration.alignLabelWithHint");
+  var InputDecoration_semanticCounterText = dart.privateName(input_decorator, "InputDecoration.semanticCounterText");
+  var InputDecoration_enabled = dart.privateName(input_decorator, "InputDecoration.enabled");
+  var InputDecoration_border = dart.privateName(input_decorator, "InputDecoration.border");
+  var InputDecoration_enabledBorder = dart.privateName(input_decorator, "InputDecoration.enabledBorder");
+  var InputDecoration_disabledBorder = dart.privateName(input_decorator, "InputDecoration.disabledBorder");
+  var InputDecoration_focusedErrorBorder = dart.privateName(input_decorator, "InputDecoration.focusedErrorBorder");
+  var InputDecoration_focusedBorder = dart.privateName(input_decorator, "InputDecoration.focusedBorder");
+  var InputDecoration_errorBorder = dart.privateName(input_decorator, "InputDecoration.errorBorder");
+  var InputDecoration_hoverColor = dart.privateName(input_decorator, "InputDecoration.hoverColor");
+  var InputDecoration_focusColor = dart.privateName(input_decorator, "InputDecoration.focusColor");
+  var InputDecoration_fillColor = dart.privateName(input_decorator, "InputDecoration.fillColor");
+  var InputDecoration_filled = dart.privateName(input_decorator, "InputDecoration.filled");
+  var InputDecoration_counterStyle = dart.privateName(input_decorator, "InputDecoration.counterStyle");
+  var InputDecoration_counter = dart.privateName(input_decorator, "InputDecoration.counter");
+  var InputDecoration_counterText = dart.privateName(input_decorator, "InputDecoration.counterText");
+  var InputDecoration_suffixIconConstraints = dart.privateName(input_decorator, "InputDecoration.suffixIconConstraints");
+  var InputDecoration_suffixStyle = dart.privateName(input_decorator, "InputDecoration.suffixStyle");
+  var InputDecoration_suffixText = dart.privateName(input_decorator, "InputDecoration.suffixText");
+  var InputDecoration_suffix = dart.privateName(input_decorator, "InputDecoration.suffix");
+  var InputDecoration_suffixIcon = dart.privateName(input_decorator, "InputDecoration.suffixIcon");
+  var InputDecoration_prefixStyle = dart.privateName(input_decorator, "InputDecoration.prefixStyle");
+  var InputDecoration_prefixText = dart.privateName(input_decorator, "InputDecoration.prefixText");
+  var InputDecoration_prefix = dart.privateName(input_decorator, "InputDecoration.prefix");
+  var InputDecoration_prefixIconConstraints = dart.privateName(input_decorator, "InputDecoration.prefixIconConstraints");
+  var InputDecoration_prefixIcon = dart.privateName(input_decorator, "InputDecoration.prefixIcon");
+  var InputDecoration_isCollapsed = dart.privateName(input_decorator, "InputDecoration.isCollapsed");
+  var InputDecoration_contentPadding = dart.privateName(input_decorator, "InputDecoration.contentPadding");
+  var InputDecoration_isDense = dart.privateName(input_decorator, "InputDecoration.isDense");
+  var InputDecoration_floatingLabelBehavior = dart.privateName(input_decorator, "InputDecoration.floatingLabelBehavior");
+  var InputDecoration_hasFloatingPlaceholder = dart.privateName(input_decorator, "InputDecoration.hasFloatingPlaceholder");
+  var InputDecoration_errorMaxLines = dart.privateName(input_decorator, "InputDecoration.errorMaxLines");
+  var InputDecoration_errorStyle = dart.privateName(input_decorator, "InputDecoration.errorStyle");
+  var InputDecoration_errorText = dart.privateName(input_decorator, "InputDecoration.errorText");
+  var InputDecoration_hintMaxLines = dart.privateName(input_decorator, "InputDecoration.hintMaxLines");
+  var InputDecoration_hintTextDirection = dart.privateName(input_decorator, "InputDecoration.hintTextDirection");
+  var InputDecoration_hintStyle = dart.privateName(input_decorator, "InputDecoration.hintStyle");
+  var InputDecoration_hintText = dart.privateName(input_decorator, "InputDecoration.hintText");
+  var InputDecoration_helperMaxLines = dart.privateName(input_decorator, "InputDecoration.helperMaxLines");
+  var InputDecoration_helperStyle = dart.privateName(input_decorator, "InputDecoration.helperStyle");
+  var InputDecoration_helperText = dart.privateName(input_decorator, "InputDecoration.helperText");
+  var InputDecoration_labelStyle = dart.privateName(input_decorator, "InputDecoration.labelStyle");
+  var InputDecoration_labelText = dart.privateName(input_decorator, "InputDecoration.labelText");
+  var Widget__location = dart.privateName(framework, "Widget._location");
+  var Widget_key = dart.privateName(framework, "Widget.key");
+  var Icon_textDirection = dart.privateName(icon, "Icon.textDirection");
+  var Icon_semanticLabel = dart.privateName(icon, "Icon.semanticLabel");
+  var Icon_color = dart.privateName(icon, "Icon.color");
+  var Icon_size = dart.privateName(icon, "Icon.size");
+  var IconData_matchTextDirection = dart.privateName(icon_data, "IconData.matchTextDirection");
+  var IconData_fontPackage = dart.privateName(icon_data, "IconData.fontPackage");
+  var IconData_fontFamily = dart.privateName(icon_data, "IconData.fontFamily");
+  var IconData_codePoint = dart.privateName(icon_data, "IconData.codePoint");
+  var Icon_icon = dart.privateName(icon, "Icon.icon");
+  var InputDecoration_icon = dart.privateName(input_decorator, "InputDecoration.icon");
+  AccountPage._RatingPageState = class _RatingPageState extends framework.State$(dart.legacy(AccountPage.RatingPage)) {
+    initState() {
+      super.initState();
+      core.print("doc=" + dart.str(this.widget.docIdOrder));
+      core.print("costdoc=" + dart.str(this.widget.costOrder));
+      core.print("timedoc=" + dart.str(this.widget.timeOrder));
+      this.setState(dart.fn(() => {
+      }, T.VoidToNull()));
+    }
+    dispose() {
+      super.dispose();
+    }
+    build(context) {
+      let totalWidth = media_query.MediaQuery.of(context).size.width;
+      let totalHeight = media_query.MediaQuery.of(context).size.height;
+      return new basic.Column.new({children: T.JSArrayOfWidgetL().of([new rating_bar.RatingBar.builder({initialRating: 5.0, direction: basic_types.Axis.horizontal, itemCount: 5, itemPadding: new edge_insets.EdgeInsets.symmetric({horizontal: dart.notNull(totalWidth) * 4.0 / 320}), itemBuilder: dart.fn((context, index) => {
+              switch (index) {
+                case 0:
+                {
+                  return new icon.Icon.new(icons.Icons.sentiment_very_dissatisfied, {color: colors.Colors.red, $creationLocationd_0dea112b090073317d4: C[330] || CT.C330});
+                }
+                case 1:
+                {
+                  return new icon.Icon.new(icons.Icons.sentiment_dissatisfied, {color: colors.Colors.redAccent, $creationLocationd_0dea112b090073317d4: C[334] || CT.C334});
+                }
+                case 2:
+                {
+                  return new icon.Icon.new(icons.Icons.sentiment_neutral, {color: colors.Colors.amber, $creationLocationd_0dea112b090073317d4: C[338] || CT.C338});
+                }
+                case 3:
+                {
+                  return new icon.Icon.new(icons.Icons.sentiment_satisfied, {color: colors.Colors.lightGreen, $creationLocationd_0dea112b090073317d4: C[342] || CT.C342});
+                }
+                case 4:
+                {
+                  return new icon.Icon.new(icons.Icons.sentiment_very_satisfied, {color: colors.Colors.green, $creationLocationd_0dea112b090073317d4: C[346] || CT.C346});
+                }
+                default:
+                {
+                  return new container.Container.new({$creationLocationd_0dea112b090073317d4: C[350] || CT.C350});
+                }
+              }
+            }, T.BuildContextLAndintLToStatelessWidgetL()), onRatingUpdate: dart.fn(rating => {
+              this.setState(dart.fn(() => {
+                this[_rating] = rating;
+              }, T.VoidToNull()));
+            }, T.doubleLToNull()), updateOnDrag: true, $creationLocationd_0dea112b090073317d4: C[351] || CT.C351}), new text_form_field.TextFormField.new({controller: this.feedbackController, autovalidateMode: form.AutovalidateMode.always, decoration: C[360] || CT.C360, onFieldSubmitted: dart.fn(feedback => {
+              feedback = this.feedbackController.text;
+              core.print("feedback=" + dart.str(feedback));
+              core.print("ratings=" + dart.str(this[_rating]));
+              fluttertoast.Fluttertoast.showToast({msg: "Thank you for your feedback 😃", toastLength: fluttertoast.Toast.LENGTH_SHORT, gravity: fluttertoast.ToastGravity.BOTTOM, timeInSecForIosWeb: 1, backgroundColor: new Utils.Helper.new().button, textColor: colors.Colors.white, fontSize: dart.notNull(totalHeight) * 16.0 / 820});
+              this.setState(dart.fn(() => {
+                this.feedbackOut = feedback;
+              }, T.VoidToNull()));
+            }, T.StringLToNull()), $creationLocationd_0dea112b090073317d4: C[366] || CT.C366}), new (T.StreamBuilderOfQuerySnapshotL()).new({stream: cloud_firestore.FirebaseFirestore.instance.collection("Orders").snapshots(), builder: dart.fn((context, snapshot) => {
+              if (dart.test(snapshot.hasData)) {
+                core.print("here");
+                for (let i = 0; i < dart.notNull(snapshot.data.docs[$length]); i = i + 1) {
+                  if (dart.toString(this.widget.costOrder) == dart.toString(snapshot.data.docs[$_get](i)._get("totalCost")) && core.identical(dart.toString(this.widget.timeOrder), snapshot.data.docs[$_get](i)._get("timeOrderPlaced")) && AccountPage.user.uid == dart.toString(snapshot.data.docs[$_get](i)._get("userId"))) {
+                    core.print("updated");
+                    this.selectedId = T.StringL().as(dart.dsend(this.widget.docIdOrder, '_get', [i]));
+                    if (this[_rating] == null) {
+                      this[_rating] = 0.0;
+                    }
+                    if (this.feedbackOut === "null") {
+                      this.feedbackOut = "No Feedback Given";
+                    }
+                    cloud_firestore.FirebaseFirestore.instance.collection("Orders").doc(this.selectedId).update(new (T.IdentityMapOfStringL$dynamic()).from(["rating", this[_rating][$toDouble](), "feedback", dart.toString(this.feedbackOut)])).then(core.Null, dart.fn(result => {
+                      core.print("Updated Rating");
+                    }, T.voidToNull())).catchError(dart.fn(onError => {
+                      core.print("error");
+                    }, T.dynamicToNull()));
+                  }
+                }
+              }
+              return new container.Container.new({$creationLocationd_0dea112b090073317d4: C[372] || CT.C372});
+            }, T.BuildContextLAndAsyncSnapshotLOfQuerySnapshotLToContainerL()), $creationLocationd_0dea112b090073317d4: C[373] || CT.C373})]), $creationLocationd_0dea112b090073317d4: C[377] || CT.C377});
+    }
+  };
+  (AccountPage._RatingPageState.new = function() {
+    this[_rating] = null;
+    this.selectedId = null;
+    this.feedbackController = new editable_text.TextEditingController.new();
+    this.feedbackOut = null;
+    AccountPage._RatingPageState.__proto__.new.call(this);
+    ;
+  }).prototype = AccountPage._RatingPageState.prototype;
+  dart.addTypeTests(AccountPage._RatingPageState);
+  dart.addTypeCaches(AccountPage._RatingPageState);
+  dart.setMethodSignature(AccountPage._RatingPageState, () => ({
+    __proto__: dart.getMethods(AccountPage._RatingPageState.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
+  }));
+  dart.setLibraryUri(AccountPage._RatingPageState, I[0]);
+  dart.setFieldSignature(AccountPage._RatingPageState, () => ({
+    __proto__: dart.getFields(AccountPage._RatingPageState.__proto__),
+    [_rating]: dart.fieldType(dart.legacy(core.double)),
+    selectedId: dart.fieldType(dart.legacy(core.String)),
+    feedbackController: dart.fieldType(dart.legacy(editable_text.TextEditingController)),
+    feedbackOut: dart.fieldType(dart.legacy(core.String))
+  }));
+  dart.defineLazy(AccountPage, {
+    /*AccountPage.auth*/get auth() {
+      return firebase_auth.FirebaseAuth.instance;
+    },
+    /*AccountPage.user*/get user() {
+      return AccountPage.auth.currentUser;
+    },
+    /*AccountPage.phone*/get phone() {
+      return AccountPage.user.phoneNumber;
+    },
+    set phone(_) {}
+  }, true);
+  dart.trackLibraries("packages/food_delivery_app/account/AccountPage.dart", {
+    "package:food_delivery_app/account/AccountPage.dart": AccountPage
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["AccountPage.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;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","file":"../../../../../../../packages/food_delivery_app/account/AccountPage.dart.lib.js"}');
+  // Exports:
+  return {
+    account__AccountPage: AccountPage
+  };
+}));
+
+//# sourceMappingURL=AccountPage.dart.lib.js.map

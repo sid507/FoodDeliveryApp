@@ -112,13 +112,24 @@ class _EatLaterState extends State<EatLater> {
                       //     this.tellMeType(now.hour).toLowerCase()) {
                       TimeOfDay nowTime = TimeOfDay.now();
                       double currentTime = toDouble(nowTime);
+
                       double itemToTime1 =
                           double.parse(dd["toTime"].split(':')[0]);
                       double itemToTime2 =
                           double.parse(dd["toTime"].split(':')[1]);
                       double itemToTime = itemToTime1 + itemToTime2 / 60.0;
+
+                      double itemFromTime1 =
+                          double.parse(dd["fromTime"].split(':')[0]);
+                      double itemFromTime2 =
+                          double.parse(dd["fromTime"].split(':')[1]);
+                      double itemFromTime =
+                          itemFromTime1 + itemFromTime2 / 60.0;
+
                       if (true) {
-                        if (chef_detail != null && currentTime <= itemToTime) {
+                        if (chef_detail != null &&
+                            currentTime <= itemToTime &&
+                            currentTime <= itemFromTime - 2) {
                           Dishes dish = new Dishes(
                               chef_detail["fname"].toString(),
                               chef_detail["chefAddress"].toString(),

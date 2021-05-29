@@ -1,0 +1,1812 @@
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/rendering/wrap.dart', 'packages/flutter/src/foundation/change_notifier.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/painting/box_fit.dart', 'packages/vector_math/vector_math_64.dart', 'packages/flutter/src/painting/alignment.dart', 'packages/flutter/src/gestures/tap.dart', 'packages/flutter/src/widgets/value_listenable_builder.dart', 'packages/flutter/src/painting/box_decoration.dart', 'packages/flutter/src/painting/box_border.dart', 'packages/flutter/src/painting/box_shadow.dart', 'packages/flutter/src/rendering/layer.dart', 'packages/flutter/src/gestures/drag_details.dart', 'packages/flutter/src/rendering/stack.dart', 'packages/flutter/src/rendering/proxy_box.dart', 'packages/flutter/src/widgets/color_filter.dart'], (function load__packages__flutter_rating_bar__src__rating_bar_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__rendering__wrap$46dart, packages__flutter__src__foundation__change_notifier$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__painting__box_fit$46dart, packages__vector_math__vector_math_64$46dart, packages__flutter__src__painting__alignment$46dart, packages__flutter__src__gestures__tap$46dart, packages__flutter__src__widgets__value_listenable_builder$46dart, packages__flutter__src__painting__box_decoration$46dart, packages__flutter__src__painting__box_border$46dart, packages__flutter__src__painting__box_shadow$46dart, packages__flutter__src__rendering__layer$46dart, packages__flutter__src__gestures__drag_details$46dart, packages__flutter__src__rendering__stack$46dart, packages__flutter__src__rendering__proxy_box$46dart, packages__flutter__src__widgets__color_filter$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const ui = dart_sdk.ui;
+  const _internal = dart_sdk._internal;
+  const math = dart_sdk.math;
+  const _interceptors = dart_sdk._interceptors;
+  const _engine = dart_sdk._engine;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const gesture_detector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__gesture_detector;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  const wrap = packages__flutter__src__rendering__wrap$46dart.src__rendering__wrap;
+  const change_notifier = packages__flutter__src__foundation__change_notifier$46dart.src__foundation__change_notifier;
+  const material = packages__flutter__src__material__icon_button$46dart.src__material__material;
+  const theme = packages__flutter__src__material__icon_button$46dart.src__material__theme;
+  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
+  const box_fit = packages__flutter__src__painting__box_fit$46dart.src__painting__box_fit;
+  const vector_math_64 = packages__vector_math__vector_math_64$46dart.vector_math_64;
+  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
+  const tap = packages__flutter__src__gestures__tap$46dart.src__gestures__tap;
+  const value_listenable_builder = packages__flutter__src__widgets__value_listenable_builder$46dart.src__widgets__value_listenable_builder;
+  const box_decoration = packages__flutter__src__painting__box_decoration$46dart.src__painting__box_decoration;
+  const box_border = packages__flutter__src__painting__box_border$46dart.src__painting__box_border;
+  const box_shadow = packages__flutter__src__painting__box_shadow$46dart.src__painting__box_shadow;
+  const box = packages__flutter__src__rendering__layer$46dart.src__rendering__box;
+  const drag_details = packages__flutter__src__gestures__drag_details$46dart.src__gestures__drag_details;
+  const stack = packages__flutter__src__rendering__stack$46dart.src__rendering__stack;
+  const proxy_box = packages__flutter__src__rendering__proxy_box$46dart.src__rendering__proxy_box;
+  const color_filter = packages__flutter__src__widgets__color_filter$46dart.src__widgets__color_filter;
+  var rating_bar = Object.create(dart.library);
+  var $toDouble = dartx.toDouble;
+  var $round = dartx.round;
+  var $clamp = dartx.clamp;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    ValueNotifierOfbool: () => (T.ValueNotifierOfbool = dart.constFn(change_notifier.ValueNotifier$(core.bool)))(),
+    ListOfWidget: () => (T.ListOfWidget = dart.constFn(core.List$(framework.Widget)))(),
+    intToWidget: () => (T.intToWidget = dart.constFn(dart.fnType(framework.Widget, [core.int])))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
+    TapDownDetailsTovoid: () => (T.TapDownDetailsTovoid = dart.constFn(dart.fnType(dart.void, [tap.TapDownDetails])))(),
+    ValueListenableBuilderOfbool: () => (T.ValueListenableBuilderOfbool = dart.constFn(value_listenable_builder.ValueListenableBuilder$(core.bool)))(),
+    JSArrayOfBoxShadow: () => (T.JSArrayOfBoxShadow = dart.constFn(_interceptors.JSArray$(box_shadow.BoxShadow)))(),
+    WidgetN: () => (T.WidgetN = dart.constFn(dart.nullable(framework.Widget)))(),
+    BuildContextAndboolAndWidgetNToWidget: () => (T.BuildContextAndboolAndWidgetNToWidget = dart.constFn(dart.fnType(framework.Widget, [framework.BuildContext, core.bool, T.WidgetN()])))(),
+    RenderBoxN: () => (T.RenderBoxN = dart.constFn(dart.nullable(box.RenderBox)))(),
+    JSArrayOfWidget: () => (T.JSArrayOfWidget = dart.constFn(_interceptors.JSArray$(framework.Widget)))(),
+    CustomClipperOfRect: () => (T.CustomClipperOfRect = dart.constFn(proxy_box.CustomClipper$(ui.Rect)))()
+  };
+  var T$Eval = Object.assign({
+    _: () => T$Eval
+  }, T);
+  var S = {
+    _: () => S
+  };
+  var S$Eval = Object.assign({
+    _: () => S$Eval
+  }, S);
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: basic_types.Axis.prototype,
+        [_name]: "Axis.horizontal",
+        index: 0
+      });
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 0,
+        [EdgeInsets_right]: 0,
+        [EdgeInsets_top]: 0,
+        [EdgeInsets_left]: 0
+      });
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: wrap.WrapAlignment.prototype,
+        [_name$]: "WrapAlignment.start",
+        index: 0
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "alignment",
+        [_Location_column]: 9,
+        [_Location_line]: 228,
+        [_Location_file]: null
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "textDirection",
+        [_Location_column]: 9,
+        [_Location_line]: 229,
+        [_Location_file]: null
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "direction",
+        [_Location_column]: 9,
+        [_Location_line]: 230,
+        [_Location_file]: null
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 9,
+        [_Location_line]: 231,
+        [_Location_file]: null
+      });
+    },
+    get C4() {
+      return C[4] = dart.constList([C[5] || CT.C5, C[6] || CT.C6, C[7] || CT.C7, C[8] || CT.C8], T._LocationL());
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[4] || CT.C4,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 227,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.0/lib/src/rating_bar.dart"
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 7,
+        [_Location_line]: 226,
+        [_Location_file]: null
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 227,
+        [_Location_file]: null
+      });
+    },
+    get C10() {
+      return C[10] = dart.constList([C[11] || CT.C11, C[12] || CT.C12], T._LocationL());
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[10] || CT.C10,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 225,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.0/lib/src/rating_bar.dart"
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "size",
+        [_Location_column]: 9,
+        [_Location_line]: 248,
+        [_Location_file]: null
+      });
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 249,
+        [_Location_file]: null
+      });
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "enableMask",
+        [_Location_column]: 9,
+        [_Location_line]: 250,
+        [_Location_file]: null
+      });
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "unratedColor",
+        [_Location_column]: 9,
+        [_Location_line]: 251,
+        [_Location_file]: null
+      });
+    },
+    get C14() {
+      return C[14] = dart.constList([C[15] || CT.C15, C[16] || CT.C16, C[17] || CT.C17, C[18] || CT.C18], T._LocationL());
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[14] || CT.C14,
+        [_Location_name]: null,
+        [_Location_column]: 23,
+        [_Location_line]: 247,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.0/lib/src/rating_bar.dart"
+      });
+    },
+    get C21() {
+      return C[21] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "size",
+        [_Location_column]: 11,
+        [_Location_line]: 256,
+        [_Location_file]: null
+      });
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 257,
+        [_Location_file]: null
+      });
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "enableMask",
+        [_Location_column]: 11,
+        [_Location_line]: 258,
+        [_Location_file]: null
+      });
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "rtlMode",
+        [_Location_column]: 11,
+        [_Location_line]: 259,
+        [_Location_file]: null
+      });
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "unratedColor",
+        [_Location_column]: 11,
+        [_Location_line]: 260,
+        [_Location_file]: null
+      });
+    },
+    get C20() {
+      return C[20] = dart.constList([C[21] || CT.C21, C[22] || CT.C22, C[23] || CT.C23, C[24] || CT.C24, C[25] || CT.C25], T._LocationL());
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[20] || CT.C20,
+        [_Location_name]: null,
+        [_Location_column]: 25,
+        [_Location_line]: 255,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.0/lib/src/rating_bar.dart"
+      });
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "transform",
+        [_Location_column]: 21,
+        [_Location_line]: 270,
+        [_Location_file]: null
+      });
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "alignment",
+        [_Location_column]: 21,
+        [_Location_line]: 271,
+        [_Location_file]: null
+      });
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "transformHitTests",
+        [_Location_column]: 21,
+        [_Location_line]: 272,
+        [_Location_file]: null
+      });
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 21,
+        [_Location_line]: 273,
+        [_Location_file]: null
+      });
+    },
+    get C27() {
+      return C[27] = dart.constList([C[28] || CT.C28, C[29] || CT.C29, C[30] || CT.C30, C[31] || CT.C31], T._LocationL());
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[27] || CT.C27,
+        [_Location_name]: null,
+        [_Location_column]: 19,
+        [_Location_line]: 269,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.0/lib/src/rating_bar.dart"
+      });
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "fit",
+        [_Location_column]: 13,
+        [_Location_line]: 267,
+        [_Location_file]: null
+      });
+    },
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 268,
+        [_Location_file]: null
+      });
+    },
+    get C33() {
+      return C[33] = dart.constList([C[34] || CT.C34, C[35] || CT.C35], T._LocationL());
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[33] || CT.C33,
+        [_Location_name]: null,
+        [_Location_column]: 18,
+        [_Location_line]: 266,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.0/lib/src/rating_bar.dart"
+      });
+    },
+    get C38() {
+      return C[38] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 11,
+        [_Location_line]: 264,
+        [_Location_file]: null
+      });
+    },
+    get C39() {
+      return C[39] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 11,
+        [_Location_line]: 265,
+        [_Location_file]: null
+      });
+    },
+    get C40() {
+      return C[40] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 266,
+        [_Location_file]: null
+      });
+    },
+    get C37() {
+      return C[37] = dart.constList([C[38] || CT.C38, C[39] || CT.C39, C[40] || CT.C40], T._LocationL());
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[37] || CT.C37,
+        [_Location_name]: null,
+        [_Location_column]: 25,
+        [_Location_line]: 263,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.0/lib/src/rating_bar.dart"
+      });
+    },
+    get C43() {
+      return C[43] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "fit",
+        [_Location_column]: 11,
+        [_Location_line]: 285,
+        [_Location_file]: null
+      });
+    },
+    get C44() {
+      return C[44] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 286,
+        [_Location_file]: null
+      });
+    },
+    get C42() {
+      return C[42] = dart.constList([C[43] || CT.C43, C[44] || CT.C44], T._LocationL());
+    },
+    get C41() {
+      return C[41] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[42] || CT.C42,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 284,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.0/lib/src/rating_bar.dart"
+      });
+    },
+    get C47() {
+      return C[47] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 9,
+        [_Location_line]: 282,
+        [_Location_file]: null
+      });
+    },
+    get C48() {
+      return C[48] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 9,
+        [_Location_line]: 283,
+        [_Location_file]: null
+      });
+    },
+    get C49() {
+      return C[49] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 284,
+        [_Location_file]: null
+      });
+    },
+    get C46() {
+      return C[46] = dart.constList([C[47] || CT.C47, C[48] || CT.C48, C[49] || CT.C49], T._LocationL());
+    },
+    get C45() {
+      return C[45] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[46] || CT.C46,
+        [_Location_name]: null,
+        [_Location_column]: 23,
+        [_Location_line]: 281,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.0/lib/src/rating_bar.dart"
+      });
+    },
+    get C52() {
+      return C[52] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 19,
+        [_Location_line]: 326,
+        [_Location_file]: null
+      });
+    },
+    get C53() {
+      return C[53] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 341,
+        [_Location_file]: null
+      });
+    },
+    get C51() {
+      return C[51] = dart.constList([C[52] || CT.C52, C[53] || CT.C53], T._LocationL());
+    },
+    get C50() {
+      return C[50] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[51] || CT.C51,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 325,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.0/lib/src/rating_bar.dart"
+      });
+    },
+    get C56() {
+      return C[56] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "valueListenable",
+        [_Location_column]: 13,
+        [_Location_line]: 320,
+        [_Location_file]: null
+      });
+    },
+    get C57() {
+      return C[57] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 13,
+        [_Location_line]: 321,
+        [_Location_file]: null
+      });
+    },
+    get C58() {
+      return C[58] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 346,
+        [_Location_file]: null
+      });
+    },
+    get C55() {
+      return C[55] = dart.constList([C[56] || CT.C56, C[57] || CT.C57, C[58] || CT.C58], T._LocationL());
+    },
+    get C54() {
+      return C[54] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[55] || CT.C55,
+        [_Location_name]: null,
+        [_Location_column]: 18,
+        [_Location_line]: 319,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.0/lib/src/rating_bar.dart"
+      });
+    },
+    get C61() {
+      return C[61] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 11,
+        [_Location_line]: 318,
+        [_Location_file]: null
+      });
+    },
+    get C62() {
+      return C[62] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 319,
+        [_Location_file]: null
+      });
+    },
+    get C60() {
+      return C[60] = dart.constList([C[61] || CT.C61, C[62] || CT.C62], T._LocationL());
+    },
+    get C59() {
+      return C[59] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[60] || CT.C60,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 317,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.0/lib/src/rating_bar.dart"
+      });
+    },
+    get C65() {
+      return C[65] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onTapDown",
+        [_Location_column]: 9,
+        [_Location_line]: 295,
+        [_Location_file]: null
+      });
+    },
+    get C66() {
+      return C[66] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onHorizontalDragStart",
+        [_Location_column]: 9,
+        [_Location_line]: 311,
+        [_Location_file]: null
+      });
+    },
+    get C67() {
+      return C[67] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onHorizontalDragEnd",
+        [_Location_column]: 9,
+        [_Location_line]: 312,
+        [_Location_file]: null
+      });
+    },
+    get C68() {
+      return C[68] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onHorizontalDragUpdate",
+        [_Location_column]: 9,
+        [_Location_line]: 313,
+        [_Location_file]: null
+      });
+    },
+    get C69() {
+      return C[69] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onVerticalDragStart",
+        [_Location_column]: 9,
+        [_Location_line]: 314,
+        [_Location_file]: null
+      });
+    },
+    get C70() {
+      return C[70] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onVerticalDragEnd",
+        [_Location_column]: 9,
+        [_Location_line]: 315,
+        [_Location_file]: null
+      });
+    },
+    get C71() {
+      return C[71] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onVerticalDragUpdate",
+        [_Location_column]: 9,
+        [_Location_line]: 316,
+        [_Location_file]: null
+      });
+    },
+    get C72() {
+      return C[72] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 317,
+        [_Location_file]: null
+      });
+    },
+    get C64() {
+      return C[64] = dart.constList([C[65] || CT.C65, C[66] || CT.C66, C[67] || CT.C67, C[68] || CT.C68, C[69] || CT.C69, C[70] || CT.C70, C[71] || CT.C71, C[72] || CT.C72], T._LocationL());
+    },
+    get C63() {
+      return C[63] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[64] || CT.C64,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 294,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.0/lib/src/rating_bar.dart"
+      });
+    },
+    get C75() {
+      return C[75] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "ignoring",
+        [_Location_column]: 7,
+        [_Location_line]: 293,
+        [_Location_file]: null
+      });
+    },
+    get C76() {
+      return C[76] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 294,
+        [_Location_file]: null
+      });
+    },
+    get C74() {
+      return C[74] = dart.constList([C[75] || CT.C75, C[76] || CT.C76], T._LocationL());
+    },
+    get C73() {
+      return C[73] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[74] || CT.C74,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 292,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.0/lib/src/rating_bar.dart"
+      });
+    },
+    get C79() {
+      return C[79] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 21,
+        [_Location_line]: 422,
+        [_Location_file]: null
+      });
+    },
+    get C80() {
+      return C[80] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "size",
+        [_Location_column]: 21,
+        [_Location_line]: 423,
+        [_Location_file]: null
+      });
+    },
+    get C81() {
+      return C[81] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "unratedColor",
+        [_Location_column]: 21,
+        [_Location_line]: 424,
+        [_Location_file]: null
+      });
+    },
+    get C82() {
+      return C[82] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "enableMask",
+        [_Location_column]: 21,
+        [_Location_line]: 425,
+        [_Location_file]: null
+      });
+    },
+    get C78() {
+      return C[78] = dart.constList([C[79] || CT.C79, C[80] || CT.C80, C[81] || CT.C81, C[82] || CT.C82], T._LocationL());
+    },
+    get C77() {
+      return C[77] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[78] || CT.C78,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 421,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.0/lib/src/rating_bar.dart"
+      });
+    },
+    get C85() {
+      return C[85] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "fit",
+        [_Location_column]: 19,
+        [_Location_line]: 420,
+        [_Location_file]: null
+      });
+    },
+    get C86() {
+      return C[86] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 421,
+        [_Location_file]: null
+      });
+    },
+    get C84() {
+      return C[84] = dart.constList([C[85] || CT.C85, C[86] || CT.C86], T._LocationL());
+    },
+    get C83() {
+      return C[83] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[84] || CT.C84,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 419,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.0/lib/src/rating_bar.dart"
+      });
+    },
+    get C89() {
+      return C[89] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "clipper",
+        [_Location_column]: 21,
+        [_Location_line]: 431,
+        [_Location_file]: null
+      });
+    },
+    get C90() {
+      return C[90] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 21,
+        [_Location_line]: 434,
+        [_Location_file]: null
+      });
+    },
+    get C88() {
+      return C[88] = dart.constList([C[89] || CT.C89, C[90] || CT.C90], T._LocationL());
+    },
+    get C87() {
+      return C[87] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[88] || CT.C88,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 430,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.0/lib/src/rating_bar.dart"
+      });
+    },
+    get C93() {
+      return C[93] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "fit",
+        [_Location_column]: 19,
+        [_Location_line]: 429,
+        [_Location_file]: null
+      });
+    },
+    get C94() {
+      return C[94] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 430,
+        [_Location_file]: null
+      });
+    },
+    get C92() {
+      return C[92] = dart.constList([C[93] || CT.C93, C[94] || CT.C94], T._LocationL());
+    },
+    get C91() {
+      return C[91] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[92] || CT.C92,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 428,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.0/lib/src/rating_bar.dart"
+      });
+    },
+    get C97() {
+      return C[97] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "fit",
+        [_Location_column]: 15,
+        [_Location_line]: 417,
+        [_Location_file]: null
+      });
+    },
+    get C98() {
+      return C[98] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 15,
+        [_Location_line]: 418,
+        [_Location_file]: null
+      });
+    },
+    get C96() {
+      return C[96] = dart.constList([C[97] || CT.C97, C[98] || CT.C98], T._LocationL());
+    },
+    get C95() {
+      return C[95] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[96] || CT.C96,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 416,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.0/lib/src/rating_bar.dart"
+      });
+    },
+    get C101() {
+      return C[101] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 15,
+        [_Location_line]: 440,
+        [_Location_file]: null
+      });
+    },
+    get C102() {
+      return C[102] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "fit",
+        [_Location_column]: 15,
+        [_Location_line]: 441,
+        [_Location_file]: null
+      });
+    },
+    get C100() {
+      return C[100] = dart.constList([C[101] || CT.C101, C[102] || CT.C102], T._LocationL());
+    },
+    get C99() {
+      return C[99] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[100] || CT.C100,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 439,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.0/lib/src/rating_bar.dart"
+      });
+    },
+    get C105() {
+      return C[105] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 7,
+        [_Location_line]: 413,
+        [_Location_file]: null
+      });
+    },
+    get C106() {
+      return C[106] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 7,
+        [_Location_line]: 414,
+        [_Location_file]: null
+      });
+    },
+    get C107() {
+      return C[107] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 415,
+        [_Location_file]: null
+      });
+    },
+    get C104() {
+      return C[104] = dart.constList([C[105] || CT.C105, C[106] || CT.C106, C[107] || CT.C107], T._LocationL());
+    },
+    get C103() {
+      return C[103] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[104] || CT.C104,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 412,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.0/lib/src/rating_bar.dart"
+      });
+    },
+    get C110() {
+      return C[110] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "colorFilter",
+        [_Location_column]: 17,
+        [_Location_line]: 493,
+        [_Location_file]: null
+      });
+    },
+    get C111() {
+      return C[111] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 17,
+        [_Location_line]: 497,
+        [_Location_file]: null
+      });
+    },
+    get C109() {
+      return C[109] = dart.constList([C[110] || CT.C110, C[111] || CT.C111], T._LocationL());
+    },
+    get C108() {
+      return C[108] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[109] || CT.C109,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 492,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.0/lib/src/rating_bar.dart"
+      });
+    },
+    get C114() {
+      return C[114] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "fit",
+        [_Location_column]: 9,
+        [_Location_line]: 490,
+        [_Location_file]: null
+      });
+    },
+    get C115() {
+      return C[115] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 491,
+        [_Location_file]: null
+      });
+    },
+    get C113() {
+      return C[113] = dart.constList([C[114] || CT.C114, C[115] || CT.C115], T._LocationL());
+    },
+    get C112() {
+      return C[112] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[113] || CT.C113,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 489,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.0/lib/src/rating_bar.dart"
+      });
+    },
+    get C118() {
+      return C[118] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 7,
+        [_Location_line]: 487,
+        [_Location_file]: null
+      });
+    },
+    get C119() {
+      return C[119] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 7,
+        [_Location_line]: 488,
+        [_Location_file]: null
+      });
+    },
+    get C120() {
+      return C[120] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 489,
+        [_Location_file]: null
+      });
+    },
+    get C117() {
+      return C[117] = dart.constList([C[118] || CT.C118, C[119] || CT.C119, C[120] || CT.C120], T._LocationL());
+    },
+    get C116() {
+      return C[116] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[117] || CT.C117,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 486,
+        [_Location_file]: "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.0/lib/src/rating_bar.dart"
+      });
+    }
+  }, false);
+  var C = Array(121).fill(void 0);
+  var I = [
+    "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_rating_bar-4.0.0/lib/src/rating_bar.dart",
+    "package:flutter_rating_bar/src/rating_bar.dart"
+  ];
+  var full$ = dart.privateName(rating_bar, "RatingWidget.full");
+  var half$ = dart.privateName(rating_bar, "RatingWidget.half");
+  var empty$ = dart.privateName(rating_bar, "RatingWidget.empty");
+  rating_bar.RatingWidget = class RatingWidget extends core.Object {
+    get full() {
+      return this[full$];
+    }
+    set full(value) {
+      super.full = value;
+    }
+    get half() {
+      return this[half$];
+    }
+    set half(value) {
+      super.half = value;
+    }
+    get empty() {
+      return this[empty$];
+    }
+    set empty(value) {
+      super.empty = value;
+    }
+  };
+  (rating_bar.RatingWidget.new = function(opts) {
+    let full = opts && 'full' in opts ? opts.full : null;
+    if (full == null) dart.nullFailed(I[0], 8, 19, "full");
+    let half = opts && 'half' in opts ? opts.half : null;
+    if (half == null) dart.nullFailed(I[0], 9, 19, "half");
+    let empty = opts && 'empty' in opts ? opts.empty : null;
+    if (empty == null) dart.nullFailed(I[0], 10, 19, "empty");
+    this[full$] = full;
+    this[half$] = half;
+    this[empty$] = empty;
+    ;
+  }).prototype = rating_bar.RatingWidget.prototype;
+  dart.addTypeTests(rating_bar.RatingWidget);
+  dart.addTypeCaches(rating_bar.RatingWidget);
+  dart.setLibraryUri(rating_bar.RatingWidget, I[1]);
+  dart.setFieldSignature(rating_bar.RatingWidget, () => ({
+    __proto__: dart.getFields(rating_bar.RatingWidget.__proto__),
+    full: dart.finalFieldType(framework.Widget),
+    half: dart.finalFieldType(framework.Widget),
+    empty: dart.finalFieldType(framework.Widget)
+  }));
+  var onRatingUpdate$ = dart.privateName(rating_bar, "RatingBar.onRatingUpdate");
+  var glowColor$ = dart.privateName(rating_bar, "RatingBar.glowColor");
+  var maxRating$ = dart.privateName(rating_bar, "RatingBar.maxRating");
+  var textDirection$ = dart.privateName(rating_bar, "RatingBar.textDirection");
+  var unratedColor$ = dart.privateName(rating_bar, "RatingBar.unratedColor");
+  var allowHalfRating$ = dart.privateName(rating_bar, "RatingBar.allowHalfRating");
+  var direction$ = dart.privateName(rating_bar, "RatingBar.direction");
+  var glow$ = dart.privateName(rating_bar, "RatingBar.glow");
+  var glowRadius$ = dart.privateName(rating_bar, "RatingBar.glowRadius");
+  var ignoreGestures$ = dart.privateName(rating_bar, "RatingBar.ignoreGestures");
+  var initialRating$ = dart.privateName(rating_bar, "RatingBar.initialRating");
+  var itemCount$ = dart.privateName(rating_bar, "RatingBar.itemCount");
+  var itemPadding$ = dart.privateName(rating_bar, "RatingBar.itemPadding");
+  var itemSize$ = dart.privateName(rating_bar, "RatingBar.itemSize");
+  var minRating$ = dart.privateName(rating_bar, "RatingBar.minRating");
+  var tapOnlyMode$ = dart.privateName(rating_bar, "RatingBar.tapOnlyMode");
+  var updateOnDrag$ = dart.privateName(rating_bar, "RatingBar.updateOnDrag");
+  var wrapAlignment$ = dart.privateName(rating_bar, "RatingBar.wrapAlignment");
+  var _itemBuilder = dart.privateName(rating_bar, "RatingBar._itemBuilder");
+  var _ratingWidget = dart.privateName(rating_bar, "RatingBar._ratingWidget");
+  var _name = dart.privateName(basic_types, "_name");
+  var EdgeInsets_bottom = dart.privateName(edge_insets, "EdgeInsets.bottom");
+  var EdgeInsets_right = dart.privateName(edge_insets, "EdgeInsets.right");
+  var EdgeInsets_top = dart.privateName(edge_insets, "EdgeInsets.top");
+  var EdgeInsets_left = dart.privateName(edge_insets, "EdgeInsets.left");
+  var _name$ = dart.privateName(wrap, "_name");
+  var _itemBuilder$ = dart.privateName(rating_bar, "_itemBuilder");
+  var _ratingWidget$ = dart.privateName(rating_bar, "_ratingWidget");
+  rating_bar.RatingBar = class RatingBar extends framework.StatefulWidget {
+    get onRatingUpdate() {
+      return this[onRatingUpdate$];
+    }
+    set onRatingUpdate(value) {
+      super.onRatingUpdate = value;
+    }
+    get glowColor() {
+      return this[glowColor$];
+    }
+    set glowColor(value) {
+      super.glowColor = value;
+    }
+    get maxRating() {
+      return this[maxRating$];
+    }
+    set maxRating(value) {
+      super.maxRating = value;
+    }
+    get textDirection() {
+      return this[textDirection$];
+    }
+    set textDirection(value) {
+      super.textDirection = value;
+    }
+    get unratedColor() {
+      return this[unratedColor$];
+    }
+    set unratedColor(value) {
+      super.unratedColor = value;
+    }
+    get allowHalfRating() {
+      return this[allowHalfRating$];
+    }
+    set allowHalfRating(value) {
+      super.allowHalfRating = value;
+    }
+    get direction() {
+      return this[direction$];
+    }
+    set direction(value) {
+      super.direction = value;
+    }
+    get glow() {
+      return this[glow$];
+    }
+    set glow(value) {
+      super.glow = value;
+    }
+    get glowRadius() {
+      return this[glowRadius$];
+    }
+    set glowRadius(value) {
+      super.glowRadius = value;
+    }
+    get ignoreGestures() {
+      return this[ignoreGestures$];
+    }
+    set ignoreGestures(value) {
+      super.ignoreGestures = value;
+    }
+    get initialRating() {
+      return this[initialRating$];
+    }
+    set initialRating(value) {
+      super.initialRating = value;
+    }
+    get itemCount() {
+      return this[itemCount$];
+    }
+    set itemCount(value) {
+      super.itemCount = value;
+    }
+    get itemPadding() {
+      return this[itemPadding$];
+    }
+    set itemPadding(value) {
+      super.itemPadding = value;
+    }
+    get itemSize() {
+      return this[itemSize$];
+    }
+    set itemSize(value) {
+      super.itemSize = value;
+    }
+    get minRating() {
+      return this[minRating$];
+    }
+    set minRating(value) {
+      super.minRating = value;
+    }
+    get tapOnlyMode() {
+      return this[tapOnlyMode$];
+    }
+    set tapOnlyMode(value) {
+      super.tapOnlyMode = value;
+    }
+    get updateOnDrag() {
+      return this[updateOnDrag$];
+    }
+    set updateOnDrag(value) {
+      super.updateOnDrag = value;
+    }
+    get wrapAlignment() {
+      return this[wrapAlignment$];
+    }
+    set wrapAlignment(value) {
+      super.wrapAlignment = value;
+    }
+    get [_itemBuilder$]() {
+      return this[_itemBuilder];
+    }
+    set [_itemBuilder$](value) {
+      super[_itemBuilder$] = value;
+    }
+    get [_ratingWidget$]() {
+      return this[_ratingWidget];
+    }
+    set [_ratingWidget$](value) {
+      super[_ratingWidget$] = value;
+    }
+    createState() {
+      return new rating_bar._RatingBarState.new();
+    }
+  };
+  (rating_bar.RatingBar.new = function(opts) {
+    let ratingWidget = opts && 'ratingWidget' in opts ? opts.ratingWidget : null;
+    if (ratingWidget == null) dart.nullFailed(I[0], 33, 27, "ratingWidget");
+    let onRatingUpdate = opts && 'onRatingUpdate' in opts ? opts.onRatingUpdate : null;
+    if (onRatingUpdate == null) dart.nullFailed(I[0], 34, 19, "onRatingUpdate");
+    let glowColor = opts && 'glowColor' in opts ? opts.glowColor : null;
+    let maxRating = opts && 'maxRating' in opts ? opts.maxRating : null;
+    let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
+    let unratedColor = opts && 'unratedColor' in opts ? opts.unratedColor : null;
+    let allowHalfRating = opts && 'allowHalfRating' in opts ? opts.allowHalfRating : false;
+    if (allowHalfRating == null) dart.nullFailed(I[0], 39, 10, "allowHalfRating");
+    let direction = opts && 'direction' in opts ? opts.direction : C[0] || CT.C0;
+    if (direction == null) dart.nullFailed(I[0], 40, 10, "direction");
+    let glow = opts && 'glow' in opts ? opts.glow : true;
+    if (glow == null) dart.nullFailed(I[0], 41, 10, "glow");
+    let glowRadius = opts && 'glowRadius' in opts ? opts.glowRadius : 2;
+    if (glowRadius == null) dart.nullFailed(I[0], 42, 10, "glowRadius");
+    let ignoreGestures = opts && 'ignoreGestures' in opts ? opts.ignoreGestures : false;
+    if (ignoreGestures == null) dart.nullFailed(I[0], 43, 10, "ignoreGestures");
+    let initialRating = opts && 'initialRating' in opts ? opts.initialRating : 0;
+    if (initialRating == null) dart.nullFailed(I[0], 44, 10, "initialRating");
+    let itemCount = opts && 'itemCount' in opts ? opts.itemCount : 5;
+    if (itemCount == null) dart.nullFailed(I[0], 45, 10, "itemCount");
+    let itemPadding = opts && 'itemPadding' in opts ? opts.itemPadding : C[1] || CT.C1;
+    if (itemPadding == null) dart.nullFailed(I[0], 46, 10, "itemPadding");
+    let itemSize = opts && 'itemSize' in opts ? opts.itemSize : 40;
+    if (itemSize == null) dart.nullFailed(I[0], 47, 10, "itemSize");
+    let minRating = opts && 'minRating' in opts ? opts.minRating : 0;
+    if (minRating == null) dart.nullFailed(I[0], 48, 10, "minRating");
+    let tapOnlyMode = opts && 'tapOnlyMode' in opts ? opts.tapOnlyMode : false;
+    if (tapOnlyMode == null) dart.nullFailed(I[0], 49, 10, "tapOnlyMode");
+    let updateOnDrag = opts && 'updateOnDrag' in opts ? opts.updateOnDrag : false;
+    if (updateOnDrag == null) dart.nullFailed(I[0], 50, 10, "updateOnDrag");
+    let wrapAlignment = opts && 'wrapAlignment' in opts ? opts.wrapAlignment : C[2] || CT.C2;
+    if (wrapAlignment == null) dart.nullFailed(I[0], 51, 10, "wrapAlignment");
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[onRatingUpdate$] = onRatingUpdate;
+    this[glowColor$] = glowColor;
+    this[maxRating$] = maxRating;
+    this[textDirection$] = textDirection;
+    this[unratedColor$] = unratedColor;
+    this[allowHalfRating$] = allowHalfRating;
+    this[direction$] = direction;
+    this[glow$] = glow;
+    this[glowRadius$] = glowRadius;
+    this[ignoreGestures$] = ignoreGestures;
+    this[initialRating$] = initialRating;
+    this[itemCount$] = itemCount;
+    this[itemPadding$] = itemPadding;
+    this[itemSize$] = itemSize;
+    this[minRating$] = minRating;
+    this[tapOnlyMode$] = tapOnlyMode;
+    this[updateOnDrag$] = updateOnDrag;
+    this[wrapAlignment$] = wrapAlignment;
+    this[_itemBuilder] = null;
+    this[_ratingWidget] = ratingWidget;
+    rating_bar.RatingBar.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = rating_bar.RatingBar.prototype;
+  (rating_bar.RatingBar.builder = function(opts) {
+    let itemBuilder = opts && 'itemBuilder' in opts ? opts.itemBuilder : null;
+    if (itemBuilder == null) dart.nullFailed(I[0], 60, 35, "itemBuilder");
+    let onRatingUpdate = opts && 'onRatingUpdate' in opts ? opts.onRatingUpdate : null;
+    if (onRatingUpdate == null) dart.nullFailed(I[0], 61, 19, "onRatingUpdate");
+    let glowColor = opts && 'glowColor' in opts ? opts.glowColor : null;
+    let maxRating = opts && 'maxRating' in opts ? opts.maxRating : null;
+    let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
+    let unratedColor = opts && 'unratedColor' in opts ? opts.unratedColor : null;
+    let allowHalfRating = opts && 'allowHalfRating' in opts ? opts.allowHalfRating : false;
+    if (allowHalfRating == null) dart.nullFailed(I[0], 66, 10, "allowHalfRating");
+    let direction = opts && 'direction' in opts ? opts.direction : C[0] || CT.C0;
+    if (direction == null) dart.nullFailed(I[0], 67, 10, "direction");
+    let glow = opts && 'glow' in opts ? opts.glow : true;
+    if (glow == null) dart.nullFailed(I[0], 68, 10, "glow");
+    let glowRadius = opts && 'glowRadius' in opts ? opts.glowRadius : 2;
+    if (glowRadius == null) dart.nullFailed(I[0], 69, 10, "glowRadius");
+    let ignoreGestures = opts && 'ignoreGestures' in opts ? opts.ignoreGestures : false;
+    if (ignoreGestures == null) dart.nullFailed(I[0], 70, 10, "ignoreGestures");
+    let initialRating = opts && 'initialRating' in opts ? opts.initialRating : 0;
+    if (initialRating == null) dart.nullFailed(I[0], 71, 10, "initialRating");
+    let itemCount = opts && 'itemCount' in opts ? opts.itemCount : 5;
+    if (itemCount == null) dart.nullFailed(I[0], 72, 10, "itemCount");
+    let itemPadding = opts && 'itemPadding' in opts ? opts.itemPadding : C[1] || CT.C1;
+    if (itemPadding == null) dart.nullFailed(I[0], 73, 10, "itemPadding");
+    let itemSize = opts && 'itemSize' in opts ? opts.itemSize : 40;
+    if (itemSize == null) dart.nullFailed(I[0], 74, 10, "itemSize");
+    let minRating = opts && 'minRating' in opts ? opts.minRating : 0;
+    if (minRating == null) dart.nullFailed(I[0], 75, 10, "minRating");
+    let tapOnlyMode = opts && 'tapOnlyMode' in opts ? opts.tapOnlyMode : false;
+    if (tapOnlyMode == null) dart.nullFailed(I[0], 76, 10, "tapOnlyMode");
+    let updateOnDrag = opts && 'updateOnDrag' in opts ? opts.updateOnDrag : false;
+    if (updateOnDrag == null) dart.nullFailed(I[0], 77, 10, "updateOnDrag");
+    let wrapAlignment = opts && 'wrapAlignment' in opts ? opts.wrapAlignment : C[2] || CT.C2;
+    if (wrapAlignment == null) dart.nullFailed(I[0], 78, 10, "wrapAlignment");
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[onRatingUpdate$] = onRatingUpdate;
+    this[glowColor$] = glowColor;
+    this[maxRating$] = maxRating;
+    this[textDirection$] = textDirection;
+    this[unratedColor$] = unratedColor;
+    this[allowHalfRating$] = allowHalfRating;
+    this[direction$] = direction;
+    this[glow$] = glow;
+    this[glowRadius$] = glowRadius;
+    this[ignoreGestures$] = ignoreGestures;
+    this[initialRating$] = initialRating;
+    this[itemCount$] = itemCount;
+    this[itemPadding$] = itemPadding;
+    this[itemSize$] = itemSize;
+    this[minRating$] = minRating;
+    this[tapOnlyMode$] = tapOnlyMode;
+    this[updateOnDrag$] = updateOnDrag;
+    this[wrapAlignment$] = wrapAlignment;
+    this[_itemBuilder] = itemBuilder;
+    this[_ratingWidget] = null;
+    rating_bar.RatingBar.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = rating_bar.RatingBar.prototype;
+  dart.addTypeTests(rating_bar.RatingBar);
+  dart.addTypeCaches(rating_bar.RatingBar);
+  dart.setMethodSignature(rating_bar.RatingBar, () => ({
+    __proto__: dart.getMethods(rating_bar.RatingBar.__proto__),
+    createState: dart.fnType(rating_bar._RatingBarState, [])
+  }));
+  dart.setLibraryUri(rating_bar.RatingBar, I[1]);
+  dart.setFieldSignature(rating_bar.RatingBar, () => ({
+    __proto__: dart.getFields(rating_bar.RatingBar.__proto__),
+    onRatingUpdate: dart.finalFieldType(dart.fnType(dart.void, [core.double])),
+    glowColor: dart.finalFieldType(dart.nullable(ui.Color)),
+    maxRating: dart.finalFieldType(dart.nullable(core.double)),
+    textDirection: dart.finalFieldType(dart.nullable(ui.TextDirection)),
+    unratedColor: dart.finalFieldType(dart.nullable(ui.Color)),
+    allowHalfRating: dart.finalFieldType(core.bool),
+    direction: dart.finalFieldType(basic_types.Axis),
+    glow: dart.finalFieldType(core.bool),
+    glowRadius: dart.finalFieldType(core.double),
+    ignoreGestures: dart.finalFieldType(core.bool),
+    initialRating: dart.finalFieldType(core.double),
+    itemCount: dart.finalFieldType(core.int),
+    itemPadding: dart.finalFieldType(edge_insets.EdgeInsetsGeometry),
+    itemSize: dart.finalFieldType(core.double),
+    minRating: dart.finalFieldType(core.double),
+    tapOnlyMode: dart.finalFieldType(core.bool),
+    updateOnDrag: dart.finalFieldType(core.bool),
+    wrapAlignment: dart.finalFieldType(wrap.WrapAlignment),
+    [_itemBuilder$]: dart.finalFieldType(dart.nullable(dart.fnType(framework.Widget, [framework.BuildContext, core.int]))),
+    [_ratingWidget$]: dart.finalFieldType(dart.nullable(rating_bar.RatingWidget))
+  }));
+  var _rating = dart.privateName(rating_bar, "_rating");
+  var _isRTL = dart.privateName(rating_bar, "_isRTL");
+  var ___RatingBarState__minRating = dart.privateName(rating_bar, "_#_RatingBarState#_minRating");
+  var ___RatingBarState__minRating_isSet = dart.privateName(rating_bar, "_#_RatingBarState#_minRating#isSet");
+  var ___RatingBarState__maxRating = dart.privateName(rating_bar, "_#_RatingBarState#_maxRating");
+  var ___RatingBarState__maxRating_isSet = dart.privateName(rating_bar, "_#_RatingBarState#_maxRating#isSet");
+  var ___RatingBarState__glow = dart.privateName(rating_bar, "_#_RatingBarState#_glow");
+  var ___RatingBarState__glow_isSet = dart.privateName(rating_bar, "_#_RatingBarState#_glow#isSet");
+  var _minRating = dart.privateName(rating_bar, "_minRating");
+  var _maxRating = dart.privateName(rating_bar, "_maxRating");
+  var _glow = dart.privateName(rating_bar, "_glow");
+  var _buildRating = dart.privateName(rating_bar, "_buildRating");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  var _isHorizontal = dart.privateName(rating_bar, "_isHorizontal");
+  var _onDragStart = dart.privateName(rating_bar, "_onDragStart");
+  var _onDragEnd = dart.privateName(rating_bar, "_onDragEnd");
+  var _onDragUpdate = dart.privateName(rating_bar, "_onDragUpdate");
+  rating_bar._RatingBarState = class _RatingBarState extends framework.State$(rating_bar.RatingBar) {
+    get [_minRating]() {
+      let t0;
+      return dart.test(this[___RatingBarState__minRating_isSet]) ? (t0 = this[___RatingBarState__minRating], t0) : dart.throw(new _internal.LateError.fieldNI("_minRating"));
+    }
+    set [_minRating](t0) {
+      if (t0 == null) dart.nullFailed(I[0], 191, 15, "null");
+      this[___RatingBarState__minRating_isSet] = true;
+      this[___RatingBarState__minRating] = t0;
+    }
+    get [_maxRating]() {
+      let t1;
+      return dart.test(this[___RatingBarState__maxRating_isSet]) ? (t1 = this[___RatingBarState__maxRating], t1) : dart.throw(new _internal.LateError.fieldNI("_maxRating"));
+    }
+    set [_maxRating](t1) {
+      if (t1 == null) dart.nullFailed(I[0], 191, 27, "null");
+      this[___RatingBarState__maxRating_isSet] = true;
+      this[___RatingBarState__maxRating] = t1;
+    }
+    get [_glow]() {
+      let t2;
+      return dart.test(this[___RatingBarState__glow_isSet]) ? (t2 = this[___RatingBarState__glow], t2) : dart.throw(new _internal.LateError.fieldNI("_glow"));
+    }
+    set [_glow](t2) {
+      if (t2 == null) dart.nullFailed(I[0], 192, 34, "null");
+      if (dart.test(this[___RatingBarState__glow_isSet]))
+        dart.throw(new _internal.LateError.fieldAI("_glow"));
+      else {
+        this[___RatingBarState__glow_isSet] = true;
+        this[___RatingBarState__glow] = t2;
+      }
+    }
+    initState() {
+      let t3;
+      super.initState();
+      this[_glow] = new (T.ValueNotifierOfbool()).new(false);
+      this[_minRating] = this.widget.minRating;
+      this[_maxRating] = (t3 = this.widget.maxRating, t3 == null ? this.widget.itemCount[$toDouble]() : t3);
+      this[_rating] = this.widget.initialRating;
+    }
+    didUpdateWidget(oldWidget) {
+      let t3;
+      rating_bar.RatingBar.as(oldWidget);
+      if (oldWidget == null) dart.nullFailed(I[0], 204, 34, "oldWidget");
+      super.didUpdateWidget(oldWidget);
+      if (oldWidget.initialRating != this.widget.initialRating) {
+        this[_rating] = this.widget.initialRating;
+      }
+      this[_minRating] = this.widget.minRating;
+      this[_maxRating] = (t3 = this.widget.maxRating, t3 == null ? this.widget.itemCount[$toDouble]() : t3);
+    }
+    dispose() {
+      this[_glow].dispose();
+      super.dispose();
+    }
+    build(context) {
+      let t3;
+      if (context == null) dart.nullFailed(I[0], 220, 29, "context");
+      let textDirection = (t3 = this.widget.textDirection, t3 == null ? basic.Directionality.of(context) : t3);
+      this[_isRTL] = textDirection == ui.TextDirection.rtl;
+      this.iconRating = 0.0;
+      return new material.Material.new({color: colors.Colors.transparent, child: new basic.Wrap.new({alignment: wrap.WrapAlignment.start, textDirection: textDirection, direction: this.widget.direction, children: T.ListOfWidget().generate(this.widget.itemCount, dart.fn(index => {
+            if (index == null) dart.nullFailed(I[0], 233, 12, "index");
+            return this[_buildRating](context, index);
+          }, T.intToWidget())), $creationLocationd_0dea112b090073317d4: C[3] || CT.C3}), $creationLocationd_0dea112b090073317d4: C[9] || CT.C9});
+    }
+    [_buildRating](context, index) {
+      let t3, t3$, t3$0, t3$1, t3$2, t3$3, t3$4, t3$5, t3$6;
+      if (context == null) dart.nullFailed(I[0], 239, 36, "context");
+      if (index == null) dart.nullFailed(I[0], 239, 49, "index");
+      let ratingWidget = this.widget[_ratingWidget$];
+      let item = (t3 = this.widget[_itemBuilder$], t3 == null ? null : t3(context, index));
+      let ratingOffset = dart.test(this.widget.allowHalfRating) ? 0.5 : 1.0;
+      let _ratingWidget = null;
+      if (dart.notNull(index) >= dart.notNull(this[_rating])) {
+        _ratingWidget = new rating_bar._NoRatingWidget.new({size: this.widget.itemSize, child: (t3$0 = (t3$ = ratingWidget, t3$ == null ? null : t3$.empty), t3$0 == null ? dart.nullCheck(item) : t3$0), enableMask: ratingWidget == null, unratedColor: (t3$1 = this.widget.unratedColor, t3$1 == null ? theme.Theme.of(context).disabledColor : t3$1), $creationLocationd_0dea112b090073317d4: C[13] || CT.C13});
+      } else if (dart.notNull(index) >= dart.notNull(this[_rating]) - ratingOffset && dart.test(this.widget.allowHalfRating)) {
+        if ((t3$2 = ratingWidget, t3$2 == null ? null : t3$2.half) == null) {
+          _ratingWidget = new rating_bar._HalfRatingWidget.new({size: this.widget.itemSize, child: dart.nullCheck(item), enableMask: ratingWidget == null, rtlMode: this[_isRTL], unratedColor: (t3$3 = this.widget.unratedColor, t3$3 == null ? theme.Theme.of(context).disabledColor : t3$3), $creationLocationd_0dea112b090073317d4: C[19] || CT.C19});
+        } else {
+          _ratingWidget = new basic.SizedBox.new({width: this.widget.itemSize, height: this.widget.itemSize, child: new basic.FittedBox.new({fit: box_fit.BoxFit.contain, child: dart.test(this[_isRTL]) ? new basic.Transform.new({transform: (t3$4 = vector_math_64.Matrix4.identity(), (() => {
+                  t3$4.scale(-1.0, 1.0, 1.0);
+                  return t3$4;
+                })()), alignment: alignment.Alignment.center, transformHitTests: false, child: dart.nullCheck(ratingWidget).half, $creationLocationd_0dea112b090073317d4: C[26] || CT.C26}) : dart.nullCheck(ratingWidget).half, $creationLocationd_0dea112b090073317d4: C[32] || CT.C32}), $creationLocationd_0dea112b090073317d4: C[36] || CT.C36});
+        }
+        this.iconRating = dart.notNull(this.iconRating) + 0.5;
+      } else {
+        _ratingWidget = new basic.SizedBox.new({width: this.widget.itemSize, height: this.widget.itemSize, child: new basic.FittedBox.new({fit: box_fit.BoxFit.contain, child: (t3$6 = (t3$5 = ratingWidget, t3$5 == null ? null : t3$5.full), t3$6 == null ? item : t3$6), $creationLocationd_0dea112b090073317d4: C[41] || CT.C41}), $creationLocationd_0dea112b090073317d4: C[45] || CT.C45});
+        this.iconRating = dart.notNull(this.iconRating) + 1.0;
+      }
+      return new basic.IgnorePointer.new({ignoring: this.widget.ignoreGestures, child: new gesture_detector.GestureDetector.new({onTapDown: dart.fn(details => {
+            let t4, t3;
+            if (details == null) dart.nullFailed(I[0], 295, 21, "details");
+            let value = null;
+            if (index === 0 && (this[_rating] === 1 || this[_rating] === 0.5)) {
+              value = 0.0;
+            } else {
+              let tappedPosition = details.localPosition.dx;
+              let tappedOnFirstHalf = dart.notNull(tappedPosition) <= dart.notNull(this.widget.itemSize) / 2;
+              value = dart.notNull(index) + (tappedOnFirstHalf && dart.test(this.widget.allowHalfRating) ? 0.5 : 1.0);
+            }
+            value = math.max(core.double, value, this.widget.minRating);
+            t3 = this.widget;
+            t4 = value;
+            t3.onRatingUpdate(t4);
+            this[_rating] = value;
+            this.setState(dart.fn(() => {
+            }, T.VoidTovoid()));
+          }, T.TapDownDetailsTovoid()), onHorizontalDragStart: dart.test(this[_isHorizontal]) ? dart.bind(this, _onDragStart) : null, onHorizontalDragEnd: dart.test(this[_isHorizontal]) ? dart.bind(this, _onDragEnd) : null, onHorizontalDragUpdate: dart.test(this[_isHorizontal]) ? dart.bind(this, _onDragUpdate) : null, onVerticalDragStart: dart.test(this[_isHorizontal]) ? null : dart.bind(this, _onDragStart), onVerticalDragEnd: dart.test(this[_isHorizontal]) ? null : dart.bind(this, _onDragEnd), onVerticalDragUpdate: dart.test(this[_isHorizontal]) ? null : dart.bind(this, _onDragUpdate), child: new basic.Padding.new({padding: this.widget.itemPadding, child: new (T.ValueListenableBuilderOfbool()).new({valueListenable: this[_glow], builder: dart.fn((context, glow, child) => {
+                let t3;
+                if (context == null) dart.nullFailed(I[0], 321, 23, "context");
+                if (glow == null) dart.nullFailed(I[0], 321, 32, "glow");
+                if (dart.test(glow) && dart.test(this.widget.glow)) {
+                  let glowColor = (t3 = this.widget.glowColor, t3 == null ? theme.Theme.of(context).accentColor : t3);
+                  return new container.DecoratedBox.new({decoration: new box_decoration.BoxDecoration.new({shape: box_border.BoxShape.circle, boxShadow: T.JSArrayOfBoxShadow().of([new box_shadow.BoxShadow.new({color: glowColor.withAlpha(30), blurRadius: 10.0, spreadRadius: this.widget.glowRadius}), new box_shadow.BoxShadow.new({color: glowColor.withAlpha(20), blurRadius: 10.0, spreadRadius: this.widget.glowRadius})])}), child: child, $creationLocationd_0dea112b090073317d4: C[50] || CT.C50});
+                }
+                return dart.nullCheck(child);
+              }, T.BuildContextAndboolAndWidgetNToWidget()), child: _ratingWidget, $creationLocationd_0dea112b090073317d4: C[54] || CT.C54}), $creationLocationd_0dea112b090073317d4: C[59] || CT.C59}), $creationLocationd_0dea112b090073317d4: C[63] || CT.C63}), $creationLocationd_0dea112b090073317d4: C[73] || CT.C73});
+    }
+    get [_isHorizontal]() {
+      return this.widget.direction == basic_types.Axis.horizontal;
+    }
+    [_onDragUpdate](dragDetails) {
+      let t4, t3;
+      if (dragDetails == null) dart.nullFailed(I[0], 355, 40, "dragDetails");
+      if (!dart.test(this.widget.tapOnlyMode)) {
+        let box = T.RenderBoxN().as(this.context.findRenderObject());
+        if (box == null) return;
+        let _pos = box.globalToLocal(dragDetails.globalPosition);
+        let i = null;
+        if (this.widget.direction == basic_types.Axis.horizontal) {
+          i = dart.notNull(_pos.dx) / (dart.notNull(this.widget.itemSize) + dart.notNull(this.widget.itemPadding.horizontal));
+        } else {
+          i = dart.notNull(_pos.dy) / (dart.notNull(this.widget.itemSize) + dart.notNull(this.widget.itemPadding.vertical));
+        }
+        let currentRating = dart.test(this.widget.allowHalfRating) ? i : i[$round]()[$toDouble]();
+        if (dart.notNull(currentRating) > dart.notNull(this.widget.itemCount)) {
+          currentRating = this.widget.itemCount[$toDouble]();
+        }
+        if (dart.notNull(currentRating) < 0) {
+          currentRating = 0.0;
+        }
+        if (dart.test(this[_isRTL]) && this.widget.direction == basic_types.Axis.horizontal) {
+          currentRating = dart.notNull(this.widget.itemCount) - dart.notNull(currentRating);
+        }
+        this[_rating] = currentRating[$clamp](this[_minRating], this[_maxRating]);
+        if (dart.test(this.widget.updateOnDrag)) {
+          t3 = this.widget;
+          t4 = this.iconRating;
+          t3.onRatingUpdate(t4);
+        }
+        this.setState(dart.fn(() => {
+        }, T.VoidTovoid()));
+      }
+    }
+    [_onDragStart](details) {
+      if (details == null) dart.nullFailed(I[0], 384, 38, "details");
+      this[_glow].value = true;
+    }
+    [_onDragEnd](details) {
+      let t4, t3;
+      if (details == null) dart.nullFailed(I[0], 388, 34, "details");
+      this[_glow].value = false;
+      t3 = this.widget;
+      t4 = this.iconRating;
+      t3.onRatingUpdate(t4);
+      this.iconRating = 0.0;
+    }
+  };
+  (rating_bar._RatingBarState.new = function() {
+    this[_rating] = 0.0;
+    this[_isRTL] = false;
+    this.iconRating = 0.0;
+    this[___RatingBarState__minRating] = null;
+    this[___RatingBarState__minRating_isSet] = false;
+    this[___RatingBarState__maxRating] = null;
+    this[___RatingBarState__maxRating_isSet] = false;
+    this[___RatingBarState__glow] = null;
+    this[___RatingBarState__glow_isSet] = false;
+    rating_bar._RatingBarState.__proto__.new.call(this);
+    ;
+  }).prototype = rating_bar._RatingBarState.prototype;
+  dart.addTypeTests(rating_bar._RatingBarState);
+  dart.addTypeCaches(rating_bar._RatingBarState);
+  dart.setMethodSignature(rating_bar._RatingBarState, () => ({
+    __proto__: dart.getMethods(rating_bar._RatingBarState.__proto__),
+    build: dart.fnType(framework.Widget, [framework.BuildContext]),
+    [_buildRating]: dart.fnType(framework.Widget, [framework.BuildContext, core.int]),
+    [_onDragUpdate]: dart.fnType(dart.void, [drag_details.DragUpdateDetails]),
+    [_onDragStart]: dart.fnType(dart.void, [drag_details.DragStartDetails]),
+    [_onDragEnd]: dart.fnType(dart.void, [drag_details.DragEndDetails])
+  }));
+  dart.setGetterSignature(rating_bar._RatingBarState, () => ({
+    __proto__: dart.getGetters(rating_bar._RatingBarState.__proto__),
+    [_minRating]: core.double,
+    [_maxRating]: core.double,
+    [_glow]: change_notifier.ValueNotifier$(core.bool),
+    [_isHorizontal]: core.bool
+  }));
+  dart.setSetterSignature(rating_bar._RatingBarState, () => ({
+    __proto__: dart.getSetters(rating_bar._RatingBarState.__proto__),
+    [_minRating]: core.double,
+    [_maxRating]: core.double,
+    [_glow]: change_notifier.ValueNotifier$(core.bool)
+  }));
+  dart.setLibraryUri(rating_bar._RatingBarState, I[1]);
+  dart.setFieldSignature(rating_bar._RatingBarState, () => ({
+    __proto__: dart.getFields(rating_bar._RatingBarState.__proto__),
+    [_rating]: dart.fieldType(core.double),
+    [_isRTL]: dart.fieldType(core.bool),
+    iconRating: dart.fieldType(core.double),
+    [___RatingBarState__minRating]: dart.fieldType(dart.nullable(core.double)),
+    [___RatingBarState__minRating_isSet]: dart.fieldType(core.bool),
+    [___RatingBarState__maxRating]: dart.fieldType(dart.nullable(core.double)),
+    [___RatingBarState__maxRating_isSet]: dart.fieldType(core.bool),
+    [___RatingBarState__glow]: dart.fieldType(dart.nullable(change_notifier.ValueNotifier$(core.bool))),
+    [___RatingBarState__glow_isSet]: dart.fieldType(core.bool)
+  }));
+  rating_bar._HalfRatingWidget = class _HalfRatingWidget extends framework.StatelessWidget {
+    build(context) {
+      if (context == null) dart.nullFailed(I[0], 411, 29, "context");
+      return new basic.SizedBox.new({height: this.size, width: this.size, child: dart.test(this.enableMask) ? new basic.Stack.new({fit: stack.StackFit.expand, children: T.JSArrayOfWidget().of([new basic.FittedBox.new({fit: box_fit.BoxFit.contain, child: new rating_bar._NoRatingWidget.new({child: this.child, size: this.size, unratedColor: this.unratedColor, enableMask: this.enableMask, $creationLocationd_0dea112b090073317d4: C[77] || CT.C77}), $creationLocationd_0dea112b090073317d4: C[83] || CT.C83}), new basic.FittedBox.new({fit: box_fit.BoxFit.contain, child: new basic.ClipRect.new({clipper: new rating_bar._HalfClipper.new({rtlMode: this.rtlMode}), child: this.child, $creationLocationd_0dea112b090073317d4: C[87] || CT.C87}), $creationLocationd_0dea112b090073317d4: C[91] || CT.C91})]), $creationLocationd_0dea112b090073317d4: C[95] || CT.C95}) : new basic.FittedBox.new({child: this.child, fit: box_fit.BoxFit.contain, $creationLocationd_0dea112b090073317d4: C[99] || CT.C99}), $creationLocationd_0dea112b090073317d4: C[103] || CT.C103});
+    }
+  };
+  (rating_bar._HalfRatingWidget.new = function(opts) {
+    let size = opts && 'size' in opts ? opts.size : null;
+    if (size == null) dart.nullFailed(I[0], 397, 19, "size");
+    let child = opts && 'child' in opts ? opts.child : null;
+    if (child == null) dart.nullFailed(I[0], 398, 19, "child");
+    let enableMask = opts && 'enableMask' in opts ? opts.enableMask : null;
+    if (enableMask == null) dart.nullFailed(I[0], 399, 19, "enableMask");
+    let rtlMode = opts && 'rtlMode' in opts ? opts.rtlMode : null;
+    if (rtlMode == null) dart.nullFailed(I[0], 400, 19, "rtlMode");
+    let unratedColor = opts && 'unratedColor' in opts ? opts.unratedColor : null;
+    if (unratedColor == null) dart.nullFailed(I[0], 401, 19, "unratedColor");
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this.size = size;
+    this.child = child;
+    this.enableMask = enableMask;
+    this.rtlMode = rtlMode;
+    this.unratedColor = unratedColor;
+    rating_bar._HalfRatingWidget.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = rating_bar._HalfRatingWidget.prototype;
+  dart.addTypeTests(rating_bar._HalfRatingWidget);
+  dart.addTypeCaches(rating_bar._HalfRatingWidget);
+  dart.setMethodSignature(rating_bar._HalfRatingWidget, () => ({
+    __proto__: dart.getMethods(rating_bar._HalfRatingWidget.__proto__),
+    build: dart.fnType(framework.Widget, [framework.BuildContext])
+  }));
+  dart.setLibraryUri(rating_bar._HalfRatingWidget, I[1]);
+  dart.setFieldSignature(rating_bar._HalfRatingWidget, () => ({
+    __proto__: dart.getFields(rating_bar._HalfRatingWidget.__proto__),
+    child: dart.finalFieldType(framework.Widget),
+    size: dart.finalFieldType(core.double),
+    enableMask: dart.finalFieldType(core.bool),
+    rtlMode: dart.finalFieldType(core.bool),
+    unratedColor: dart.finalFieldType(ui.Color)
+  }));
+  rating_bar._HalfClipper = class _HalfClipper extends proxy_box.CustomClipper$(ui.Rect) {
+    getClip(size) {
+      if (size == null) dart.nullFailed(I[0], 453, 21, "size");
+      return dart.test(this.rtlMode) ? new ui.Rect.fromLTRB(dart.notNull(size.width) / 2, 0.0, size.width, size.height) : new ui.Rect.fromLTRB(0.0, 0.0, dart.notNull(size.width) / 2, size.height);
+    }
+    shouldReclip(oldClipper) {
+      T.CustomClipperOfRect().as(oldClipper);
+      if (oldClipper == null) dart.nullFailed(I[0], 468, 41, "oldClipper");
+      return true;
+    }
+  };
+  (rating_bar._HalfClipper.new = function(opts) {
+    let rtlMode = opts && 'rtlMode' in opts ? opts.rtlMode : null;
+    if (rtlMode == null) dart.nullFailed(I[0], 448, 31, "rtlMode");
+    this.rtlMode = rtlMode;
+    rating_bar._HalfClipper.__proto__.new.call(this);
+    ;
+  }).prototype = rating_bar._HalfClipper.prototype;
+  dart.addTypeTests(rating_bar._HalfClipper);
+  dart.addTypeCaches(rating_bar._HalfClipper);
+  dart.setMethodSignature(rating_bar._HalfClipper, () => ({
+    __proto__: dart.getMethods(rating_bar._HalfClipper.__proto__),
+    getClip: dart.fnType(ui.Rect, [ui.Size]),
+    shouldReclip: dart.fnType(core.bool, [dart.nullable(core.Object)])
+  }));
+  dart.setLibraryUri(rating_bar._HalfClipper, I[1]);
+  dart.setFieldSignature(rating_bar._HalfClipper, () => ({
+    __proto__: dart.getFields(rating_bar._HalfClipper.__proto__),
+    rtlMode: dart.finalFieldType(core.bool)
+  }));
+  rating_bar._NoRatingWidget = class _NoRatingWidget extends framework.StatelessWidget {
+    build(context) {
+      if (context == null) dart.nullFailed(I[0], 485, 29, "context");
+      return new basic.SizedBox.new({height: this.size, width: this.size, child: new basic.FittedBox.new({fit: box_fit.BoxFit.contain, child: dart.test(this.enableMask) ? new color_filter.ColorFiltered.new({colorFilter: new _engine._CkBlendModeColorFilter.new(this.unratedColor, ui.BlendMode.srcIn), child: this.child, $creationLocationd_0dea112b090073317d4: C[108] || CT.C108}) : this.child, $creationLocationd_0dea112b090073317d4: C[112] || CT.C112}), $creationLocationd_0dea112b090073317d4: C[116] || CT.C116});
+    }
+  };
+  (rating_bar._NoRatingWidget.new = function(opts) {
+    let size = opts && 'size' in opts ? opts.size : null;
+    if (size == null) dart.nullFailed(I[0], 473, 19, "size");
+    let child = opts && 'child' in opts ? opts.child : null;
+    if (child == null) dart.nullFailed(I[0], 474, 19, "child");
+    let enableMask = opts && 'enableMask' in opts ? opts.enableMask : null;
+    if (enableMask == null) dart.nullFailed(I[0], 475, 19, "enableMask");
+    let unratedColor = opts && 'unratedColor' in opts ? opts.unratedColor : null;
+    if (unratedColor == null) dart.nullFailed(I[0], 476, 19, "unratedColor");
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this.size = size;
+    this.child = child;
+    this.enableMask = enableMask;
+    this.unratedColor = unratedColor;
+    rating_bar._NoRatingWidget.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = rating_bar._NoRatingWidget.prototype;
+  dart.addTypeTests(rating_bar._NoRatingWidget);
+  dart.addTypeCaches(rating_bar._NoRatingWidget);
+  dart.setMethodSignature(rating_bar._NoRatingWidget, () => ({
+    __proto__: dart.getMethods(rating_bar._NoRatingWidget.__proto__),
+    build: dart.fnType(framework.Widget, [framework.BuildContext])
+  }));
+  dart.setLibraryUri(rating_bar._NoRatingWidget, I[1]);
+  dart.setFieldSignature(rating_bar._NoRatingWidget, () => ({
+    __proto__: dart.getFields(rating_bar._NoRatingWidget.__proto__),
+    size: dart.finalFieldType(core.double),
+    child: dart.finalFieldType(framework.Widget),
+    enableMask: dart.finalFieldType(core.bool),
+    unratedColor: dart.finalFieldType(ui.Color)
+  }));
+  dart.trackLibraries("packages/flutter_rating_bar/src/rating_bar.dart", {
+    "package:flutter_rating_bar/src/rating_bar.dart": rating_bar
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["rating_bar.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAae;;;;;;IAGA;;;;;;IAGA;;;;;;;;QAZG;;QACA;;QACA;;IAFA;IACA;IACA;;EACd;;;;;;;;;;;;;;;;;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","file":"../../../../../../../packages/flutter_rating_bar/src/rating_bar.dart.lib.js"}');
+  // Exports:
+  return {
+    src__rating_bar: rating_bar
+  };
+}));
+
+//# sourceMappingURL=rating_bar.dart.lib.js.map

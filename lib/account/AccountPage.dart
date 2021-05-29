@@ -270,13 +270,14 @@ class __PastOrderListViewState extends State<_PastOrderListView> {
       l2 = [];
 
   List<bool> isDeliveredOrder = [];
+  bool visibility = false;
 
   Map chefs = {};
 
   @override
   void initState() {
     super.initState();
-    setState(() {});
+    visibility = false;
   }
 
   @override
@@ -304,6 +305,7 @@ class __PastOrderListViewState extends State<_PastOrderListView> {
 
   @override
   Widget build(BuildContext context) {
+    double totalWidth = MediaQuery.of(context).size.width;
     double totalHeight = MediaQuery.of(context).size.height;
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -429,18 +431,48 @@ class __PastOrderListViewState extends State<_PastOrderListView> {
               foodItem: foods[index],
               rated: rated[index]),
         ),
-        TextButton(
-          child: Text(
-            'VIEW MY ORDERS',
-            style: Theme.of(context)
-                .textTheme
-                .subtitle2
-                .copyWith(color: darkOrange),
+        if (widget.ongoing && visibility == false)
+          Center(
+            child: OutlinedButton(
+              style: OutlinedButton.styleFrom(
+                side: BorderSide(
+                    width: totalWidth * 1.5 / 320, color: Colors.deepOrange),
+              ),
+              child: Text(
+                ' VIEW ONGOING ORDERS',
+                style: Theme.of(context)
+                    .textTheme
+                    .subtitle2
+                    .copyWith(color: darkOrange),
+              ),
+              onPressed: () {
+                setState(() {
+                  visibility = true;
+                });
+              },
+            ),
           ),
-          onPressed: () {
-            setState(() {});
-          },
-        ),
+        if (!(widget.ongoing) && visibility == false)
+          Center(
+            child: OutlinedButton(
+              style: OutlinedButton.styleFrom(
+                side: BorderSide(
+                    width: totalWidth * 1.5 / 320, color: Colors.deepOrange),
+              ),
+              child: Text(
+                ' VIEW PAST ORDERS',
+                style: Theme.of(context)
+                    .textTheme
+                    .subtitle2
+                    .copyWith(color: darkOrange),
+              ),
+              onPressed: () {
+                setState(() {
+                  visibility = true;
+                });
+              },
+            ),
+          ),
         UIHelper.verticalSpaceSmall(),
         CustomDividerView(),
         if (widget.ongoing == false)

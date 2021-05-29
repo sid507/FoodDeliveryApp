@@ -122,15 +122,15 @@ class _ItemsFoundState extends State<ItemsFound> {
     // (context as Element).reassemble();
     print("ssssssssssssssssssssssssssssssssssssssssss");
     // print()
-    if (CartData.dishes.isNotEmpty)
-      Fluttertoast.showToast(
-          msg: "Showing " + CartData.dishes[0].dish.name + "'s food only",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Helper().button,
-          textColor: Colors.white,
-          fontSize: 16.0);
+    // if (CartData.dishes.isNotEmpty)
+    //   Fluttertoast.showToast(
+    //       msg: "Showing " + CartData.dishes[0].dish.name + "'s food only",
+    //       toastLength: Toast.LENGTH_SHORT,
+    //       gravity: ToastGravity.BOTTOM,
+    //       timeInSecForIosWeb: 1,
+    //       backgroundColor: Helper().button,
+    //       textColor: Colors.white,
+    //       fontSize: 16.0);
     setState(() {
       dishes = [];
     });
@@ -596,14 +596,21 @@ class _SingleCardState extends State<SingleCard> {
                                       .format(tomorrow)
                                       .toString()),
                               widget.quantity);
+                          String msg;
+                          if (CartData.dishes.length < 2) {
+                            msg = "Showing " + widget.name + "'s food only";
+                          } else {
+                            msg = "Successfully Added";
+                          }
                           Fluttertoast.showToast(
-                              msg: "Showing " + widget.name + "'s food only",
+                              msg: msg,
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.BOTTOM,
                               timeInSecForIosWeb: 1,
                               backgroundColor: Helper().button,
                               textColor: Colors.white,
                               fontSize: 16.0);
+
                           // widget.refresh();
                           // checkCart_add();
                           Navigator.push(
@@ -627,18 +634,18 @@ class _SingleCardState extends State<SingleCard> {
                         color: Colors.white,
                       ),
                     )),
-                Positioned(
-                  right: 3,
-                  top: 3,
-                  child: Container(
-                    decoration: new BoxDecoration(
-                      color: Colors.red.withOpacity(0.6),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    child: Text("25 mins"),
-                    padding: EdgeInsets.all(4.0),
-                  ),
-                )
+                // Positioned(
+                //   right: 3,
+                //   top: 3,
+                //   child: Container(
+                //     decoration: new BoxDecoration(
+                //       color: Colors.red.withOpacity(0.6),
+                //       borderRadius: BorderRadius.all(Radius.circular(10)),
+                //     ),
+                //     child: Text("25 mins"),
+                //     padding: EdgeInsets.all(4.0),
+                //   ),
+                // )
               ])
             ]),
       ),

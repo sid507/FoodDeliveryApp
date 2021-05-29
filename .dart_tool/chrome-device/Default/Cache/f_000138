@@ -1,0 +1,1204 @@
+define(['dart_sdk', 'packages/location/location.dart', 'packages/google_maps_flutter_platform_interface/src/types/location.dart', 'packages/geocoder/model.dart', 'packages/geocoder/geocoder.dart', 'packages/food_delivery_app/user/SearchPage.dart', 'packages/location_platform_interface/location_platform_interface.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/painting/box_decoration.dart', 'packages/flutter/src/painting/decoration_image.dart', 'packages/flutter/src/painting/image_resolution.dart', 'packages/flutter/src/painting/box_fit.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/flutter/src/material/elevated_button.dart', 'packages/flutter/src/painting/rounded_rectangle_border.dart', 'packages/flutter/src/painting/border_radius.dart', 'packages/flutter/src/painting/placeholder_span.dart', 'packages/flutter/src/widgets/icon.dart', 'packages/flutter/src/material/icons.dart', 'packages/flutter/src/material/page.dart', 'packages/flutter/src/widgets/single_child_scroll_view.dart', 'packages/flutter/src/rendering/paragraph.dart'], (function load__packages__food_delivery_app__user__Start_dart(dart_sdk, packages__location__location$46dart, packages__google_maps_flutter_platform_interface__src__types__location$46dart, packages__geocoder__model$46dart, packages__geocoder__geocoder$46dart, packages__food_delivery_app__user__SearchPage$46dart, packages__location_platform_interface__location_platform_interface$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__painting__box_decoration$46dart, packages__flutter__src__painting__decoration_image$46dart, packages__flutter__src__painting__image_resolution$46dart, packages__flutter__src__painting__box_fit$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__rendering__flex$46dart, packages__flutter__src__painting__strut_style$46dart, packages__flutter__src__material__elevated_button$46dart, packages__flutter__src__painting__rounded_rectangle_border$46dart, packages__flutter__src__painting__border_radius$46dart, packages__flutter__src__painting__placeholder_span$46dart, packages__flutter__src__widgets__icon$46dart, packages__flutter__src__material__icons$46dart, packages__flutter__src__material__page$46dart, packages__flutter__src__widgets__single_child_scroll_view$46dart, packages__flutter__src__rendering__paragraph$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const async = dart_sdk.async;
+  const ui = dart_sdk.ui;
+  const _interceptors = dart_sdk._interceptors;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const location = packages__location__location$46dart.location;
+  const location$ = packages__google_maps_flutter_platform_interface__src__types__location$46dart.src__types__location;
+  const model = packages__geocoder__model$46dart.model;
+  const geocoder = packages__geocoder__geocoder$46dart.geocoder;
+  const UserHome = packages__food_delivery_app__user__SearchPage$46dart.user__UserHome;
+  const Menucard = packages__food_delivery_app__user__SearchPage$46dart.user__Menucard;
+  const location_platform_interface = packages__location_platform_interface__location_platform_interface$46dart.location_platform_interface;
+  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
+  const widget_span = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_span;
+  const navigator = packages__flutter__src__widgets__widget_span$46dart.src__widgets__navigator;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const scaffold = packages__flutter__src__material__icon_button$46dart.src__material__scaffold;
+  const dialog = packages__flutter__src__material__icon_button$46dart.src__material__dialog;
+  const text_button = packages__flutter__src__material__icon_button$46dart.src__material__text_button;
+  const box_decoration = packages__flutter__src__painting__box_decoration$46dart.src__painting__box_decoration;
+  const decoration_image = packages__flutter__src__painting__decoration_image$46dart.src__painting__decoration_image;
+  const image_resolution = packages__flutter__src__painting__image_resolution$46dart.src__painting__image_resolution;
+  const box_fit = packages__flutter__src__painting__box_fit$46dart.src__painting__box_fit;
+  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
+  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
+  const elevated_button = packages__flutter__src__material__elevated_button$46dart.src__material__elevated_button;
+  const rounded_rectangle_border = packages__flutter__src__painting__rounded_rectangle_border$46dart.src__painting__rounded_rectangle_border;
+  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
+  const text_span = packages__flutter__src__painting__placeholder_span$46dart.src__painting__text_span;
+  const inline_span = packages__flutter__src__painting__placeholder_span$46dart.src__painting__inline_span;
+  const icon = packages__flutter__src__widgets__icon$46dart.src__widgets__icon;
+  const icons = packages__flutter__src__material__icons$46dart.src__material__icons;
+  const page = packages__flutter__src__material__page$46dart.src__material__page;
+  const single_child_scroll_view = packages__flutter__src__widgets__single_child_scroll_view$46dart.src__widgets__single_child_scroll_view;
+  const paragraph = packages__flutter__src__rendering__paragraph$46dart.src__rendering__paragraph;
+  var Start = Object.create(dart.library);
+  var $first = dartx.first;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    AddressL: () => (T.AddressL = dart.constFn(dart.legacy(model.Address)))(),
+    ListOfAddressL: () => (T.ListOfAddressL = dart.constFn(core.List$(T.AddressL())))(),
+    ListLOfAddressL: () => (T.ListLOfAddressL = dart.constFn(dart.legacy(T.ListOfAddressL())))(),
+    ListLOfAddressLToNull: () => (T.ListLOfAddressLToNull = dart.constFn(dart.fnType(core.Null, [T.ListLOfAddressL()])))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    FutureOfNull: () => (T.FutureOfNull = dart.constFn(async.Future$(core.Null)))(),
+    FutureLOfNull: () => (T.FutureLOfNull = dart.constFn(dart.legacy(T.FutureOfNull())))(),
+    VoidToFutureLOfNull: () => (T.VoidToFutureLOfNull = dart.constFn(dart.fnType(T.FutureLOfNull(), [])))(),
+    InlineSpanL: () => (T.InlineSpanL = dart.constFn(dart.legacy(inline_span.InlineSpan)))(),
+    JSArrayOfInlineSpanL: () => (T.JSArrayOfInlineSpanL = dart.constFn(_interceptors.JSArray$(T.InlineSpanL())))(),
+    MapHomePageL: () => (T.MapHomePageL = dart.constFn(dart.legacy(UserHome.MapHomePage)))(),
+    BuildContextL: () => (T.BuildContextL = dart.constFn(dart.legacy(framework.BuildContext)))(),
+    BuildContextLToMapHomePageL: () => (T.BuildContextLToMapHomePageL = dart.constFn(dart.fnType(T.MapHomePageL(), [T.BuildContextL()])))(),
+    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
+    JSArrayOfWidgetL: () => (T.JSArrayOfWidgetL = dart.constFn(_interceptors.JSArray$(T.WidgetL())))(),
+    MenuOptionSideL: () => (T.MenuOptionSideL = dart.constFn(dart.legacy(Menucard.MenuOptionSide)))(),
+    BuildContextLToMenuOptionSideL: () => (T.BuildContextLToMenuOptionSideL = dart.constFn(dart.fnType(T.MenuOptionSideL(), [T.BuildContextL()])))(),
+    AlertDialogL: () => (T.AlertDialogL = dart.constFn(dart.legacy(dialog.AlertDialog)))(),
+    BuildContextLToAlertDialogL: () => (T.BuildContextLToAlertDialogL = dart.constFn(dart.fnType(T.AlertDialogL(), [T.BuildContextL()])))()
+  };
+  var T$Eval = Object.assign({
+    _: () => T$Eval
+  }, T);
+  var S = {
+    _: () => S
+  };
+  var S$Eval = Object.assign({
+    _: () => S$Eval
+  }, S);
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 19,
+        [_Location_line]: 92,
+        [_Location_file]: null
+      });
+    },
+    get C1() {
+      return C[1] = dart.constList([C[2] || CT.C2], T._LocationL());
+    },
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[1] || CT.C1,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 91,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 19,
+        [_Location_line]: 95,
+        [_Location_file]: null
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 19,
+        [_Location_line]: 96,
+        [_Location_file]: null
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "textAlign",
+        [_Location_column]: 19,
+        [_Location_line]: 100,
+        [_Location_file]: null
+      });
+    },
+    get C4() {
+      return C[4] = dart.constList([C[5] || CT.C5, C[6] || CT.C6, C[7] || CT.C7], T._LocationL());
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[4] || CT.C4,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 94,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 19,
+        [_Location_line]: 103,
+        [_Location_file]: null
+      });
+    },
+    get C9() {
+      return C[9] = dart.constList([C[10] || CT.C10], T._LocationL());
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[9] || CT.C9,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 102,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 19,
+        [_Location_line]: 106,
+        [_Location_file]: null
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "maxLines",
+        [_Location_column]: 19,
+        [_Location_line]: 107,
+        [_Location_file]: null
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 19,
+        [_Location_line]: 108,
+        [_Location_file]: null
+      });
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "textAlign",
+        [_Location_column]: 19,
+        [_Location_line]: 112,
+        [_Location_file]: null
+      });
+    },
+    get C12() {
+      return C[12] = dart.constList([C[13] || CT.C13, C[14] || CT.C14, C[15] || CT.C15, C[16] || CT.C16], T._LocationL());
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[12] || CT.C12,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 105,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 19,
+        [_Location_line]: 123,
+        [_Location_file]: null
+      });
+    },
+    get C18() {
+      return C[18] = dart.constList([C[19] || CT.C19], T._LocationL());
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[18] || CT.C18,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 122,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "icon",
+        [_Location_column]: 45,
+        [_Location_line]: 147,
+        [_Location_file]: null
+      });
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "size",
+        [_Location_column]: 31,
+        [_Location_line]: 148,
+        [_Location_file]: null
+      });
+    },
+    get C21() {
+      return C[21] = dart.constList([C[22] || CT.C22, C[23] || CT.C23], T._LocationL());
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[21] || CT.C21,
+        [_Location_name]: null,
+        [_Location_column]: 34,
+        [_Location_line]: 147,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "text",
+        [_Location_column]: 21,
+        [_Location_line]: 144,
+        [_Location_file]: null
+      });
+    },
+    get C25() {
+      return C[25] = dart.constList([C[26] || CT.C26], T._LocationL());
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[25] || CT.C25,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 143,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPressed",
+        [_Location_column]: 19,
+        [_Location_line]: 126,
+        [_Location_file]: null
+      });
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 19,
+        [_Location_line]: 137,
+        [_Location_file]: null
+      });
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 143,
+        [_Location_file]: null
+      });
+    },
+    get C28() {
+      return C[28] = dart.constList([C[29] || CT.C29, C[30] || CT.C30, C[31] || CT.C31], T._LocationL());
+    },
+    get C27() {
+      return C[27] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[28] || CT.C28,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 125,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 19,
+        [_Location_line]: 161,
+        [_Location_file]: null
+      });
+    },
+    get C33() {
+      return C[33] = dart.constList([C[34] || CT.C34], T._LocationL());
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[33] || CT.C33,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 160,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C36() {
+      return C[36] = dart.constList([], T._LocationL());
+    },
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[36] || CT.C36,
+        [_Location_name]: null,
+        [_Location_column]: 47,
+        [_Location_line]: 168,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C39() {
+      return C[39] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 21,
+        [_Location_line]: 179,
+        [_Location_file]: null
+      });
+    },
+    get C40() {
+      return C[40] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 21,
+        [_Location_line]: 180,
+        [_Location_file]: null
+      });
+    },
+    get C38() {
+      return C[38] = dart.constList([C[39] || CT.C39, C[40] || CT.C40], T._LocationL());
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[38] || CT.C38,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 178,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C43() {
+      return C[43] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPressed",
+        [_Location_column]: 19,
+        [_Location_line]: 164,
+        [_Location_file]: null
+      });
+    },
+    get C44() {
+      return C[44] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 19,
+        [_Location_line]: 172,
+        [_Location_file]: null
+      });
+    },
+    get C45() {
+      return C[45] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 178,
+        [_Location_file]: null
+      });
+    },
+    get C42() {
+      return C[42] = dart.constList([C[43] || CT.C43, C[44] || CT.C44, C[45] || CT.C45], T._LocationL());
+    },
+    get C41() {
+      return C[41] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[42] || CT.C42,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 163,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C48() {
+      return C[48] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 19,
+        [_Location_line]: 187,
+        [_Location_file]: null
+      });
+    },
+    get C47() {
+      return C[47] = dart.constList([C[48] || CT.C48], T._LocationL());
+    },
+    get C46() {
+      return C[46] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[47] || CT.C47,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 186,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C51() {
+      return C[51] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 15,
+        [_Location_line]: 87,
+        [_Location_file]: null
+      });
+    },
+    get C52() {
+      return C[52] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "crossAxisAlignment",
+        [_Location_column]: 15,
+        [_Location_line]: 88,
+        [_Location_file]: null
+      });
+    },
+    get C53() {
+      return C[53] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 15,
+        [_Location_line]: 89,
+        [_Location_file]: null
+      });
+    },
+    get C50() {
+      return C[50] = dart.constList([C[51] || CT.C51, C[52] || CT.C52, C[53] || CT.C53], T._LocationL());
+    },
+    get C49() {
+      return C[49] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[50] || CT.C50,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 86,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C56() {
+      return C[56] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 13,
+        [_Location_line]: 85,
+        [_Location_file]: null
+      });
+    },
+    get C57() {
+      return C[57] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 86,
+        [_Location_file]: null
+      });
+    },
+    get C55() {
+      return C[55] = dart.constList([C[56] || CT.C56, C[57] || CT.C57], T._LocationL());
+    },
+    get C54() {
+      return C[54] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[55] || CT.C55,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 84,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C60() {
+      return C[60] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "backgroundColor",
+        [_Location_column]: 11,
+        [_Location_line]: 83,
+        [_Location_file]: null
+      });
+    },
+    get C61() {
+      return C[61] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "body",
+        [_Location_column]: 11,
+        [_Location_line]: 84,
+        [_Location_file]: null
+      });
+    },
+    get C59() {
+      return C[59] = dart.constList([C[60] || CT.C60, C[61] || CT.C61], T._LocationL());
+    },
+    get C58() {
+      return C[58] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[59] || CT.C59,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 82,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C64() {
+      return C[64] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 9,
+        [_Location_line]: 76,
+        [_Location_file]: null
+      });
+    },
+    get C65() {
+      return C[65] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 82,
+        [_Location_file]: null
+      });
+    },
+    get C63() {
+      return C[63] = dart.constList([C[64] || CT.C64, C[65] || CT.C65], T._LocationL());
+    },
+    get C62() {
+      return C[62] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[63] || CT.C63,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 75,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C68() {
+      return C[68] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "body",
+        [_Location_column]: 7,
+        [_Location_line]: 75,
+        [_Location_file]: null
+      });
+    },
+    get C67() {
+      return C[67] = dart.constList([C[68] || CT.C68], T._LocationL());
+    },
+    get C66() {
+      return C[66] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[67] || CT.C67,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 74,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C72() {
+      return C[72] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 29,
+        [_Location_line]: 205,
+        [_Location_file]: null
+      });
+    },
+    get C73() {
+      return C[73] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "textAlign",
+        [_Location_column]: 49,
+        [_Location_line]: 205,
+        [_Location_file]: null
+      });
+    },
+    get C71() {
+      return C[71] = dart.constList([C[72] || CT.C72, C[73] || CT.C73], T._LocationL());
+    },
+    get C70() {
+      return C[70] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[71] || CT.C71,
+        [_Location_name]: null,
+        [_Location_column]: 24,
+        [_Location_line]: 205,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C74() {
+      return C[74] = dart.const({
+        __proto__: ui.TextAlign.prototype,
+        [_name]: "TextAlign.center",
+        index: 2
+      });
+    },
+    get C69() {
+      return C[69] = dart.const({
+        __proto__: text.Text.prototype,
+        [Widget__location]: C[70] || CT.C70,
+        [Widget_key]: null,
+        [Text_textHeightBehavior]: null,
+        [Text_textWidthBasis]: null,
+        [Text_semanticsLabel]: null,
+        [Text_maxLines]: null,
+        [Text_textScaleFactor]: null,
+        [Text_overflow]: null,
+        [Text_softWrap]: null,
+        [Text_locale]: null,
+        [Text_textDirection]: null,
+        [Text_textAlign]: C[74] || CT.C74,
+        [Text_strutStyle]: null,
+        [Text_style]: null,
+        [Text_textSpan]: null,
+        [Text_data]: "Complete Address"
+      });
+    },
+    get C79() {
+      return C[79] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 19,
+        [_Location_line]: 210,
+        [_Location_file]: null
+      });
+    },
+    get C80() {
+      return C[80] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "textAlign",
+        [_Location_column]: 19,
+        [_Location_line]: 211,
+        [_Location_file]: null
+      });
+    },
+    get C81() {
+      return C[81] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "overflow",
+        [_Location_column]: 19,
+        [_Location_line]: 212,
+        [_Location_file]: null
+      });
+    },
+    get C82() {
+      return C[82] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "maxLines",
+        [_Location_column]: 19,
+        [_Location_line]: 213,
+        [_Location_file]: null
+      });
+    },
+    get C83() {
+      return C[83] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 19,
+        [_Location_line]: 214,
+        [_Location_file]: null
+      });
+    },
+    get C78() {
+      return C[78] = dart.constList([C[79] || CT.C79, C[80] || CT.C80, C[81] || CT.C81, C[82] || CT.C82, C[83] || CT.C83], T._LocationL());
+    },
+    get C77() {
+      return C[77] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[78] || CT.C78,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 209,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C84() {
+      return C[84] = dart.const({
+        __proto__: paragraph.TextOverflow.prototype,
+        [_name$]: "TextOverflow.ellipsis",
+        index: 2
+      });
+    },
+    get C85() {
+      return C[85] = dart.const({
+        __proto__: ui.TextAlign.prototype,
+        [_name]: "TextAlign.justify",
+        index: 3
+      });
+    },
+    get C87() {
+      return C[87] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278190080.0
+      });
+    },
+    get C86() {
+      return C[86] = dart.const({
+        __proto__: text_style.TextStyle.prototype,
+        [TextStyle_fontFeatures]: null,
+        [TextStyle_shadows]: null,
+        [TextStyle_debugLabel]: null,
+        [TextStyle_decorationThickness]: null,
+        [TextStyle_decorationStyle]: null,
+        [TextStyle_decorationColor]: null,
+        [TextStyle_decoration]: null,
+        [TextStyle_background]: null,
+        [TextStyle_foreground]: null,
+        [TextStyle_locale]: null,
+        [TextStyle_height]: null,
+        [TextStyle_textBaseline]: null,
+        [TextStyle_wordSpacing]: null,
+        [TextStyle_letterSpacing]: null,
+        [TextStyle_fontStyle]: null,
+        [TextStyle_fontWeight]: null,
+        [TextStyle_fontSize]: null,
+        [TextStyle__package]: null,
+        [TextStyle__fontFamilyFallback]: null,
+        [TextStyle_fontFamily]: null,
+        [TextStyle_backgroundColor]: null,
+        [TextStyle_color]: C[87] || CT.C87,
+        [TextStyle_inherit]: true
+      });
+    },
+    get C76() {
+      return C[76] = dart.const({
+        __proto__: text.Text.prototype,
+        [Widget__location]: C[77] || CT.C77,
+        [Widget_key]: null,
+        [Text_textHeightBehavior]: null,
+        [Text_textWidthBasis]: null,
+        [Text_semanticsLabel]: null,
+        [Text_maxLines]: 5,
+        [Text_textScaleFactor]: null,
+        [Text_overflow]: C[84] || CT.C84,
+        [Text_softWrap]: null,
+        [Text_locale]: null,
+        [Text_textDirection]: null,
+        [Text_textAlign]: C[85] || CT.C85,
+        [Text_strutStyle]: null,
+        [Text_style]: C[86] || CT.C86,
+        [Text_textSpan]: null,
+        [Text_data]: "In order to help us serve you better, kindly provide us your complete address by clicking the edit button present on the top right corner of the screen !"
+      });
+    },
+    get C75() {
+      return C[75] = dart.constList([C[76] || CT.C76], T.WidgetL());
+    },
+    get C90() {
+      return C[90] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 15,
+        [_Location_line]: 208,
+        [_Location_file]: null
+      });
+    },
+    get C89() {
+      return C[89] = dart.constList([C[90] || CT.C90], T._LocationL());
+    },
+    get C88() {
+      return C[88] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[89] || CT.C89,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 207,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C93() {
+      return C[93] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 207,
+        [_Location_file]: null
+      });
+    },
+    get C92() {
+      return C[92] = dart.constList([C[93] || CT.C93], T._LocationL());
+    },
+    get C91() {
+      return C[91] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[92] || CT.C92,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 206,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C97() {
+      return C[97] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 33,
+        [_Location_line]: 224,
+        [_Location_file]: null
+      });
+    },
+    get C98() {
+      return C[98] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "textAlign",
+        [_Location_column]: 41,
+        [_Location_line]: 224,
+        [_Location_file]: null
+      });
+    },
+    get C96() {
+      return C[96] = dart.constList([C[97] || CT.C97, C[98] || CT.C98], T._LocationL());
+    },
+    get C95() {
+      return C[95] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[96] || CT.C96,
+        [_Location_name]: null,
+        [_Location_column]: 28,
+        [_Location_line]: 224,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C94() {
+      return C[94] = dart.const({
+        __proto__: text.Text.prototype,
+        [Widget__location]: C[95] || CT.C95,
+        [Widget_key]: null,
+        [Text_textHeightBehavior]: null,
+        [Text_textWidthBasis]: null,
+        [Text_semanticsLabel]: null,
+        [Text_maxLines]: null,
+        [Text_textScaleFactor]: null,
+        [Text_overflow]: null,
+        [Text_softWrap]: null,
+        [Text_locale]: null,
+        [Text_textDirection]: null,
+        [Text_textAlign]: C[74] || CT.C74,
+        [Text_strutStyle]: null,
+        [Text_style]: null,
+        [Text_textSpan]: null,
+        [Text_data]: "Sure"
+      });
+    },
+    get C101() {
+      return C[101] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "automatic",
+        [_Location_column]: 27,
+        [_Location_line]: 232,
+        [_Location_file]: null
+      });
+    },
+    get C102() {
+      return C[102] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "address",
+        [_Location_column]: 45,
+        [_Location_line]: 232,
+        [_Location_file]: null
+      });
+    },
+    get C100() {
+      return C[100] = dart.constList([C[101] || CT.C101, C[102] || CT.C102], T._LocationL());
+    },
+    get C99() {
+      return C[99] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[100] || CT.C100,
+        [_Location_name]: null,
+        [_Location_column]: 49,
+        [_Location_line]: 231,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C105() {
+      return C[105] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 15,
+        [_Location_line]: 224,
+        [_Location_file]: null
+      });
+    },
+    get C106() {
+      return C[106] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onPressed",
+        [_Location_column]: 15,
+        [_Location_line]: 225,
+        [_Location_file]: null
+      });
+    },
+    get C104() {
+      return C[104] = dart.constList([C[105] || CT.C105, C[106] || CT.C106], T._LocationL());
+    },
+    get C103() {
+      return C[103] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[104] || CT.C104,
+        [_Location_name]: null,
+        [_Location_column]: 13,
+        [_Location_line]: 223,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    },
+    get C109() {
+      return C[109] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "title",
+        [_Location_column]: 11,
+        [_Location_line]: 205,
+        [_Location_file]: null
+      });
+    },
+    get C110() {
+      return C[110] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "content",
+        [_Location_column]: 11,
+        [_Location_line]: 206,
+        [_Location_file]: null
+      });
+    },
+    get C111() {
+      return C[111] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "actions",
+        [_Location_column]: 11,
+        [_Location_line]: 222,
+        [_Location_file]: null
+      });
+    },
+    get C108() {
+      return C[108] = dart.constList([C[109] || CT.C109, C[110] || CT.C110, C[111] || CT.C111], T._LocationL());
+    },
+    get C107() {
+      return C[107] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[108] || CT.C108,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 204,
+        [_Location_file]: "file:///C:/Users/Nishant/Desktop/SEM%206/food_delivery_app/lib/user/Start.dart"
+      });
+    }
+  }, false);
+  var C = Array(112).fill(void 0);
+  var I = ["package:food_delivery_app/user/Start.dart"];
+  var location$0 = dart.privateName(Start, "StartPage.location");
+  var _address = dart.privateName(Start, "_address");
+  var _currentPosition = dart.privateName(Start, "_currentPosition");
+  var _initialcameraposition = dart.privateName(Start, "_initialcameraposition");
+  var _getAddress = dart.privateName(Start, "_getAddress");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  var _showMyDialog = dart.privateName(Start, "_showMyDialog");
+  var Widget__location = dart.privateName(framework, "Widget._location");
+  var Widget_key = dart.privateName(framework, "Widget.key");
+  var Text_textHeightBehavior = dart.privateName(text, "Text.textHeightBehavior");
+  var Text_textWidthBasis = dart.privateName(text, "Text.textWidthBasis");
+  var Text_semanticsLabel = dart.privateName(text, "Text.semanticsLabel");
+  var Text_maxLines = dart.privateName(text, "Text.maxLines");
+  var Text_textScaleFactor = dart.privateName(text, "Text.textScaleFactor");
+  var Text_overflow = dart.privateName(text, "Text.overflow");
+  var Text_softWrap = dart.privateName(text, "Text.softWrap");
+  var Text_locale = dart.privateName(text, "Text.locale");
+  var Text_textDirection = dart.privateName(text, "Text.textDirection");
+  var _name = dart.privateName(ui, "_name");
+  var Text_textAlign = dart.privateName(text, "Text.textAlign");
+  var Text_strutStyle = dart.privateName(text, "Text.strutStyle");
+  var Text_style = dart.privateName(text, "Text.style");
+  var Text_textSpan = dart.privateName(text, "Text.textSpan");
+  var Text_data = dart.privateName(text, "Text.data");
+  var _name$ = dart.privateName(paragraph, "_name");
+  var TextStyle_fontFeatures = dart.privateName(text_style, "TextStyle.fontFeatures");
+  var TextStyle_shadows = dart.privateName(text_style, "TextStyle.shadows");
+  var TextStyle_debugLabel = dart.privateName(text_style, "TextStyle.debugLabel");
+  var TextStyle_decorationThickness = dart.privateName(text_style, "TextStyle.decorationThickness");
+  var TextStyle_decorationStyle = dart.privateName(text_style, "TextStyle.decorationStyle");
+  var TextStyle_decorationColor = dart.privateName(text_style, "TextStyle.decorationColor");
+  var TextStyle_decoration = dart.privateName(text_style, "TextStyle.decoration");
+  var TextStyle_background = dart.privateName(text_style, "TextStyle.background");
+  var TextStyle_foreground = dart.privateName(text_style, "TextStyle.foreground");
+  var TextStyle_locale = dart.privateName(text_style, "TextStyle.locale");
+  var TextStyle_height = dart.privateName(text_style, "TextStyle.height");
+  var TextStyle_textBaseline = dart.privateName(text_style, "TextStyle.textBaseline");
+  var TextStyle_wordSpacing = dart.privateName(text_style, "TextStyle.wordSpacing");
+  var TextStyle_letterSpacing = dart.privateName(text_style, "TextStyle.letterSpacing");
+  var TextStyle_fontStyle = dart.privateName(text_style, "TextStyle.fontStyle");
+  var TextStyle_fontWeight = dart.privateName(text_style, "TextStyle.fontWeight");
+  var TextStyle_fontSize = dart.privateName(text_style, "TextStyle.fontSize");
+  var TextStyle__package = dart.privateName(text_style, "TextStyle._package");
+  var TextStyle__fontFamilyFallback = dart.privateName(text_style, "TextStyle._fontFamilyFallback");
+  var TextStyle_fontFamily = dart.privateName(text_style, "TextStyle.fontFamily");
+  var TextStyle_backgroundColor = dart.privateName(text_style, "TextStyle.backgroundColor");
+  var Color_value = dart.privateName(ui, "Color.value");
+  var TextStyle_color = dart.privateName(text_style, "TextStyle.color");
+  var TextStyle_inherit = dart.privateName(text_style, "TextStyle.inherit");
+  Start.StartPage = class StartPage extends framework.StatelessWidget {
+    get location() {
+      return this[location$0];
+    }
+    set location(value) {
+      this[location$0] = value;
+    }
+    [_getAddress](lat, lang) {
+      return async.async(T.ListLOfAddressL(), function* _getAddress() {
+        let coordinates = new model.Coordinates.new(lat, lang);
+        let add = (yield geocoder.Geocoder.local.findAddressesFromCoordinates(coordinates));
+        return add;
+      });
+    }
+    getLoc() {
+      return async.async(dart.dynamic, (function* getLoc() {
+        let _serviceEnabled = null;
+        let _permissionGranted = null;
+        UserHome.locationSet = true;
+        _serviceEnabled = (yield this.location.serviceEnabled());
+        if (!dart.test(_serviceEnabled)) {
+          _serviceEnabled = (yield this.location.requestService());
+          if (!dart.test(_serviceEnabled)) {
+            return;
+          }
+        }
+        _permissionGranted = (yield this.location.hasPermission());
+        if (_permissionGranted == location_platform_interface.PermissionStatus.denied) {
+          _permissionGranted = (yield this.location.requestPermission());
+          if (_permissionGranted != location_platform_interface.PermissionStatus.granted) {
+            return;
+          }
+        }
+        this[_currentPosition] = (yield this.location.getLocation());
+        this[_initialcameraposition] = new location$.LatLng.new(this[_currentPosition].latitude, this[_currentPosition].longitude);
+        this[_getAddress](this[_currentPosition].latitude, this[_currentPosition].longitude).then(core.Null, dart.fn(value => {
+          this[_address] = dart.str(value[$first].addressLine);
+          core.print("Address2 = " + dart.notNull(this[_address]));
+        }, T.ListLOfAddressLToNull()));
+      }).bind(this));
+    }
+    build(context) {
+      let totalWidth = media_query.MediaQuery.of(context).size.width;
+      let totalHeight = media_query.MediaQuery.of(context).size.height;
+      return new scaffold.Scaffold.new({body: new container.Container.new({decoration: new box_decoration.BoxDecoration.new({image: new decoration_image.DecorationImage.new({image: new image_resolution.AssetImage.new("assets/images/start_page.jpeg"), fit: box_fit.BoxFit.cover})}), child: new scaffold.Scaffold.new({backgroundColor: colors.Colors.transparent, body: new container.Container.new({padding: new edge_insets.EdgeInsets.all(dart.notNull(totalWidth) * 10 / 600), child: new basic.Column.new({mainAxisAlignment: flex.MainAxisAlignment.end, crossAxisAlignment: flex.CrossAxisAlignment.center, children: T.JSArrayOfWidgetL().of([new basic.SizedBox.new({height: dart.notNull(totalHeight) * 120 / 700, $creationLocationd_0dea112b090073317d4: C[0] || CT.C0}), new text.Text.new("Hi, nice to meet you!", {style: new text_style.TextStyle.new({fontFamily: "Robonto", fontWeight: ui.FontWeight.bold, fontSize: dart.notNull(totalHeight) * 30 / 700}), textAlign: ui.TextAlign.center, $creationLocationd_0dea112b090073317d4: C[3] || CT.C3}), new basic.SizedBox.new({height: dart.notNull(totalHeight) * 10 / 700, $creationLocationd_0dea112b090073317d4: C[8] || CT.C8}), new text.Text.new("Set your location to start exploring restaurants around you", {maxLines: 2, style: new text_style.TextStyle.new({fontFamily: "Robonto", fontWeight: ui.FontWeight.normal, fontSize: dart.notNull(totalHeight) * 25 / 700}), textAlign: ui.TextAlign.center, $creationLocationd_0dea112b090073317d4: C[11] || CT.C11}), new basic.SizedBox.new({height: dart.notNull(totalHeight) * 30 / 700, $creationLocationd_0dea112b090073317d4: C[17] || CT.C17}), new elevated_button.ElevatedButton.new({onPressed: dart.fn(() => async.async(core.Null, (function*() {
+                      yield this[_showMyDialog](context);
+                    }).bind(this)), T.VoidToFutureLOfNull()), style: elevated_button.ElevatedButton.styleFrom({primary: colors.Colors.red, shape: new rounded_rectangle_border.RoundedRectangleBorder.new({borderRadius: new border_radius.BorderRadius.circular(dart.notNull(totalHeight) * 10 / 700)})}), child: new basic.RichText.new({text: new text_span.TextSpan.new({children: T.JSArrayOfInlineSpanL().of([new widget_span.WidgetSpan.new({child: new icon.Icon.new(icons.Icons.add_location_sharp, {size: dart.notNull(totalHeight) * 20 / 700, $creationLocationd_0dea112b090073317d4: C[20] || CT.C20})}), new text_span.TextSpan.new({text: " Use Current Location", style: new text_style.TextStyle.new({fontSize: dart.notNull(totalHeight) * 20 / 700, fontWeight: ui.FontWeight.normal})})])}), $creationLocationd_0dea112b090073317d4: C[24] || CT.C24}), $creationLocationd_0dea112b090073317d4: C[27] || CT.C27}), new basic.SizedBox.new({height: dart.notNull(totalHeight) * 15 / 700, $creationLocationd_0dea112b090073317d4: C[32] || CT.C32}), new elevated_button.ElevatedButton.new({onPressed: dart.fn(() => {
+                      navigator.Navigator.push(dart.dynamic, context, new page.MaterialPageRoute.new({builder: dart.fn(context => new UserHome.MapHomePage.new({$creationLocationd_0dea112b090073317d4: C[35] || CT.C35}), T.BuildContextLToMapHomePageL())}));
+                    }, T.VoidToNull()), style: elevated_button.ElevatedButton.styleFrom({primary: colors.Colors.white, shape: new rounded_rectangle_border.RoundedRectangleBorder.new({borderRadius: new border_radius.BorderRadius.circular(dart.notNull(totalHeight) * 10 / 700)})}), child: new text.Text.new("Set Your Location Manually", {style: new text_style.TextStyle.new({color: colors.Colors.red, fontSize: dart.notNull(totalHeight) * 20 / 700, fontWeight: ui.FontWeight.normal}), $creationLocationd_0dea112b090073317d4: C[37] || CT.C37}), $creationLocationd_0dea112b090073317d4: C[41] || CT.C41}), new basic.SizedBox.new({height: dart.notNull(totalHeight) * 100 / 700, $creationLocationd_0dea112b090073317d4: C[46] || CT.C46})]), $creationLocationd_0dea112b090073317d4: C[49] || CT.C49}), $creationLocationd_0dea112b090073317d4: C[54] || CT.C54}), $creationLocationd_0dea112b090073317d4: C[58] || CT.C58}), $creationLocationd_0dea112b090073317d4: C[62] || CT.C62}), $creationLocationd_0dea112b090073317d4: C[66] || CT.C66});
+    }
+    [_showMyDialog](context) {
+      return async.async(dart.void, (function* _showMyDialog() {
+        yield this.getLoc();
+        return dialog.showDialog(dart.void, {context: context, barrierDismissible: false, builder: dart.fn(context => new dialog.AlertDialog.new({title: C[69] || CT.C69, content: new single_child_scroll_view.SingleChildScrollView.new({child: new basic.ListBody.new({children: C[75] || CT.C75, $creationLocationd_0dea112b090073317d4: C[88] || CT.C88}), $creationLocationd_0dea112b090073317d4: C[91] || CT.C91}), actions: T.JSArrayOfWidgetL().of([new text_button.TextButton.new({child: C[94] || CT.C94, onPressed: dart.fn(() => async.async(core.Null, (function*() {
+                  yield this.getLoc();
+                  navigator.Navigator.push(dart.dynamic, context, new page.MaterialPageRoute.new({builder: dart.fn(context => new Menucard.MenuOptionSide.new({automatic: false, address: this[_address], $creationLocationd_0dea112b090073317d4: C[99] || CT.C99}), T.BuildContextLToMenuOptionSideL())}));
+                }).bind(this)), T.VoidToFutureLOfNull()), $creationLocationd_0dea112b090073317d4: C[103] || CT.C103})]), $creationLocationd_0dea112b090073317d4: C[107] || CT.C107}), T.BuildContextLToAlertDialogL())});
+      }).bind(this));
+    }
+  };
+  (Start.StartPage.new = function(opts) {
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[_address] = "";
+    this[location$0] = location.Location.new();
+    this[_currentPosition] = null;
+    this[_initialcameraposition] = new location$.LatLng.new(19.0473, 73.0699);
+    Start.StartPage.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = Start.StartPage.prototype;
+  dart.addTypeTests(Start.StartPage);
+  dart.addTypeCaches(Start.StartPage);
+  dart.setMethodSignature(Start.StartPage, () => ({
+    __proto__: dart.getMethods(Start.StartPage.__proto__),
+    [_getAddress]: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.List$(dart.legacy(model.Address))))), [dart.legacy(core.double), dart.legacy(core.double)]),
+    getLoc: dart.fnType(dart.dynamic, []),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)]),
+    [_showMyDialog]: dart.fnType(dart.legacy(async.Future$(dart.void)), [dart.legacy(framework.BuildContext)])
+  }));
+  dart.setLibraryUri(Start.StartPage, I[0]);
+  dart.setFieldSignature(Start.StartPage, () => ({
+    __proto__: dart.getFields(Start.StartPage.__proto__),
+    [_address]: dart.fieldType(dart.legacy(core.String)),
+    location: dart.fieldType(dart.legacy(location.Location)),
+    [_currentPosition]: dart.fieldType(dart.legacy(location_platform_interface.LocationData)),
+    [_initialcameraposition]: dart.fieldType(dart.legacy(location$.LatLng))
+  }));
+  dart.trackLibraries("packages/food_delivery_app/user/Start.dart", {
+    "package:food_delivery_app/user/Start.dart": Start
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["Start.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/food_delivery_app/user/Start.dart.lib.js"}');
+  // Exports:
+  return {
+    user__Start: Start
+  };
+}));
+
+//# sourceMappingURL=Start.dart.lib.js.map
