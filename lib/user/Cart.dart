@@ -1012,11 +1012,17 @@ class _AddToCartMenuState extends State<AddToCartMenu> {
           ),
           IconButton(
             onPressed: () {
-              widget.addItem();
-              widget.updateCost();
+              Fluttertoast.showToast(
+                  msg: "Only deletion is allowed in cart",
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.BOTTOM,
+                  timeInSecForIosWeb: 1,
+                  backgroundColor: Helper().button,
+                  textColor: Colors.white,
+                  fontSize: 16.0);
             },
             icon: Icon(Icons.add_circle),
-            color: Helper().button,
+            color: Colors.grey,
             iconSize: totalHeight * 28 / 700,
           ),
         ],

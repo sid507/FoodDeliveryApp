@@ -756,6 +756,8 @@ class PopularFoodTiles extends StatefulWidget {
 class _PopularFoodTilesState extends State<PopularFoodTiles> {
   Helper help = new Helper();
   var canAdd = 1;
+  int canIncrease = 1;
+  int itemCount = 1;
 
   void checkCart_add() {
     for (int i = 0; i < CartData.dishes.length; i++) {
@@ -851,7 +853,7 @@ class _PopularFoodTilesState extends State<PopularFoodTiles> {
                         // crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            child: Text(widget.quantity.toString(),
+                            child: Text(itemCount.toString(),
                                 style: new TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w900)),
@@ -871,25 +873,54 @@ class _PopularFoodTilesState extends State<PopularFoodTiles> {
                             tooltip: 'Delete',
                             onPressed: () => {
                               setState(() {
-                                widget.quantity =
-                                    help.delQuantity(widget.quantity);
-                                // print(widget.quantity);
-                              })
+                                itemCount = help.delQuantity(itemCount);
+                                print(itemCount);
+                              }),
+                              if (itemCount < widget.quantity)
+                                {
+                                  setState(() {
+                                    canIncrease = 1;
+                                  })
+                                },
                             },
                           ),
                           IconButton(
                             icon: Icon(
                               Icons.add_circle,
-                              color: Helper().button,
+                              color: canIncrease == 1
+                                  ? Helper().button
+                                  : Colors.grey,
                               size: totalHeight * 28 / 700,
                             ),
                             tooltip: 'Add',
                             onPressed: () => {
-                              setState(() {
-                                widget.quantity =
-                                    help.addQuantity(widget.quantity);
-                                // print(widget.quantity);
-                              })
+                              if (widget.quantity > itemCount)
+                                {
+                                  setState(() {
+                                    itemCount = help.addQuantity(itemCount);
+                                    print(itemCount);
+                                  }),
+                                  if (widget.quantity == itemCount)
+                                    {
+                                      setState(() {
+                                        canIncrease = 0;
+                                      })
+                                    }
+                                }
+                              else
+                                {
+                                  setState(() {
+                                    canIncrease = 0;
+                                  }),
+                                  Fluttertoast.showToast(
+                                      msg: "Order Limit Exceeded",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.BOTTOM,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: Helper().button,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0)
+                                }
                             },
                           ),
                         ],
@@ -999,7 +1030,7 @@ class _PopularFoodTilesState extends State<PopularFoodTiles> {
                                   DateFormat('dd MMM y')
                                       .format(tomorrow)
                                       .toString()),
-                              widget.quantity);
+                              itemCount);
                           checkCart_add();
                           setState(() {
                             Navigator.push(
@@ -1164,7 +1195,7 @@ class _PopularFoodItemsState extends State<PopularFoodItems> {
                       } else {
                         tomorrow = DateTime(now.year, now.month, now.day + 1);
                       }
-                      print('ct=$currentTime, toT=$itemToTime, tom=$tomorrow');
+                      // print('ct=$currentTime, toT=$itemToTime, tom=$tomorrow');
                       if (chef_detail != null) {
                         Dishes dish = new Dishes(
                             chef_detail["fname"].toString(),
@@ -1244,7 +1275,7 @@ class _PopularFoodItemsState extends State<PopularFoodItems> {
                             data.getSelfDelivery(),
                             data.getimage(),
                             data.gettime(),
-                            1,
+                            data.getCount(),
                             this.cartdata,
                             data.getChefId(),
                             data.getToTime(),
@@ -1369,6 +1400,8 @@ class BestFoodTiles extends StatefulWidget {
 class _BestFoodTilesState extends State<BestFoodTiles> {
   Helper help = new Helper();
   var canAdd = 1;
+  int canIncrease = 1;
+  int itemCount = 1;
 
   void checkCart_add() {
     for (int i = 0; i < CartData.dishes.length; i++) {
@@ -1464,7 +1497,7 @@ class _BestFoodTilesState extends State<BestFoodTiles> {
                         // crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            child: Text(widget.quantity.toString(),
+                            child: Text(itemCount.toString(),
                                 style: new TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w900)),
@@ -1484,25 +1517,54 @@ class _BestFoodTilesState extends State<BestFoodTiles> {
                             tooltip: 'Delete',
                             onPressed: () => {
                               setState(() {
-                                widget.quantity =
-                                    help.delQuantity(widget.quantity);
-                                // print(widget.quantity);
-                              })
+                                itemCount = help.delQuantity(itemCount);
+                                print(itemCount);
+                              }),
+                              if (itemCount < widget.quantity)
+                                {
+                                  setState(() {
+                                    canIncrease = 1;
+                                  })
+                                },
                             },
                           ),
                           IconButton(
                             icon: Icon(
                               Icons.add_circle,
-                              color: Helper().button,
+                              color: canIncrease == 1
+                                  ? Helper().button
+                                  : Colors.grey,
                               size: totalHeight * 28 / 700,
                             ),
                             tooltip: 'Add',
                             onPressed: () => {
-                              setState(() {
-                                widget.quantity =
-                                    help.addQuantity(widget.quantity);
-                                // print(widget.quantity);
-                              })
+                              if (widget.quantity > itemCount)
+                                {
+                                  setState(() {
+                                    itemCount = help.addQuantity(itemCount);
+                                    print(itemCount);
+                                  }),
+                                  if (widget.quantity == itemCount)
+                                    {
+                                      setState(() {
+                                        canIncrease = 0;
+                                      })
+                                    }
+                                }
+                              else
+                                {
+                                  setState(() {
+                                    canIncrease = 0;
+                                  }),
+                                  Fluttertoast.showToast(
+                                      msg: "Order Limit Exceeded",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.BOTTOM,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: Helper().button,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0)
+                                }
                             },
                           ),
                         ],
@@ -1610,7 +1672,7 @@ class _BestFoodTilesState extends State<BestFoodTiles> {
                                   DateFormat('dd MMM y')
                                       .format(tomorrow)
                                       .toString()),
-                              widget.quantity);
+                              itemCount);
                           checkCart_add();
                           setState(() {
                             Navigator.push(
@@ -1832,7 +1894,7 @@ class _BestFoodListState extends State<BestFoodList> {
                             data.getSelfDelivery(),
                             data.getimage(),
                             data.gettime(),
-                            1,
+                            data.getCount(),
                             this.cartdata,
                             data.getChefId(),
                             data.getToTime(),
