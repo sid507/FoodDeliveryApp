@@ -308,7 +308,7 @@ class _SingleCardState extends State<SingleCard> {
     return Card(
       color: help.card,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0),
+        borderRadius: BorderRadius.circular(totalHeight*26.0/820),
       ),
       clipBehavior: Clip.antiAlias,
       child: Padding(
@@ -332,10 +332,10 @@ class _SingleCardState extends State<SingleCard> {
                           children: [
                             Text(widget.name,
                                 style: TextStyle(
-                                    fontSize: 16.0, color: help.heading)),
+                                    fontSize: totalHeight*16.0/820, color: help.heading)),
                             Text('Rating ' + widget.rating.toString() + ' ⭐',
                                 style: TextStyle(
-                                    fontSize: 10.0,
+                                    fontSize: totalHeight*10.0/820,
                                     fontWeight: FontWeight.w300)),
                           ])
                     ],
@@ -371,10 +371,10 @@ class _SingleCardState extends State<SingleCard> {
                                     fontWeight: FontWeight.w900)),
                             decoration: new BoxDecoration(
                                 borderRadius: new BorderRadius.all(
-                                    new Radius.circular(10.0)),
+                                    new Radius.circular(totalHeight*10.0/820)),
                                 color: help.button),
                             padding:
-                                new EdgeInsets.fromLTRB(16.0, 10.0, 16.0, 10.0),
+                                new EdgeInsets.fromLTRB(totalHeight*16.0/820,totalHeight*10.0/820,totalHeight*16.0/820,totalHeight*10.0/820),
                           ),
                           IconButton(
                             icon: Icon(

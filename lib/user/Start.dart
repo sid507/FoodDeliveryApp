@@ -125,6 +125,7 @@ class StartPage extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () async {
                     // await getLoc();
+                    print('pressed');
                     await _showMyDialog(context);
                     // Navigator.push(
                     //   context,
@@ -223,7 +224,7 @@ class StartPage extends StatelessWidget {
             TextButton(
               child: const Text('Sure', textAlign: TextAlign.center),
               onPressed: () async {
-                await getLoc();
+                // await getLoc();
                 // Navigator.of(context).pop();
                 Navigator.push(
                     context,

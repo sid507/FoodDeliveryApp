@@ -492,6 +492,24 @@ class _SingleCardState extends State<SingleCard> {
                   ),
                 ),
                 Positioned(
+                  right: 4,
+                  top: 3,
+                  child: Container(
+                    decoration: new BoxDecoration(
+                      color: Colors.red.withOpacity(0.6),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    child: Text(
+                      '${widget.fromTime}-${widget.toTime}',
+                      style: TextStyle(
+                          fontSize: totalHeight * 12 / 700,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    padding: EdgeInsets.all(4.0),
+                  ),
+                ),
+                Positioned(
                     right: 5,
                     bottom: -5,
                     left: 5,
@@ -553,28 +571,28 @@ class _SingleCardState extends State<SingleCard> {
                         color: Colors.white,
                       ),
                     )),
-                Positioned(
-                  right: 3,
-                  top: 3,
-                  child: Container(
-                    decoration: new BoxDecoration(
-                      color: Colors.red.withOpacity(0.6),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    child: Text(""),
-                    // (_counter ~/ 3600).toString() +
-                    //     ":" +
-                    //     ((_counter % 3600) ~/ 60).toString() +
-                    //     ":" +
-                    //     ((_counter % 60)).toString(),
-                    // style: TextStyle(
-                    //     fontSize: totalHeight * 12 / 700,
-                    //     color: Colors.white,
-                    //     fontWeight: FontWeight.bold),
-                    // ),
-                    padding: EdgeInsets.all(4.0),
-                  ),
-                )
+                // Positioned(
+                //   right: 3,
+                //   top: 3,
+                //   child: Container(
+                //     decoration: new BoxDecoration(
+                //       color: Colors.red.withOpacity(0.6),
+                //       borderRadius: BorderRadius.all(Radius.circular(10)),
+                //     ),
+                //     child: Text(""),
+                //     // (_counter ~/ 3600).toString() +
+                //     //     ":" +
+                //     //     ((_counter % 3600) ~/ 60).toString() +
+                //     //     ":" +
+                //     //     ((_counter % 60)).toString(),
+                //     // style: TextStyle(
+                //     //     fontSize: totalHeight * 12 / 700,
+                //     //     color: Colors.white,
+                //     //     fontWeight: FontWeight.bold),
+                //     // ),
+                //     padding: EdgeInsets.all(4.0),
+                //   ),
+                // )
               ])
             ]),
       ),

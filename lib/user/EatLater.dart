@@ -59,6 +59,8 @@ class _EatLaterState extends State<EatLater> {
     });
   }
 
+  double toDouble(TimeOfDay myTime) => myTime.hour + myTime.minute / 60.0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,9 +82,7 @@ class _EatLaterState extends State<EatLater> {
                     }
                     dishes = [];
                     for (int i = 0; i < snapshot.data.docs.length; i++) {
-                      var chef_detail = chef[snapshot.data.docs[i]["chefId"]];
-                      // print(chef_detail);
-                      var dd = snapshot.data.docs[i];
+                      final now = new DateTime.now();
 
                       // var fmt = DateFormat("HH:mm");
                       // print(fmt.format(now));
@@ -108,28 +108,34 @@ class _EatLaterState extends State<EatLater> {
                       // now.hour >= tempDate.hour &&
                       // now.hour <= tempDate2.hour &&
 
-                      // if (snapshot.data.docs[i]['mealType'].toLowerCase() ==
-                      //     this.tellMeType(now.hour).toLowerCase()) {
-                      TimeOfDay nowTime = TimeOfDay.now();
-                      double currentTime = toDouble(nowTime);
+                      if (snapshot.data.docs[i]['mealType'].toLowerCase() ==
+                          this.tellMeType(now.hour).toLowerCase()) {
+                        var chef_detail = chef[snapshot.data.docs[i]["chefId"]];
+                        // print(chef_detail);
+                        var dd = snapshot.data.docs[i];
+                        // if (snapshot.data.docs[i]['mealType'].toLowerCase() ==
+                        //     "breakfast") {
+                        //   tomorrow = DateTime(now.year, now.month, now.day + 1);
+                        // } else {
+                        //   tomorrow = DateTime(now.year, now.month, now.day + 1);
+                        // }
+                        if (chef_detail != null) {
+                          DateTime tomorrow;
+                          TimeOfDay nowTime = TimeOfDay.now();
+                          double currentTime = toDouble(nowTime);
 
-                      double itemToTime1 =
-                          double.parse(dd["toTime"].split(':')[0]);
-                      double itemToTime2 =
-                          double.parse(dd["toTime"].split(':')[1]);
-                      double itemToTime = itemToTime1 + itemToTime2 / 60.0;
+                          double itemToTime1 =
+                              double.parse(dd["toTime"].split(':')[0]);
+                          double itemToTime2 =
+                              double.parse(dd["toTime"].split(':')[1]);
+                          double itemToTime = itemToTime1 + itemToTime2 / 60.0;
 
-                      double itemFromTime1 =
-                          double.parse(dd["fromTime"].split(':')[0]);
-                      double itemFromTime2 =
-                          double.parse(dd["fromTime"].split(':')[1]);
-                      double itemFromTime =
-                          itemFromTime1 + itemFromTime2 / 60.0;
-
-                      if (true) {
-                        if (chef_detail != null &&
-                            currentTime <= itemToTime &&
-                            currentTime <= itemFromTime - 2) {
+                          if (currentTime <= itemToTime) {
+                            tomorrow = DateTime(now.year, now.month, now.day);
+                          } else {
+                            tomorrow =
+                                DateTime(now.year, now.month, now.day + 1);
+                          }
                           Dishes dish = new Dishes(
                               chef_detail["fname"].toString(),
                               chef_detail["chefAddress"].toString(),
@@ -144,7 +150,9 @@ class _EatLaterState extends State<EatLater> {
                               dd["chefId"],
                               dd["toTime"],
                               dd["fromTime"],
-                              DateFormat('dd MMM y').format(now).toString());
+                              DateFormat('dd MMM y')
+                                  .format(tomorrow)
+                                  .toString());
                           dishes.add(dish);
                         }
                       }
@@ -213,7 +221,158 @@ class _EatLaterState extends State<EatLater> {
     );
   }
 
-  double toDouble(TimeOfDay myTime) => myTime.hour + myTime.minute / 60.0;
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //     backgroundColor: new Helper().background,
+  //     body: ListView(children: [
+  //       StreamBuilder<QuerySnapshot>(
+  //         stream: db.collection('Food_items').snapshots(),
+  //         builder: (context, snapshot) {
+  //           if (snapshot.hasData) {
+  //             return StreamBuilder<QuerySnapshot>(
+  //               stream: db.collection('Chef').snapshots(),
+  //               builder: (context, snapshot2) {
+  //                 if (snapshot2.hasData) {
+  //                   chef = {};
+  //                   for (int i = 0; i < snapshot2.data.docs.length; i++) {
+  //                     print(snapshot2.data.docs[i].data());
+  //                     chef[snapshot2.data.docs[i].id] =
+  //                         snapshot2.data.docs[i].data();
+  //                   }
+  //                   dishes = [];
+  //                   for (int i = 0; i < snapshot.data.docs.length; i++) {
+  //                     var chef_detail = chef[snapshot.data.docs[i]["chefId"]];
+  //                     // print(chef_detail);
+  //                     var dd = snapshot.data.docs[i];
+
+  //                     // var fmt = DateFormat("HH:mm");
+  //                     // print(fmt.format(now));
+
+  //                     // DateTime tempDate = new DateFormat("hh:mm")
+  //                     //     .parse(snapshot.data.docs[i]['fromTime']);
+
+  //                     // DateTime tempDate2 = new DateFormat("hh:mm")
+  //                     //     .parse(snapshot.data.docs[i]['toTime']);
+
+  //                     // String sort_key = "";
+
+  //                     // int flag = 0;
+  //                     // timetable.forEach((key, value) {
+  //                     //   if (now.hour >= key && flag == 0) {
+  //                     //     print(key);
+  //                     //     sort_key = timetable[(key + 5) > 17 ? 17 : key + 5];
+  //                     //     flag = 1;
+  //                     //   }
+  //                     // });
+  //                     // print(sort_key);
+
+  //                     if (snapshot.data.docs[i]['mealType'].toLowerCase() ==
+  //                         this.tellMeType(now.hour).toLowerCase()) {
+  //                     // TimeOfDay nowTime = TimeOfDay.now();
+  //                     // double currentTime = toDouble(nowTime);
+
+  //                     // double itemToTime1 =
+  //                     //     double.parse(dd["toTime"].split(':')[0]);
+  //                     // double itemToTime2 =
+  //                     //     double.parse(dd["toTime"].split(':')[1]);
+  //                     // double itemToTime = itemToTime1 + itemToTime2 / 60.0;
+
+  //                     // double itemFromTime1 =
+  //                     //     double.parse(dd["fromTime"].split(':')[0]);
+  //                     // double itemFromTime2 =
+  //                     //     double.parse(dd["fromTime"].split(':')[1]);
+  //                     // double itemFromTime =
+  //                     //     itemFromTime1 + itemFromTime2 / 60.0;
+
+  //                     // if (true) {
+  //                     //   if (chef_detail != null &&
+  //                     //       currentTime <= itemToTime &&
+  //                     //       currentTime <= itemFromTime) {
+  //                         Dishes dish = new Dishes(
+  //                             chef_detail["fname"].toString(),
+  //                             chef_detail["chefAddress"].toString(),
+  //                             chef_detail["rating"].toDouble(),
+  //                             dd["dishName"].toString(),
+  //                             dd["self_delivery"],
+  //                             dd["price"].toDouble(),
+  //                             dd["imageUrl"].toString(),
+  //                             "25 min",
+  //                             dd["mealType"],
+  //                             dd["count"],
+  //                             dd["chefId"],
+  //                             dd["toTime"],
+  //                             dd["fromTime"],
+  //                             DateFormat('dd MMM y').format(now).toString());
+  //                         dishes.add(dish);
+  //                       }
+  //                     }
+  //                   }
+  //                   print(dishes);
+
+  //                   return Column(
+  //                       children: dishes.map((data) {
+  //                     if (CartData.dishes.length == 0 ||
+  //                         data.getChefId() ==
+  //                             CartData.dishes[0].dish.getChefId()) {
+  //                       return Padding(
+  //                         padding: const EdgeInsets.all(8.0),
+  //                         child: SingleCard(
+  //                             data.name,
+  //                             data.chefAddress,
+  //                             data.rating,
+  //                             data.getPrice(),
+  //                             data.getDishName(),
+  //                             data.getSelfDelivery(),
+  //                             data.getimage(),
+  //                             "07:00",
+  //                             1,
+  //                             data.getChefId(),
+  //                             data.getToTime(),
+  //                             data.getFromTime(),
+  //                             () => {
+  //                                   widget.refreshCartNumber(),
+  //                                   refresher_funct()
+  //                                 }),
+  //                       );
+  //                     } else {
+  //                       return Container();
+  //                     }
+  //                   }).toList());
+  //                 } else {
+  //                   return Container(
+  //                     child: Center(
+  //                       child: Text('Sorry....No Items are availble'),
+  //                     ),
+  //                   );
+  //                 }
+  //               },
+  //             );
+  //             // for (int i = 0; i <elem; i++) {
+  //             //   tp.add(snapshot.data.docs[i]);
+  //             // }
+  //             // print(tp);
+
+  //           } else {
+  //             return Container();
+  //           }
+  //         },
+  //       )
+  //     ]),
+
+  //     // ListView(
+  //     //   children: l.map((data) {
+  //     //     return Padding(
+  //     //       padding: const EdgeInsets.all(8.0),
+  //     //       child: SingleCard(data.name, data.rating, data.getDishName(),
+  //     //           data.getimage(), '07:00', 1),
+  //     //     );
+  //     //   }).toList(),
+  //     // ),
+  //   );
+  // }
+
+  // double toDouble(TimeOfDay myTime) => myTime.hour + myTime.minute / 60.0;
 }
 
 class SingleCard extends StatefulWidget {
@@ -325,6 +484,9 @@ class _SingleCardState extends State<SingleCard> {
                           ])
                     ],
                   ),
+                  SizedBox(
+                    height: totalHeight * 0.01,
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(2.0),
                     child: Text(
@@ -332,6 +494,9 @@ class _SingleCardState extends State<SingleCard> {
                       style: TextStyle(
                           color: help.heading, fontWeight: FontWeight.bold),
                     ),
+                  ),
+                  SizedBox(
+                    height: totalHeight * 0.01,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(2.0),
@@ -341,31 +506,34 @@ class _SingleCardState extends State<SingleCard> {
                           color: help.normalText, fontWeight: FontWeight.w100),
                     ),
                   ),
-                  Padding(
-                      padding: const EdgeInsets.all(0.0),
-                      child: OutlinedButton.icon(
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.resolveWith<Color>(
-                            (Set<MaterialState> states) {
-                              if (!states.contains(MaterialState.pressed))
-                                return help.button;
-                              return null; // Use the component's default.
-                            },
-                          ),
-                        ),
-                        onPressed: _selectTime,
-                        label: Text(
-                          widget.time,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, color: Colors.white),
-                        ),
-                        icon: Icon(
-                          Icons.timer_rounded,
-                          size: totalHeight * 20 / 700,
-                          color: Colors.white,
-                        ),
-                      )),
+                  SizedBox(
+                    height: totalHeight * 0.01,
+                  ),
+                  // Padding(
+                  //     padding: const EdgeInsets.all(0.0),
+                  //     child: OutlinedButton.icon(
+                  //       style: ButtonStyle(
+                  //         backgroundColor:
+                  //             MaterialStateProperty.resolveWith<Color>(
+                  //           (Set<MaterialState> states) {
+                  //             if (!states.contains(MaterialState.pressed))
+                  //               return help.button;
+                  //             return null; // Use the component's default.
+                  //           },
+                  //         ),
+                  //       ),
+                  //       onPressed: _selectTime,
+                  //       label: Text(
+                  //         widget.time,
+                  //         style: TextStyle(
+                  //             fontWeight: FontWeight.bold, color: Colors.white),
+                  //       ),
+                  //       icon: Icon(
+                  //         Icons.timer_rounded,
+                  //         size: totalHeight * 20 / 700,
+                  //         color: Colors.white,
+                  //       ),
+                  //     )),
                   Row(
                     // mainAxisAlignment: MainAxisAlignment.spaceAround,
                     // crossAxisAlignment: CrossAxisAlignment.start,
@@ -424,7 +592,7 @@ class _SingleCardState extends State<SingleCard> {
               ),
               Stack(children: [
                 Container(
-                  height: totalHeight * 1.5 / 7,
+                  height: totalHeight * 1.3 / 7,
                   width: totalWidth * 3 / 7,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
@@ -433,6 +601,26 @@ class _SingleCardState extends State<SingleCard> {
                           widget.image,
                         ),
                         fit: BoxFit.cover),
+                  ),
+                ),
+                // Text("Delivered Between\n${widget.fromTime}-${widget.toTime}",
+                //     textAlign: TextAlign.right),
+                Positioned(
+                  right: 3,
+                  top: 3,
+                  child: Container(
+                    decoration: new BoxDecoration(
+                      color: Colors.red.withOpacity(0.6),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    child: Text(
+                      '${widget.fromTime}-${widget.toTime}',
+                      style: TextStyle(
+                          fontSize: totalHeight * 12 / 700,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    padding: EdgeInsets.all(4.0),
                   ),
                 ),
                 Positioned(
@@ -456,6 +644,22 @@ class _SingleCardState extends State<SingleCard> {
                       onPressed: () {
                         // Respond to button press
                         if (canAdd == 1) {
+                          DateTime tomorrow;
+                          TimeOfDay nowTime = TimeOfDay.now();
+                          double currentTime = toDouble(nowTime);
+
+                          double itemToTime1 =
+                              double.parse(widget.toTime.split(':')[0]);
+                          double itemToTime2 =
+                              double.parse(widget.toTime.split(':')[1]);
+                          double itemToTime = itemToTime1 + itemToTime2 / 60.0;
+
+                          if (currentTime <= itemToTime) {
+                            tomorrow = DateTime(now.year, now.month, now.day);
+                          } else {
+                            tomorrow =
+                                DateTime(now.year, now.month, now.day + 1);
+                          }
                           CartData().addItem(
                               Dishes(
                                   widget.name,
@@ -472,7 +676,7 @@ class _SingleCardState extends State<SingleCard> {
                                   widget.toTime,
                                   widget.fromTime,
                                   DateFormat('dd MMM y')
-                                      .format(now)
+                                      .format(tomorrow)
                                       .toString()),
                               widget.quantity);
                           Fluttertoast.showToast(
@@ -503,6 +707,8 @@ class _SingleCardState extends State<SingleCard> {
       ),
     );
   }
+
+  double toDouble(TimeOfDay myTime) => myTime.hour + myTime.minute / 60.0;
 }
 
 // Column(

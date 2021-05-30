@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:food_delivery_app/user/Start.dart';
 import 'package:food_delivery_app/user/Utils.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -477,12 +478,16 @@ class __PastOrderListViewState extends State<_PastOrderListView> {
         CustomDividerView(),
         if (widget.ongoing == false)
           InkWell(
-            onTap: () {
-              FirebaseAuth.instance.signOut();
+            onTap: () async {
+              await FirebaseAuth.instance.signOut();
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(builder: (context) => SignIn()),
-                  (Route<dynamic> route) => false);
+                  ModalRoute.withName("/signin"));
+              // Navigator.pushAndRemoveUntil(
+              //     context,
+              //     MaterialPageRoute(builder: (context) => SignIn()),
+              //     (Route<dynamic> route) => false);
             },
             child: Row(
               children: <Widget>[

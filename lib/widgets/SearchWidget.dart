@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/user/Chefdata.dart';
+import 'package:food_delivery_app/user/Utils.dart';
 import '../user/ScaleRoute.dart';
 import '../user/SearchPage.dart';
 
@@ -16,22 +17,31 @@ class SearchWidget extends StatelessWidget {
     bool _validate = false;
     return Padding(
       padding: EdgeInsets.only(
-          left: totalWidth * 10 / 420,
+          left: totalWidth * 5 / 420,
           right: totalWidth * 5 / 420,
-          top: totalHeight * 10 / 700,
+          top: totalHeight * 5 / 700,
           bottom: totalHeight * 5 / 700),
       child: TextFormField(
+          cursorColor: Colors.deepOrange,
           controller: searchController,
           textInputAction: TextInputAction.search,
-          decoration: InputDecoration(
+          decoration: new InputDecoration(
               errorText: _validate ? 'Value Can\'t Be Empty' : null,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                borderSide: BorderSide(
-                  width: 0,
-                  color: Colors.indigoAccent[100],
-                  style: BorderStyle.none,
+              border: new OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                borderSide: new BorderSide(
+                  width: 1,
+                  color: Helper().button,
+                  // style: BorderStyle.solid,
                 ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                borderSide: BorderSide(color: Helper().button, width: 1.0),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                borderSide: BorderSide(color: Helper().button, width: 1.0),
               ),
               filled: true,
               // prefixIcon: Icon(
@@ -41,7 +51,7 @@ class SearchWidget extends StatelessWidget {
               fillColor: Color(0xFFFAFAFA),
               suffixIcon: IconButton(
                 icon: const Icon(Icons.search),
-                color: Colors.indigoAccent[100],
+                color: Helper().button,
                 onPressed: () {
                   searchText = searchController.text;
                   searchText.isEmpty ? _validate = true : _validate = false;

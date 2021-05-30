@@ -440,6 +440,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget build(BuildContext context) {
+    Helper help = new Helper();
     _address = widget.address;
     // double totalWidth = MediaQuery.of(context).size.width;
     double totalHeight = MediaQuery.of(context).size.height;
@@ -452,6 +453,7 @@ class _HomePageState extends State<HomePage> {
       // drawer: Drawer(child: AppDrawer(automatic: widget.automatic)),
       drawerEnableOpenDragGesture: false,
       appBar: AppBar(
+        backgroundColor: help.background,
         toolbarHeight: mediaQuery.size.height * 50 / 700,
         title: new RichText(
           textAlign: TextAlign.start,
@@ -462,12 +464,14 @@ class _HomePageState extends State<HomePage> {
               TextSpan(
                 text: 'Deliver to:\n',
                 style: TextStyle(
+                    color: help.heading,
                     fontSize: mediaQuery.size.height * 15 / 700,
                     fontWeight: FontWeight.bold),
               ),
               TextSpan(
                 text: widget.address,
                 style: TextStyle(
+                  color: help.normalText,
                   fontSize: mediaQuery.size.height * 13 / 700,
                   // maxLines: 3,
                   // overflow: TextOverflow.ellipsis,
@@ -478,7 +482,7 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.edit),
+            icon: Icon(Icons.edit, color: help.heading),
             onPressed: () async {
               await _showModalBottomSheet(context);
               // Navigator.push(
@@ -589,13 +593,13 @@ class _HomePageState extends State<HomePage> {
                 right: totalWidth * 15 / 420,
                 top: totalHeight * 5 / 700,
                 bottom: totalHeight * 10 / 700),
-            decoration: new BoxDecoration(boxShadow: [
-              new BoxShadow(
-                color: _hasBeenPressed ? Color(0xFFFF785B) : Color(0xffdee8ff),
-                blurRadius: 25.0,
-                offset: Offset(0.0, 0.75),
-              ),
-            ]),
+            // decoration: new BoxDecoration(boxShadow: [
+            //   new BoxShadow(
+            //     color: _hasBeenPressed ? Color(0xFFFF785B) : Color(0xffdee8ff),
+            //     blurRadius: 25.0,
+            //     offset: Offset(0.0, 0.75),
+            //   ),
+            // ]),
             child: Container(
               decoration: BoxDecoration(
                 color: Helper().button,
@@ -618,9 +622,9 @@ class _HomePageState extends State<HomePage> {
           ),
           Text(name,
               style: TextStyle(
-                  color: Colors.blue,
-                  fontSize: totalHeight * 16 / 700,
-                  fontWeight: FontWeight.w500)),
+                  color: Color(0xFF002140),
+                  fontSize: totalHeight * 14 / 700,
+                  fontWeight: FontWeight.bold)),
         ],
       ),
     );
@@ -908,6 +912,24 @@ class _PopularFoodTilesState extends State<PopularFoodTiles> {
                   ),
                 ),
                 Positioned(
+                  right: 4,
+                  top: 3,
+                  child: Container(
+                    decoration: new BoxDecoration(
+                      color: Colors.red.withOpacity(0.6),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    child: Text(
+                      '${widget.fromTime}-${widget.toTime}',
+                      style: TextStyle(
+                          fontSize: totalHeight * 12 / 700,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    padding: EdgeInsets.all(4.0),
+                  ),
+                ),
+                Positioned(
                     right: 5,
                     bottom: -5,
                     left: 5,
@@ -1010,24 +1032,24 @@ class _PopularFoodTilesState extends State<PopularFoodTiles> {
                         color: Colors.white,
                       ),
                     )),
-                Positioned(
-                  right: 3,
-                  top: 3,
-                  child: Container(
-                    decoration: new BoxDecoration(
-                      color: Colors.white.withOpacity(0.6),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    child: Text(
-                      widget.time,
-                      style: TextStyle(
-                          fontSize: totalHeight * 12 / 700,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    padding: EdgeInsets.all(4.0),
-                  ),
-                )
+                // Positioned(
+                //   right: 3,
+                //   top: 3,
+                //   child: Container(
+                //     decoration: new BoxDecoration(
+                //       color: Colors.white.withOpacity(0.6),
+                //       borderRadius: BorderRadius.all(Radius.circular(10)),
+                //     ),
+                //     child: Text(
+                //       widget.time,
+                //       style: TextStyle(
+                //           fontSize: totalHeight * 12 / 700,
+                //           color: Colors.black,
+                //           fontWeight: FontWeight.bold),
+                //     ),
+                //     padding: EdgeInsets.all(4.0),
+                //   ),
+                // )
               ])
             ]),
       ),
@@ -1503,6 +1525,24 @@ class _BestFoodTilesState extends State<BestFoodTiles> {
                   ),
                 ),
                 Positioned(
+                  right: 4,
+                  top: 3,
+                  child: Container(
+                    decoration: new BoxDecoration(
+                      color: Colors.red.withOpacity(0.6),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    child: Text(
+                      '${widget.fromTime}-${widget.toTime}',
+                      style: TextStyle(
+                          fontSize: totalHeight * 12 / 700,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    padding: EdgeInsets.all(4.0),
+                  ),
+                ),
+                Positioned(
                     right: 5,
                     bottom: -5,
                     left: 5,
@@ -1603,24 +1643,24 @@ class _BestFoodTilesState extends State<BestFoodTiles> {
                         color: Colors.white,
                       ),
                     )),
-                Positioned(
-                  right: 3,
-                  top: 3,
-                  child: Container(
-                    decoration: new BoxDecoration(
-                      color: Colors.white.withOpacity(0.6),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    child: Text(
-                      widget.time,
-                      style: TextStyle(
-                          fontSize: totalHeight * 12 / 700,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    padding: EdgeInsets.all(4.0),
-                  ),
-                )
+                // Positioned(
+                //   right: 3,
+                //   top: 3,
+                //   child: Container(
+                //     decoration: new BoxDecoration(
+                //       color: Colors.white.withOpacity(0.6),
+                //       borderRadius: BorderRadius.all(Radius.circular(10)),
+                //     ),
+                //     child: Text(
+                //       widget.time,
+                //       style: TextStyle(
+                //           fontSize: totalHeight * 12 / 700,
+                //           color: Colors.black,
+                //           fontWeight: FontWeight.bold),
+                //     ),
+                //     padding: EdgeInsets.all(4.0),
+                //   ),
+                // )
               ])
             ]),
       ),
