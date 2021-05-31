@@ -265,7 +265,7 @@ class _ItemsFoundState extends State<ItemsFound> {
                                   data.getSelfDelivery(),
                                   data.getimage(),
                                   data.gettime(),
-                                  1,
+                                  data.getCount(),
                                   this.cartdata,
                                   data.getChefId().toString(),
                                   data.getToTime(),
@@ -389,7 +389,8 @@ class SingleCard extends StatefulWidget {
 class _SingleCardState extends State<SingleCard> {
   Helper help = new Helper();
   var canAdd = 1;
-
+  int canIncrease = 1;
+  int itemCount = 1;
   @override
   void initState() {
     super.initState();
@@ -486,7 +487,7 @@ class _SingleCardState extends State<SingleCard> {
                           // crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              child: Text(widget.quantity.toString(),
+                              child: Text(itemCount.toString(),
                                   style: new TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.w900)),
@@ -506,25 +507,54 @@ class _SingleCardState extends State<SingleCard> {
                               tooltip: 'Delete',
                               onPressed: () => {
                                 setState(() {
-                                  widget.quantity =
-                                      help.delQuantity(widget.quantity);
-                                  print(widget.quantity);
-                                })
+                                  itemCount = help.delQuantity(itemCount);
+                                  print(itemCount);
+                                }),
+                                if (itemCount < widget.quantity)
+                                  {
+                                    setState(() {
+                                      canIncrease = 1;
+                                    })
+                                  },
                               },
                             ),
                             IconButton(
                               icon: Icon(
                                 Icons.add_circle,
-                                color: Helper().button,
+                                color: canIncrease == 1
+                                    ? Helper().button
+                                    : Colors.grey,
                                 size: totalHeight * 28 / 700,
                               ),
                               tooltip: 'Add',
                               onPressed: () => {
-                                setState(() {
-                                  widget.quantity =
-                                      help.addQuantity(widget.quantity);
-                                  print(widget.quantity);
-                                })
+                                if (widget.quantity > itemCount)
+                                  {
+                                    setState(() {
+                                      itemCount = help.addQuantity(itemCount);
+                                      print(itemCount);
+                                    }),
+                                    if (widget.quantity == itemCount)
+                                      {
+                                        setState(() {
+                                          canIncrease = 0;
+                                        })
+                                      }
+                                  }
+                                else
+                                  {
+                                    setState(() {
+                                      canIncrease = 0;
+                                    }),
+                                    Fluttertoast.showToast(
+                                        msg: "Order Limit Exceeded",
+                                        toastLength: Toast.LENGTH_SHORT,
+                                        gravity: ToastGravity.BOTTOM,
+                                        timeInSecForIosWeb: 1,
+                                        backgroundColor: Helper().button,
+                                        textColor: Colors.white,
+                                        fontSize: 16.0)
+                                  }
                               },
                             ),
                           ],
@@ -619,7 +649,7 @@ class _SingleCardState extends State<SingleCard> {
                                     DateFormat('dd MMM y')
                                         .format(tomorrow)
                                         .toString()),
-                                widget.quantity);
+                                itemCount);
                             String msg;
                             if (CartData.dishes.length < 2) {
                               msg = "Showing " + widget.name + "'s food only";
